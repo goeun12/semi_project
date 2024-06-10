@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>header</title>
+<style>
+	#header{background: #F24822; height: 37px; width: 100%; position: fixed; top: 0px; left: 0px; right: 0px;}
+	.button{color: black; text-decoration: none;}
+	.button:hover{font-weight: bold;}
+	
+	#header-menu{margin-left:10px; float: left;}
+	#header-user{margin-right: 20px; float: right;}
+	.header-common{margin-top: 7px;}
+	
+</style>
+</head>
+<body>
+	<div id="header">
+		<div id="header-menu" class="header-common">
+			<a href="#"><img src="#" id="logo"></a>
+			<a href="#" id="main" class="button">레시피 게시판</a> |
+			<a href="#" id="tip" class="button">꿀팁 게시판</a> |
+			<a href="#" id="comm" class="button">메뉴 추천</a>
+		</div>
+		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
+		<div id="header-user" class="header-common">
+			<a href="#" class="button">로그인</a>
+			<a href="#" class="button">회원가입</a>
+		</div>
+	</div>
+	
+</body>
+</html>
