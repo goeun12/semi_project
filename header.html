@@ -13,7 +13,7 @@
 	
 	#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
-	.header_common #user_login #user_join {margin-top: 13px;}
+	#header_user_noUser{margin-top: 13px;}
 	.header_common #user_login_complete{margin-top: 8px;}
 	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
 </style>
@@ -31,12 +31,13 @@
 		<div id="header_user" class="header_common">
 			
 			<!-- 로그인 x 상태 -->
-			<!-- <a href="#" id="user_login" class="button">로그인</a>
-			<a href="#" id="user_join" class="button">회원가입</a> -->
-			
+			<div id="header_user_noUser">
+				<a href="#" id="user_login" class="button">로그인</a>
+				<a href="#" id="user_join" class="button">회원가입</a>
+			</div>
 			<!-- 로그인 o 상태 -->
 			<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
-			<div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div>
+			<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
 		</div>
 	</div>
 	
