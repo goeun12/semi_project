@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link href="../css/user_login.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="wrap" class="wrap">
+		<div id="header">
+			<div id="header_menu" class="header_common">
+				<a href="#"><img src="#" id="logo"></a>
+				<a href="#" id="main" class="button">레시피</a><span class="button">|</span>
+				<a href="#" id="tip" class="button">꿀팁</a> <span class="button">|</span>
+				<a href="#" id="comm" class="button">메뉴 추천</a> <span class="button">|</span>
+				<a href="#" id="notice" class="button">공지사항</a>
+			</div>
+			<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
+			<div id="header_user" class="header_common">
+				<!-- 로그인 x 상태 -->
+				<div id="header_user_noUser">
+					<a href="#" id="user_login" class="button">로그인</a>
+					<a href="#" id="user_join" class="button">회원가입</a>
+				</div>
+				<!-- 로그인 o 상태 -->
+				<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
+				<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
+			</div>
+		</div>
+		
+		<div id="container">
+			<div id="login_bar">
+				<span class="main_text">
+					로그인
+				</span>
+			</div>
+			<table id="login_table">
+				<tr>
+					<th><label id="login_table_id" for="id">아이디</label></th>
+					<td><input type="text" id="id" name="id" class="login_content" required></td>
+				</tr>
+				<tr>
+					<th><label id="login_table_pwd" for="pwd">비밀번호</label></th>
+					<td><input type="password" id="pwd" name="pwd" class="login_content" required></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="footer">
+			<div id="footer_inner">
+				<div id="company" class="font">사업자: (주) 혼밥심</div>
+				<div id="leader" class="font">대표: 김남희</div>
+				<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
