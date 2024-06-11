@@ -1,0 +1,64 @@
+@charset "UTF-8";
+body{background-color: #FFFBF2; margin: 0px;}
+#wrap{
+	position: relative; height: 100%;
+}
+#header{background: #F24822; height: 47px; width: 100%; position: fixed; top: 0px; left: 0px; right: 0px;}
+.button{color: white; text-decoration: none;}
+.button:hover{font-weight: bold;}
+.button{color: white; text-decoration: none;}
+.button:hover{font-weight: bold;}
+
+#header_menu{margin-left:10px; float: left; margin-top: 13px;}
+#header_user{margin-right: 20px; float: right;}
+
+#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
+#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
+#header_user_noUser{margin-top: 13px;}
+.header_common #user_login_complete{margin-top: 8px;}
+#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
+
+#container{
+	min-width: 1200px;
+	width: 100%;
+}
+#login_bar{
+	margin: 80px auto;
+	padding: 10px 40px 10px 40px;
+	width: 60%;
+	text-align: center;
+	background: #FFB3A2;
+}
+.main_text{font-weight: bold;}
+#login_table{
+	margin: 80px auto;
+	padding: 10% 20%;
+	border: 2px solid black;
+	border-spacing: 3px white;
+}
+#login_table>tbody{
+	background: white;
+	border: 1px solid white;
+}
+.login_content{
+	background: none;
+	border: none;
+}
+th{
+	width: 200px;
+	height: 50px;
+}
+td{
+	width: 300px;
+}
+
+#footer{
+	border-top: 2px solid rgb(144, 144, 144); background: #B3B3B3;
+	text-align: center;
+}
+.font{color: #000000; margin-bottom: 3px;}
+#footer_inner{
+	margin: 0 auto;
+	width: 100%;
+	padding-bottom: 108px;
+}
