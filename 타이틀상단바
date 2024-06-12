@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+  #login_bar{
+	  margin: 80px auto;
+	  padding: 10px 40px 10px 40px;
+  	width: 50%;
+  	height: 50px;
+  	text-align: center;
+  	background: #FFB3A2;
+  }
+</style>
+</head>
+<body>
+  <div id="login_bar">
+    <span class="main_text">
+      오늘의 혼밥심
+    </span>
+  </div>
+</body>
+</html>
