@@ -21,35 +21,98 @@ body{background-color: #FFFBF2; margin: 0px;}
 #container{
 	min-width: 1200px;
 	width: 100%;
+	margin-top: 13%;
 }
 #login_bar{
 	margin: 80px auto;
 	padding: 10px 40px 10px 40px;
-	width: 60%;
+	width: 30%;
 	text-align: center;
 	background: #FFB3A2;
 }
 .main_text{font-weight: bold;}
-#login_table{
-	margin: 80px auto;
-	padding: 10% 20%;
-	border: 2px solid black;
-	border-spacing: 3px white;
+
+#login{
+	margin: 80px auto 0px;
+	width: 400px;
+	height: 180px;
+	border-radius: 6px;
+	background: none;
 }
-#login_table>tbody{
+#login_box{
+	margin: 13% 13% 7% 13%;
+	padding-right: 14px;
 	background: white;
-	border: 1px solid white;
+	border: 1px solid black;
+}
+#login_id{
+	background: white;
+	border-bottom: 1px solid gray;
+}
+#login_pwd{
+	background: white;
+}
+.login_content_name{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 4px;
 }
 .login_content{
-	background: none;
+	width: 100%;
+	height: 33px;
+	font-size: 17px;
+	margin-top: 3px;
+	padding-top: 5px;
+	cursor: pointer;
 	border: none;
 }
-th{
-	width: 200px;
+#login_box input:focus{
+	outline: none;
+}
+#login_check{
+	border: 1px solid red;
+	height: 40px;
+	margin-left: 13%;
+	margin-right: 13%;
+}
+#login_check>button{
+	width: 100%;
+	height: 100%;
+	background: #F24822;
+	cursor: pointer;
+	border: none;
+	color: white;
+}
+
+
+#find_join{
+	margin: 0px auto 10%;
+	border: 1px solid black;
+	width: 500px;
+	height: 100px;
+	text-align: center;
+}
+#find_join_box{
+	margin-top: 5%;
+}
+.find_join_in{
+	display:inline-block;
+}
+
+#join_user, #find_idpw{
+	border: 1px solid green;
+	width: 120px;
 	height: 50px;
 }
-td{
-	width: 300px;
+
+#join_user_link, #find_idpw_link{
+	color: black;
+}
+
+#join_user{
+	margin: 0px auto;
 }
 
 #footer{
