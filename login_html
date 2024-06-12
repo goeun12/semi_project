@@ -10,7 +10,7 @@
 		<div id="header">
 			<div id="header_menu" class="header_common">
 				<a href="#"><img src="#" id="logo"></a>
-				<a href="#" id="main" class="button">레시피</a><span class="button">|</span>
+				<a href="#" id="main" class="button">레시피</a> <span class="button">|</span>
 				<a href="#" id="tip" class="button">꿀팁</a> <span class="button">|</span>
 				<a href="#" id="comm" class="button">메뉴 추천</a> <span class="button">|</span>
 				<a href="#" id="notice" class="button">공지사항</a>
@@ -34,18 +34,48 @@
 					로그인
 				</span>
 			</div>
-			<table id="login_table">
-				<tr>
-					<th><label id="login_table_id" for="id">아이디</label></th>
-					<td><input type="text" id="id" name="id" class="login_content" required></td>
-				</tr>
-				<tr>
-					<th><label id="login_table_pwd" for="pwd">비밀번호</label></th>
-					<td><input type="password" id="pwd" name="pwd" class="login_content" required></td>
-				</tr>
-			</table>
+			<form action="#" method="post">
+			<!-- 테이블지워라 -->
+				<!-- 
+				<table id="login_table">
+					<tr>
+						<th><label id="login_table_id" for="id">아이디</label></th>
+						<td><input type="text" id="id" name="id" class="login_content" required></td>
+						<td rowspan="2"><button id="login_post">로그인</button></td>
+					</tr>
+					<tr>
+						<th><label id="login_table_pwd" for="pwd">비밀번호</label></th>
+						<td><input type="password" id="pwd" name="pwd" class="login_content" required></td>
+					</tr>
+				</table>
+				 -->
+				<div id="login">
+					<div id="login_box">
+						<div id="login_id" class="login_content_name">
+							<input type="text" id="id" name="id" class="login_content" required placeholder="아이디">
+						</div>
+						<div id="login_pwd" class="login_content_name">
+							<input type="password" id="pwd" name="pwd" class="login_content" required placeholder="비밀번호">
+						</div>
+					</div>
+					
+					<div id="login_check">
+						<button id="login_check_button">로그인</button>
+					</div>
+				</div>
+			</form>
+			
+			<div id="find_join">
+				<div id="find_join_box">
+					<div id="join_user" class="find_join_in">
+						<a href="#" id="join_user_link" class="button"><label id="join_text">회원가입</label></a>
+					</div>
+					<div id="find_idpw" class="find_join_in">
+						<a href="#" id="find_idpw_link" class="button"><label id="find_text">아이디/비밀번호 변경</label></a>
+					</div>
+				</div>
+			</div>
 		</div>
-		
 		<div id="footer">
 			<div id="footer_inner">
 				<div id="company" class="font">사업자: (주) 혼밥심</div>
