@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Join</title>
+<link href="../css/joinAcc.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="header">
+		<div id="header_menu" class="header_common">
+			<a href="#" class="button"><img src="#" id="logo"></a>
+			<a href="#" id="main" class="button">레시피</a>	
+			<a href="#" id="tip" class="button">꿀팁</a>
+			<a href="#" id="comm" class="button">메뉴 추천</a>
+			<a href="#" id="notice" class="button">공지사항</a>
+		</div>
+		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
+		<div id="header_user" class="header_common">
+			<!-- 로그인 x 상태 -->
+			<div id="header_user_noUser">
+				<a href="#" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
+				<a href="#" id="user_join" class="button_user">회원가입</a>
+			</div>
+			<!-- 로그인 o 상태 -->
+			<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
+			<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
+		</div>
+	</div>
+	<div id="mainDiv">
+		<div class="infor">회원가입</div>
+		<form>
+			<div id="join_table_div">
+				<table id="join_table" border="1">
+					<tr>
+						<th>아이디 : </th>
+						<td><input type="text" id="join_id" class="join input"/></td>
+					</tr>
+					<tr>
+						<th>비밀번호 : </th>
+						<td><input type="password" id="join_pwd" class="join input"/></td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인 : </th>
+						<td><input type="password" id="join_pwd2" class="join input"/></td>
+					</tr>
+					<tr>
+						<th>이름 : </th>
+						<td><input type="text" id="join_name" class="join input"/></td>
+					</tr>
+					<tr>
+						<th>주민등록번호 : </th>
+						<td><input type="text" id="join_no" class="join input"/></td>
+					</tr>
+					<tr>
+						<th>휴대폰번호 : </th>
+						<td><input type="text" id="join_phone" class="join input"/></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<button id="join_button">회원가입</button>
+			</div>
+		</form>
+	</div>
+	<div id="footer">
+		<div id="footer_inner">
+			<div id="company" class="font">사업자: (주) 혼밥심</div>
+			<div id="leader" class="font">대표: 김남희</div>
+			<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
+		</div>
+	</div>
+</body>
+</html>
