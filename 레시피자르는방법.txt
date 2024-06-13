@@ -1,0 +1,9 @@
+insert into board values(99999,'자르기테스트용','1.물을 끓입니다.*2.면과 스프를 넣습니다.*3.3분30초동안 끌여줍니다.*4.불을 끕니다.*5.먹습니다.',99999,0,default,default,default,default);
+select regexp_substr(content, '[^*]+',1,6) from board;
+
+입력받은 값을 쿼리로
+str = str + "*"; 
+반복 돌리면 위 처럼 들어갈거라 예상
+regexp_substr 쓰면 자를수있음
+substr( 가져올 데이터, '[^기준삼을 특수문자]+', 1, 몇번째 기준인지)
+				+ 붙이면 자르기 전꺼 다 가져옴
