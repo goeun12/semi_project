@@ -35,6 +35,7 @@ margin-right: 30px;}
 	height: 50px;
 	text-align: center;
 	background: #FFB3A2;
+	border-radius: 15px; /* 꼭짓점 둥글게 할지 말지 고르기 */
 }
 #login{
 	margin: 0px auto 0px;
@@ -45,15 +46,17 @@ margin-right: 30px;}
 }
 #login_box{
 	margin: 13% 13% 7% 13%;
-	background: white;
-	border: 1px solid lightgray;
 }
 #login_id{
 	background: white;
 	border-bottom: 1px solid lightgray;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 #login_pwd{
 	background: white;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 .login_content_name{
 	width: 100%;
@@ -61,15 +64,17 @@ margin-right: 30px;}
 	text-align: center;
 	padding-left: 10px;
 	padding-right: 4px;
+	border: 1px solid lightgray;
 }
 .login_content{
 	width: 100%;
 	height: 33px;
 	font-size: 20px;
-	margin-top: 3px;
+	margin-top: 0px;
 	padding-top: 5px;
 	cursor: pointer;
 	border: none;
+	border-radius: 10px;
 }
 #login_box input:focus{
 	outline: none;
@@ -78,7 +83,6 @@ margin-right: 30px;}
 	width: 297px;
 	height: 40px;
 	margin: auto 13%;
-	border-radius: 6px;
 }
 #login_check>button{
 	width: 100%;
@@ -88,7 +92,7 @@ margin-right: 30px;}
 	border: none;
 	color: white;
 	font: 20px bold;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 
