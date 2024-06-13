@@ -2,10 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login</title>
 <link href="../css/user_login.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #FFFBF2;">
 	<div id="wrap" class="wrap">
 		<div id="header">
 			<div id="header_menu" class="header_common">
@@ -28,27 +30,13 @@
 			</div>
 		</div>
 		
-		<div id="container">
-			<div id="login_bar">
-				<span class="main_text">
-					오늘의 혼밥심
-				</span>
-			</div>
-			<form action="#" method="post">
-			<!-- 테이블지워라 -->
-				<!-- 
-				<table id="login_table">
-					<tr>
-						<th><label id="login_table_id" for="id">아이디</label></th>
-						<td><input type="text" id="id" name="id" class="login_content" required></td>
-						<td rowspan="2"><button id="login_post">로그인</button></td>
-					</tr>
-					<tr>
-						<th><label id="login_table_pwd" for="pwd">비밀번호</label></th>
-						<td><input type="password" id="pwd" name="pwd" class="login_content" required></td>
-					</tr>
-				</table>
-				 -->
+		<div id="container" class="py-5 text-center container">
+			<div style="padding-top:1rem !important; padding-bottom:1rem !important;" class="row py-lg-5">
+     			<div id="login_bar" class="col-lg-6 col-md-8 mx-auto">
+        			<h3 class="fw-bold">로그인</h3>
+      			</div><br>
+      		</div>
+			<form action="#" method="post" id="login_form">
 				<div id="login">
 					<div id="login_box">
 						<div id="login_id" class="login_content_name">
@@ -60,7 +48,7 @@
 					</div>
 					
 					<div id="login_check">
-						<button id="login_check_button">등록</button>
+						<button id="login_check_button">로그인</button>
 					</div>
 				</div>
 			</form>
@@ -68,21 +56,21 @@
 			<div id="find_join">
 				<div id="find_join_box">
 					<div id="join_user" class="find_join_in">
-						<a href="#" id="join_user_link" class="button"><label id="join_text">회원가입</label></a>
+						<a href="#" id="join_user_link" class="button_find_join btn"><label class="font_text">회원가입</label></a>
 					</div>
+					<div style="width: 200px; display: inline-block;"></div>
 					<div id="find_idpw" class="find_join_in">
-						<a href="#" id="find_idpw_link" class="button"><label id="find_text">아이디/비밀번호 변경</label></a>
+						<a href="idpw_find.html" id="find_idpw_link" class="btn button_find_join"><label class="font_text">아이디/비밀번호 변경</label></a>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div id="footer">
+		<footer id="footer" class="text-body-secondary py-5">
 			<div id="footer_inner">
-				<div id="company" class="font">사업자: (주) 혼밥심</div>
-				<div id="leader" class="font">대표: 김남희</div>
-				<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
-			</div>
-		</div>
+			    <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
+			    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+		  	</div>
+		</footer>
 	</div>
 </body>
 </html>
