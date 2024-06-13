@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<title>Insert title here</title>
+<style>
+		
+	.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
+					font-family: "나눔고딕"; font-size:20px}
+	
+	#notice_title{background:#f9ae98;
+			width: 50%; height:50px;
+			margin-left:25%;
+			margin-block-end:0;
+			text-align: center;
+			text-decoration:none;
+			font-size:35px;}
+
+		
+	#search_notice{width: 40%;
+					margin-left:30%;
+					height:40px;
+					}
+	
+	#notice_write_button{width: 120px; margin-left:73%; margin-bottom: 10px;  border-radius:6px;
+				}
+	
+	
+		
+	#notice_table_div{background:white;
+					width: 70%;
+					margin-left:15%;		
+					padding: 20px;			
+					border: 1px solid lightgray;
+					border-radius:15px;
+					font-weight:100;}
+						
+					
+	.pagination-sm .page-link {background: none;
+								border: none;
+								color:black;}
+	
+	
+	[id*="button"]{background:#f24822; color:white; border:none; 
+					height:40px;
+					text-decoration:none; 
+					font-size:20px
+					}
+	#search_button{width:80px;}
+
+	
+	
+	#footer{background: lightgray;  
+			min-width: 1200px;
+			width: 100%; height:80px;}
+
+
+
+</style>
+
+</head>
+<body>
+	<div class="container-fluid">
+		<div><h1>네비게이션바</h1></div>
+		<br>
+		
+		<div id="notice_title">
+    		<p>공지사항 게시판</p>
+  		</div>
+  		
+		<br><br>
+		<form>
+			<div class="input-group mb-3" id="search_notice">
+	 			<input type="text" class="form-control" name="noticeKey" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">
+	 			<button class="btn btn-outline-secondary" id="search_button">검색</button>
+			</div>
+		</form>	
+		
+		<br>	
+		<a class="btn btn-primary me-md-2" href="noticeWritePage.html" role="button" id ="notice_write_button">글쓰기</a>
+		
+		
+		<div id="notice_table_div">	
+			<div id="notice_table">
+				<table class="table table-hover ">
+				  <thead>
+				    <tr >
+				      <th scope="col" style="width: 10%; font-weight:550; ">번호</th>
+				      <th scope="col" style="width: 40%; font-weight:550; text-align: center;">공지사항</th>
+				      <th scope="col" style="width: 20%; font-weight:550; ">작성일</th>
+				    </tr>
+				  </thead>
+				  <tbody class="table-group-divider">
+				    <tr>
+				      <td scope="row">&nbsp10</td>
+				      <td>&nbspMark</td>
+				      <td>&nbspOtto</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp9</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp8</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+					<tr>
+				      <td scope="row">&nbsp7</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp6</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp5</td>
+				      <td>&nbspacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp4</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp3</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp2</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">&nbsp1</td>
+				      <td>&nbspJacob</td>
+				      <td>&nbspThornton</td>
+				    </tr>
+				  </tbody>
+				</table>			
+			</div>
+			
+			<div class="mx-auto" id="page_navigation" style="width: 210px;">
+				  <ul class="pagination pagination-sm">
+				    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item"><a class="page-link" href="#">4</a></li>
+				    <li class="page-item"><a class="page-link" href="#">5</a></li>
+				    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+				  </ul>
+			</div>				
+		</div>		
+	</div>
+
+
+
+	<div class="container-fluid" id="footer"></div>
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	<script>
+		window.onload = () => {
+			const writeButton = document.getElementById("notice_write_button");
+			if(false){
+				writeButton.style.display ='none';				
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+	
+	</script>
+
+
+</body>
+</html>
