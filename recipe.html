@@ -1,140 +1,93 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light"><head><script src="../assets/js/color-modes.js"></script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Album example · Bootstrap v5.3</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-
+<html>
+<head>
+<meta charset="UTF-8">
+<title>어려움</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<style>
+.div-flexible{display:flex;}
+.div-center{justify-content:center;}
+	.recipe-option{padding-left:70px; padding-right:70px;}
+	.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
+					font-family: "나눔고딕"; font-size:20px}
+.top-padding{padding-top:3rem !important;}
+.bottom-padding{padding-bottom:1rem !important;}
+.searchbar{margin-left:20%;}
+.searchButton{margin-right:20%;}
+.row-cols-md-3>*{flex:0 0 auto; width:25%;}
+.album{padding-left:10%; padding-right:10%;}
+.notice_title{background:#f9ae98;
+			width: 50%; height:50px;
+			margin-left:25%;
+			margin-block-end:0;
+			text-align: center;
+			text-decoration:none;
+			font-size:35px;}
+#search_button,#write-button{background:#f24822; color:white; border:none; 
+					height:40px;
+					text-decoration:none; 
+					font-size:20px;
+					width:80px;
+					}
+	.pagination-sm .page-link {background: none;
+								border: none;
+								color:black;}
+#gotop-button{position: fixed; right: 30px; bottom: 100px;}
+.page-link:hover{color:red; font-size:large; text-decoration:underline;}
+</style>
+</head>
+<body>
 
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<div id="gotop-button"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 
-    <style>
-     
-.pageButton{text-decoration-line:none;}
-.pageButton:hover{font-weight:bold;color:red;}
-.row-cols-md-3>*{ flex: 0 0 auto; width: 25%;}
-
-.input-group{width:40%;position:static;}
-
-.album{padding-left:20%; padding-right:20%;}
-
-#header{
-		min-width: 1250px;
-		background: #F24822; 
-		height: 80px; width: 100%; 
-		position: fixed; 
-		top: 0px; left: 0px; right: 0px;
-	}
-	.button{color: white; text-decoration: none; font-size: 40px;
-	margin-right: 30px;}
-	.button:hover{font-weight: bold;}
-	.button_user{color: white; text-decoration: none; font-size: 30px;}
-	
-	.header_common{margin-top: 20px;}
-	#header_menu{margin-left:10px; float: left;}
-	#header_user{margin-right: 20px; float: right;}
-	
-	#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
-	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
-	#header_user_noUser{margin-top: 13px;}
-	.header_common #user_login_complete{margin-top: 8px;}
-	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
-
-	.card{position:static;}
-	secion{margin-top:80px;}
-    </style>
-
-    
-  </head>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-      </symbol>
-    </svg>
-<div style=" position: fixed; right: 10px; bottom: 10px;"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
-
-
-    <div id="header">
-		<div id="header_menu" class="header_common">
-			<a href="#" class="button"><img src="#" id="logo"></a>
-			<a href="#" id="main" class="button">레시피</a>	
-			<a href="#" id="tip" class="button">꿀팁</a>
-			<a href="#" id="comm" class="button">메뉴 추천</a>
-			<a href="#" id="notice" class="button">공지사항</a>
-		</div>
-		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
-		<div id="header_user" class="header_common">
-			<!-- 로그인 x 상태 -->
-			<div id="header_user_noUser">
-				<a href="#" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-				<a href="#" id="user_join" class="button_user">회원가입</a>
-			</div>
-			<!-- 로그인 o 상태 -->
-			<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
-			<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
-		</div>
-	</div>
-
-<main>
-
-  <section class="py-5 text-center container">
-    <div style="margin-top: 3rem !important; padding-top:1rem !important; padding-bottom:1rem !important;" class="row py-lg-5">
-      <div style="border: 1px solid black;"class="col-lg-6 col-md-8 mx-auto">
+<div class="container-fluid">
+  <section class="text-center container top-padding">
+    <div style="margin-top: 3rem !important; padding-top:1rem !important;" class="row py-lg-5">
+      <div class="notice_title">
         <h1 class="fw-light">레시피 게시판</h1>
       </div><br>
-      <div style="display:flex; padding-top:10px;padding-bottom:10px; justify-content:center;">
-		<div style="display:flex;width: 70%; height: 30px;border:1px solid red;">
-			<div style="width:10%">공지</div>
+      <div class="div-flexible div-center" style="padding-top:10px;padding-bottom:10px;">
+		<div class="div-flexible" style="width: 70%; height: 30px;border:1px solid red;">
+			<div style="width:10%"><img src="as">&nbsp;공지</div>
 			<div style="width:80%">공지사항 제목</div>
 		</div>
       </div>
     </div>
-    <div style="display:flex; padding-top:10px;padding-bottom:10px; justify-content:center;">
+    <div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 		<div class="input-group mb-3">
-		  <input type="text" class="form-control" placeholder="찾고자 하는 단어를 입력해주세요.">
-		  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+		  <input type="text" class="form-control searchbar" placeholder="찾고자 하는 단어를 입력해주세요.">
+		  <button class="btn btn-outline-secondary searchButton" type="button" id="search_button">검색</button>
 		</div>
       </div>
 
-
-
-<div style="height:10px;"></div>
-<!--     <div style="display:flex; justify-content:center;">
-	<div style="margin-left:10px; margin-right: 10px; border:1px dashed black">국가  </div><div style="margin-left:10px; margin-right: 10px; border:1px dashed black">가격  </div><div style="margin-left:10px; margin-right: 10px; border:1px dashed black">난이도</div>
-	</div>    -->
-<br> <select>
-	<option selected>국가</option><option>한식</option><option>중식</option><option>양식</option><option>일식</option>
-        </select>
-<select>
-	<option selected>가격대</option><option>만원</option><option>이마넌</option><option>삼마넌</option><option>오마넌</option>
-        </select>
-<select>
-	<option selected>난이도</option><option>하</option><option>중</option><option>상</option>
-        </select>
-    </div>
+<div class="container text-center">
+	<div class="div-flexible  div-center">
+		<div class="recipe-option">
+			<select class="form-select form-select-sm" aria-label="Small select example">
+			  <option value="kr"selected>한식</option>
+			  <option value="cn">중식</option>
+			  <option value="us">양식</option>
+			  <option value="jp">일식</option>
+			  <option value="no">분식</option>
+			</select>
+		</div>
+		
+		<div class="recipe-option">
+			<select class="form-select form-select-sm" aria-label="Small select example">
+			  <option value="easy"selected>하</option>
+			  <option value="mid">중</option>
+			  <option value="hard">상</option>
+			</select>
+		</div>
+		
+	</div>
+</div><br>
   </section>
 
-  <div class="album py-5 bg-body-tertiary">
+
+<div class="py-5 bg-body-tertiary">
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -307,25 +260,27 @@
         </div>
       </div>
     </div>
-  </div>
-<div style="display: flex; justify-content:center; height: 50px">
+    <br>
+   <div class="div-flexible div-center" style="height: 50px">
 	<div>
-		<button>글 작성</button>
+		<button id="write-button">글 작성</button>
 	</div>
-</div>
-<div style="height:15px;"></div>
-<div style="text-align:center"><a href="#" class="pageButton">1 </a><a href="#" class="pageButton">2 </a><a href="#" class="pageButton">3 </a><a href="#" class="pageButton">4 </a><a href="#" class="pageButton">5</a></div>
-</main>
-
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    
-    <p class="mb-1">푸터</p>
-    <p class="mb-0">푸터 2번째줄</p>
+   </div>
+   <br>
+    <div class="mx-auto" id="page_navigation" style="width: 210px;">
+				  <ul class="pagination pagination-sm">
+				    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item"><a class="page-link" href="#">4</a></li>
+				    <li class="page-item"><a class="page-link" href="#">5</a></li>
+				    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+				  </ul>
+			</div>
   </div>
-</footer>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    
-
-</body></html>
+<div style="height:15px;"></div>
+</div>
+</body>
+</html>
