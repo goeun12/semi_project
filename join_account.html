@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Join</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="../css/joinAcc.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="header">
 		<div id="header_menu" class="header_common">
-			<a href="#" class="button"><img src="#" id="logo"></a>
+			<a href="img\KakaoTalk_20240609_174621284_modified.png" class="button"><img src="#" id="logo"></a>
 			<a href="#" id="main" class="button">레시피</a>	
 			<a href="#" id="tip" class="button">꿀팁</a>
 			<a href="#" id="comm" class="button">메뉴 추천</a>
@@ -27,33 +28,35 @@
 		</div>
 	</div>
 	<div id="mainDiv">
-		<div class="infor">회원가입</div>
-		<form>
+		<div class="join_title">
+			<p>회원가입</p>
+		</div>
+		<form action="" method="post">
 			<div id="join_table_div">
 				<table id="join_table" border="1">
 					<tr>
 						<th>아이디 : </th>
-						<td><input type="text" id="join_id" class="join input"/></td>
+						<td><input type="text" id="join_id" class="join input" name="joinId" required/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 : </th>
-						<td><input type="password" id="join_pwd" class="join input"/></td>
+						<td><input type="password" id="join_pwd" class="join input"  name="joinPwd" required/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인 : </th>
-						<td><input type="password" id="join_pwd2" class="join input"/></td>
+						<td><input type="password" id="join_Repwd" class="join input"  name="joinRePwd" required/></td>
 					</tr>
 					<tr>
 						<th>이름 : </th>
-						<td><input type="text" id="join_name" class="join input"/></td>
+						<td><input type="text" id="join_name" class="join input"  name="joinName" required/></td>
 					</tr>
 					<tr>
 						<th>주민등록번호 : </th>
-						<td><input type="text" id="join_no" class="join input"/></td>
+						<td><input type="text" id="join_no" class="join input" name="joinIdenNum" required/></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호 : </th>
-						<td><input type="text" id="join_phone" class="join input"/></td>
+						<td><input type="text" id="join_phone" class="join input"  name="joinPhone" required/></td>
 					</tr>
 				</table>
 			</div>
