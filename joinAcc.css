@@ -45,19 +45,21 @@ body{background-color: #FFFBF2;}
 }
 
 #join_table_div {
-	margin-top: 20px; margin-bottom: 20px;
+	margin-top: 30px;
 	margin-left: auto; margin-right: auto;
 	display: inline-block;
+	border-radius: 10px;
+	border: none;
 }
-th, td{border: 1px solid lightgray; border-spacing: 0px;}
-th{border-bottom-left-radius: 10px; border-top-left-radius: 10px; font-size: large;}
-td{border-bottom-right-radius: 10px; border-top-right-radius: 10px; text-align: left;}
+th{font-size: large; border-top: none; border-left: none;}
+td{text-align: left; border-top: none; border-left: none; border-right: none;}
+.lastTr{border-bottom: none;}
 #join_table{
-	margin-top: 20px;
 	background-color: white;
-	border-style: hidden;
+	border: 1px solid lightgray;
 	border-spacing: 0px;
-	width: 650px; height: 350px;
+	border-radius: 10px;
+	width: 700px; height: 350px;
 }
 #join_table input{
 	border: none; outline: none;
@@ -72,7 +74,7 @@ td{border-bottom-right-radius: 10px; border-top-right-radius: 10px; text-align: 
 	font-size: 15px; 
 	border-radius: 4px;
 	font-weight: bold;
-	margin-top: 20px; margin-bottom: 50px;
+	margin-top: 30px; margin-bottom: 50px;
 }
 #join_button:hover{background-color: #a5250a;}
 
