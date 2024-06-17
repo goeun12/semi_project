@@ -8,6 +8,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 
 <style>
+
+table {
+  width: 100px;
+  height: 100px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px #000;
+}
+
+
+
 .div-min-width{min-width:1250px;}
 	#header{
 		min-width: 1250px;
@@ -44,7 +56,9 @@
 	}
 	.div-flexible{display:flex;}
 	.div-center{justify-content:center;}
-	
+
+.border-round{border-radius:10px;}
+
 .td-underline,.td-topline,.td-rlline{border: 0.5px solid black;}
 
 #notice_up_del{ width: 200px; margin-left:1100px; margin-bottom: 10px;}
@@ -95,7 +109,7 @@
 
 
 
-<div class="row  text-center div-flexible col div-min-width" style="margin-left:50px;width:92.5%;">
+<div class="row text-center div-flexible col div-min-width" style="margin-left:50px;width:92.5%;">
 <div>&nbsp;</div>
 	<table>
 		<tr>
@@ -116,7 +130,7 @@
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table class="td-underline td-rlline td-topline">
+	<table>
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black">재료</td>
 			<td>재료 끄적끄적</td>
@@ -125,7 +139,7 @@
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table class="td-underline td-rlline td-topline">
+	<table>
 		<tr>
 			<td>
 				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;margin-bottom:50px;height:200px;">사진</div>
@@ -164,8 +178,8 @@
 
 
 <div class="grid text-center div-flexible div-center" style="margin-left:50px;margin-right:50px;">
-  <div class="g-col-6 slim-border" style="padding-left:100px;padding-right:100px; margin-right:100px; height: 40px;">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
-  <div class="div-center div-flexible slim-border" style="margin-left:50px; height:30px; width:100px">더보기</div>
+  <div class="g-col-6 slim-border border-round" style="padding-left:100px;padding-right:100px; margin-right:100px; height: 40px;">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
+  <div class="div-center div-flexible slim-border border-round" style="margin-left:50px; height:30px; width:100px">더보기</div>
   
 </div>
 
