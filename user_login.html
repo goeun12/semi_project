@@ -12,17 +12,17 @@
 		<header id="header">
 			<div id="header_menu" class="header_common">
 				<a href="#" class="button"><img src="#" id="logo"></a>
-				<a href="#" id="main" class="button">레시피</a>
+				<a href="../board/recipe.html" id="main" class="button">레시피</a>
 				<a href="#" id="tip" class="button">꿀팁</a>
-				<a href="#" id="comm" class="button">메뉴 추천</a>
-				<a href="#" id="notice" class="button">공지사항</a>
+				<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
+				<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
 			</div>
 			<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 			<div id="header_user" class="header_common">
 				<!-- 로그인 x 상태 -->
 				<div id="header_user_noUser">
 					<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-					<a href="#" id="user_join" class="button_user">회원가입</a>
+					<a href="join_account.html" id="user_join" class="button_user">회원가입</a>
 				</div>
 				<!-- 로그인 o 상태 -->
 				<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
@@ -40,12 +40,14 @@
 				<div id="login">
 					<div id="login_box">
 						<div id="login_id" class="login_content_name">
-							<input type="text" id="id" name="id" class="login_content" required placeholder="아이디">
+							<input type="text" id="id" name="id" class="login_content"placeholder="아이디">
 						</div>
 						<div id="login_pwd" class="login_content_name">
-							<input type="password" id="pwd" name="pwd" class="login_content" required placeholder="비밀번호">
+							<input type="password" id="pwd" name="pwd" class="login_content" placeholder="비밀번호">
 						</div>
+						<div id="login_alert" style="text-align: left;"></div>
 					</div>
+					
 					
 					<div id="login_check">
 						<button id="login_check_button">로그인</button>
@@ -72,5 +74,35 @@
 		  	</div>
 		</footer>
 	</div>
+	
+	<script>
+		window.onload = () => {
+			const login = document.getElementById('login_check_button');
+			const alert = document.getElementById('login_alert');
+			const id = document.getElementById('id');
+			const pwd = document.getElementById('pwd');
+			
+			login.onclick = e => {
+				console.log(id);
+				console.log(alert);
+				if(id.value.trim() == ''){
+					console.log('123');
+					alert.innerText = '아이디를 입력하세요.';
+					alert.style.color = 'red';
+					document.getElementById('login_id').style.border = '2px solid #F24822';
+					id.focus();
+					e.preventDefault();
+				} else if(pwd.value.trim() == ''){
+					console.log('123');
+					alert.innerText = '비밀번호를 입력하세요.';
+					alert.style.color = 'red';
+					document.getElementById('login_id').style.border = 'none';
+					document.getElementById('login_pwd').style.border = '2px solid #F24822';
+					pwd.focus();
+					e.preventDefault();
+				}
+			};
+		}
+	</script>
 </body>
 </html>
