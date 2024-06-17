@@ -29,16 +29,18 @@
 					height:40px;
 					text-decoration:none; 
 					font-size:20px;
-					width:80px;
+		 			width:80px;
 					}
 	.pagination-sm .page-link {background: none;
 								border: none;
 								color:black;}
-#gotop-button{position: fixed; right: 30px; bottom: 100px;}
+#gotop-button{position: fixed; right: 30px; bottom: 100px;z-index:99;}
 .page-link:hover{color:red; font-size:large; text-decoration:underline;}
 
 .bg-white{background-color:white;}
+.everybox{min-width:1250px;}
 
+.py-5{margin-left:200px;margin-right:200px;background-color:#fffbf2;}
 </style>
 </head>
 <body>
@@ -54,7 +56,7 @@
       <div class="div-flexible div-center" style="padding-top:10px;padding-bottom:10px;">
 		<div class="div-flexible" style="width: 70%; height: 30px;border:1px solid red;">
 			<div class="bg-white" style="width:10%"><img src="as">&nbsp;공지</div>
-			<div class="bg-white" style="width:80%">공지사항 제목</div>
+			<div class="bg-white" style="width:100%;text-align:left; padding-left:100px;">공지사항 제목</div>
 		</div>
       </div>
     </div>
@@ -90,10 +92,10 @@
   </section>
 
 
-<div class="py-5 bg-body-tertiary">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="py-5 everybox">
+    <div class="everybox">
+<!-- container -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
         <div class="col">
           <div class="card shadow-sm">
             <svg width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">이미지</text></svg>
@@ -265,8 +267,8 @@
     </div>
     <br>
    <div class="div-flexible div-center" style="height: 50px">
-	<div>
-		<button id="write-button">글 작성</button>
+	<div >
+		<button id="write-button" style="border-radius:10px;">글 작성</button>
 	</div>
    </div>
    <br>
