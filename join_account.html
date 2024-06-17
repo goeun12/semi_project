@@ -116,10 +116,10 @@
 		});
 		
 		const pwdCheck = () => {
-			if(pwd.value === rePwd.value){
+			if(pwd.value === rePwd.value && pwd.value.trim() != ''){
 				inforPwd.innerText = '사용 가능한 비밀번호입니다.';
 				inforPwd.style.color = 'green';
-			} else if(pwd.value != rePwd.value) {
+			} else {
 				inforPwd.innerText = '비밀번호가 일치하지 않습니다.';
 				inforPwd.style.color = 'red';
 				return false;
