@@ -367,3 +367,5 @@ td{text-align: left; border-top: none; border-left: none; border-right: none;}
 #search_button{width:80px;}
 .td-center{text-align:center;}
 #foodname{text-align:center;}
+#recipe-recommend{padding-left:100px;padding-right:100px; margin-right:100px; height: 40px;background-color:white;}
+#show-more{margin-left:50px; height:30px; width:100px;background-color:white;}
