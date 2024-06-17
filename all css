@@ -1,5 +1,6 @@
 @charset "UTF-8";
  .table-round{
+  background-color:white;
   border-collapse: collapse;
   border-radius: 10px;
   border-style: hidden;
