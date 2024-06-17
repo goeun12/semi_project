@@ -9,64 +9,6 @@
 
 <style>
 
-.table-round{
-  border-collapse: collapse;
-  border-radius: 10px;
-  border-style: hidden;
-  box-shadow: 0 0 0 1px #000;
-}
-
-
-
-.div-min-width{min-width:1250px;}
-	#header{
-		min-width: 1250px;
-		background: #F24822; 
-		height: 100px; width: 100%; 
-		position: fixed; 
-		z-index : 100;
-		top: 0px; left: 0px; right: 0px;
-	}
-	.button{color: white; text-decoration: none; font-size: 40px;
-	margin-right: 30px;}
-	.button:hover{font-weight: bold;}
-	.button_user{color: white; text-decoration: none; font-size: 30px;}
-	
-	.header_common{margin-top: 20px;}
-	#header_menu{margin-left:10px; float: left;}
-	#header_user{margin-right: 20px; float: right;}
-	
-	#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
-	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
-	#header_user_noUser{margin-top: 13px;}
-	.header_common #user_login_complete{margin-top: 8px;}
-	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
-	#footer{
-		border-top: 2px solid rgb(144, 144, 144); background: #B3B3B3;
-		text-align: center;
-		min-width: 1200px;
-	}
-	.font{color: #000000; margin-bottom: 3px;}
-	#footer_inner{
-		margin: 0 auto;
-		width: 100%;
-		padding-bottom: 108px;
-	}
-	.div-flexible{display:flex;}
-	.div-center{justify-content:center;}
-
-.border-round{border-radius:10px;}
-
-.td-underline,.td-topline,.td-rlline{border: 0.5px solid black;}
-
-#notice_up_del{ width: 200px; margin-left:1100px; margin-bottom: 10px;}
-
-.slim-border{border:0.5px solid black;}
-
-.row-cols-md-3>*{flex:0 0 auto; width:25%;}
-
-#gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
-</style>
 </head>
 <body>
 	
@@ -176,8 +118,8 @@
 
 
 <div class="grid text-center div-flexible div-center" style="margin-left:50px;margin-right:50px;">
-  <div class="g-col-6 slim-border border-round" style="padding-left:100px;padding-right:100px; margin-right:100px; height: 40px;">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
-  <div class="div-center div-flexible slim-border border-round" style="margin-left:50px; height:30px; width:100px">더보기</div>
+  <div class="g-col-6 slim-border border-round" id="recipe-recommend">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
+  <div class="div-center div-flexible slim-border border-round" id="show-more">더보기</div>
   
 </div>
 
