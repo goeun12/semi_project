@@ -1,7 +1,5 @@
 @charset "UTF-8";
-table {
-  width: 100px;
-  height: 100px;
+ .table-round{
   border-collapse: collapse;
   border-radius: 10px;
   border-style: hidden;
