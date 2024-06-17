@@ -9,9 +9,7 @@
 
 <style>
 
-table {
-  width: 100px;
-  height: 100px;
+.table-round{
   border-collapse: collapse;
   border-radius: 10px;
   border-style: hidden;
@@ -111,7 +109,7 @@ table {
 
 <div class="row text-center div-flexible col div-min-width" style="margin-left:50px;width:92.5%;">
 <div>&nbsp;</div>
-	<table>
+	<table class="table-round">
 		<tr>
 			<td class="td-underline td-rlline td-topline" colspan='2' rowspan='3' width="100px" height="150px">사진</td>
 			<td class="td-underline td-rlline td-topline" colspan='3' height="50px">요리명</td>
@@ -130,7 +128,7 @@ table {
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table>
+	<table class="table-round">
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black">재료</td>
 			<td>재료 끄적끄적</td>
@@ -139,7 +137,7 @@ table {
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table>
+	<table class="table-round">
 		<tr>
 			<td>
 				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;margin-bottom:50px;height:200px;">사진</div>
