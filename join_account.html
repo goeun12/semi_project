@@ -115,16 +115,18 @@
 			}
 		});
 		
-		rePwd.addEventListener('focusout', e => {
+		const pwdCheck = () => {
 			if(pwd.value === rePwd.value){
 				inforPwd.innerText = '사용 가능한 비밀번호입니다.';
 				inforPwd.style.color = 'green';
 			} else if(pwd.value != rePwd.value) {
-				e.preventDefault();
 				inforPwd.innerText = '비밀번호가 일치하지 않습니다.';
 				inforPwd.style.color = 'red';
+				return false;
 			}
-		});
+		}
+		pwd.addEventListener('focusout', pwdCheck);
+		rePwd.addEventListener('focusout', pwdCheck);
 		
 		
 		
