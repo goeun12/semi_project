@@ -1,5 +1,6 @@
 @charset "UTF-8";
 body{background-color: #FFFBF2;}
+span{font-size: small;}
 /* 사진~공지사항까지 감싸는 div */
 #header{
 	min-width: 1250px;
@@ -45,28 +46,32 @@ body{background-color: #FFFBF2;}
 }
 
 #join_table_div {
-	margin-top: 30px;
-	margin-left: auto; margin-right: auto;
+	font-family: "Nanum Gothic";
+	margin-top: 50px;
+	margin-left: auto; 
+	margin-right: auto;
 	display: inline-block;
 	border-radius: 10px;
 	border: none;
 }
-th{font-size: large; border-top: none; border-left: none;}
+th{border-top: none; border-left: none; font-size: 15px; background-color: #e6e6e6;}
 td{text-align: left; border-top: none; border-left: none; border-right: none;}
 .lastTr{border-bottom: none;}
 #join_table{
+	margin-top: 30px; margin-bottom: 30px;
 	background-color: white;
 	border: 1px solid lightgray;
 	border-spacing: 0px;
 	border-radius: 10px;
-	width: 700px; height: 350px;
+	width: 800px; height: 350px;
 }
 #join_table input{
 	border: none; outline: none;
-	height: 30px; width: 80%; 
+	height: 30px; width: 60%; 
 	margin-left: 10px;
 	font-size: 15px;
 }
+
 #join_button{
 	width: 120px; height: 40px;
 	background-color: #F24822; cursor: pointer;
