@@ -1,0 +1,104 @@
+@charset "UTF-8";
+body{
+	background: #FFFBF2;
+}
+#wrap{
+	position: relative; height: 100%;
+}
+#header{
+	min-width: 1250px;
+	background: #F24822; 
+	height: 100px; width: 100%; 
+	position: fixed; 
+	top: 0px; left: 0px; right: 0px;
+}
+.button{color: white; text-decoration: none; font-size: 40px;
+margin-right: 30px;}
+.button:hover{font-weight: bold;}
+.button_user{color: white; text-decoration: none; font-size: 30px;}
+
+.header_common{margin-top: 20px;}
+#header_menu{margin-left:10px; float: left;}
+#header_user{margin-right: 20px; float: right;}
+
+#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
+#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
+#header_user_noUser{margin-top: 13px;}
+.header_common #user_login_complete{margin-top: 8px;}
+#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
+
+#container{
+	min-width: 1200px;
+	width: 100%;
+	margin-top: 10%;
+	margin-bottom: 15%;
+}
+
+.container-fluid{
+	background:#fffbf2; padding-bottom: 15%; 
+	min-width: 1200px;
+	font-family: "나눔고딕"; 
+	font-size:20px;
+}
+
+#board_title{
+	background:#f9ae98;
+	width: 50%; height:50px;
+	margin-left:25%;
+	margin-block-end:0;
+	text-align: center;
+	text-decoration:none;
+	font-size:35px;
+}
+
+#board_table_div{
+	background:white;
+	width: 70%;
+	margin-left:15%;		
+	padding: 20px;			
+	border: 1px solid lightgray;
+	border-radius:15px;
+	font-weight:100;
+}
+					
+.table_hover{
+	cursor: pointer;
+}
+
+th{
+	text-align: center;
+	font-weight: 550;
+}
+
+tr>td[class="board_num"]{
+	text-align: center;
+}
+	
+.pagination-sm .page-link {
+	background: none;
+	border: none;
+	color:black;
+}
+
+
+[id*="button"]{
+	background:#f24822; 
+	color:white; 
+	border:none; 
+	height:40px;
+	text-decoration:none; 
+	font-size:20px;
+}
+
+#search_button{width:80px;}
+
+#footer{
+	border-top: 2px solid rgb(144, 144, 144); background: #B3B3B3;
+	text-align: center;
+	min-width: 1200px;
+}
+#footer_inner{
+	margin: 0 auto;
+	width: 100%;
+	padding-bottom: 108px;
+}
