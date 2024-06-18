@@ -12,10 +12,10 @@
 		<header id="header">
 			<div id="header_menu" class="header_common">
 				<a href="#" class="button"><img src="#" id="logo"></a>
-				<a href="#" id="main" class="button">레시피</a>
+				<a href="../board/recipe.html" id="main" class="button">레시피</a>
 				<a href="#" id="tip" class="button">꿀팁</a>
-				<a href="#" id="comm" class="button">메뉴 추천</a>
-				<a href="#" id="notice" class="button">공지사항</a>
+				<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
+				<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
 			</div>
 			<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 			<div id="header_user" class="header_common">
@@ -62,6 +62,7 @@
 								<div id="find_myId" class="find_content_box">
 									<input type="text" id="id" name="id" class="find_content" required placeholder="아이디">
 								</div>
+								<div id="find_alert" style="text-align: left;"></div>
 							</div>
 							
 							<div id="find_check">
@@ -80,5 +81,42 @@
 		  	</div>
 		</footer>
 	</div>
+	
+	<script>
+		window.onload = () => {
+			const name = document.getElementById('name');
+			const phone = document.getElementById('phone');
+			const id = document.getElementById('id');
+			const alert = document.getElementById('find_alert');
+			
+			document.getElementById('find_check_button').onclick = e => {
+				if(name.value.trim() == ''){
+					alert.innerText = '이름을 입력하세요.';
+					alert.style.color = '#FFFBF2';
+					document.getElementById('find_name').style.border = '2px solid #F24822';
+					document.getElementById('find_phone').style.border = 'none';
+					document.getElementById('find_myId').style.border = 'none';
+					name.focus();
+					e.preventDefault();
+				} else if (phone.value.trim() == ''){
+					alert.innerText = '전화번호를 입력하세요.';
+					alert.style.color = '#FFFBF2';
+					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_phone').style.border = '2px solid #F24822';
+					document.getElementById('find_myId').style.border = 'none';
+					phone.focus();
+					e.preventDefault();
+				} else if (id.value.trim() == ''){
+					alert.innerText = '아이디를 입력하세요.';
+					alert.style.color = '#FFFBF2';
+					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_phone').style.border = 'none';
+					document.getElementById('find_myId').style.border = '2px solid #F24822';
+					id.focus();
+					e.preventDefault();
+				}
+			}
+		}
+	</script>
 </body>
 </html>
