@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.td-input:focus{outline:none;}
+.td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
+.td-textarea:focus{outline:none;}
+table {
+  width: 100px;
+  height: 100px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px #000;
+}
+
+	
+.td-underline,.td-topline,.td-rlline{border: 0.5px solid black;}
+
+
+.slim-border{border:0.5px solid black;}
+#text-ingre{width:90%; padding-left:30px;padding-right:30px}
+.making-num{border: 0; width:70%; height:70%;resize:none;padding-top:30px;}
+.making-num:focus{outline:0}
+#plus-level{background-color:#f24822;border:0;}
+#plus-level:hover{background-color:#0d62fd;}
