@@ -8,28 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 <style>
-.td-input:focus{outline:none;}
-.td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
-.td-textarea:focus{outline:none;}
-table {
-  width: 100px;
-  height: 100px;
-  border-collapse: collapse;
-  border-radius: 10px;
-  border-style: hidden;
-  box-shadow: 0 0 0 1px #000;
-}
 
-	
-.td-underline,.td-topline,.td-rlline{border: 0.5px solid black;}
-
-
-.slim-border{border:0.5px solid black;}
-#text-ingre{width:90%; padding-left:30px;padding-right:30px}
-.making-num{border: 0; width:70%; height:70%;resize:none;padding-top:30px;}
-.making-num:focus{outline:0}
-#plus-level{background-color:#f24822;border:0;}
-#plus-level:hover{background-color:#0d62fd;}
 </style>
 </head>
 <body>
@@ -69,7 +48,7 @@ table {
 
 <div class="row  text-center div-flexible col div-min-width" style="margin-left:50px;width:92.5%;">
 <div>&nbsp;</div>
-	<table class="tbround">
+	<table class="tbround bgcw">
 		<tr>
 			<td class="td-underline td-rlline td-topline text-center" colspan='2' rowspan='3' width="50%" height="400px">
 				<input class="form-control form-control-lg td-input" id="formFileLg" type="file" onchange="previewIMG(this);">
@@ -115,7 +94,7 @@ table {
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table class="tbround">
+	<table class="tbround bgcw">
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black">재료</td>
 			<td width="" height="60px" style="padding-left:50px">
@@ -126,7 +105,7 @@ table {
 </div>
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
-	<table class="tbround">
+	<table class="tbround bgcw">
 		<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 		<tbody id="table_body">
 			<tr>
