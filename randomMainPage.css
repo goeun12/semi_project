@@ -25,9 +25,6 @@ margin-right: 30px;}
 
 
 
-
-
-
 .container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
 					font-family: "나눔고딕";}
 	
@@ -60,7 +57,7 @@ margin-right: 30px;}
 	
 #nation>label{width:16%; margin-right:8%}
 
-#difficulty>label{width:20%; margin-right:10%}
+#difficulty>label{width:20%; margin-right:12%}
 				
 
 #submit_button{background:#f24822; color:white; border:none; 
