@@ -1,4 +1,6 @@
 @charset "UTF-8";
+body{background-color:#fffbf2;}
+.bgcw{background-color:white;}
 .td-input:focus{outline:none;}
 .td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
 .td-textarea:focus{outline:none;}
