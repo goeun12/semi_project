@@ -42,7 +42,7 @@
      </div>
 </div>
 
-<div id="notice_up_del" class="div-min-width">
+<div id="notice_up_del">
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_update_button">수정</a>
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_delet_button">삭제</a>
 		</div>
