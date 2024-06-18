@@ -12,10 +12,10 @@
 		<header id="header">
 			<div id="header_menu" class="header_common">
 				<a href="#" class="button"><img src="#" id="logo"></a>
-				<a href="#" id="main" class="button">레시피</a>
+				<a href="../board/recipe.html" id="main" class="button">레시피</a>
 				<a href="#" id="tip" class="button">꿀팁</a>
-				<a href="#" id="comm" class="button">메뉴 추천</a>
-				<a href="#" id="notice" class="button">공지사항</a>
+				<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
+				<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
 			</div>
 			<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 			<div id="header_user" class="header_common">
@@ -54,11 +54,12 @@
 						<div id="find">
 							<div id="find_box">
 								<div id="find_name" class="find_content_box">
-									<input type="text" id="name" name="name" class="find_content" required placeholder="이름">
+									<input type="text" id="name" name="name" class="find_content" placeholder="이름">
 								</div>
 								<div id="find_phone" class="find_content_box">
-									<input type="text" id="phone" name="phone" class="find_content" required placeholder="휴대폰번호">
+									<input type="text" id="phone" name="phone" class="find_content" placeholder="휴대폰번호">
 								</div>
+								<div id="find_alert" style="text-align: left;"></div>
 							</div>
 							
 							<div id="find_check">
@@ -77,5 +78,31 @@
 		  	</div>
 		</footer>
 	</div>
+	
+	<script>
+		window.onload = () => {
+			const name = document.getElementById('name');
+			const phone = document.getElementById('phone');
+			const alert = document.getElementById('find_alert');
+			const find = document.getElementById('find_check_button');
+			
+			find.onclick = e => {
+				if(name.value.trim() == ''){
+					alert.innerText = '이름을 입력하세요.';
+					alert.style.color = '#FFFBF2';
+					document.getElementById('find_name').style.border = '2px solid #F24822';
+					name.focus();
+					e.preventDefault();
+				} else if (phone.value.trim() == ''){
+					alert.innerText = '전화번호를 입력하세요.';
+					alert.style.color = '#FFFBF2';
+					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_phone').style.border = '2px solid #F24822';
+					phone.focus();
+					e.preventDefault();
+				}
+			}
+		}
+	</script>
 </body>
 </html>
