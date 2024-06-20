@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>혼밥심</title>
+<link href="../css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="wrap" class="wrap">
+		<header id="header">
+			<div id="join">
+				<div id="box">
+					<div id="hwg">
+						<a href="#" id="hw">회원가입</a>
+					</div>
+					<div id="log">
+						<a href="$" id="lg">로그인</a>
+					</div>
+				</div>
+			</div>
+		</header>
+	<br><br><br><br><br><br><br><br>
+		
+		
+		<div>
+			<div id="container">
+				<div style="padding-top:1rem !important; padding-bottom:1rem !important;">
+     				<div id="login_bar">
+        				<h3><a href="#" class="button"><img src="#" id="logo">혼밥심</a></h3>
+      				</div><br>
+      			</div>
+			</div>
+				<div id="box">
+					<div>
+						<a href="#" id="rec">레시피 게시판</a>
+					</div>
+					<div>
+						<a href="$" id="hon">꿀팁 게시판</a>
+					</div>
+					<div>
+						<a href="$" id="menu">메뉴 추천</a>
+					</div>
+				</div>
+		</div>
+	</div>
+</body>
+</html>
