@@ -1,0 +1,45 @@
+<script src="../js/jquery-3.7.1.min.js"></script>
+<style>
+  #mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
+  #mypage_Menu{
+  	display: none;
+  	width: 200px; height: 150px;
+  	background-color: white;
+  	border: 1px solid lightgray;
+  }
+  #mypage_Menu li {margin-bottom: 20px;}
+  #mypage_Menu label:hover{color: #0080ff; }
+</style>
+
+---------------------------------------------------------
+
+		<div id="header_user" class="header_common">
+			<!-- 로그인 x 상태 -->
+<!-- 			<div id="header_user_noUser"> -->
+<!-- 				<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp; -->
+<!-- 				<a href="join_account.html" id="user_join" class="button_user">회원가입</a> -->
+<!-- 			</div> -->
+			<!-- 로그인 o 상태 -->
+			<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
+			<div id="user_login_complete">
+				<button id="mypage_list" class="mypageMenu">▼</button>
+				<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+			</div>
+			<div id="mypage_Menu">
+				<ul>
+					<li><a href=""><label>작성한 게시글 보기</label></a></li>
+					<li><a href=""><label>회원정보 조회 / 수정</label></a></li>
+					<li><label>로그아웃</label></li>
+				</ul>
+			</div>
+		</div>
+
+---------------------------------------------------------
+	<script>
+		$(()=>{
+			$('#user_login_complete').click(function() {
+				$(this).next().slideToggle();
+			});
+		})
+		
+	</script>
