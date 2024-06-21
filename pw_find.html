@@ -22,7 +22,7 @@
 				<!-- 로그인 x 상태 -->
 				<div id="header_user_noUser">
 					<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-					<a href="#" id="user_join" class="button_user">회원가입</a>
+					<a href="join_account.html" id="user_join" class="button_user">회원가입</a>
 				</div>
 				<!-- 로그인 o 상태 -->
 				<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
@@ -30,10 +30,10 @@
 			</div>
 		</header>
 		
-		<div id="container" class="py-5 text-center container">
-			<div style="padding-top:1rem !important; padding-bottom:1rem !important;" class="row py-lg-5">
-     			<div id="login_bar" class="col-lg-6 col-md-8 mx-auto">
-        			<h3 class="fw-bold">아이디 찾기</h3>
+		<div id="container" class="text-center container" style="padding-bottom: 3rem !important;">
+			<div style="padding-top:1rem !important; padding-bottom:2rem !important;" class="row py-lg-5">
+     			<div id="login_bar" class="col-lg-6 col-md-8">
+        			<h3 class="fw-bold">비밀번호 찾기</h3>
       			</div><br>
       		</div>
       		
@@ -50,24 +50,26 @@
 	      			</div>
 	      		</div>
 				<div id="find_info">
-					<form action="#" method="post">
-						<div id="find">
-							<div id="find_box">
-								<div id="find_name" class="find_content_box">
-									<input type="text" id="name" name="name" class="find_content" required placeholder="이름">
-								</div>
-								<div id="find_phone" class="find_content_box">
-									<input type="text" id="phone" name="phone" class="find_content" required placeholder="휴대폰번호">
-								</div>
-								<div id="find_myId" class="find_content_box">
-									<input type="text" id="id" name="id" class="find_content" required placeholder="아이디">
-								</div>
-								<div id="find_alert" style="text-align: left;"></div>
-							</div>
-							
-							<div id="find_check">
-								<button id="find_check_button">비밀번호 찾기</button>
-							</div>
+					<form action="" method="post">
+						<div id="find_box">
+							<table id="find_table">
+								<tr class="table_label_box">
+									<td class="table_label">이름</td>
+									<td id="find_name" ><input type="text" id="name" name="name" class="find_content" placeholder="이름"></td>
+								</tr>
+								<tr class="table_label_box">
+									<td class="table_label">핸드폰번호</td>
+									<td id="find_phone"><input type="text" id="phone" name="phone" class="find_content" placeholder="휴대폰번호"></td>
+								</tr>
+								<tr>
+									<td class="table_label">아이디</td>
+									<td id="find_myId"><input type="text" id="id" name="id" class="find_content" required placeholder="아이디"></td>
+								</tr>
+							</table>
+						</div>
+						<div id="find_alert" style="text-align: left;"></div>
+						<div id="find_check">
+							<button id="find_check_button">비밀번호 찾기</button>
 						</div>
 					</form>
 				</div>
@@ -76,8 +78,9 @@
 		</div>
 		<footer id="footer" class="text-body-secondary py-5">
 			<div id="footer_inner">
-			    <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-			    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+			    <p class="mb-1">사업자: (주) 혼밥심</p>
+			    <p class="mb-1">대표: 김남희</p>
+			    <p class="mb-0">주소: 서울특별시 을지로입구역 근처</p>
 		  	</div>
 		</footer>
 	</div>
@@ -92,25 +95,29 @@
 			document.getElementById('find_check_button').onclick = e => {
 				if(name.value.trim() == ''){
 					alert.innerText = '이름을 입력하세요.';
-					alert.style.color = '#FFFBF2';
+					alert.style.color = '#F24822';
 					document.getElementById('find_name').style.border = '2px solid #F24822';
 					document.getElementById('find_phone').style.border = 'none';
+					document.getElementById('find_phone').style.borderBottom = '1px solid lightgray';
 					document.getElementById('find_myId').style.border = 'none';
 					name.focus();
 					e.preventDefault();
 				} else if (phone.value.trim() == ''){
 					alert.innerText = '전화번호를 입력하세요.';
-					alert.style.color = '#FFFBF2';
+					alert.style.color = '#F24822';
 					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_name').style.borderBottom = '1px solid lightgray';
 					document.getElementById('find_phone').style.border = '2px solid #F24822';
 					document.getElementById('find_myId').style.border = 'none';
 					phone.focus();
 					e.preventDefault();
 				} else if (id.value.trim() == ''){
 					alert.innerText = '아이디를 입력하세요.';
-					alert.style.color = '#FFFBF2';
+					alert.style.color = '#F24822';
 					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_name').style.borderBottom = '1px solid lightgray';
 					document.getElementById('find_phone').style.border = 'none';
+					document.getElementById('find_phone').style.borderBottom = '1px solid lightgray';
 					document.getElementById('find_myId').style.border = '2px solid #F24822';
 					id.focus();
 					e.preventDefault();
