@@ -1,55 +1,75 @@
 @charset "UTF-8";
 #wrap{
-	position: relative; height: 100%;
+	position: relative; height: 100%; font-size: 20px;
 }
 #header{
 	min-width: 1250px;
 	background: #F24822; 
-	height: 100px; width: 100%; 
-	position: fixed; 
+	height: 60px; width: 100%; 
 	top: 0px; left: 0px; right: 0px;
+	font-size: 18px;
+	z-index: 100;
 }
-.button{color: white; text-decoration: none; font-size: 40px;
+.button{color: white; text-decoration: none; font-size: 20px;
 margin-right: 30px;}
-.button:hover{font-weight: bold;}
-.button_user{color: white; text-decoration: none; font-size: 30px;}
+.button:hover{font-weight: 700;}
+.button_user{color: white; text-decoration: none; font-size: 20px;}
 
-.header_common{margin-top: 20px;}
+.header_common{margin-top: 14px;}
 #header_menu{margin-left:10px; float: left;}
 #header_user{margin-right: 20px; float: right;}
 
 #user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
 #header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
-#header_user_noUser{margin-top: 13px;}
 .header_common #user_login_complete{margin-top: 8px;}
 #mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
 
 #container{
 	min-width: 1200px;
 	width: 100%;
-	margin-top: 10%;
+	margin: 0 auto 70px;
 }
 #login_bar{
-	padding: 10px 40px 10px 40px;
-	width: 50%;
+	padding: 10px 40px 15px 40px;
+	width: 70%;
 	height: 50px;
 	text-align: center;
 	background: #FFB3A2;
-	border-radius: 15px; /* 꼭짓점 둥글게 할지 말지 고르기 */
+	font: 25px bold;
+	border-radius: 10px; /* 꼭짓점 둥글게 할지 말지 고르기 */
+	margin: 80px auto 0;
+	
+}
+
+#id_join_find{
+	width: 70%;
+	margin: auto auto;
+	padding: 0 120px;
+}
+#id_join_find_box{
+	padding-top: 40px;
+	background: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	
 }
 #login{
 	margin: 0px auto 0px;
 	width: 400px;
-	height: 180px;
-	border-radius: 6px;
+	height: 250px;
+	border-radius: 10px;
 	background: none;
 }
+#login_form{
+	height: 100%;
+}
 #login_box{
-	margin: 13% 13% 7% 13%;
+	margin-bottom: 50px;
+	height: 120px;
 }
 #login_id{
 	background: white;
-	border-bottom: 1px solid lightgray;
+	border-bottom: none;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 }
@@ -60,7 +80,7 @@ margin-right: 30px;}
 }
 .login_content_name{
 	width: 100%;
-	height: 100%;
+	height: 60px;
 	text-align: center;
 	padding-left: 10px;
 	padding-right: 4px;
@@ -68,7 +88,7 @@ margin-right: 30px;}
 }
 .login_content{
 	width: 100%;
-	height: 33px;
+	height: 100%;
 	font-size: 20px;
 	margin-top: 0px;
 	padding-top: 5px;
@@ -80,9 +100,9 @@ margin-right: 30px;}
 	outline: none;
 }
 #login_check{
-	width: 297px;
+	width: 400px;
 	height: 40px;
-	margin: auto 13%;
+	margin-bottom: 13%;
 }
 #login_check>button{
 	width: 100%;
@@ -91,20 +111,20 @@ margin-right: 30px;}
 	cursor: pointer;
 	border: none;
 	color: white;
-	font: 20px bold;
+	font-size: 20px;
+	font-weight: 700;
 	border-radius: 10px;
 }
 
 
 #find_join{
-	margin: 0px auto 3%;
+	margin: 0px 50px 5px;
 	height: 100px;
 	text-align: center;
 }
 
 #find_join_box{
 	padding-top: 10px;
-	padding-left: 45px;
 }
 
 .find_join_in{
