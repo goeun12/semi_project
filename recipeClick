@@ -13,6 +13,8 @@ body{background-color:#fffbf2;}
 .card-text>a{text-decoration:none;color:black;}
 #show-more>a{text-decoration:none;color:black;}
 #show-more{background-color:rgb(251, 177, 68)}
+.searchbar{z-index:1;}
+#header{z-index:100;}
 </style>
 </head>
 <body>
@@ -38,6 +40,10 @@ body{background-color:#fffbf2;}
 	</div>
 </div>	
 	
+	
+	
+	
+
 <div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
    <div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 	<div class="input-group mb-3" style="width:70%">
@@ -47,15 +53,15 @@ body{background-color:#fffbf2;}
      </div>
 </div>
 
-<div id="notice_up_del" class="div-min-width">
-			<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_update_button">수정</a>
-			<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_delet_button">삭제</a>
-		</div>
+<div id="notice_up_del" class="div-min-width" style="float:right; margin-right:10%;">
+	<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_update_button">수정</a>
+	<a class="btn btn-primary me-md-2" href="#" role="button" id="notice_delet_button">삭제</a>
+</div>
 
-
+<div style="min-width:1250px; background-color:lightgray;padding:10px;margin-left:5%;margin-right:5%;width:85%; margin-bottom:150px; clear:both;">
 
 <div class="row text-center div-flexible col div-min-width" style="margin-left:50px;width:92.5%;">
-<div>&nbsp;</div>
+	<div>&nbsp;</div>
 	<table class="table-round">
 		<tr>
 			<td class="td-underline td-rlline td-topline" colspan='2' rowspan='3' width="100px" height="150px">사진</td>
@@ -74,14 +80,22 @@ body{background-color:#fffbf2;}
 	<div>&nbsp;</div>
 </div>
 
+
+
+
+
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
 	<table class="table-round">
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black">재료</td>
-			<td>재료 끄적끄적</td>
+			<td>요리에 대한 설명</td>
 		</tr>
 	</table>
 </div>
+
+
+
+
 
 <div class="row mb-3 text-center div-min-width" style="margin-left:50px; margin-right:50px;">
 	<table class="table-round">
@@ -110,11 +124,11 @@ body{background-color:#fffbf2;}
 			</td>
 		</tr>
 	</table>
-	
 	<div>&nbsp;</div>
 	<div></div>
-	
 </div>
+
+
 
 
 <hr>
@@ -122,10 +136,11 @@ body{background-color:#fffbf2;}
 <hr>
 
 
+
+
 <div class="grid text-center div-flexible div-center" style="margin-left:50px;margin-right:50px;">
-  <div class="g-col-6 slim-border border-round" id="recipe-recommend">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
-  <div class="div-center div-flexible slim-border border-round" id="show-more"><a href="">더보기</a></div>
-  
+	<div class="g-col-6 slim-border border-round" id="recipe-recommend">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
+	<div class="div-center div-flexible slim-border border-round" id="show-more"><a href="">더보기</a></div>
 </div>
 
 
@@ -194,11 +209,12 @@ body{background-color:#fffbf2;}
 	</div>
 </div>
 
+</div>
+	
 </div>	
 	
-	
 <div class="mx-auto" style="width:80px;">
-	<a class="btn btn-primary me-md-2" href="noticeMainPage.html" role="button" id="go_list_button">목록</a>
+	<a class="btn btn-primary me-md-2" href="" role="button" id="go_list_button">목록</a>
 </div>
 <div>&nbsp;</div>
 	
