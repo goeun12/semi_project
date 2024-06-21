@@ -30,47 +30,51 @@
 			</div>
 		</header>
 		
-		<div id="container" class="py-5 text-center container">
-			<div style="padding-top:1rem !important; padding-bottom:1rem !important;" class="row py-lg-5">
-     			<div id="login_bar" class="col-lg-6 col-md-8 mx-auto">
+		<div id="container" class="text-center container" style="padding-bottom: 3rem !important;">
+			<div style="padding-top:1rem !important; padding-bottom:2rem !important;" class="row py-lg-5">
+     			<div id="login_bar" class="col-lg-6 col-md-8">
         			<h3 class="fw-bold">로그인</h3>
-      			</div><br>
+      			</div>
       		</div>
-			<form action="#" method="post" id="login_form">
-				<div id="login">
-					<div id="login_box">
-						<div id="login_id" class="login_content_name">
-							<input type="text" id="id" name="id" class="login_content"placeholder="아이디">
+      		<div id="id_join_find">
+      			<div id="id_join_find_box">
+					<form action="#" method="post" id="login_form">
+						<div id="login">
+							<div id="login_box">
+								<div id="login_id" class="login_content_name">
+									<input type="text" id="id" name="id" class="login_content"placeholder="아이디">
+								</div>
+								<div id="login_pwd" class="login_content_name">
+									<input type="password" id="pwd" name="pwd" class="login_content" placeholder="비밀번호">
+								</div>
+								<div id="login_alert" style="text-align: left;"></div>
+							</div>
+							
+							<div id="login_check">
+								<button id="login_check_button">로그인</button>
+							</div>
 						</div>
-						<div id="login_pwd" class="login_content_name">
-							<input type="password" id="pwd" name="pwd" class="login_content" placeholder="비밀번호">
+					</form>
+					
+					<div id="find_join">
+						<div id="find_join_box">
+							<div id="find_idpw" class="find_join_in">
+								<a href="id_find.html" id="find_idpw_link" class="btn button_find_join"><label class="font_text">아이디/비밀번호 변경</label></a>
+							</div>
+							<div style="width: 40px; display: inline-block;"></div>
+							<div id="join_user" class="find_join_in">
+								<a href="join_account.html" id="join_user_link" class="button_find_join btn"><label class="font_text">회원가입</label></a>
+							</div>
 						</div>
-						<div id="login_alert" style="text-align: left;"></div>
-					</div>
-					
-					
-					<div id="login_check">
-						<button id="login_check_button">로그인</button>
-					</div>
-				</div>
-			</form>
-			
-			<div id="find_join">
-				<div id="find_join_box">
-					<div id="join_user" class="find_join_in">
-						<a href="#" id="join_user_link" class="button_find_join btn"><label class="font_text">회원가입</label></a>
-					</div>
-					<div style="width: 200px; display: inline-block;"></div>
-					<div id="find_idpw" class="find_join_in">
-						<a href="id_find.html" id="find_idpw_link" class="btn button_find_join"><label class="font_text">아이디/비밀번호 변경</label></a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<footer id="footer" class="text-body-secondary py-5">
 			<div id="footer_inner">
-			    <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-			    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+			    <p class="mb-1">사업자: (주) 혼밥심</p>
+			    <p class="mb-1">대표: 김남희</p>
+			    <p class="mb-0">주소: 서울특별시 을지로입구역 근처</p>
 		  	</div>
 		</footer>
 	</div>
@@ -83,20 +87,17 @@
 			const pwd = document.getElementById('pwd');
 			
 			login.onclick = e => {
-				console.log(id);
-				console.log(alert);
 				if(id.value.trim() == ''){
-					console.log('123');
 					alert.innerText = '아이디를 입력하세요.';
 					alert.style.color = 'red';
 					document.getElementById('login_id').style.border = '2px solid #F24822';
+					document.getElementById('login_pwd').style.border = '1px solid lightgray';
 					id.focus();
 					e.preventDefault();
 				} else if(pwd.value.trim() == ''){
-					console.log('123');
 					alert.innerText = '비밀번호를 입력하세요.';
 					alert.style.color = 'red';
-					document.getElementById('login_id').style.border = 'none';
+					document.getElementById('login_id').style.border = '1px solid lightgray';
 					document.getElementById('login_pwd').style.border = '2px solid #F24822';
 					pwd.focus();
 					e.preventDefault();
