@@ -5,28 +5,75 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
-<link href="../css/header.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<style>
+	<%--헤더의 모든 요소 감싸기--%>
+	#header{min-width: 1250px; background: #F24822; height: 60px; width: 100%; position: fixed; top: 0px; left: 0px; right: 0px;}
+	
+ 	<%--로고~공지사항 감싸는 div--%>
+	#header_menu{margin-left:10px; float: left; margin-top: 15px;}
+	<%--로고~공지사항까지 각각의 a태그 class="button"--%>
+ 	.button{color: white; text-decoration: none; font-size: 18px; margin-right: 30px;}
+	.button:hover{font-weight: 600;}
+	<%--로고~공지사항 버튼의 a태그들--%>
+	.button a{color: black; text-decoration: none;}
+ 	
+ 	<%--로고 이미지--%>
+	#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+	<%--로그인 o, x 전부 감싸는--%>
+	#header_user{margin-right: 25px; float: right; margin-top: 15px;}
+	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
+	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
+ 	.button_user{color: white; text-decoration: none; font-size: 18px;}
+ 	.button_user:hover{font-weight: 600;}
+	<%--로그인 o 감싸는 div--%>
+	#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black; margin-bottom: 15px;}
+	<%--이름 왼쪽 역삼각형 button--%>
+	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
+	<%--toggle 메뉴 리스트 감싸는 div--%>
+	#mypage_Menu{display: none; width: 200px; height: 150px; border: 1px solid lightgray;}
+	#mypage_Menu li {margin-bottom: 18px;}
+	#mypage_Menu a{color: black; text-decoration: none;}
+	#mypage_Menu a:hover{color: #0080ff;}
+</style>
 </head>
 <body>
-	<header id="header">
+	<div id="header">
+		<a href="#" class="button" id="logoImg_A"><img src="img/logo.png" id="logoImg" alt="로고"></a>
 		<div id="header_menu" class="header_common">
-			<a href="#" class="button"><img src="#" id="logo"></a>
-			<a href="../board/recipe.jsp" id="main" class="button">레시피</a>
+			<a href="../board/recipe.html" id="main" class="button">레시피</a>
 			<a href="#" id="tip" class="button">꿀팁</a>
-			<a href="../recommend/randomMainPage.jsp" id="comm" class="button">메뉴 추천</a>
-			<a href="../notice/noticeMainPage.jsp" id="notice" class="button">공지사항</a>
+			<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
+			<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
 		</div>
 		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 		<div id="header_user" class="header_common">
 			<!-- 로그인 x 상태 -->
-			<div id="header_user_noUser">
-				<a href="user_login.jsp" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-				<a href="join_account.jsp" id="user_join" class="button_user">회원가입</a>
-			</div>
+<!-- 			<div id="header_user_noUser"> -->
+<!-- 				<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp; -->
+<!-- 				<a href="join_account.html" id="user_join" class="button_user">회원가입</a> -->
+<!-- 			</div> -->
 			<!-- 로그인 o 상태 -->
-			<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
-			<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
+			<div id="user_login_complete">
+				<button id="mypage_list" class="mypageMenu">▼</button>
+				<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+			</div>
+			<div id="mypage_Menu">
+				<ul>
+					<li><a href="">작성한 게시글 보기</a></li>
+					<li><a href=""><label>회원정보 조회 / 수정</label></a></li>
+					<li><label>로그아웃</label></li>
+				</ul>
+			</div>
 		</div>
-	</header>
+	</div>
+	
+	<script>
+		$(()=>{
+			$('#user_login_complete').click(function() {
+				$(this).next().slideToggle();
+			});
+		})
+	</script>
 </body>
 </html>
