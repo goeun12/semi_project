@@ -27,14 +27,14 @@
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
  	.button_user:hover{font-weight: 600;}
 	<%--로그인 o 감싸는 div--%>
-	#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black; margin-bottom: 15px;}
+	#user_login_complete{border: 4px solid #FFFBF2; width: 200px; background: #FFFBF2; color: black;}
 	<%--이름 왼쪽 역삼각형 button--%>
 	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
 	<%--toggle 메뉴 리스트 감싸는 div--%>
-	#mypage_Menu{display: none; width: 200px; height: 150px; border: 1px solid lightgray;}
-	#mypage_Menu li {margin-bottom: 18px;}
+	#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white;}
+	#mypage_Menu li {margin-bottom: 15px; margin-top: 23px;}
 	#mypage_Menu a{color: black; text-decoration: none;}
-	#mypage_Menu a:hover{color: #0080ff;}
+	#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
 </style>
 </head>
 <body>
@@ -61,8 +61,8 @@
 			<div id="mypage_Menu">
 				<ul>
 					<li><a href="">작성한 게시글 보기</a></li>
-					<li><a href=""><label>회원정보 조회 / 수정</label></a></li>
-					<li><label>로그아웃</label></li>
+					<li><a href="">회원정보 조회 / 수정</a></li>
+					<li><a href="">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>
