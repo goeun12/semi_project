@@ -10,18 +10,18 @@
 	<%--헤더의 모든 요소 감싸기--%>
 	#header{min-width: 1250px; background: #F24822; height: 60px; width: 100%; position: fixed; top: 0px; left: 0px; right: 0px;}
 	
- 	<%--로고~공지사항 감싸는 div--%>
-	#header_menu{margin-left:10px; float: left; margin-top: 15px;}
+ 	<%--로고 이미지--%>
+	#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+ 	<%--레시피~공지사항 감싸는 div--%>
+	#header_menu{margin-left:10px; float: left; margin-top: 17px;}
 	<%--로고~공지사항까지 각각의 a태그 class="button"--%>
  	.button{color: white; text-decoration: none; font-size: 18px; margin-right: 30px;}
 	.button:hover{font-weight: 600;}
 	<%--로고~공지사항 버튼의 a태그들--%>
 	.button a{color: black; text-decoration: none;}
- 	
- 	<%--로고 이미지--%>
-	#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+	
 	<%--로그인 o, x 전부 감싸는--%>
-	#header_user{margin-right: 25px; float: right; margin-top: 15px;}
+	#header_user{margin-right: 25px; float: right; margin-top: 8px;}
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
