@@ -15,9 +15,9 @@
 .td-textarea:focus{outline:none;}
 
 	
-.td-underline,.td-topline,.td-rlline{border: 2px solid black;}
 
-.tbround{border:2px solid black;}
+
+
 
 .slim-border1{border:0.5px solid black;}
 #text-ingre{width:90%; padding-left:30px;padding-right:30px;}
@@ -28,24 +28,6 @@
 #minus-level{background-color:#b3b3b3; font-weight:400;border:none}
 .recipe-option{padding-bottom:10px;padding-top:10px;}
 
-
-#footer{
-		border-top: 2px solid rgb(179, 179, 179); background: #e9ecf2;
-		min-width: 1200px;
-		margin: 0px;
-		height: 40px;
-		/* right:0;*/
-		left:0; 
-		bottom:0;
-	}
-	.font{color: #000000; margin-bottom: 3px; font-size: 13px;}
-	#footer_inner{
-		display: inline-block;
-		margin: 0 auto;
-		width: 100%;
-		margin-left: 10px;
-		margin-top: 10px;
-	}
 
 
 
@@ -89,53 +71,53 @@
    
 </div>
 
-
+<!--  style="min-width:1250px; background-color:lightgray;padding:10px;margin-left:5%;margin-right:5%;width:85%; margin-bottom:150px;" -->
 <!-- 1번째 칸 -->
-<div style="min-width:1250px; background-color:lightgray;padding:10px;margin-left:5%;margin-right:5%;width:85%; margin-bottom:150px;">
-<div id="tbdiv3" class="row text-center div-flexible col div-min-width" style="margin-bottom:1rem !important;margin-left:20px;width:100%;">
+<div class="container">
+	<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
 
-	<table class="tbround bgcw" style="border-right:2px solid black; width:95%;">
-		<tr>
-			<td class="td-underline td-rlline td-topline text-center" colspan='2' rowspan='3' style="width:40%">
-				<input class="form-control form-control-lg td-input" id="formFileLg" type="file" onchange="previewIMG(this);">
-				<img id="firImg">
-			</td>
-			<td class="td-underline td-rlline td-topline" colspan='3' height="100px" width="50px">
+		<table class="tbround bgcw" style="width:95%;">
+			<tr>
+				<td class="td-rightline" colspan='2' rowspan='3' style="width:40%">
+					<input class="form-control form-control-lg td-input" id="formFileLg" type="file" onchange="previewIMG(this);">
+					<img id="firImg">
+				</td>
+			<td class="td-bottomline" colspan='3' height="100px" width="50px">
 				<input class="td-input" type="text" name="text" style="font-size:20px;width:100%;height:40px; border: 0; text-align:center;" placeholder="요리명"/>
 			</td>
-		</tr>
-		<tr style="display:flex;justify-content:center;">
-			<td>
-				<div class="recipe-option">	
-					<select id="sel-nation" class="form-select form-select-sm">
-					  <option value="all"selected>국가</option>
-					  <option value="kr">한식</option>
-					  <option value="cn">중식</option>
-					  <option value="us">양식</option>
-					  <option value="jp">일식</option>
-					  <option value="no">분식</option>
-					</select>	
+			</tr>
+			<tr style="display:flex;justify-content:center;">
+				<td>
+					<div class="recipe-option">	
+						<select id="sel-nation" class="form-select form-select-sm">
+						  <option value="all"selected>국가</option>
+						  <option value="kr">한식</option>
+						  <option value="cn">중식</option>
+						  <option value="us">양식</option>
+						  <option value="jp">일식</option>
+						  <option value="no">분식</option>
+						</select>	
+						</div>
+				</td>
+				<td>
+					<div class="recipe-option">
+						<select id="sel-easy"class="form-select form-select-sm">
+						  <option value="all"selected>난이도</option>
+						  <option value="easy">하</option>
+						  <option value="mid">중</option>
+						  <option value="hard">상</option>
+						</select>
 					</div>
-			</td>
-			<td>
-				<div class="recipe-option">
-					<select id="sel-easy"class="form-select form-select-sm">
-					  <option value="all"selected>난이도</option>
-					  <option value="easy">하</option>
-					  <option value="mid">중</option>
-					  <option value="hard">상</option>
-					</select>
-				</div>
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td class="td-underline td-rlline td-topline" colspan="3" height="400px" width="50px">
-				<textarea class="td-textarea"rows='5' placeholder="요리 재료" style="width:100%;height:90%;padding-left:30px;"></textarea>
-			</td>
-		</tr>
-	</table>
-</div>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="td-underline td-rlline td-topline" colspan="3" height="400px" width="50px">
+					<textarea class="td-textarea"rows='5' placeholder="요리 재료" style="width:100%;height:90%;padding-left:30px;"></textarea>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 
 
@@ -144,7 +126,7 @@
 
 <!-- 2번째 칸 -->
 <div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:20px; margin-right:50px; height:100px;width:100%">
-	<table class="bgcw" style="width:95%;border:2px solid black;">
+	<table class="tbround bgcw" style="width:95%;">
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 			<td width="" height="60px" style="padding-left:50px">
@@ -162,13 +144,13 @@
 		<tbody id="table_body">
 			<tr>
 				<td class="td-jus-con previewImg">
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-top:30px;width:500px; height:250px;">
+					<div class="slim-border mb-3 text-center td-div-img">
 						<input class="form-control form-control-lg" type="file" onchange="readURL(this);">
 						<img class="preview" />
 					</div>
 				</td>
 				<td>
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-top:30px;width:650px; height:250px;">
+					<div class="slim-border mb-3 text-center div-textarea">
 						<textarea class="making-num " placeholder="1. ㅇㅇㅇ"></textarea>
 					</div>
 				</td>
