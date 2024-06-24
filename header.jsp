@@ -21,7 +21,7 @@
 	.button a{color: black; text-decoration: none;}
 	
 	<%--로그인 o, x 전부 감싸는--%>
-	#header_user{margin-right: 25px; float: right; margin-top: 8px;}
+	#header_user{margin-right: 25px; float: right; margin-top: 8px;}   <%--학원 컴퓨터로는 >> #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
