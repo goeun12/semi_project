@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 	.button a{color: black; text-decoration: none;}
 	
 	<%--로그인 o, x 전부 감싸는--%>
-	#header_user{margin-right: 25px; float: right; margin-top: 8px;}   <%--학원 컴퓨터로는 #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
+	#header_user{margin-right: 25px; float: right; margin-top: 14px;}   <%--학원 컴퓨터로는 #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
@@ -38,8 +39,10 @@
 </style>
 </head>
 <body>
-	<div id="header">
-		<a href="#" class="button" id="logoImg_A"><img src="img/logo.png" id="logoImg" alt="로고"></a>
+	<!-- c:set은 대문 만들어지면 그쪽으로 옮기기? -> 근데 이러면 대문에서 시작하지 않은 페이지들은 c:set 적용안됨 -->
+	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
+	<header id="header">
+		<a href="#" class="button" id="logoImg_A"><img src="resources/image/logo.png" id="logoImg" alt="로고"></a>
 		<div id="header_menu" class="header_common">
 			<a href="../board/recipe.html" id="main" class="button">레시피</a>
 			<a href="#" id="tip" class="button">꿀팁</a>
@@ -48,25 +51,29 @@
 		</div>
 		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 		<div id="header_user" class="header_common">
-			<!-- 로그인 x 상태 -->
-<!-- 			<div id="header_user_noUser"> -->
-<!-- 				<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp; -->
-<!-- 				<a href="join_account.html" id="user_join" class="button_user">회원가입</a> -->
-<!-- 			</div> -->
-			<!-- 로그인 o 상태 -->
-			<div id="user_login_complete">
-				<button id="mypage_list" class="mypageMenu">▼</button>
-				<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
-			</div>
-			<div id="mypage_Menu">
-				<ul>
-					<li><a href="">작성한 게시글 보기</a></li>
-					<li><a href="">회원정보 조회 / 수정</a></li>
-					<li><a href="">로그아웃</a></li>
-				</ul>
-			</div>
+			<!-- 로그인 x -->
+			<c:if test="${ empty loginUser }">
+				<div id="header_user_noUser">
+	 				<a href="${ contextPath }/loginView.user" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
+	 				<a href="${ contextPath }/joinView.user" id="user_join" class="button_user">회원가입</a>
+ 				</div>			
+ 			</c:if>
+			<!-- 로그인 o -->
+			<c:if test="${ !empty loginUser }">
+				<div id="user_login_complete">
+					<button id="mypage_list" class="mypageMenu">▼</button>
+					<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+				</div>
+				<div id="mypage_Menu">
+					<ul>
+						<li><a href="${ contextPath }/write.user">작성한 게시글 보기</a></li>
+						<li><a href="${ contextPath }/edit.user">회원정보 조회 / 수정</a></li>
+						<li><a href="${ contextPath }/logout.user">로그아웃</a></li>
+					</ul>
+				</div>
+			</c:if>
 		</div>
-	</div>
+	</header>
 	
 	<script>
 		$(()=>{
