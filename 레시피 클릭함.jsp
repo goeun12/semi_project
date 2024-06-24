@@ -73,16 +73,16 @@
 								<option value="kr" selected>#한식</option>
 							</c:if>
 							<c:if test="${ recipe.nation =='cn' }">
-								<option value="cn">#중식</option>
+								<option value="cn" selected>#중식</option>
 							</c:if>
 							<c:if test="${ recipe.nation =='us' }">
-								<option value="us">#양식</option>
+								<option value="us" selected>#양식</option>
 							</c:if>
 							<c:if test="${ recipe.nation =='jp' }">
-								<option value="jp">#일식</option>
+								<option value="jp" selected>#일식</option>
 							</c:if>
 							<c:if test="${ recipe.nation =='no' }">
-								<option value="no">#분식</option>
+								<option value="no" selected>#분식</option>
 							</c:if>
 						</select>	
 					</div>
@@ -121,7 +121,7 @@
 
 
 
-	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
+	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px; margin-bottom:2rem !important;">
 		<table class="tbround bgcw">
 			<tr height="100px">
 				<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
@@ -187,7 +187,7 @@
 
 <div class="grid text-center div-flexible div-center div-min-width" style="margin-left:50px;margin-right:50px;">
 	<div class="g-col-6 div-center div-flexible" id="recipe-recommend">
-		<span>["${ recipe.nation }"]</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
+		<span>"${ recipe.nation }"</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
 	</div>
 	<div class="div-center div-flexible slim-border" id="show-more"><a href="recipeMain.jsp">더보기</a></div>
 </div>
