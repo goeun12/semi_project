@@ -21,7 +21,7 @@
       		</div>
       		<div id="id_join_find">
       			<div id="id_join_find_box">
-					<form action="#" method="post" id="login_form">
+					<form action="${ contextPath }/login.user" method="post" id="login_form">
 						<div id="login">
 							<div id="login_box">
 								<div id="login_id" class="login_content_name">
@@ -42,11 +42,11 @@
 					<div id="find_join">
 						<div id="find_join_box">
 							<div id="find_idpw" class="find_join_in">
-								<a href="id_find.html" id="find_idpw_link" class="btn button_find_join"><label class="font_text">아이디/비밀번호 변경</label></a>
+								<a href="${ contextPath }/findInfo.user" id="find_idpw_link" class="btn button_find_join"><label class="font_text">아이디/비밀번호 찾기</label></a>
 							</div>
 							<div style="width: 40px; display: inline-block;"></div>
 							<div id="join_user" class="find_join_in">
-								<a href="join_account.html" id="join_user_link" class="button_find_join btn"><label class="font_text">회원가입</label></a>
+								<a href="${ contextPath }/joinView.user" id="join_user_link" class="button_find_join btn"><label class="font_text">회원가입</label></a>
 							</div>
 						</div>
 					</div>
