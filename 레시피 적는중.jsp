@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +11,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 <style>
+
+
 #recipe-body{background-color:#fffbf2;}
 .bgcw{background-color:white;}
 .td-input:focus{outline:none;}
@@ -130,7 +135,7 @@
 		<tr>
 			<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 			<td width="" height="60px" style="padding-left:50px">
-				<textarea  id="text-ingre" class="td-textarea" rows='2' placeholder="요리에 대한 소개"></textarea>
+				<textarea  id="text-ingre" class="td-textarea" rows='2' placeholder="요리에 대한 간단한 소개"></textarea>
 			</td>
 		</tr>
 	</table>
@@ -167,8 +172,8 @@
 					var reader = new FileReader();
 					reader.onload = function(e){
 						imgArr[trNo-1].src = e.target.result;
-						imgArr[trNo-1].style.width = '200px';
-						imgArr[trNo-1].style.height = '200px';
+						imgArr[trNo-1].style.width = '300px';
+						imgArr[trNo-1].style.height = '300px';
 					};
 				reader.readAsDataURL(input.files[0]);
 				} else{
