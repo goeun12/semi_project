@@ -12,30 +12,6 @@
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 <style>
 
-
-#recipe-body{background-color:#fffbf2;}
-.bgcw{background-color:white;}
-.td-input:focus{outline:none;}
-.td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
-.td-textarea:focus{outline:none;}
-
-	
-
-
-
-
-.slim-border1{border:0.5px solid black;}
-#text-ingre{width:90%; padding-left:30px;padding-right:30px;}
-.making-num{border: 0; width:70%; height:70%;resize:none;padding-top:30px;}
-.making-num:focus{outline:0}
-#go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
-#go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
-#minus-level{background-color:#b3b3b3; font-weight:400;border:none}
-.recipe-option{padding-bottom:10px;padding-top:10px;}
-
-
-
-
 </style>
 </head>
 <body id="recipe-body">
@@ -155,7 +131,7 @@
 					</div>
 				</td>
 				<td>
-					<div class="slim-border mb-3 text-center div-textarea">
+					<div class="slim-border mb-3 text-center div-textarea pad-top45">
 						<textarea class="making-num " placeholder="1. ㅇㅇㅇ"></textarea>
 					</div>
 				</td>
