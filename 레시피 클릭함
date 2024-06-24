@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +12,7 @@
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 <style>
 
-.container{background-color:white;border-radius:10px;}
-
-
+.container{border-radius:10px; min-width:1250px;}
 
 
 </style>
@@ -47,61 +48,70 @@
 
 
 <div class="container">
-<div id="notice_up_del" class="div-min-width" style="float:right;">
+	<div id="notice_up_del" style="float:right;">
+		<c:if test="${ loginUser.id == recipe.writer }">
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-up-btn">수정</a>
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-del-btn">삭제</a>
-		</div>
-
-
-
-
-
-
-
-<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
-
-	<table class="tbround bgcw" style="width:96%;">
-		<tr>
-			<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:45%">
-				<p>사진</p>
-			</td>
-			<td class="td-bottomline" colspan='3' height="100px">
-				<div>요리명</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div class="recipe-option">	
-					<select id="sel-nation" class="form-select form-select-sm">
-					  <option value="all"selected>국가</option>
-					  <option value="kr">#한식</option>
-					  <option value="cn">#중식</option>
-					  <option value="us">#양식</option>
-					  <option value="jp">#일식</option>
-					  <option value="no">#분식</option>
-					</select>	
+		</c:if>
+	</div>
+	<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
+		<table class="tbround bgcw" style="width:96%;">
+			<tr>
+				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:45%">
+					<p>사진</p>
+				</td>
+				<td class="td-bottomline" colspan='3' height="100px">
+					<div>요리명</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="recipe-option">	
+						<select id="sel-nation" class="form-select form-select-sm" disabled>
+			<!-- 현재 선택한 레시피 정보여야 함 -->
+							<c:if test="${ recipe.nation =='kr' }">
+								<option value="kr" selected>#한식</option>
+							</c:if>
+							<c:if test="${ recipe.nation =='cn' }">
+								<option value="cn">#중식</option>
+							</c:if>
+							<c:if test="${ recipe.nation =='us' }">
+								<option value="us">#양식</option>
+							</c:if>
+							<c:if test="${ recipe.nation =='jp' }">
+								<option value="jp">#일식</option>
+							</c:if>
+							<c:if test="${ recipe.nation =='no' }">
+								<option value="no">#분식</option>
+							</c:if>
+						</select>	
 					</div>
-			</td>
-			<td>
-				<div class="recipe-option">
-					<select id="sel-easy"class="form-select form-select-sm">
-					  <option value="all"selected>난이도</option>
-					  <option value="easy">하</option>
-					  <option value="mid">중</option>
-					  <option value="hard">상</option>
-					</select>
-				</div>
-			</td>
-			<td id="recipe-own" style="font-size:15px;">작성자 이름</td>
-		</tr>
-		<tr>
-			<td class="td-topline" colspan="3" height="400px" width="50px">
-				<div>크기 보여주려고 테두리 넣어둠. 근데 글이 길어지면
-				엔터는 안들어가지고 끝에 가면 알아서 줄바뀜</div>
-			</td>
-		</tr>
-	</table>
-</div>
+				</td>
+				<td>
+					<div class="recipe-option">
+						<select id="sel-easy"class="form-select form-select-sm" disabled>
+							<c:if test="${ recipe.diffi =='easy' }">
+								<option value="easy" selected>하</option>
+							</c:if>
+							<c:if test="${ recipe.diffi =='mid' }">	
+								<option value="mid" selected>중</option>
+							</c:if>
+							<c:if test="${ recipe.diffi =='hard' }">
+								<option value="hard" selected>상</option>
+							</c:if>
+						</select>
+					</div>
+				</td>
+				<td id="recipe-own" style="font-size:15px;">작성자 이름</td>
+			</tr>
+			<tr>
+				<td class="td-topline" colspan="3" height="400px" width="50px">
+					<div>크기 보여주려고 테두리 넣어둠. 엔터는 안들어가지고, 글이 길어지면
+					끝에 가면 알아서 줄바뀜.    요리 재료</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 
 
@@ -111,14 +121,14 @@
 
 
 
-<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
-	<table class="tbround">
-		<tr height="100px">
-			<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
-			<td>요리에 대한 간단 소개</td>
-		</tr>
-	</table>
-</div>
+	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
+		<table class="tbround bgcw">
+			<tr height="100px">
+				<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
+				<td>요리에 대한 간단 소개</td>
+			</tr>
+		</table>
+	</div>
 
 
 
@@ -126,42 +136,42 @@
 
 
 
-<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
-	<table class="tbround">
-		<tr>
-			<td style="width:500px;">
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-					<img src="감사콩.png" height="400px" width="400px"/>
-				</div>
-			</td>
-			<td>
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
-			</td>
-		</tr>
-		<tr>
-			<td style="width:500px;">
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-					<img src="감콩.png" height="400px" width="400px"/>
-				</div>
-			</td>
-			<td>
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
-			</td>
-		</tr>
-		<tr>
-			<td style="width:500px;">
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-					<img src="감콩.png" height="400px" width="400px"/>
-				</div>
-			</td>
-			<td>
-				<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
-			</td>
-		</tr>
-	</table>
-	<div>&nbsp;</div>
-	<div></div>
-</div>
+	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
+		<table class="tbround bgcw">
+			<tr>
+				<td style="width:500px;">
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
+						<img src="감사콩.png" height="400px" width="400px"/>
+					</div>
+				</td>
+				<td>
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:500px;">
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
+						<img src="감콩.png" height="400px" width="400px"/>
+					</div>
+				</td>
+				<td>
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:500px;">
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
+						<img src="감콩.png" height="400px" width="400px"/>
+					</div>
+				</td>
+				<td>
+					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+				</td>
+			</tr>
+		</table>
+		<div>&nbsp;</div>
+		<div></div>
+	</div>
 </div>
 
 
@@ -175,9 +185,11 @@
 
 
 
-<div class="grid text-center div-flexible div-center" style="margin-left:50px;margin-right:50px;">
-	<div class="g-col-6 div-center div-flexible" id="recipe-recommend">[<span>한식</span>] 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?</div>
-	<div class="div-center div-flexible slim-border" id="show-more"><a href="recipe.html">더보기</a></div>
+<div class="grid text-center div-flexible div-center div-min-width" style="margin-left:50px;margin-right:50px;">
+	<div class="g-col-6 div-center div-flexible" id="recipe-recommend">
+		<span>["${ recipe.nation }"]</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
+	</div>
+	<div class="div-center div-flexible slim-border" id="show-more"><a href="recipeMain.jsp">더보기</a></div>
 </div>
 
 
@@ -238,7 +250,7 @@
 	
 	
 <div class="mx-auto" style="width:80px;">
-	<a class="btn btn-primary me-md-2" href="recipe.html" role="button" id="go_list_button">목록</a>
+	<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id="go_list_button">목록</a>
 </div>
 <div>&nbsp;</div>
 	
@@ -251,12 +263,12 @@
 	
 	
 	
-	<div id="footer">
-		<div id="footer_inner">
-			<div id="company" class="font">사업자: (주) 혼밥심</div>
-			<div id="leader" class="font">대표: 김남희</div>
-			<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
-		</div>
+<div id="footer">
+	<div id="footer_inner">
+		<div id="company" class="font">사업자: (주) 혼밥심</div>
+		<div id="leader" class="font">대표: 김남희</div>
+		<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
 	</div>
+</div>
 </body>
 </html>
