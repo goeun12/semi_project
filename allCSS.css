@@ -14,7 +14,7 @@
 
 .div-flexible{display:flex;}
 .div-center{justify-content:center;}
-.div-textarea{margin-left:50px;margin-top:30px;width:600px; height:250px;}
+.div-textarea{margin-left:50px;margin-top:30px;padding-top:40px;width:600px; height:300px;}
 .div-min-width{min-width:1250px;}
 
 
@@ -24,11 +24,11 @@
 #gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
 #go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
 #go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
-#go_list_button{margin-top:30px;}
+#go_list_button{margin-top:30px; width:80px;}
 
 #minus-level{background-color:#b3b3b3; font-weight:400;border:none}
 #minus-level:hover{background-color:rgb(129,129,129)}
-.making-num{border: 0; width:70%; height:80%;resize:none;}
+.making-num{border: 0; width:70%; height:80%;resize:none; align-content:center; text-align:center; font-size:15px;}
 .making-num:focus{outline:0}
 .margin-lrt{margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;}
 .margin-lrpx{margin-left:50px; margin-right:50px;}
@@ -67,7 +67,7 @@
 .td-input:focus{outline:none;}
 .td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
 .td-textarea:focus{outline:none;}
-.td-div-img{margin-left:50px;margin-top:30px;width:300px; height:350px;}
+.td-div-img{margin-left:50px;margin-top:30px;width:252px; height:300px;}
 .tbround {
 	border-collapse: collapse;
 	border-radius: 10px;
