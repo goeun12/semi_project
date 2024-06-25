@@ -65,7 +65,7 @@
 				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
 					<p>사진</p>
 				</td>
-				<td class="td-bottomline" colspan='3' height="100px">
+				<td class="td-bottomline" colspan='3' height="100px" style="text-align:center;">
 					<div>요리명</div>
 				</td>
 			</tr>
@@ -205,6 +205,18 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
+					<a href="#"><img src="떡볶이1.jpg" width="100%" height="225px" style=/></a>
+					<div class="card-body">
+						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
 						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
@@ -226,18 +238,8 @@
 						</div>
 					</div>
 				</div>
-			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-				<div class="card shadow-sm">
-					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
-					<div class="card-body">
-						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group"></div>
-							<small class="text-body-secondary"></small>
-						</div>
-					</div>
-				</div>
-			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+			</div>
+			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
