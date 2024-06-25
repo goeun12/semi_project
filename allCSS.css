@@ -54,7 +54,7 @@
 							font-size:20px;
 				 			width:80px;
 					}
-#search_button:hover,#write-button:hover{background:#a5250a;}
+#search_button:hover,#write-button:hover{background:#a5250a; font-weight:700}
 #sel-nation,#sel-easy{font-size:15px;}
 
 
