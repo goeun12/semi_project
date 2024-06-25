@@ -99,6 +99,7 @@
 
 	<br>
 <script>
+// value 뽑은걸로 검색 필터링해야함
 	const searchWord =()=>{
 		const word = document.getElementById("search_button").previousElementSibling.value;
 		const nation = document.getElementById("sel-nation").value;
@@ -115,7 +116,9 @@
 	<div class="py-5 everybox">
 		<div class="container">
 		
-	<!-- container -->
+<!-- 
+		forEach 써서 반복해서 나오게 해야함
+ -->
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
 				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 					<div class="card shadow-sm">
@@ -258,10 +261,15 @@
 			<br>
 			<div class="div-flexible div-center" style="height: 50px">
 				<div>
-					<button id="write-button" style="border-radius:10px;">글 작성</button>
+					<a href="recipeWrite.jsp"><button id="write-button" style="border-radius:10px; width:120px;">글쓰기</button></a>
 				</div>
 			</div>
 			<br>
+			
+<!-- 
+	수업시간에 한 pagination 써먹기
+ -->
+			
 			<div class="mx-auto" id="page_navigation" style="width: 210px;">
 				<ul class="pagination pagination-sm">
 					<li class="page-item"><a class="page-link" href="#">이전</a></li>
