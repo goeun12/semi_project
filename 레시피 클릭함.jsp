@@ -31,7 +31,11 @@
 
 
 
-<!-- 검색창 -->
+<!-- 
+		검색창
+		
+		밸류 가져와서 필터링
+ -->
 <div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
    <div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 	<div class="input-group mb-3" style="width:70%">
@@ -47,17 +51,18 @@
 
 
 
-<div class="container">
-	<div id="notice_up_del" style="float:right;">
+<div class="div-min-width">
+	<div id="notice_up_del float-sm-end"><!--  style="float:right;" -->
+	
 		<c:if test="${ loginUser.id == recipe.writer }">
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-up-btn">수정</a>
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-del-btn">삭제</a>
 		</c:if>
 	</div>
-	<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
-		<table class="tbround bgcw" style="width:96%;">
+	<div id="tbdiv3" class="row text-center div-flexible col">
+		<table class="tbround bgcw">
 			<tr>
-				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:45%">
+				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
 					<p>사진</p>
 				</td>
 				<td class="td-bottomline" colspan='3' height="100px">
@@ -105,7 +110,7 @@
 				<td id="recipe-own" style="font-size:15px;">작성자 이름</td>
 			</tr>
 			<tr>
-				<td class="td-topline" colspan="3" height="400px" width="50px">
+				<td class="td-topline" colspan="3" height="300px" width="50px">
 					<div>크기 보여주려고 테두리 넣어둠. 엔터는 안들어가지고, 글이 길어지면
 					끝에 가면 알아서 줄바뀜.    요리 재료</div>
 				</td>
@@ -121,8 +126,8 @@
 
 
 
-	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px; margin-bottom:2rem !important;">
-		<table class="tbround bgcw">
+	<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important; justify-content:center;">
+		<table class="tbround bgcw" style="width:70%">
 			<tr height="100px">
 				<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
 				<td>요리에 대한 간단 소개</td>
@@ -136,36 +141,36 @@
 
 
 
-	<div class="row mb-3 text-center div-min-width" style="margin-left:20px; margin-right:20px;">
-		<table class="tbround bgcw">
+	<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
+		<table class="tbround bgcw" style="width:70%">
 			<tr>
-				<td style="width:500px;">
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-						<img src="감사콩.png" height="400px" width="400px"/>
+				<td style="width:300px;">
+					<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+						<img src="감사콩.png" height="250px" width="250px"/>
 					</div>
 				</td>
 				<td>
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+					<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">요리순서</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="width:500px;">
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-						<img src="감콩.png" height="400px" width="400px"/>
+				<td style="width:300px;">
+					<div class=" mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+						<img src="감사콩.png" height="250px" width="250px"/>
 					</div>
 				</td>
 				<td>
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+					<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">요리순서</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="width:500px;">
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;width:410px;height:410px;">
-						<img src="감콩.png" height="400px" width="400px"/>
+				<td style="width:300px;">
+					<div class=" mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+						<img src="감사콩.png" height="250px" width="250px"/>
 					</div>
 				</td>
 				<td>
-					<div class="slim-border mb-3 text-center" style="margin-left:50px;margin-right:30px;margin-top:30px;height:300px;">요리순서</div>
+					<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;height:250px;">요리순서</div>
 				</td>
 			</tr>
 		</table>
@@ -195,18 +200,18 @@
 
 
 
-<div class="py-5">
-	<div class="container" style="padding-bottom:15px;">
+<div class="py-5 div-min-width">
+	<div class="container" style="padding-bottom:15px; width:70%;">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
 						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="btn-group"></div>
-						<small class="text-body-secondary"></small>
-					</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -215,21 +220,10 @@
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
 						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="btn-group"></div>
-						<small class="text-body-secondary"></small>
-					</div>
-					</div>
-				</div>
-			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-				<div class="card shadow-sm">
-					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
-					<div class="card-body">
-						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="btn-group"></div>
-						<small class="text-body-secondary"></small>
-					</div>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
 					</div>
 				</div>
 			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
@@ -237,10 +231,21 @@
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
 						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-					<div class="d-flex justify-content-between align-items-center">
-						<div class="btn-group"></div>
-						<small class="text-body-secondary"></small>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
 					</div>
+				</div>
+			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+				<div class="card shadow-sm">
+					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+					<div class="card-body">
+						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -250,7 +255,7 @@
 	
 	
 <div class="mx-auto" style="width:80px;">
-	<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id="go_list_button">목록</a>
+	<a class="btn btn-primary me-md-2" href="noticeMainPage.html" role="button" id ="go_list_button">목록</a>
 </div>
 <div>&nbsp;</div>
 	
