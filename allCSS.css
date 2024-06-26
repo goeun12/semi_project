@@ -14,7 +14,7 @@
 
 .div-flexible{display:flex;}
 .div-center{justify-content:center;}
-.div-textarea{margin-left:50px;margin-top:30px;padding-top:40px;width:600px; height:300px;}
+.div-textarea{margin-left:50px;margin-top:30px;width:600px; height:250px;}
 .div-min-width{min-width:1250px;}
 
 
@@ -24,14 +24,20 @@
 #gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
 #go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
 #go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
-#go_list_button{margin-top:30px; width:80px;}
+#go_list_button{margin-top:30px;}
+
 
 #minus-level{background-color:#b3b3b3; font-weight:400;border:none}
 #minus-level:hover{background-color:rgb(129,129,129)}
-.making-num{border: 0; width:70%; height:80%;resize:none; align-content:center; text-align:center; font-size:15px;}
+.making-num{border: 0; width:70%; height:80%;resize:none;}
 .making-num:focus{outline:0}
 .margin-lrt{margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;}
 .margin-lrpx{margin-left:50px; margin-right:50px;}
+#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
+#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white;}
+#mypage_Menu li {margin-bottom: 15px; margin-top: 23px;}
+#mypage_Menu a{color: black; text-decoration: none;}
+#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
 
 
 #notice_up_del{margin-bottom: 15px;}
@@ -44,6 +50,7 @@
 #recipe-up-btn,#recipe-del-btn{background-color:#b3b3b3;border:none}
 #recipe-title{font-size:40px;font-weight:300;}
 
+
 .slim-border{border:0.5px solid lightgray;}
 #search_button{width:80px;}
 #show-more{margin-left:50px; height:30px; width:100px;background-color:white;border-radius:10px;}
@@ -54,7 +61,7 @@
 							font-size:20px;
 				 			width:80px;
 					}
-#search_button:hover,#write-button:hover{background:#a5250a; font-weight:700}
+#search_button:hover,#write-button:hover{background:#a5250a;font-weight:700}
 #sel-nation,#sel-easy{font-size:15px;}
 
 
@@ -67,7 +74,7 @@
 .td-input:focus{outline:none;}
 .td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
 .td-textarea:focus{outline:none;}
-.td-div-img{margin-left:50px;margin-top:30px;width:252px; height:300px;}
+.td-div-img{margin-left:50px;margin-top:30px;width:300px; height:350px;}
 .tbround {
 	border-collapse: collapse;
 	border-radius: 10px;
@@ -87,9 +94,22 @@
 .top-padding{padding-top:3rem !important;}
 
 
+#up-del-btn{width:70%; justify-content:flex-end; margin-right:auto; margin-left:auto; margin-bottom:15px;}
+
+
 .pad-top40{padding-top:45px;}
 .pad20{padding:20px;}
 .pagination-sm .page-link {background: none;
 							border: none;
 							color:black;}
 .page-link:hover{color:black; font-size:large; text-decoration:underline;}
+
+
+#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+	
+
+
+
+
+#user_login_complete{border: 4px solid #FFFBF2; width: 200px; background: #FFFBF2; color: black;}
+
