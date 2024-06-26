@@ -19,13 +19,7 @@
 </head>
 <body id="clickbody">
 	
-<!-- header 자리 -->
-
-
-
-
-
-
+<jsp:include page="header.jsp"/>
 
 
 
@@ -49,11 +43,8 @@
 
 
 
-
-
 <div class="div-min-width">
-	<div id="notice_up_del float-sm-end"><!--  style="float:right;" -->
-	
+	<div class="div-flexible text-center" id="up-del-btn">
 		<c:if test="${ loginUser.id == recipe.writer }">
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-up-btn">수정</a>
 			<a class="btn btn-primary me-md-2" href="#" role="button" id="recipe-del-btn">삭제</a>
@@ -65,7 +56,7 @@
 				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
 					<p>사진</p>
 				</td>
-				<td class="td-bottomline" colspan='3' height="100px" style="text-align:center;">
+				<td class="td-bottomline" colspan='3' height="100px">
 					<div>요리명</div>
 				</td>
 			</tr>
@@ -205,18 +196,6 @@
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
-					<a href="#"><img src="떡볶이1.jpg" width="100%" height="225px" style=/></a>
-					<div class="card-body">
-						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group"></div>
-							<small class="text-body-secondary"></small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
 						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
@@ -238,8 +217,18 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+				<div class="card shadow-sm">
+					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+					<div class="card-body">
+						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group"></div>
+							<small class="text-body-secondary"></small>
+						</div>
+					</div>
+				</div>
+			</div>			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 					<div class="card-body">
@@ -256,8 +245,8 @@
 </div>	
 	
 	
-<div class="mx-auto" style="width:80px;">
-	<a class="btn btn-primary me-md-2" href="noticeMainPage.html" role="button" id ="go_list_button">목록</a>
+<div class="mx-auto" style="display:flex; justify-content:center;">
+	<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id ="go_list_button" style="width:80px;">목록</a>
 </div>
 <div>&nbsp;</div>
 	
@@ -270,12 +259,6 @@
 	
 	
 	
-<div id="footer">
-	<div id="footer_inner">
-		<div id="company" class="font">사업자: (주) 혼밥심</div>
-		<div id="leader" class="font">대표: 김남희</div>
-		<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
-	</div>
-</div>
+
 </body>
 </html>
