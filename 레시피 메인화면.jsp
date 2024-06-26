@@ -9,8 +9,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href="allCSS.css" rel="stylesheet" type="text/css">
-
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
+	
+
 .searchbar{margin-left:20%;}
 .searchButton{margin-right:20%;}
 .notice_title{background:#f9ae98;
@@ -22,31 +24,12 @@
 			font-size:35px;
 }
 .everybox{min-width:1250px;}
-.py-5{margin-left:100px;margin-right:200px;background-color:#fffbf2;}
+.py-5{margin-left:auto;margin-right:auto;background-color:#fffbf2;}
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 
-<div id="header">
-	<div id="header_menu" class="header_common">
-		<a href="#" class="button"><img src="#" id="logo"></a>
-		<a href="#" id="main" class="button">레시피</a>	
-		<a href="#" id="tip" class="button">꿀팁</a>
-		<a href="#" id="comm" class="button">메뉴 추천</a>
-		<a href="#" id="notice" class="button">공지사항</a>
-	</div>
-	<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
-	<div id="header_user" class="header_common">
-		<!-- 로그인 x 상태 -->
-		<div id="header_user_noUser">
-			<a href="#" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-			<a href="#" id="user_join" class="button_user">회원가입</a>
-		</div>
-		<!-- 로그인 o 상태 -->
-		<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
-		<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
-	</div>
-</div>
 
 <div id="gotop-button"><a href=""><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 
@@ -114,15 +97,19 @@
 
 
 	<div class="py-5 everybox">
-		<div class="container">
-		
+		<div class="container" style="width:70%;">
+			<div class="div-flexible text-center" style="height: 50px;width:70%; justify-content:flex-end; margin-left:auto; margin-bottom:15px;">
+				<div>
+					<a href="recipeWrite.jsp"><button id="write-button" style="border-radius:10px; width:120px;">글쓰기</button></a>
+				</div>
+			</div>
 <!-- 
 		forEach 써서 반복해서 나오게 해야함
  -->
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
 				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 					<div class="card shadow-sm">
-						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<a href="recipeClick.jsp"><img src="감사콩.png" width="100%" height="225px"/></a>
 						<div class="card-body">
 							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
 							<div class="d-flex justify-content-between align-items-center">
@@ -259,11 +246,6 @@
 				</div>
 			</div>
 			<br>
-			<div class="div-flexible div-center" style="height: 50px">
-				<div>
-					<a href="recipeWrite.jsp"><button id="write-button" style="border-radius:10px; width:120px;">글쓰기</button></a>
-				</div>
-			</div>
 			<br>
 			
 <!-- 
@@ -285,13 +267,6 @@
 	</div>
 
 
-	<div id="footer">
-		<div id="footer_inner">
-			<div id="company" class="font">사업자: (주) 혼밥심</div>
-			<div id="leader" class="font">대표: 김남희</div>
-			<div id="address" class="font">주소: 서울특별시 을지로입구역 근처</div>
-		</div>
-	</div>
 </div>
 </body>
 </html>
