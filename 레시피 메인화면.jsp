@@ -11,7 +11,8 @@
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
-	
+
+.card-hover:hover{cursor:pointer;}
 
 .searchbar{margin-left:20%;}
 .searchButton{margin-right:20%;}
@@ -88,6 +89,7 @@
 		const nation = document.getElementById("sel-nation").value;
 		const diffi = document.getElementById("sel-easy").value;
 		console.log(word,nation,diffi);
+		location.href= ??????
 	}
 </script>
 
@@ -103,13 +105,48 @@
 					<a href="recipeWrite.jsp"><button id="write-button" style="border-radius:10px; width:120px;">글쓰기</button></a>
 				</div>
 			</div>
-<!-- 
-		forEach 써서 반복해서 나오게 해야함
- -->
+			
+			
+			<input type="hidden" value="${ page }" name="page">
+			
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
+				<c:forEach items="${ 게시판의 레시피리스트 }" var="b">
+					<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+						<div class="card shadow-sm card-hover">
+							<input type="hidden" value="${ 게시판.boardId }" name="boardId">
+							<img src="${ contextPath }/resources/uploadImgs/${ 사진.저장된이름 }" width="100%" height="225px"/>
+							<div class="card-body">
+								<p class="card-text" style="text-align:center;height:15px;">
+									<label class="boardTitle">${ b.제목 }</label>
+								</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group"></div>
+									<small class="text-body-secondary"></small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				
+	<script>
+		window.onload=()=>{
+			const divs = document.getElementsByClassName('card-hover');
+			for(const div of divs){
+				div.addEventListener('click',function(){
+					const bId = this.querySelector('boardId').value;
+					location.href = '${contextPath/}'
+				})
+			}
+		}
+	</script>
+				
+				
+				
+				
+<!-- 여기부터 -->
 				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 					<div class="card shadow-sm">
-						<a href="recipeClick.jsp"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
 						<div class="card-body">
 							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
 							<div class="d-flex justify-content-between align-items-center">
@@ -154,18 +191,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-					<div class="card shadow-sm">
-						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
 				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
 					<div class="card shadow-sm">
 						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
@@ -244,6 +269,8 @@
 						</div>
 					</div>
 				</div>
+<!-- 여기까지는 삭제 forEach -->
+				
 			</div>
 			<br>
 			<br>
