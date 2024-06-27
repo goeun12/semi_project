@@ -52,19 +52,21 @@
    
 </div>
 
-
+<!--  style="min-width:1250px; background-color:lightgray;padding:10px;margin-left:5%;margin-right:5%;width:85%; margin-bottom:150px;" -->
 <!-- 1번째 칸 -->
 <div class="container">
 	<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
 
-		<table class="tbround bgcw" style="width:100%;">
+		<table class="tbround bgcw" style="width:95%;">
 			<tr>
-				<td class="td-rightline" colspan='2' rowspan='3' style="width:32%">
-					<input class="form-control form-control-lg td-input" id="formFileLg" type="file" onchange="previewIMG(this);">
+				<td class="td-rightline" colspan='2' rowspan='3' style="width:40%">
+					<input class="form-control form-control-lg td-input" id="formFileLg" type="file" accept="image/*" onchange="previewIMG(this);">
 					<img id="firImg">
 				</td>
-			<td class="td-bottomline" colspan='3' height="80px" width="40px">
+			<td class="td-bottomline" colspan='3' height="100px" width="50px">
+				
 				<input class="td-input" type="text" name="text" style="font-size:20px;width:100%;height:40px; border: 0; text-align:center;" placeholder="요리명"/>
+				
 			</td>
 			</tr>
 			<tr style="display:flex;justify-content:center;">
@@ -93,7 +95,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td class="td-underline td-rlline td-topline" colspan="3" height="300px" width="50px">
+				<td class="td-underline td-rlline td-topline" colspan="3" height="400px" width="50px">
 					<textarea class="td-textarea"rows='5' placeholder="요리 재료" style="width:100%;height:90%;padding-left:30px;"></textarea>
 				</td>
 			</tr>
@@ -106,10 +108,10 @@
 
 
 <!-- 2번째 칸 -->
-<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important;margin-left:auto;margin-right:auto;height:100px;width:70%;">
-	<table class="tbround bgcw" style="width:100%;">
+<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:20px; margin-right:50px; height:100px;width:100%">
+	<table class="tbround bgcw" style="width:95%;">
 		<tr>
-			<td width="200px" height="50px" style="border-right:0.5px solid lightgray;text-align:center; font-size:15px">요리 소개</td>
+			<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 			<td width="" height="60px" style="padding-left:50px">
 				<textarea  id="text-ingre" class="td-textarea" rows='2' placeholder="요리에 대한 간단한 소개"></textarea>
 			</td>
@@ -118,18 +120,15 @@
 </div>
 
 
-
-
-
 <!-- 3번째 칸 -->
-<div class="row text-center div-min-width" style="margin-left:20px; margin-right:50px;width:70%;">
-	<table class="tbround bgcw" style="width:100%;">
+<div class="row text-center div-min-width" style="margin-left:20px; margin-right:50px;width:100%;">
+	<table class="tbround bgcw" style="width:95%;">
 		<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 		<tbody id="table_body">
 			<tr>
 				<td class="td-jus-con previewImg">
 					<div class="slim-border mb-3 text-center td-div-img">
-						<input class="form-control form-control-lg" type="file" onchange="readURL(this);">
+						<input class="form-control form-control-lg" type="file" accept="image/*"  onchange="readURL(this);">
 						<img class="preview" />
 					</div>
 				</td>
@@ -151,8 +150,8 @@
 					var reader = new FileReader();
 					reader.onload = function(e){
 						imgArr[trNo-1].src = e.target.result;
-						imgArr[trNo-1].style.width = '250px';
-						imgArr[trNo-1].style.height = '250px';
+						imgArr[trNo-1].style.width = '300px';
+						imgArr[trNo-1].style.height = '300px';
 					};
 				reader.readAsDataURL(input.files[0]);
 				} else{
@@ -166,8 +165,8 @@
 			var reader = new FileReader();
 			reader.onload = function(e){
 				firImg.src = e.target.result;
-				firImg.style.width = '410px';
-				firImg.style.height= '400px';
+				firImg.style.width = '350px';
+				firImg.style.height= '350px';
 			};
 			reader.readAsDataURL(This.files[0]);
 		}else{
@@ -194,9 +193,6 @@
 		let tbody = document.getElementById("table_body");
 		let tr = tbody.firstElementChild;
 		let tr_clone = tr.cloneNode(true);
-		tr_clone.children[0].children[0].children[1].src = null;
-		tr_clone.children[0].children[0].children[0].value = null;
-		
 		
 		tbody.append(tr_clone);
 		clean_first_tr(tbody.firstElementChild);
