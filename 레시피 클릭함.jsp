@@ -53,12 +53,17 @@
 	<div id="tbdiv3" class="row text-center div-flexible col">
 		<table class="tbround bgcw">
 			<tr>
-				<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
-					<p>사진</p>
-				</td>
-				<td class="td-bottomline" colspan='3' height="100px">
-					<div>요리명</div>
-				</td>
+				<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
+				<c:forEach items="${ 사진리스트 }" var="i">
+					<c:if test="${ i.썸네일 == 0 }">
+						<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
+							<img src="${ contextPath }/resources/uploadImgs/${ i.저장된이름 }">
+						</td>
+						<td class="td-bottomline" colspan='3' height="100px">
+							<div>${ 게시글.제목(제목=요리명) }</div>
+						</td>
+					</c:if>
+				</c:forEach>
 			</tr>
 			<tr>
 				<td>
@@ -98,12 +103,11 @@
 						</select>
 					</div>
 				</td>
-				<td id="recipe-own" style="font-size:15px;">작성자 이름</td>
+				<td id="recipe-own" style="font-size:15px;">${ 게시판.writer }</td>
 			</tr>
 			<tr>
 				<td class="td-topline" colspan="3" height="300px" width="50px">
-					<div>크기 보여주려고 테두리 넣어둠. 엔터는 안들어가지고, 글이 길어지면
-					끝에 가면 알아서 줄바뀜.    요리 재료</div>
+					<div>요리 재료. ${ 레시피.재료 }</div>
 				</td>
 			</tr>
 		</table>
@@ -121,7 +125,7 @@
 		<table class="tbround bgcw" style="width:70%">
 			<tr height="100px">
 				<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
-				<td>요리에 대한 간단 소개</td>
+				<td>${ 레시피.소개글 }</td>
 			</tr>
 		</table>
 	</div>
@@ -134,16 +138,26 @@
 
 	<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
 		<table class="tbround bgcw" style="width:70%">
-			<tr>
-				<td style="width:300px;">
-					<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
-						<img src="감사콩.png" height="250px" width="250px"/>
-					</div>
-				</td>
-				<td>
-					<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">요리순서</div>
-				</td>
-			</tr>
+			<c:forEach items="${ 사진 리스트 }" var="img" varStatus="status">
+				<tr>
+					<td style="width:300px;">
+						<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+							<img src="${ contextPath }/resources/uploadImgs/${ img.저장된이름 }" height="250px" width="250px"/>
+						</div>
+					</td>
+					<td>
+						<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
+							${ 게시판.내용[status.index] }
+						</div>
+					</td>
+				</tr>
+			</c:forEach>
+			
+			
+			
+			
+			
+<!-- 삭제 예정 -->
 			<tr>
 				<td style="width:300px;">
 					<div class=" mb-3 text-center" style="margin:auto;width:250px;height:250px;">
@@ -164,6 +178,12 @@
 					<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;height:250px;">요리순서</div>
 				</td>
 			</tr>
+<!-- 삭제 예정 -->			
+			
+			
+			
+			
+			
 		</table>
 		<div>&nbsp;</div>
 		<div></div>
@@ -195,17 +215,25 @@
 	<div class="container" style="padding-bottom:15px; width:70%;">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-				<div class="card shadow-sm">
-					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
-					<div class="card-body">
-						<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group"></div>
-							<small class="text-body-secondary"></small>
+				<c:forEach items="${ 게시판(레시피분류 -> 국가별분류) }" var="i">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
+			
+			
+			
+			
+			
+<!--  -->
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
@@ -240,6 +268,12 @@
 					</div>
 				</div>
 			</div>
+<!--  -->			
+			
+			
+			
+			
+			
 		</div>
 	</div>
 </div>	
