@@ -10,43 +10,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href="allCSS.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
-
+	
 </style>
 </head>
 <body id="recipe-body">
 
-<div id="header">
-		<a href="#" class="button" id="logoImg_A"><img src="img/logo.png" id="logoImg" alt="로고"></a>
-		<div id="header_menu" class="header_common">
-			<a href="../board/recipe.html" id="main" class="button">레시피</a>
-			<a href="#" id="tip" class="button">꿀팁</a>
-			<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
-			<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
-		</div>
-		<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
-		<div id="header_user" class="header_common">
-			<!-- 로그인 x 상태 -->
-<!-- 			<div id="header_user_noUser"> -->
-<!-- 				<a href="user_login.html" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp; -->
-<!-- 				<a href="join_account.html" id="user_join" class="button_user">회원가입</a> -->
-<!-- 			</div> -->
-			<!-- 로그인 o 상태 -->
-			<div id="user_login_complete">
-				<button id="mypage_list" class="mypageMenu">▼</button>
-				<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
-			</div>
-			<div id="mypage_Menu">
-				<ul>
-					<li><a href="">작성한 게시글 보기</a></li>
-					<li><a href=""><label>회원정보 조회 / 수정</label></a></li>
-					<li><label>로그아웃</label></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-
+<jsp:include page="header.jsp"/>
 	
 <div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
    
