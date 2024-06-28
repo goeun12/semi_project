@@ -11,7 +11,7 @@
 	<%--헤더의 모든 요소 감싸기--%>
 	#header{
 		min-width: 1250px; background: #F24822; height: 60px; width: 100%; 
-		position: fixed; top: 0px; left: 0px; right: 0px; display: flex; justify-content: space-between;
+		top: 0px; left: 0px; right: 0px; display: flex; justify-content: space-between;
 	}
    	#header_left_div{display: flex;}
  	<%--로고 이미지--%>
@@ -39,7 +39,7 @@
 	<%--이름 왼쪽 역삼각형--%>
 	#mypage_list{border: 0px; color: #FFC7C2; font-size: 17px;}
 	<%--toggle 메뉴 리스트 감싸는 div--%>
-	#mypage_Menu{display: none; border: 1px solid lightgray; background: white; position: absolute; top: 75%;}
+	#mypage_Menu{display: none; border: 1px solid lightgray; background: white; position: absolute; top: 45px;}
  	#mypage_Menu ul{padding-left: 0px; width: 206px; text-align: center;}
  	#mypage_Menu li {width: 100%; height: 100%; list-style: none; padding-top: 10px; padding-bottom: 10px;}
 	#mypage_Menu a{color: black; text-decoration: none;}
