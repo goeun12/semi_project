@@ -27,14 +27,26 @@ body{background-color: #FFFBF2;}
 	border-radius: 10px;
 	border: none;
 }
-.account_table th{border-top: none; border-left: none; font-size: 15px;}
-.account_table td{text-align: left; border-top: none; border-left: none; border-right: none;}
-.lastTr{border-bottom: none;}
+.account_table th{
+	border-top: none; border-left: none; 
+	border-bottom: 1px solid lightgray;
+	font-size: 15px; width: 200px;
+	border-right: 1px solid lightgray;
+}
+.account_table td{
+	text-align: left; border-top: none; 
+	border-right: none;
+	border-bottom: 1px solid lightgray;
+}
+/* .lastTr{border-bottom: 0px;} */
+#lastTrBTh{border-bottom: none;}
+#lastTrBTd{border-bottom: none;}
 .table_In_Infor{font-size: small;}
 .account_table{
 	margin-top: 30px; margin-bottom: 30px;
 	background-color: white;
 	border: 1px solid lightgray;
+	border-collapse: separate;
 	border-spacing: 0px;
 	border-radius: 10px;
 	width: 800px; height: 350px;
