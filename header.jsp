@@ -32,15 +32,16 @@
  	.button_user:hover{font-weight: 600;}
 	<%--로그인 o 감싸는 div--%>
 	#user_login_complete{
-		border: 4px solid #FFFBF2; height: 22px; width: 200px; 
-		background: #FFFBF2; color: black; left: 0;
+		border: 4px solid #FFFBF2; width: 200px; 
+		background: #FFFBF2; color: black;
 		display: flex; align-items: center;
 	}
-	<%--이름 왼쪽 역삼각형 button--%>
-	#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
+	<%--이름 왼쪽 역삼각형--%>
+	#mypage_list{border: 0px; color: #FFC7C2; font-size: 17px;}
 	<%--toggle 메뉴 리스트 감싸는 div--%>
-	#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white; position: absolute; top: 100%;}
- 	#mypage_Menu li {width: 100%; height: 100%; padding: 5px; list-style: none;}
+	#mypage_Menu{display: none; border: 1px solid lightgray; background: white; position: absolute; top: 75%;}
+ 	#mypage_Menu ul{padding-left: 0px; width: 206px; text-align: center;}
+ 	#mypage_Menu li {width: 100%; height: 100%; list-style: none; padding-top: 10px; padding-bottom: 10px;}
 	#mypage_Menu a{color: black; text-decoration: none;}
 	#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
 	
@@ -71,8 +72,10 @@
 				<!-- 로그인 o -->
 				<c:if test="${ empty loginUser }">
 					<div id="user_login_complete">
-						<button id="mypage_list" class="mypageMenu">▼</button>
-						<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+						<span>
+							<label id="mypage_list" class="mypageMenu">▼</label>
+							<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+						</span>
 					</div>
 					<div id="mypage_Menu">
 						<ul>
