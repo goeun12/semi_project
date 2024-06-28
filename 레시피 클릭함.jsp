@@ -125,7 +125,7 @@
 		<table class="tbround bgcw" style="width:70%">
 			<tr height="100px">
 				<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
-				<td>${ 레시피.소개글 }</td>
+				<td style="text-align:center;">${ 레시피.소개글 }</td>
 			</tr>
 		</table>
 	</div>
@@ -215,25 +215,36 @@
 	<div class="container" style="padding-bottom:15px; width:70%;">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-				<c:forEach items="${ 게시판(레시피분류 -> 국가별분류) }" var="i">
-					<div class="card shadow-sm">
-						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
+				<c:forEach items="${ 게시판(레시피분류 -> 국가별분류) }" var="i" varStatus="status">
+					<c:if test="${status.index <4 }">
+						<div class="card shadow-sm">
+							<img src="${contextPath }/resources/uploadImgs/${ i.저장된이름 }" class="more-recipe" width="100%" height="225px"/>
+							<div class="card-body">
+								<p class="card-text" style="text-align:center;height:15px;">${ i.제목(=요리명) }</p>
+								<input type="hidden" class="boardId" value="${ i.boardId }">
+								<div class="d-flex justify-content-between align-items-center"></div>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
-			</div>
+				</c:if>
+			</c:forEach>
+		</div>
+		
+<script>
+	window.onload=()=>{
+		const divs = document.getElementsByClassName("card-body");
+		for(const div of divs){
+			div.addEventListener('click', function(){
+				const bId = this.querySelector('.boardId').value;
+				location.href = '${contextPath}/selectRecipe.re?bId='+bId+'&page='+${ pi.currentPage };
+			})
+		}
+	}
+</script>			
 			
 			
 			
-			
-			
-<!--  -->
+<!-- 삭제예정 -->
 			<div class="col pad20" style="padding-left:20px;padding-right:20px;">
 				<div class="card shadow-sm">
 					<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
@@ -268,19 +279,18 @@
 					</div>
 				</div>
 			</div>
-<!--  -->			
+<!-- 삭제 -->			
 			
 			
 			
 			
 			
-		</div>
 	</div>
-</div>	
+</div>
 	
 	
 <div class="mx-auto" style="display:flex; justify-content:center;">
-	<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id ="go_list_button" style="width:80px;">목록</a>
+	<a class="btn btn-primary me-md-2" href="${contextPath }/recipeMain.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
 </div>
 <div>&nbsp;</div>
 	
