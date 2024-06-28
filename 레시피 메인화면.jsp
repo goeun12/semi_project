@@ -36,51 +36,48 @@
 
 <div class="container-fluid">
 	<section class="text-center container top-padding">
-		<div style="margin-top: 3rem !important; padding-top:1rem !important;" class="row py-lg-5">
-			<div class="notice_title" style="border-radius:15px;">
-				<h1 id="recipe-title">레시피 게시판</h1>
-			</div>
-			<br>
-			<div class="div-flexible div-center" style="padding-top:50px;padding-bottom:10px;">
-				<div class="div-flexible" style="width: 70%; height: 30px;border:1px solid red;">
-					<div class="bgcw" style="width:10%"><img src="as">&nbsp;공지</div>
-					<div class="bgcw" style="width:100%;text-align:left; padding-left:100px;">공지사항 제목</div>
+		<form action="" method="get">
+			<div style="margin-top: 3rem !important; padding-top:1rem !important;" class="row py-lg-5">
+				<div class="notice_title" style="border-radius:15px;">
+					<h1 id="recipe-title">레시피 게시판</h1>
+				</div>
+				<br>
+				<div class="div-flexible div-center" style="padding-top:50px;padding-bottom:10px;">
+					<div class="div-flexible" style="width: 70%; height: 30px;border:1px solid red;">
+						<div class="bgcw" style="width:10%"><img src="as">&nbsp;공지</div>
+						<div class="bgcw" style="width:100%;text-align:left; padding-left:100px;">공지사항 제목</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
-			<div class="input-group mb-3">
-				<input type="text" class="form-control searchbar" placeholder="찾고자 하는 단어를 입력해주세요.">
-				<button class="btn btn-outline-secondary searchButton" type="button" id="search_button" onclick="searchWord();">검색</button>
-			</div>
-		</div>
-
-		<div class="container text-center">
-			<div class="div-flexible  div-center">
-				<div class="recipe-option">
-					<select id="sel-nation" class="form-select form-select-sm" aria-label="Small select example">
-					  <option value="all"selected>국가</option>
-					  <option value="kr">한식</option>
-					  <option value="cn">중식</option>
-					  <option value="us">양식</option>
-					  <option value="jp">일식</option>
-					  <option value="no">분식</option>
-					</select>
+			<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control searchbar" placeholder="찾고자 하는 단어를 입력해주세요.">
+					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button" onclick="searchWord();">검색</button>
 				</div>
-				
-				<div class="recipe-option">
-					<select id="sel-easy"class="form-select form-select-sm" aria-label="Small select example">
-					  <option value="all"selected>난이도</option>
-					  <option value="easy">하</option>
-					  <option value="mid">중</option>
-					  <option value="hard">상</option>
-					</select>
-				</div>
-				
 			</div>
-		
-		</div>
-
+			<div class="container text-center">
+				<div class="div-flexible  div-center">
+					<div class="recipe-option">
+						<select id="sel-nation" class="form-select form-select-sm" aria-label="Small select example">
+						  <option value="all"selected>국가</option>
+						  <option value="kr">한식</option>
+						  <option value="cn">중식</option>
+						  <option value="us">양식</option>
+						  <option value="jp">일식</option>
+						  <option value="no">분식</option>
+						</select>
+					</div>
+					<div class="recipe-option">
+						<select id="sel-easy"class="form-select form-select-sm" aria-label="Small select example">
+						  <option value="all"selected>난이도</option>
+						  <option value="easy">하</option>
+						  <option value="mid">중</option>
+						  <option value="hard">상</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
 	<br>
 <script>
 // value 뽑은걸로 검색 필터링해야함
@@ -134,7 +131,7 @@
 			for(const div of divs){
 				div.addEventListener('click',function(){
 					const bId = this.querySelector('boardId').value;
-					location.href = '${contextPath/}'
+					location.href = '${contextPath}/selectRecipe.re?bId='+bId+'&page='+${ pi.currentPage};
 				})
 			}
 		}
