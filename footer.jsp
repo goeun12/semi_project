@@ -10,7 +10,6 @@
 		border-top: 2px solid rgb(179, 179, 179); background: #e9ecf2;
 		min-width: 1200px;
 		height: 40px;
-  		position: fixed;
 	    bottom: 0;
  	    margin: 0;  
  	    left: 0;
