@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/css/joinAcc.css" rel="stylesheet" type="text/css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+<link href="css/joinAcc.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="margin: 0px;">
 	<jsp:include page="WEB-INF/views/header.jsp"/>
 	<div class="mainDiv">
 		<div class="join title">
@@ -46,12 +45,8 @@
 						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="joinName" placeholder="(필수 입력)"/></td>
 					</tr>
 					<tr>
-						<th>주민등록번호 : </th>
-						<td colspan="2"><input type="text" id="join_no" class="joinInput" name="joinIdenNum" placeholder="(필수 입력)"/></td>
-					</tr>
-					<tr>
-						<th class="lastTr">휴대폰번호 : </th>
-						<td class="lastTr" colspan="2"><input type="text" id="join_phone" class="joinInput" name="joinPhone" placeholder="(필수 입력)"/></td>
+						<th id="lastTrBTh">휴대폰번호 : </th>
+						<td id="lastTrBTd" colspan="2"><input type="text" id="join_phone" class="joinInput" name="joinPhone" placeholder="(필수 입력)"/></td>
 					</tr>
 				</table>
 			</div>
