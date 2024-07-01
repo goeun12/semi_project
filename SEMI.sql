@@ -1,6 +1,6 @@
 -- 한글 1글자 = 2or3Byte  -> 3바이트로 생각하고 최대 잡기
-CREATE TABLE MEMBER( // USER로 만들기 안됨 -> 대체해야 될 것 같음 ex.) MEMBER
-    MEMBER_NO NUMBER PRIMARY KEY,
+CREATE TABLE MEMBER( -- USER로 만들기 안됨 -> 대체해야 될 것 같음 ex.) MEMBER 
+    MEMBER_NO NUMBER PRIMARY KEY, -- memebr_no 지우고 id를 primary key로 하는건? 
     NAME VARCHAR2(15) NOT NULL,
     ID VARCHAR2(30) NOT NULL UNIQUE,
     PWD VARCHAR2(100) NOT NULL,
