@@ -11,33 +11,18 @@
 <link href="allCSS.css" rel="stylesheet" type="text/css">
 
 <style>
-
-
-
-
-.top-padding{padding-top:3rem !important;}
-.bottom-padding{padding-bottom:1rem !important;}
 .searchbar{margin-left:20%;}
 .searchButton{margin-right:20%;}
-
 .notice_title{background:#f9ae98;
 			width: 50%; height:50px;
 			margin-left:25%;
 			margin-block-end:0;
 			text-align: center;
 			text-decoration:none;
-			font-size:35px;}
-
-
+			font-size:35px;
+}
 .everybox{min-width:1250px;}
-
-
 .py-5{margin-left:100px;margin-right:200px;background-color:#fffbf2;}
-
-
-
-
-
 </style>
 </head>
 <body>
@@ -69,7 +54,7 @@
 	<section class="text-center container top-padding">
 		<div style="margin-top: 3rem !important; padding-top:1rem !important;" class="row py-lg-5">
 			<div class="notice_title" style="border-radius:15px;">
-				<h1 class="fw-light">레시피 게시판</h1>
+				<h1 id="recipe-title">레시피 게시판</h1>
 			</div>
 			<br>
 			<div class="div-flexible div-center" style="padding-top:50px;padding-bottom:10px;">
@@ -114,6 +99,7 @@
 
 	<br>
 <script>
+// value 뽑은걸로 검색 필터링해야함
 	const searchWord =()=>{
 		const word = document.getElementById("search_button").previousElementSibling.value;
 		const nation = document.getElementById("sel-nation").value;
@@ -128,162 +114,161 @@
 
 
 	<div class="py-5 everybox">
-		<div class="everybox">
-		
-	<!-- container -->
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="recipeClick.jsp"><img src="flower1.png" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">소떡소떡</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="flower2.png" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col pad20">
-					<div class="card shadow-sm">
-						<a href="#"><img src="asd.jpg" width="100%" height="225px"/></a>
-						<div class="card-body">
-							<p class="card-text" style="text-align:center"><a href="#">요리명</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group"></div>
-								<small class="text-body-secondary"></small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br>
-			<div class="div-flexible div-center" style="height: 50px">
+		<div class="container">
+			<div class="div-flexible text-center" style="height: 50px;width:70%; justify-content:flex-end; margin-left:auto; margin-bottom:15px;">
 				<div>
-					<button id="write-button" style="border-radius:10px;">글 작성</button>
+					<a href="recipeWrite.jsp"><button id="write-button" style="border-radius:10px; width:120px;">글쓰기</button></a>
+				</div>
+			</div>
+<!-- 
+		forEach 써서 반복해서 나오게 해야함
+ -->
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
+				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
+				</div><div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="card shadow-sm">
+						<a href="#"><img src="감사콩.png" width="100%" height="225px"/></a>
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;height:15px;"><a href="#">요리명</a></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group"></div>
+								<small class="text-body-secondary"></small>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<br>
+			<br>
+			
+<!-- 
+	수업시간에 한 pagination 써먹기
+ -->
+			
 			<div class="mx-auto" id="page_navigation" style="width: 210px;">
 				<ul class="pagination pagination-sm">
 					<li class="page-item"><a class="page-link" href="#">이전</a></li>
