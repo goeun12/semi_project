@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
-<link href="css/joinAcc.css" rel="stylesheet" type="text/css">
+<link href="resources/css/joinAcc.css" rel="stylesheet" type="text/css">
 </head>
 <body style="margin: 0px;">
-	<jsp:include page="WEB-INF/views/header.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	<div class="mainDiv">
 		<div class="join title">
 			<p>회원가입</p>
@@ -21,7 +21,7 @@
 					<tr>
 						<th>아이디 : </th>
 						<td>
-							<input type="text" id="join_id" class="joinInput" name="joinId" placeholder="(필수 입력)"/>
+							<input type="text" id="join_id" class="joinInput" name="memberId" placeholder="(필수 입력)"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
 							<span class="table_In_Infor" id="inforId">중복된 아이디입니다 &nbsp;</span>
@@ -42,11 +42,11 @@
 					</tr>
 					<tr>
 						<th>이름 : </th>
-						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="joinName" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="memberName" placeholder="(필수 입력)"/></td>
 					</tr>
 					<tr>
 						<th id="lastTrBTh">휴대폰번호 : </th>
-						<td id="lastTrBTd" colspan="2"><input type="text" id="join_phone" class="joinInput" name="joinPhone" placeholder="(필수 입력)"/></td>
+						<td id="lastTrBTd" colspan="2"><input type="text" id="join_phone" class="joinInput" name="phone" placeholder="(필수 입력)"/></td>
 					</tr>
 				</table>
 			</div>
@@ -55,7 +55,7 @@
 			</div>
 		</form>
 	</div>	
-	<jsp:include page="WEB-INF/views/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 	
 	<script>
 		const inputs = document.getElementsByClassName('joinInput');
@@ -81,6 +81,7 @@
 				e.preventDefault();
 			} else if(count == 0 && pwdCheck()) {
 				alert('성공!');
+				location.href="${contextPath}/joinMember.user"
 			}
 			
 		});
