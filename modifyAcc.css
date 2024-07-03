@@ -19,7 +19,6 @@ body{background-color: #FFFBF2;}
 }
 
 .account_table_div {
-	font-family: "Nanum Gothic";
 	margin-top: 50px;
 	margin-left: auto; 
 	margin-right: auto;
@@ -32,7 +31,7 @@ body{background-color: #FFFBF2;}
 .lastTr{border-bottom: none;}
 .table_In_Infor{font-size: small;}
 .account_table{
-	margin-top: 30px; margin-bottom: 30px;
+	margin-top: 30px;
 	background-color: white;
 	border: 1px solid lightgray;
 	border-spacing: 0px;
@@ -52,7 +51,9 @@ body{background-color: #FFFBF2;}
 	font-size: 15px; 
 	border-radius: 10px;
 	font-weight: 700;
-	margin-bottom: 50px; margin-right: 40px;
+	margin-top: 30px;
+	margin-bottom: 50px; 
+	margin-right: 40px;
 }
 #modify_button:hover{background-color: #a5250a;}
 
@@ -62,7 +63,7 @@ body{background-color: #FFFBF2;}
 	cursor: pointer;
 	border: none;
 	font-size: 15px; 
-	border-radius: 15px;
+	border-radius: 10px;
 	font-weight: 700;
 	margin-bottom: 50px; margin-left: 40px;
 }
