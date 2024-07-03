@@ -5,21 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/modifyAcc.css" rel="stylesheet" type="text/css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="resources/css/modifyAcc.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery-3.7.1.min.js"></script>
 <style>
-	.nanum-gothic-regular {
-	  font-family: "Nanum Gothic", sans-serif;
-	  font-weight: 700;
-	  font-style: normal;
-}
+    @font-face {
+	    font-family: 'MinSans-Regular';
+	    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
 </style>
 </head>
-<body>
-	<jsp:include page="WEB-INF/views/header.jsp"/>
+<body style="margin: 0px;">
+	<jsp:include page="../common/header.jsp"/>
 	<div class="mainDiv">
 		<div class="modify title">
 			<p>회원정보 수정</p>
@@ -67,7 +65,7 @@
 			</div>
 		</form>
 	</div>
-	<jsp:include page="WEB-INF/views/footer.jsp"/>	
+	<jsp:include page="../common/footer.jsp"/>	
 	
 	<script>
 		const inputs = document.getElementsByClassName('modifyInput');
@@ -118,16 +116,7 @@
 			}
 		});
 		
-		$(()=>{
-			$('#user_login_complete').click(function() {
-				$(this).next().slideToggle();
-			});
-		})
-		
 	</script>
 	
 </head>
 <body>
-
-</body>
-</html>
