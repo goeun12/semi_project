@@ -1,4 +1,4 @@
--- ÇÑ±Û 1±ÛÀÚ = 2or3Byte  -> 3¹ÙÀÌÆ®·Î »ı°¢ÇÏ°í ÃÖ´ë Àâ±â
+-- í•œê¸€ 1ê¸€ì = 2or3Byte  -> 3ë°”ì´íŠ¸ë¡œ ìƒê°í•˜ê³  ìµœëŒ€ ì¡ê¸°
 CREATE TABLE MEMBER(
     MEMBER_NO NUMBER PRIMARY KEY,
     NAME VARCHAR2(15) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE BOARD(
     BOARD_GENRE VARCHAR2(10) NOT NULL,
     WRITER NUMBER NOT NULL,
     TITLE VARCHAR2(60) NOT NULL,
-    CONTENT VARCHAR2(4000) NOT NULL, -- CLOB´Â ±ÛÀÌ Àß·Á¼­ ³ª¿Ã ¼ö ÀÖÀ½ Â÷¶ó¸® VARCHAR2 ÃÖ´ë°ª ³Ö±â / ´ë½Å ÃÖ´ë 1333ÀÚ±îÁö °¡´É(¾Æ¸¶µµ)
+    CONTENT VARCHAR2(4000) NOT NULL, -- CLOBëŠ” ê¸€ì´ ì˜ë ¤ì„œ ë‚˜ì˜¬ ìˆ˜ ìˆìŒ ì°¨ë¼ë¦¬ VARCHAR2 ìµœëŒ€ê°’ ë„£ê¸° / ëŒ€ì‹  ìµœëŒ€ 1333ìê¹Œì§€ ê°€ëŠ¥(ì•„ë§ˆë„)
     CREATE_DATE DATE DEFAULT SYSDATE,
     UPDATE_DATE DATE DEFAULT SYSDATE,
     STATUS CHAR(1) DEFAULT 'Y' CHECK(STATUS IN('Y', 'N')),
@@ -53,27 +53,27 @@ CREATE TABLE IMAGE(
     FOREIGN KEY(RECIPE_NO) REFERENCES IMAGE
 );
 
-CREATE SEQUENCE SEQ_MEMBER START WITH 100 NOCACHE; -- À¯Àú¹øÈ£´Â 100¹øºÎÅÍ ½ÃÀÛ
+CREATE SEQUENCE SEQ_MEMBER START WITH 100 NOCACHE; -- ìœ ì €ë²ˆí˜¸ëŠ” 100ë²ˆë¶€í„° ì‹œì‘
 CREATE SEQUENCE SEQ_BOARD NOCACHE;
 CREATE SEQUENCE SEQ_REPLY NOCACHE;
 CREATE SEQUENCE SEQ_RECIPE NOCACHE;
 CREATE SEQUENCE SEQ_IMAGE NOCACHE;
 
--- MEMBER-BOARD VIEW: ¸â¹ö ID¸¦ ¹Ş¾Æ¿Í BOARD º¸¿©Áà¾ß ÇÏ´Ï±î? -> ÇÊ¿ä¾øÀ»¼öµµ?.. WRITER¿¡ µé¾îÀÖ¾î¼­ -> WRITER ¹øÈ£¶ó VIEWÀÛ¼º
--- BOARD-RECIPE-IMAGE VIEW: ÇÑ¹ø¿¡ 3±ºµ¥¿¡ ÀÖ´Â Ä®·³µéÀ» »Ì¾Æ¾ß ÇÏ´Ï±î? -> ¼ö¾÷Âü°í
+-- MEMBER-BOARD VIEW: ë©¤ë²„ IDë¥¼ ë°›ì•„ì™€ BOARD ë³´ì—¬ì¤˜ì•¼ í•˜ë‹ˆê¹Œ? -> í•„ìš”ì—†ì„ìˆ˜ë„?.. WRITERì— ë“¤ì–´ìˆì–´ì„œ -> WRITER ë²ˆí˜¸ë¼ VIEWì‘ì„±
+-- BOARD-RECIPE-IMAGE VIEW: í•œë²ˆì— 3êµ°ë°ì— ìˆëŠ” ì¹¼ëŸ¼ë“¤ì„ ë½‘ì•„ì•¼ í•˜ë‹ˆê¹Œ? -> ìˆ˜ì—…ì°¸ê³ 
 
-insert into member values(seq_member.nextval, '°¡°¡°¡', 'user01', 'pass01', '01011112222', default, default, sysdate);
-insert into member values(seq_member.nextval, '³ª³ª³ª', 'user02', 'pass02', '01022223333', default, default, sysdate);
-insert into member values(seq_member.nextval, '´Ù´Ù´Ù', 'user03', 'pass03', '01033334444', default, default, sysdate);
-insert into member values(seq_member.nextval, '¶ó¶ó¶ó', 'user04', 'pass04', '01044445555', default, default, sysdate);
-insert into member values(seq_member.nextval, '°ü¸®ÀÚ', 'admin', 'admin123', '01055556666', 'Y', default, sysdate);
+insert into member values(seq_member.nextval, 'ê°€ê°€ê°€', 'user01', 'pass01', '01011112222', default, default, sysdate);
+insert into member values(seq_member.nextval, 'ë‚˜ë‚˜ë‚˜', 'user02', 'pass02', '01022223333', default, default, sysdate);
+insert into member values(seq_member.nextval, 'ë‹¤ë‹¤ë‹¤', 'user03', 'pass03', '01033334444', default, default, sysdate);
+insert into member values(seq_member.nextval, 'ë¼ë¼ë¼', 'user04', 'pass04', '01044445555', default, default, sysdate);
+insert into member values(seq_member.nextval, 'ê´€ë¦¬ì', 'admin', 'admin123', '01055556666', 'Y', default, sysdate);
 
-insert into board values(seq_board.nextval, '·¹½ÃÇÇ', 106, '¶±¶ó¸é', '³¿ºñ¿¡ ¹°À» º×°í ²úÀÎ´Ù.¡×¡×¡Ü½ºÇÁ¸¦ ²ú´Â ¹°¿¡ ³Ö´Â´Ù.¡×¡×¡Ü¶±°ú ¶ó¸é, ÈÄ·¹ÀÌÅ©¸¦ ³Ö°í ²úÀÎ´Ù.', sysdate, sysdate, default);
-insert into board values(seq_board.nextval, '²ÜÆÁ', 108, '¶ó¸é¿¡ °è¶õ ³Ö¾î¼­ ¸Ô¾îºÁ', '±Ùµ¥ ³Ö°í Ç®Áö¸»°í ³¿ºñ °¡¿îµ¥¿¡ ³Ö°í ¸éÀ¸·Î µ¤¾îµĞ ´ÙÀ½¿¡ Á¶±İ ²úÀÌ°í ¸ÔÀ¸¸é Ä¡Áî¶ó¸é ¸À³²', sysdate, sysdate, default);
-insert into board values(seq_board.nextval, '²ÜÆÁ', 107, 'Á¦·Î ÅÁÈÄ·ç ÁøÂ¥ ¸ÀÀÖ¾úÀ½', '¾óÀ½ ¶ç¿î ¹°¿¡ ±×³É ³Ãµ¿°úÀÏ ³Ö¾î¼­ ¾ó·Á ¸Ô´Â°Çµ¥ ÅÁÈÄ·ç ½Ä°¨³ª¼­ ÁÁ¾Ò¾î. ¼³ÅÁµµ ¾Èµé¾îÀÖÀ¸´Ï±î ÅÁÈÄ·ç ¸Ô°í ½ÍÀ¸¸é ÀÌ·¸°Ô ÇÏ¸é µÉµí', sysdate, sysdate, default);
-insert into board values(seq_board.nextval, '°øÁö', 109, 'È¥¹ä½É »çÀÌÆ® µ¿ÀÛÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù.', '¾È³çÇÏ¼¼¿ä, °ü¸®ÀÚ adminÀÔ´Ï´Ù. ÀúÈñ È¥¹ä½ÉÀº È¥ÀÚ¼­ ½Ä»çÇÒ ¶§ Àú·ÅÇÑ ºñ¿ë, ÂªÀº Á¶¸® ½Ã°£ µîÀ» °í·ÁÇÑ ½Ä»ç ·¹½ÃÇÇ¸¦ ¿Ã¸®´Â °÷ÀÔ´Ï´Ù. ±× ¿Ü¿¡µµ ¹«¾ùÀ» ¸Ô´ÂÁö ÃßÃµÇÏ´Â ·£´ı ¿ä¸® ¸Ş´º¿Í »ç¿ëÀÚ °£ÀÇ Ä¿¹Â´ÏÄÉÀÌ¼ÇÀ» À§ÇØ ²ÜÆÁ °Ô½ÃÆÇÀÌ¶ó´Â Ä¿¹Â´ÏÆ¼¸¦ ¿­¾îµÎ°í ÀÖÀ¸´Ï ¸¹ÀÌ Âü¿©ÇØÁÖ¼¼¿ä.', sysdate, sysdate, default);
-insert into board values(seq_board.nextval, '·¹½ÃÇÇ', 105, '°è¶õ¸»ÀÌ', '°è¶õ 3°³¸¦ Ç®¾î³½ µÚ ¼Ò±İ 2²¿Áı°ú ÈÄÃß 1²¿ÁıÀ» ³Ö´Â´Ù.¡×¡×¡ÜÆÒ¿¡ ±â¸§À» ¹Ù¸¥ µÚ, Áß¾àºÒ·Î °è¶õ¹°À» ¾ã°Ô º×´Â´Ù.¡×¡×¡Ü°è¶õ¹°ÀÌ ÀÍÀ¸¸é µ¹µ¹ ¸»¾Æ³½ µÚ, ´Ù½Ã °è¶õ¹°À» ºÎ¾î ¹İº¹ÇÑ´Ù.', sysdate, sysdate, default);
+insert into board values(seq_board.nextval, 'ë ˆì‹œí”¼', 100, 'ë–¡ë¼ë©´', 'ëƒ„ë¹„ì— ë¬¼ì„ ë¶“ê³  ë“ì¸ë‹¤.Â§Â§â—ìŠ¤í”„ë¥¼ ë“ëŠ” ë¬¼ì— ë„£ëŠ”ë‹¤.Â§Â§â—ë–¡ê³¼ ë¼ë©´, í›„ë ˆì´í¬ë¥¼ ë„£ê³  ë“ì¸ë‹¤.', sysdate, sysdate, default);
+insert into board values(seq_board.nextval, 'ê¿€íŒ', 100, 'ë¼ë©´ì— ê³„ë€ ë„£ì–´ì„œ ë¨¹ì–´ë´', 'ê·¼ë° ë„£ê³  í’€ì§€ë§ê³  ëƒ„ë¹„ ê°€ìš´ë°ì— ë„£ê³  ë©´ìœ¼ë¡œ ë®ì–´ë‘” ë‹¤ìŒì— ì¡°ê¸ˆ ë“ì´ê³  ë¨¹ìœ¼ë©´ ì¹˜ì¦ˆë¼ë©´ ë§›ë‚¨', sysdate, sysdate, default);
+insert into board values(seq_board.nextval, 'ê¿€íŒ', 101, 'ì œë¡œ íƒ•í›„ë£¨ ì§„ì§œ ë§›ìˆì—ˆìŒ', 'ì–¼ìŒ ë„ìš´ ë¬¼ì— ê·¸ëƒ¥ ëƒ‰ë™ê³¼ì¼ ë„£ì–´ì„œ ì–¼ë ¤ ë¨¹ëŠ”ê±´ë° íƒ•í›„ë£¨ ì‹ê°ë‚˜ì„œ ì¢‹ì•˜ì–´. ì„¤íƒ•ë„ ì•ˆë“¤ì–´ìˆìœ¼ë‹ˆê¹Œ íƒ•í›„ë£¨ ë¨¹ê³  ì‹¶ìœ¼ë©´ ì´ë ‡ê²Œ í•˜ë©´ ë ë“¯', sysdate, sysdate, default);
+insert into board values(seq_board.nextval, 'ê³µì§€', 104, 'í˜¼ë°¥ì‹¬ ì‚¬ì´íŠ¸ ë™ì‘ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤.', 'ì•ˆë…•í•˜ì„¸ìš”, ê´€ë¦¬ì adminì…ë‹ˆë‹¤. ì €í¬ í˜¼ë°¥ì‹¬ì€ í˜¼ìì„œ ì‹ì‚¬í•  ë•Œ ì €ë ´í•œ ë¹„ìš©, ì§§ì€ ì¡°ë¦¬ ì‹œê°„ ë“±ì„ ê³ ë ¤í•œ ì‹ì‚¬ ë ˆì‹œí”¼ë¥¼ ì˜¬ë¦¬ëŠ” ê³³ì…ë‹ˆë‹¤. ê·¸ ì™¸ì—ë„ ë¬´ì—‡ì„ ë¨¹ëŠ”ì§€ ì¶”ì²œí•˜ëŠ” ëœë¤ ìš”ë¦¬ ë©”ë‰´ì™€ ì‚¬ìš©ì ê°„ì˜ ì»¤ë®¤ë‹ˆì¼€ì´ì…˜ì„ ìœ„í•´ ê¿€íŒ ê²Œì‹œíŒì´ë¼ëŠ” ì»¤ë®¤ë‹ˆí‹°ë¥¼ ì—´ì–´ë‘ê³  ìˆìœ¼ë‹ˆ ë§ì´ ì°¸ì—¬í•´ì£¼ì„¸ìš”.', sysdate, sysdate, default);
+insert into board values(seq_board.nextval, 'ë ˆì‹œí”¼', 103, 'ê³„ë€ë§ì´', 'ê³„ë€ 3ê°œë¥¼ í’€ì–´ë‚¸ ë’¤ ì†Œê¸ˆ 2ê¼¬ì§‘ê³¼ í›„ì¶” 1ê¼¬ì§‘ì„ ë„£ëŠ”ë‹¤.Â§Â§â—íŒ¬ì— ê¸°ë¦„ì„ ë°”ë¥¸ ë’¤, ì¤‘ì•½ë¶ˆë¡œ ê³„ë€ë¬¼ì„ ì–‡ê²Œ ë¶“ëŠ”ë‹¤.Â§Â§â—ê³„ë€ë¬¼ì´ ìµìœ¼ë©´ ëŒëŒ ë§ì•„ë‚¸ ë’¤, ë‹¤ì‹œ ê³„ë€ë¬¼ì„ ë¶€ì–´ ë°˜ë³µí•œë‹¤.', sysdate, sysdate, default);
 
-insert into recipe values(seq_recipe.nextval, 1, '¸ÀÀÖ´Â ¶ó¸é¿¡ ¶±»ç¸®¸¦ Ãß°¡ÇØ ´õ¿í ¸ÀÀÖ°Ô ¸ÔÀ» ¼ö ÀÖ´Ù.', 'ÇÑ½Ä', 'ÇÏ', 'ºÀÁö ¶ó¸é, ¶±');
-insert into recipe values(seq_recipe.nextval, 5, 'Æ÷½½Æ÷½½ÇÑ °è¶õ¸»ÀÌ´Ù. ¸ÀÀÖ´Ù.', 'ÇÑ½Ä', 'ÇÏ', '°è¶õ 3°³, ¼Ò±İ, ÈÄÃß');
+insert into recipe values(seq_recipe.nextval, 7, 'ë§›ìˆëŠ” ë¼ë©´ì— ë–¡ì‚¬ë¦¬ë¥¼ ì¶”ê°€í•´ ë”ìš± ë§›ìˆê²Œ ë¨¹ì„ ìˆ˜ ìˆë‹¤.', 'í•œì‹', 'í•˜', 'ë´‰ì§€ ë¼ë©´, ë–¡');
+insert into recipe values(seq_recipe.nextval, 11, 'í¬ìŠ¬í¬ìŠ¬í•œ ê³„ë€ë§ì´ë‹¤. ë§›ìˆë‹¤.', 'í•œì‹', 'í•˜', 'ê³„ë€ 3ê°œ, ì†Œê¸ˆ, í›„ì¶”');
 
