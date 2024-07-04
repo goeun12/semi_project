@@ -5,53 +5,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
 <link href="resources/css/joinAcc.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
 </head>
-<body style="margin: 0px;">
+<body style="margin: 0px; background-color: #FFFBF2;">
 	<jsp:include page="../common/header.jsp"/>
 	<div class="mainDiv">
 		<div class="join title">
 			<p>회원가입</p>
 		</div>
-		<form action="" method="post">
+		<form action="${contextPath}/joinMember.user" method="post" id="joinMemberForm">
 			<div class="join account_table_div">
 				<table class="join account_table" border="1">
 					<tr>
 						<th>아이디 : </th>
 						<td>
-							<input type="text" id="join_id" class="joinInput" name="memberId" placeholder="(필수 입력)"/>
+							<input type="text" id="join_id" class="joinInput" name="id" placeholder="(영문이나 숫자만 입력)"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
-							<span class="table_In_Infor" id="inforId">중복된 아이디입니다 &nbsp;</span>
+							<span class="table_In_Infor" id="inforId"></span>
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호 : </th>
-						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="joinPwd" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" placeholder="(필수 입력)"/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인 : </th>
 						<td>
-							<input type="password" id="join_rePwd" class="joinInput" name="joinRePwd" placeholder="(필수 입력)"/>
+							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" placeholder="(필수 입력)"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
-							<label class="table_In_Infor" id="inforPwd"> &nbsp;</label>
+							<label class="table_In_Infor" id="inforPwd"></label>
 						</td>
 					</tr>
 					<tr>
 						<th>이름 : </th>
-						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="memberName" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="name" placeholder="(필수 입력)"/></td>
 					</tr>
 					<tr>
 						<th id="lastTrBTh">휴대폰번호 : </th>
-						<td id="lastTrBTd" colspan="2"><input type="text" id="join_phone" class="joinInput" name="phone" placeholder="(필수 입력)"/></td>
+						<td id="lastTrBTd" colspan="2">
+							<input type="text" id="phone" class="joinInput" name="phone" placeholder="(- 제외 입력)"/>
+						</td>
 					</tr>
 				</table>
 			</div>
 			<div>
-				<button id="join_button">회원가입</button>
+				<button id="join_button" type="button">회원가입</button>
 			</div>
 		</form>
 	</div>	
@@ -63,8 +64,32 @@
 		let pwd = document.getElementById('join_pwd');
 		let rePwd = document.getElementById('join_rePwd');
 		const inforPwd = document.getElementById('inforPwd');
-		let id = document.getElementById('join_id');
+		const inforId = document.getElementById('inforId');
+		let idInput = document.getElementById('join_id');
+		const regId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		
+		function checkId(){
+			let id = idInput.value;
+			if(id.trim() != ''){
+				$.ajax({
+					url: 'checkId.user',
+					data: {id:id},
+					dataType: 'json',
+					success: (data) => {
+						if(data == 0 && !regId.test(id)){
+							inforId.innerText = '사용 가능한 아이디입니다';
+							inforId.style.color = 'green'
+							return true;
+						} else {
+							inforId.innerText = '사용 불가능한 아이디입니다';
+							inforId.style.color = 'red';
+							return false;
+						}
+					},
+					error: data => console.log(data)
+				});
+			}
+		}
 		
 		button.addEventListener('click', e => {			
 			let count = 0;
@@ -73,15 +98,30 @@
 					count++;
 				}
 			}
+			
+			
+			let phone = document.getElementById('phone').value;
+			const regPho = /\D/g;
+			if(regPho.test(phone)){
+				document.getElementById('phone').value = phone.replace(regPho, '');
+			}
+			
 			if(count <= 6 && count > 0){
-				e.preventDefault();
 				alert('필수 항목을 입력해 주세요.');
+				for(input of inputs){
+					if(input.value == ''){
+						input.focus();
+					}
+				}
 			} else if(!pwdCheck()){
 				alert('비밀번호가 일치하지 않습니다.');
-				e.preventDefault();
-			} else if(count == 0 && pwdCheck()) {
-				alert('성공!');
-				location.href="${contextPath}/joinMember.user"
+				pwd.focus();
+			} else if(inforId.innerText.includes('불가능')){
+				alert('사용 불가능한 아이디입니다.');
+				idInput.focus();
+			} else if(count == 0 && pwdCheck() && inforId.innerText.includes('사용 가능한')) {
+				alert(document.getElementById('join_name').value + '님 환영합니다!');
+				document.querySelector("#joinMemberForm").submit();
 			}
 			
 		});
@@ -97,6 +137,7 @@
 				return false;
 			}
 		}
+		idInput.addEventListener('focusout', checkId);
 		pwd.addEventListener('focusout', pwdCheck);
 		rePwd.addEventListener('focusout', pwdCheck);
 		
