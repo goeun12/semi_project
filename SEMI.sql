@@ -62,6 +62,8 @@ CREATE SEQUENCE SEQ_IMAGE NOCACHE;
 -- MEMBER-BOARD VIEW: 멤버 ID를 받아와 BOARD 보여줘야 하니까? -> 필요없을수도?.. WRITER에 들어있어서 -> WRITER 번호라 VIEW작성
 -- BOARD-RECIPE-IMAGE VIEW: 한번에 3군데에 있는 칼럼들을 뽑아야 하니까? -> 수업참고
 
+
+-- 비번 암호화 안되어있어서 이대로 등록하면 로그인 안됨 -> java코드로 bcrpyt.encode입력해서 암호화된 키로 입력
 insert into member values(seq_member.nextval, '가가가', 'user01', 'pass01', '01011112222', default, default, sysdate);
 insert into member values(seq_member.nextval, '나나나', 'user02', 'pass02', '01022223333', default, default, sysdate);
 insert into member values(seq_member.nextval, '다다다', 'user03', 'pass03', '01033334444', default, default, sysdate);
