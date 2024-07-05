@@ -47,9 +47,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("noticeSelect.no")
-	public String noticeSelect(@RequestParam("boardNo") int boardNo, Model model) {
+	public String noticeSelect(@RequestParam("boardNo") int boardNo, Model model, HttpSession session) {
 		
-		Notice no = nService.noticeSelect(boardNo);
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		Notice no = nService.noticeSelect(boardNo, loginUser);
 		ArrayList<Notice> noticeListMin =  nService.noticeListMin(no.getBoardNo());
 		
 		if(no != null) {
@@ -88,7 +90,7 @@ public class NoticeController {
 	@RequestMapping("noticeUpdateView.no")
 	public String noticeUpdateView(@RequestParam("boardNo") int boardNo, Model model) {
 		
-		Notice no = nService.noticeSelect(boardNo);
+		Notice no = nService.noticeSelect(boardNo, null);
 		
 		if(no != null) {
 			model.addAttribute("no",no);
