@@ -4,5 +4,5 @@
 	
 	<insert id="insertMember">
 		insert into member
-		values(seq_member.nextval, #{name}, #{id}, #{pwd}, #{phone}, default, default, default)
+		values(#{name}, #{id}, #{pwd}, #{phone}, default, default, default)
 	</insert>
