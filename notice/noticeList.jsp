@@ -24,9 +24,11 @@
 			</div>
 		</form>	
 		
+		<c:if test="${loginUser.isAdmin == 'Y' }">
 			<div id="write_div">
 				<a class="btn btn-primary me-md-2" href="${ contextPath }/noticeWriteView.no" role="button" id ="notice_write_button">글쓰기</a>
 			</div>	
+		</c:if>
 		
 		<div id="notice_table_div">	
 			<div id="notice_table">
