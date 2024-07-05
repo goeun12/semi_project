@@ -31,15 +31,21 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDAO.noticeList(sqlSession, pi, boardGenre);
 	}
 
-	@Override
-	public Notice noticeSelect(int boardNo) {
-
-		return nDAO.noticeSelect(sqlSession, boardNo);
+	@@Override
+	public Notice noticeSelect(int boardNo, Member loginUser) {
+		
+		Notice no = nDAO.noticeSelect(sqlSession, boardNo);
+		
+		if(loginUser != null && loginUser.getId() != no.writer) {
+			no.setCount(no.getCount()+1);
+		}
+			
+		return no;
 	}
 
 	@Override
 	public ArrayList<Notice> noticeListMin(int BoardNo) {
-		// TODO Auto-generated method stub
+		
 		return  nDAO.noticeListMin(sqlSession, BoardNo);
 	}
 
