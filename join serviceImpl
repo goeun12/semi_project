@@ -1,0 +1,9 @@
+	@Override
+	public int joinMember(Member m) {
+		return mDAO.joinMember(sqlSession, m);
+	}
+
+	@Override
+	public int checkId(String id) {
+		return mDAO.checkId(sqlSession, id);
+	}
