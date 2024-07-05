@@ -82,6 +82,7 @@ insert into board values(seq_board.nextval, '꿀팁', 'user02', '제로 탕후�
 insert into board values(seq_board.nextval, '공지', 'admin', '혼밥심 사이트 동작이 시작되었습니다.', '안녕하세요, 관리자 admin입니다. 저희 혼밥심은 혼자서 식사할 때 저렴한 비용, 짧은 조리 시간 등을 고려한 식사 레시피를 올리는 곳입니다. 그 외에도 무엇을 먹는지 추천하는 랜덤 요리 메뉴와 사용자 간의 커뮤니케이션을 위해 꿀팁 게시판이라는 커뮤니티를 열어두고 있으니 많이 참여해주세요.', sysdate, sysdate, default);
 insert into board values(seq_board.nextval, '레시피', 'user04', '계란말이', '계란 3개를 풀어낸 뒤 소금 2꼬집과 후추 1꼬집을 넣는다.§§●팬에 기름을 바른 뒤, 중약불로 계란물을 얇게 붓는다.§§●계란물이 익으면 돌돌 말아낸 뒤, 다시 계란물을 부어 반복한다.', sysdate, sysdate, default);
 
+-- board_no 다르면 실행 안됨
 insert into recipe values(seq_recipe.nextval, 1, '맛있는 라면에 떡사리를 추가해 더욱 맛있게 먹을 수 있다.', '한식', '하', '봉지 라면, 떡');
 insert into recipe values(seq_recipe.nextval, 5, '포슬포슬한 계란말이다. 맛있다.', '한식', '하', '계란 3개, 소금, 후추');
 
