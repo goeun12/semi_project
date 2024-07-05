@@ -1,0 +1,8 @@
+	<select id="checkId" resultType="_int">
+		select count(*) from member where id = #{id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into member
+		values(seq_member.nextval, #{name}, #{id}, #{pwd}, #{phone}, default, default, default)
+	</insert>
