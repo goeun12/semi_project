@@ -1,3 +1,11 @@
+-- 미리 테이블 만들어두었다면 주석 풀어서 테이블, 시퀀스 삭제
+--drop table reply;
+--drop table recipe;
+--drop table image;
+--drop table board;
+--drop table member;
+--drop sequence seq_member;
+
 -- 한글 1글자 = 2or3Byte  -> 3바이트로 생각하고 최대 잡기
 CREATE TABLE MEMBER(
     ID VARCHAR2(30) PRIMARY KEY,
