@@ -67,6 +67,7 @@
 		const inforId = document.getElementById('inforId');
 		let idInput = document.getElementById('join_id');
 		const regId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		const regName = /^[a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]
 		
 		function checkId(){
 			let id = idInput.value;
@@ -81,7 +82,7 @@
 							inforId.style.color = 'green'
 							return true;
 						} else {
-							inforId.innerText = '사용 불가능한 아이디입니다';
+							inforId.innerText = '사용 불가한 아이디입니다';
 							inforId.style.color = 'red';
 							return false;
 						}
@@ -116,8 +117,8 @@
 			} else if(!pwdCheck()){
 				alert('비밀번호가 일치하지 않습니다.');
 				pwd.focus();
-			} else if(inforId.innerText.includes('불가능')){
-				alert('사용 불가능한 아이디입니다.');
+			} else if(inforId.innerText.includes('불가한')){
+				alert('다른 아이디를 입력해 주세요.');
 				idInput.focus();
 			} else if(count == 0 && pwdCheck() && inforId.innerText.includes('사용 가능한')) {
 				alert(document.getElementById('join_name').value + '님 환영합니다!');
