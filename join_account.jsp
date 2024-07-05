@@ -67,7 +67,6 @@
 		const inforId = document.getElementById('inforId');
 		let idInput = document.getElementById('join_id');
 		const regId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-		const regName = /^[a-z|A-Z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]
 		
 		function checkId(){
 			let id = idInput.value;
@@ -79,7 +78,7 @@
 					success: (data) => {
 						if(data == 0 && !regId.test(id)){
 							inforId.innerText = '사용 가능한 아이디입니다';
-							inforId.style.color = 'green'
+							inforId.style.color = 'green';
 							return true;
 						} else {
 							inforId.innerText = '사용 불가한 아이디입니다';
