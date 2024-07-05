@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="login" resultType="Member">
+		select * from member where id = #{id} and status = 'Y'
+	</select>
+
+	<select id="findId" resultType="Member">
+		select * from member where name = #{name} and phone = #{phone} and status = 'Y'
+	</select>
+	
+	<select id="findPw" resultType="Member">
+		select * from member where id = #{id} and name = #{name} and phone = #{phone} and status = 'Y'
+	</select>
+	
+	<update id="updatePwd">
+		update member set pwd = #{pwd} where id = #{id}
+	</update>
+</mapper>

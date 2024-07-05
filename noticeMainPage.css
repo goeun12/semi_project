@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.container-fluid{background:#fffbf2; 
+				 min-width: 1250px;
+				 padding-top:80px;
+				 padding-bottom:20%;
+				font-family: "나눔고딕"; font-size:20px}
+	
+#notice_title{background:#f9ae98;
+		width: 50%; height:50px;
+		margin-left:25%;
+		margin-block-end:0;
+		text-align:center;
+		text-decoration:none;
+		font-size:25px; font-weight:700;
+		line-height:50px; border-radius:5px;}	
+
+	
+#search_notice{width: 40%;
+			margin-top:50px;
+			margin-left:30%;
+			height:40px;}
+
+
+.form-control{border-Color:#b3b3b3;}
+
+
+#write_div{width:70%;
+			margin-top:50px;
+			margin-bottom: 15px;
+			margin-left:15%;
+			text-align:right;}
+			
+
+
+#notice_write_button{background:#f24822; 
+					color: white;
+					width:120px;
+					border:none; 
+					border-radius:10px;
+					height:40px;
+					text-decoration:none; 
+					font-size:20px
+					}
+
+#notice_table_div{background:white;
+				width: 70%;
+				margin-left:15%;			
+				padding: 20px;			
+				border: 1px solid lightgray;
+				border-radius:10px;
+				font-weight:100;}
+.listContent{text-align:left;
+			text-overflow: ellipsis; overflow:hidden; white-space: nowrap;
+			max-width:30px;
+				}					
+				
+#search_button{width:80px;
+				background:#f24822; color: white; 
+				border:none; 
+				height:40px;
+				text-decoration:none; 
+				font-size:20px}
+
+
