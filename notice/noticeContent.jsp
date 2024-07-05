@@ -19,11 +19,12 @@
   		</div>
   		
 
-		<div id ="notice_up_del" >
-			<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${no.boardNo}" role="button"  id ="notice_update_button">수정</a>
-			<button class="btn btn-primary me-md-2" role="button" id ="notice_delete_button">삭제</button>
-		</div>
-
+		<c:if test="${loginUser.isAdmin == 'Y' }">
+			<div id ="notice_up_del" >
+				<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${no.boardNo}" role="button"  id ="notice_update_button">수정</a>
+				<button class="btn btn-primary me-md-2" role="button" id ="notice_delete_button">삭제</button>
+			</div>
+		</c:if>
 		
 		<div>
 			<div class="input-group mb-3" id="content_title">
