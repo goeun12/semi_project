@@ -25,13 +25,15 @@
 <body>
 
 	<div class="mx-auto" id="pagination" style="width: 210px;">
-		<ul class="pagination">
-			<li class="pageItem">
-		 		<c:url value="${loc}" var="goBack">
-		 			<c:param name="page" value="${pi.currentPage-1 }"/>
-		 		</c:url>
-		 	 	<a class="pageLink" href="${goBack}">이전</a>
-		 	</li>
+		<ul class="pagination">		
+			<c:if test="{pi.currentPage > 1}">
+				<li class="pageItem">
+			 		<c:url value="${loc}" var="goBack">
+			 			<c:param name="page" value="${pi.currentPage-1 }"/>
+			 		</c:url>
+			 	 	<a class="pageLink" href="${goBack}">이전</a>
+			 	</li>
+			</c:if>
 		 	<c:forEach begin ="${pi.startPage }" end="${pi.endPage}" var="p" >
 		 		<c:url value="${loc}" var="goCurr">
 		 			<c:param name="page" value="${p}"/>
@@ -40,12 +42,14 @@
 		 			<a class="pageLink pNum" href="${goCurr}">${p}</a>
 		 	 	</li>				 	 
 		 	</c:forEach>
-		  	<li class="pageItem">
-		 		<c:url value="${loc}" var="goNext">
-		 			<c:param name="page" value="${pi.currentPage+1 }"/>
-		 		</c:url>
-		 	 	<a class="pageLink" href="${goNext}">이후</a>
-		 	</li>
+			<c:if test="{pi.currentPage < pi.maxPage}">
+			  	<li class="pageItem">
+			 		<c:url value="${loc}" var="goNext">
+			 			<c:param name="page" value="${pi.currentPage+1 }"/>
+			 		</c:url>
+			 	 	<a class="pageLink" href="${goNext}">이후</a>
+			 	</li>
+			</c:if>
 		</ul>
 	</div>	
 						
