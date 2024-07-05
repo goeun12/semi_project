@@ -57,9 +57,9 @@
   		</div>
 		
 		<div id="word">
-			<h5>페이지가 정상적으로 동작하지 않았습니다.</h4>
-			<h5>Home 또는 이전 화면으로 돌아가 다시 시도해주세요. </h4>
-			<h5>불편을 드려 죄송합니다. </h4>
+			<h5>페이지가 정상적으로 동작하지 않았습니다.</h5>
+			<h5>Home 또는 이전 화면으로 돌아가 다시 시도해주세요. </h5>
+			<h5>불편을 드려 죄송합니다.</h5>
 			<div id="msg_div">
 				<p id="msg"> 오류 원인 : </p>
 				<p>${requestScope['javax.servlet.error.message']}</p>
@@ -72,41 +72,13 @@
 		</div>
 	
 	</div>
-	
-	
 	<script type="text/javascript">
-	
-	const as = document.getElementsByTagName("a")
-	for(a of as){
-		a.addEventListener('mouseover',function(){
-			this.style.background ="#b3b3b3";			
-		})
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		const as = document.getElementsByTagName("a")
+		for(a of as){
+			a.addEventListener('mouseover',function(){
+				this.style.background ="#b3b3b3";			
+			})
+		}
 	</script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
 </body>
 </html>
