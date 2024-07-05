@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+	<select id="noticeListCount" resultType="_int">
+		select count(*)
+		from board
+		where board_genre = '공지'
+			and status = 'Y'				
+	</select>
+		
+	<select id="noticeList" resultType="Notice">
+		select * 
+		from board
+		where board_genre = '공지'
+			and status = 'Y'	
+		order by board_no	
+	</select>
+	
+	<select id="noticeSelect" resultType="Notice">
+		select * 
+		from board
+		where board_genre = '공지'
+			and status = 'Y'
+			and board_no = #{boardNo}	
+	</select>
+	
+	<select id="noticeListMin" resultType="Notice">
+		select * 
+		from (select *
+			from board
+			where board_genre = '공지'
+				and status = 'Y'
+				and board_no <![CDATA[<]]> #{BoardNo}
+			order by board_no)
+		where rownum <![CDATA[<=]]> 3
+	
+	</select>
+	
+	<insert id="noticeWrite">
+		insert into board
+		values(seq_board.nextval, '공지', #{writer}, #{title}, #{content}, sysdate, sysdate, default)
+	
+	</insert>
+	
+	<update id="noticeUpdate">
+		update board 
+		set title=#{title}, content=#{content}, update_date=sysdate
+		where board_no = #{boardNo}	
+	</update>
+	
+	<update id="noticeDelete">
+		update board 
+		set status='N'
+		where board_no = #{boardNo}		
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</mapper>
