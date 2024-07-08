@@ -72,7 +72,12 @@
 		</div>
 
 		<div class="mx-auto" style="width: 80px;">
-			<a class="btn btn-primary me-md-2" href="${ contextPath }/notice.no" role="button" id="go_list_button">목록</a>
+			<c:if test="${ empty myPage }">
+				<a class="btn btn-primary me-md-2" href="${ contextPath }/notice.no" role="button" id="go_list_button">목록</a>
+			</c:if>
+			<c:if test="${ !empty myPage }">
+				<a class="btn btn-primary me-md-2" href="${ contextPath }/write.user" role="button" id="go_list_button">목록</a>
+			</c:if>
 		</div>
 
 		<jsp:include page="../common/topButton.jsp"></jsp:include>	
@@ -83,6 +88,7 @@
 		
 	<script>
 		window.onload = () => {
+			console.log('${myPage}');
 			const goListButton = document.getElementById("go_list_button");
 			const updateButton = document.getElementById("notice_update_button");
 			const deleteButton = document.getElementById("notice_delete_button");
@@ -139,30 +145,6 @@
 					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo;					
 				});				
 			}
-			
-			
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 		}
 	</script>
 </body>
