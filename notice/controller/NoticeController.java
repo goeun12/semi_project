@@ -47,7 +47,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("noticeSelect.no")
-	public String noticeSelect(@RequestParam("boardNo") int boardNo, Model model, HttpSession session) {
+	public String noticeSelect(@RequestParam("boardNo") int boardNo,@RequestParam(value="myPage", defaultValue="") String myPage, Model model, HttpSession session) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
@@ -57,6 +57,7 @@ public class NoticeController {
 		if(no != null) {
 			model.addAttribute("no",no);
 			model.addAttribute("noticeListMin", noticeListMin);
+			model.addAttribute("myPage", myPage);
 			
 			return "noticeContent";
 		}else {
