@@ -52,7 +52,7 @@ public class NoticeController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Notice no = nService.noticeSelect(boardNo, loginUser);
-		ArrayList<Notice> noticeListMin =  nService.noticeListMin(no.getBoardNo());
+		ArrayList<Notice> noticeListMin =  nService.noticeListMin(boardNo);
 		
 		if(no != null) {
 			model.addAttribute("no",no);
