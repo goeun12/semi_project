@@ -208,7 +208,7 @@
 							</td>
 							<td>
 								<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
-									${ contents[status.index] }
+									${ contents[status.index - 1] }
 								</div>
 							</td>
 						</tr>
