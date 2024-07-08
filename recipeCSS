@@ -14,7 +14,7 @@
 
 .div-flexible{display:flex;}
 .div-center{justify-content:center;}
-.div-textarea{margin-left:100px;margin-top:30px;width:600px; height:300px;}
+.div-textarea{margin-left:50px;margin-top:30px;width:600px; height:250px;}
 .div-min-width{min-width:1250px;}
 
 
@@ -33,12 +33,6 @@
 .making-num:focus{outline:0}
 .margin-lrt{margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;}
 .margin-lrpx{margin-left:50px; margin-right:50px;}
-#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
-#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white;}
-#mypage_Menu li {margin-bottom: 15px; margin-top: 23px;}
-#mypage_Menu a{color: black; text-decoration: none;}
-#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
-
 
 #notice_up_del{margin-bottom: 15px;}
 
@@ -74,22 +68,13 @@
 .td-input:focus{outline:none;}
 .td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
 .td-textarea:focus{outline:none;}
-.td-div-img{margin-left:50px;margin-top:30px;width:250px; height:300px;}
+.td-div-img{margin-left:50px;margin-top:30px;width:300px; height:350px;}
 .tbround {
 	border-collapse: collapse;
 	border-radius: 10px;
 	border-style: hidden;
 	box-shadow: 0 0 0 1px lightgray;
 }
-.td-topline>div{border:1px solid black;
-				width:95%;
-				height:95%;
-				margin-left:2%;
-				display:flex;
-				justify-content:center;
-				align-items:center
-}
-.td-topline>div:hover{border:none}
 #text-ingre{width:90%; padding-left:30px;padding-right:30px;}
 .top-padding{padding-top:3rem !important;}
 
@@ -97,16 +82,78 @@
 #up-del-btn{width:70%; justify-content:flex-end; margin-right:auto; margin-left:auto; margin-bottom:15px;}
 
 
-.pad-top70{padding-top:70px;}
+.pad-top40{padding-top:45px;}
 .pad20{padding:20px;}
 .pagination-sm .page-link {background: none;
 							border: none;
 							color:black;}
 .page-link:hover{color:black; font-size:large; text-decoration:underline;}
 
+.comment_table {
+	margin-top:20px;
+	margin-left:280px;
+	width: 1000px;
+  height: 500px;
+  border-collapse: collapse;
+  border-style: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px #000;
+}
 
-#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+#search_receipe{
+	margin-left:264px; 
+	width:1000px;
+}
+
+#comment{
+	margin-top: 20px;
+	margin-left:255px; 
+	width:1000px;
+}
+
+.table table-hover {
+  width: 300px;
+  height: 100px;
+  border-collapse: collapse;
+  border-style: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 0 1px #000;
+}
+#submit_button{
+	margin-top: 10px;
+	width:80px;
+	background-color: #F24822;
+}
+#search_button{
+	color:white;
+	width:80px;
+	background-color: red;
+}
+#search_button:hover{
+	font-weight: bold;
+	background-color: #a5250a;	
+}
+#honey_write_button{
+	background-color: #F24822;
+}
+#com_write_text{
+	margin-left:260px; margin-right:30px; margin-top:30px; width:1000px; height:200px;
+}
+#plus-level{
+	background-color: #F24822;
+}
+#update_button{
+	margin-left:90px;
+	background-color: #c0c0c0;
+}
+#delete_button{
 	
+	background-color: #c0c0c0;
+}
 
 
-
+.honeyWritePage-container{
+		text-align:right;
+		margin-right: 734px;
+		margin-bottom: 15px;
+		}
