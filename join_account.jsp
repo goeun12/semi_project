@@ -53,7 +53,6 @@
 			</div>
 			<div>
 				<button id="join_button" type="button">회원가입</button>
-				<input type="time" name="time">
 			</div>
 		</form>
 	</div>	
