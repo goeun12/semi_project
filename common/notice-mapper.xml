@@ -6,7 +6,10 @@
 		select count(*)
 		from board
 		where board_genre = '공지'
-			and status = 'Y'				
+			and status = 'Y'
+		<if test = "key != null">
+			and title like '%' || #{key} || '%'		
+		</if>				
 	</select>
 		
 	<select id="noticeList" resultType="Notice">
@@ -14,7 +17,7 @@
 		from board
 		where board_genre = '공지'
 			and status = 'Y'	
-		order by board_no	
+		order by board_no desc
 	</select>
 	
 	<select id="noticeSelect" resultType="Notice">
@@ -31,8 +34,8 @@
 			from board
 			where board_genre = '공지'
 				and status = 'Y'
-				and board_no <![CDATA[<]]> #{BoardNo}
-			order by board_no)
+				and board_no <![CDATA[<]]> #{boardNo}
+			order by board_no desc)
 		where rownum <![CDATA[<=]]> 3
 	
 	</select>
@@ -55,26 +58,23 @@
 		where board_no = #{boardNo}		
 	</update>
 	
-	
-	<select id="noticeSearchLis" resultType="Notice">
+	<select id="noticeSearchList" resultType="Notice">
 		select * 
 		from board
 		where board_genre = '공지'
 			and status = 'Y'	
-			and title = % || #{key} || %
-		order by board_no	
+			and title = '%' || #{key} || '%'
+		order by board_no desc
 	</select>
 	
 	
 	
-	<select id = "noticeCommon">
-	
-	select * 
+	<select id = "noticeCommon" resultType="Notice">	
+		select * 
 		from board
 		where board_genre = '공지'
 			and status = 'Y'	
-			and board_no = ( select max(board_no)
-							 from board)
+			and board_no = (select max(board_no) from board)
 	
 	</select>
 	
