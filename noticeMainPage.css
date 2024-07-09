@@ -3,7 +3,7 @@
 .container-fluid{background:#fffbf2; 
 				 min-width: 1250px;
 				 padding-top:80px;
-				 padding-bottom:20%;
+				 padding-bottom:25%;
 				font-family: "나눔고딕"; font-size:20px}
 	
 #notice_title{background:#f9ae98;
@@ -62,12 +62,3 @@
 				text-decoration:none; 
 				font-size:20px}
 
-#go_list_button{background:#f24822;				
-				color:white; 
-				width:80px;
-				height:40px;
-				border:none; 
-				border-radius:10px;
-				text-decoration:none; 
-				font-size:20px;
-				margin-top:30px;}	
