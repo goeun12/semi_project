@@ -49,4 +49,18 @@ public class NoticeDAO {
 		return sqlSession.update("noticeMapper.noticeDelete", boardNo);
 	}
 
+	public ArrayList<Notice> noticeSearchList(SqlSessionTemplate sqlSession, PageInfo pi,
+			String key) {
+		
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimite();
+		RowBounds RowBounds = new RowBounds(offset, pi.getBoardLimite());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.noticeSearchList", key, RowBounds);
+	}
+
+	public Notice noticeCommon(SqlSessionTemplate sqlSession) {
+		
+		return sqlSession.selectOne("noticeMapper.noticeCommon");
+	}
+
 }
