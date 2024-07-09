@@ -10,15 +10,17 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#pagination{font-size:15px;
+#pagination{width: 12%;
+			margin-left:44%;
+			font-size:15px;
 			text-align:center;}
 
-.pageItem{margin-right:10px;}
+.pageItem{margin-right:10px; text-align:center;}
 
 .pageLink{color:black;
 		text-decoration-color:black;
-		text-decoration-line:none;}
-
+		text-decoration-line:none;
+		text-align:center;}
 </style>
 
 </head>
