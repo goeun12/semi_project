@@ -14,13 +14,13 @@
 	<jsp:include page="../common/header.jsp"/>
 	
 	<div id="container" class="text-center" style="padding-bottom: 3rem !important;">
-		<div style="padding-top:1.5rem !important; padding-bottom:4rem !important;" class="row py-lg-5">
-    			<div id="login_bar">
-       			<p>로그인</p>
-     			</div>
-     		</div>
-     		<div id="id_join_find">
-     			<div id="id_join_find_box">
+		<div style="padding-top:1.5rem !important; padding-bottom:4rem !important;" class="py-lg-5">
+   			<div id="login_bar">
+     			<p>로그인</p>
+   			</div>
+   		</div>
+   		<div id="id_join_find">
+   			<div id="id_join_find_box">
 				<form action="${ contextPath }/login.user" method="post" id="login_form">
 					<div id="login">
 						<div id="login_box">
@@ -67,7 +67,12 @@
 				location.href="${contextPath}/recipe.re";
 			}
 			
-			console.log(document.referrer);
+			const msg = '${msg}';
+			console.log(msg);
+			if(msg != ''){
+				alert(msg);
+			}
+	
 			if(document.referrer == 'http://localhost:8088/aloneBab/findPwView.user'){
 				document.getElementsByName('change')[0].value = 'Y';
 			}
@@ -93,5 +98,6 @@
 			
 		}
 	</script>
+	<% session.removeAttribute("msg"); %>
 </body>
 </html>
