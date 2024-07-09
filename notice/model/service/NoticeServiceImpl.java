@@ -69,7 +69,16 @@ public class NoticeServiceImpl implements NoticeService{
 
 	
 	
-	
+	@Override
+	public ArrayList<Notice> noticeSearchList(PageInfo pi, String key) {
+		
+		return nDAO.noticeSearchList(sqlSession, pi,key);
+	}
+
+	@Override
+	public Notice noticeCommon() {
+		
+		return nDAO.noticeCommon(sqlSession);
 	
 	
 	
