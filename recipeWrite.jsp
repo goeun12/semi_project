@@ -111,7 +111,7 @@
 #up-del-btn{width:70%; justify-content:flex-end; margin-right:auto; margin-left:auto; margin-bottom:15px;}
 
 
-.pad-top70{padding-top:70px;}
+.pad-top50{padding-top:50px;}
 .pad20{padding:20px;}
 .pagination-sm .page-link {background: none;
 							border: none;
@@ -135,7 +135,7 @@
 	
 	<!-- 1번째 칸 -->
 <form action="${contextPath }/insertRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
-	<div class="container">
+	<div>
 		<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
 	
 			<table class="tbround bgcw" style="width:100%;">
@@ -154,20 +154,20 @@
 					<td>
 						<div class="recipe-option">	
 							<select id="sel-nation" class="form-select form-select-sm" name="nation">
-							  <option value="all"selected>국가</option>
-							  <option value="kr">한식</option>
+							  <option value="all" disabled>국가</option>
+							  <option value="kr" selected>한식</option>
 							  <option value="cn">중식</option>
 							  <option value="us">양식</option>
 							  <option value="jp">일식</option>
 							  <option value="no">분식</option>
 							</select>	
-							</div>
+						</div>
 					</td>
 					<td>
 						<div class="recipe-option">
 							<select id="sel-easy"class="form-select form-select-sm" name="difficulty">
-							  <option value="all"selected>난이도</option>
-							  <option value="easy">하</option>
+							  <option value="all" disabled>난이도</option>
+							  <option value="easy" selected>하</option>
 							  <option value="mid">중</option>
 							  <option value="hard">상</option>
 							</select>
@@ -176,7 +176,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td class="td-underline td-rlline td-topline" colspan="3" height="400px" width="50px">
+					<td class="td-underline td-rlline td-topline" colspan="3" height="300px" width="50px">
 						<textarea name="ingredients" class="td-textarea"rows='5' placeholder="요리 재료" style="width:100%;height:90%;padding-left:30px;"></textarea>
 					</td>
 				</tr>
@@ -189,8 +189,8 @@
 	
 	
 	<!-- 2번째 칸 -->
-	<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:20px; margin-right:50px; height:100px;width:100%">
-		<table class="tbround bgcw" style="width:95%;">
+	<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:auto; margin-right:auto; height:100px;width:70%">
+		<table class="tbround bgcw">
 			<tr>
 				<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 				<td width="" height="60px" style="padding-left:50px">
@@ -202,31 +202,52 @@
 	
 	
 	<!-- 3번째 칸 -->
-	<div class="row text-center div-min-width" style="margin-left:20px; margin-right:50px;width:100%;">
-		<table class="tbround bgcw" style="width:95%;">
+	<div class="row text-center div-min-width" style="margin-left:auto; margin-right:auto;width:70%;">
+		<table class="tbround bgcw">
 			<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 			<tbody id="table_body">
 				<tr>
 					<td class="td-jus-con previewImg">
 						<div class="slim-border mb-3 text-center td-div-img">
-							<input class="form-control form-control-lg" type="file" accept="image/*" name="file" onchange="readURL(this);">
+							<input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file" onchange="readURL(this);">
 							<img class="preview" />
 						</div>
 					</td>
 					<td>
-						<div class="slim-border mb-3 text-center div-textarea pad-top45">
-							<textarea class="making-num " placeholder="1. ㅇㅇㅇ"></textarea>
+						<div class="slim-border mb-3 text-center div-textarea pad-top50">
+							<textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea>
 						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	<script>
+	window.onload=()=>{
+		const tbody = document.getElementById("table_body");
+		tbody.addEventListener('click',e=>{
+			
+			const eventTarget = e.target;
+			console.log(eventTarget);
+			
+			const targetTagName = eventTarget.tagName.toLowerCase();
+			let targetSVG = null;
+			switch(targetTagName){
+			case 'tr' : targetInput = eventTarget.children[0].children[0].children[0];break;
+			case 'td' : targetInput = eventTarget.parentElement.children[0].children[0].children[0];break;
+			case 'div' : targetInput = eventTarget.parentElement.parentElement.children[0].children[0].children[0];break;
+			case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[0].children[0].children[0];break;
+			}
+			const imgPre = targetInput.nextElementSibling;
+			console.log(targetInput.value);
+			
+			
+		})
+	}
+	
 		function readURL(input){
 			var imgArr = document.getElementsByClassName("preview");
 				if(input.files[0]){
 					var trNo = document.getElementById("table_body").childElementCount;
-					console.log(trNo);
 					if(imgArr.length == trNo){
 						var reader = new FileReader();
 						reader.onload = function(e){
@@ -282,21 +303,15 @@
 		
 		function add_tr(table_body){
 			let tbody = document.getElementById("table_body");
-			let tr = tbody.firstElementChild;
-			let tr_clone = tr.cloneNode(true);
-			tr_clone.children[0].children[0].children[1].src = null;
-			tr_clone.children[0].children[0].children[0].value = null;
-			tr_clone.children[1].children[0].children[0].value = null;
-			
-			tbody.append(tr_clone);
-			clean_first_tr(tbody.firstElementChild);
+			const newTr = document.createElement('tr');
+			newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file" onchange="readURL(this);"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+			tbody.append(newTr);
 		}
 		
 		function clean_first_tr(firstTr){
 			let children = firstTr.children;
 			
-			children = Array.isArray(children) ? children :
-			Object.values(children);
+			children = Array.isArray(children) ? children :	Object.values(children);
 			children.forEach(x=>{
 				if(x !== firstTr.latsElementChild){
 					x.firstElementChild.value='';
