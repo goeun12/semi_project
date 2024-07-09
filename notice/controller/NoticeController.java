@@ -156,7 +156,14 @@ public class NoticeController {
 		
 	}
 	
-	
+	@RequestMapping(value="noticeCommon.no", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public Notice noticeCommon(Model model) {
+		
+		Notice no = nService.noticeCommon();
+		
+		return no;
+	}
 	
 	
 	
