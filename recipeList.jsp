@@ -216,7 +216,7 @@
 			<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 				<div class="input-group mb-3" style="width:85%;">
 					<input type="text" class="form-control searchbar" name="searchWord" placeholder="찾고자 하는 단어를 입력해주세요.">
-					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button" onclick="location.href='${ contextPath }/bunryuRecipe.re'">검색</button>
+					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button" name="searchButton">검색</button>
 				</div>
 			</div>
 	
@@ -270,7 +270,7 @@
 								<c:if test="${ b.boardNo == r.boardNo }">
 									<c:forEach items="${ iList }" var="i">
 										<c:if test="${ r.recipeNo == i.recipeNo }">
-											<img src="D:\7_Spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Semi_Project\resources\image/${ i.imageName }" width="100%" height="225px"/>     <!-- 이미지가 저장되는 경로 -->
+											<img src="${contextPath }/resources/image/${ i.imageName }" width="100%" height="225px"/>     <!-- 이미지가 저장되는 경로 -->
 											<div class="card-body">
 											<input type="hidden" name="bNo" class="bNo" value="${ b.boardNo }">
 											<input type="hidden" name="rNo" class="rNo" value="${ r.recipeNo }">
