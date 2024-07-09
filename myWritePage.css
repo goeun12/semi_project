@@ -3,25 +3,21 @@ body{
 	background: #FFFBF2;
 }
 #wrap{
-	position: relative; height: 100%; font-size: 20px;
+	height: 100%; 
+	min-height: 814.5px;
 }
 
 #container{
 	min-width: 1200px;
 	width: 100%;
 	margin: 0 auto 70px;
+	font-size: 20px;
 }
 
 #login_bar{
-	padding: 10px 40px 15px 40px;
-	width: 70%;
-	height: 50px;
-	text-align: center;
-	background: #FFB3A2;
-	font: 25px bold;
-	border-radius: 10px; /* 꼭짓점 둥글게 할지 말지 고르기 */
-	margin: 80px auto 0;
-	
+	background:#f9ae98; width: 50%; height:50px; margin-left:25%;
+  	margin-block-end:0; text-align: center; text-decoration: none; font-size: 25px;
+  	font-weight: bold; margin-top: 80px; line-height: 50px; border-radius: 5px;
 }
 
 #board_table_div{
@@ -57,7 +53,6 @@ body{
 }
 
 th{
-	text-align: center;
 	font-weight: 550;
 }
 
