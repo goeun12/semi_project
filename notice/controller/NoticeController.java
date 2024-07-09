@@ -131,7 +131,30 @@ public class NoticeController {
 	}
 	
 	
-	
+	@RequestMapping("noticeSearch")
+	public String noticeSearch(@RequestParam("key") String key, @RequestParam(value="Page", defaultValue="1") int currentPage, Model model) {
+		
+		int listCount = nService.noticeListCount(key);		
+		model.addAttribute("listCount", listCount);
+		model.addAttribute("key", key);
+		
+		if(listCount > 0) {
+			PageInfo pi = PageInfo.getPagination(currentPage, listCount);
+			ArrayList<Notice> noticeSearchList = nService.noticeSearchList(pi, key);			
+			model.addAttribute("pi", pi);
+			model.addAttribute("noticeSearchList", noticeSearchList);
+		
+			return "noticeSearchList";		
+			
+		}else if(listCount == 0) {
+			model.addAttribute("msg", "검색 결과가 없습니다.");
+			
+			return "noticeSearchList";
+		}else{
+			throw new AllException("게시글을 검색하지 못했습니다");
+		}
+		
+	}
 	
 	
 	
