@@ -1,0 +1,20 @@
+	<select id="checkId" resultType="_int">
+		select count(*) from member where id = #{id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into member
+		values(#{id}, #{name}, #{pwd}, #{phone}, default, default, default)
+	</insert>
+	
+	<update id="updateMember">
+		update member
+		set name = #{name}, pwd = #{pwd}, phone = #{phone}
+		where id = #{id}
+	</update>
+	
+	<update id="deleteMember">
+		update member
+		set status = 'N'
+		where id = #{id}
+	</update>
