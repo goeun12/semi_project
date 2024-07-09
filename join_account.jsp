@@ -53,6 +53,7 @@
 			</div>
 			<div>
 				<button id="join_button" type="button">회원가입</button>
+				<input type="time" name="time">
 			</div>
 		</form>
 	</div>	
@@ -74,11 +75,11 @@
 				$.ajax({
 					url: 'checkId.user',
 					data: {id:id},
-					dataType: 'json',
+// 					dataType: 'json',
 					success: (data) => {
 						if(data == 0 && !regId.test(id)){
 							inforId.innerText = '사용 가능한 아이디입니다';
-							inforId.style.color = 'green';
+							inforId.style.color = 'green'
 							return true;
 						} else {
 							inforId.innerText = '사용 불가한 아이디입니다';
@@ -91,6 +92,7 @@
 			}
 		}
 		
+		
 		button.addEventListener('click', e => {			
 			let count = 0;
 			for(const input of inputs){
@@ -99,12 +101,10 @@
 				}
 			}
 			
-			
-			let phone = document.getElementById('phone').value;
+			let phone = document.getElementById('phone');
 			const regPho = /\D/g;
-			if(regPho.test(phone)){
-				document.getElementById('phone').value = phone.replace(regPho, '');
-			}
+			let nameInput = document.getElementById('join_name');
+			const regName = /[^가-힣a-zA-Z]/g;
 			
 			if(count <= 6 && count > 0){
 				alert('필수 항목을 입력해 주세요.');
@@ -119,11 +119,16 @@
 			} else if(inforId.innerText.includes('불가한')){
 				alert('다른 아이디를 입력해 주세요.');
 				idInput.focus();
+			} else if(regPho.test(phone.value)){
+				alert('전화번호는 숫자만 입력해 주세요.');
+				phone.focus();
+			} else if(regName.test(nameInput.value)) {
+				alert('이름을 다시 입력해 주세요.');
+				nameInput.focus();
 			} else if(count == 0 && pwdCheck() && inforId.innerText.includes('사용 가능한')) {
-				alert(document.getElementById('join_name').value + '님 환영합니다!');
+				alert(nameInput.value + '님 환영합니다!');
 				document.querySelector("#joinMemberForm").submit();
 			}
-			
 		});
 		
 		function pwdCheck(){
@@ -136,7 +141,8 @@
 				inforPwd.style.color = 'red';
 				return false;
 			}
-		}
+		};
+		
 		idInput.addEventListener('focusout', checkId);
 		pwd.addEventListener('focusout', pwdCheck);
 		rePwd.addEventListener('focusout', pwdCheck);
