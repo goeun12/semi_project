@@ -17,9 +17,9 @@
     		<p>공지사항 게시판</p>
   		</div>
   		
-		<form>
+		<form action="noticeSearch">
 			<div class="input-group mb-3" id="search_notice">
-	 			<input type="text" class="form-control" name="noticeKey" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">
+	 			<input type="text" class="form-control" name="Key" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">
 	 			<button class="btn btn-outline-secondary" id="search_button">검색</button>
 			</div>
 		</form>	
