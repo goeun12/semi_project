@@ -1,6 +1,16 @@
 	@Override
-	public int joinMember(Member m) {
-		return mDAO.joinMember(sqlSession, m);
+	public int insertMember(Member m) {
+		return mDAO.insertMember(sqlSession, m);
+	}
+	
+	@Override
+	public int updateMember(Member m) {
+		return mDAO.updateMember(sqlSession, m);
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		return mDAO.deleteMember(sqlSession, id);
 	}
 
 	@Override
