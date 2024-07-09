@@ -127,98 +127,103 @@
 			</div>
 		</form>
 	</div>
-	<div class="div-min-width">
-		<div class="div-flexible text-center" id="up-del-btn">
-			<c:if test="${ loginUser.id == recipe.writer }">
-				<a class="btn btn-primary me-md-2" href="${contextPath }/updateRecipe.re" role="button" id="recipe-up-btn">수정</a>
-				<a class="btn btn-primary me-md-2" href="${contextPath }/deleteRecipe.re" role="button" id="recipe-del-btn">삭제</a>
-			</c:if>
-		</div>
-		<div id="tbdiv3" class="row text-center div-flexible col">
-			<table class="tbround bgcw">
-				<tr>
-					<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
-					<c:forEach items="${ iList }" var="i">
-						<c:if test="${ i.titleImg == 0 }">
-							<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
-								<img src="${ contextPath }/resources/uploadImgs/${ i.imageName }">
-							</td>
-							<td class="td-bottomline" colspan='3' height="100px">
-								<div>${ b.title }</div>
-							</td>
+	<form method="POST" id="updelForm">
+		<div class="div-min-width">
+			<div class="div-flexible text-center" id="up-del-btn">
+				<c:if test="${ loginUser.id == b.writer }">
+					<button class="btn btn-primary me-md-2" type="button" id="recipe-up-btn">수정</button>
+					<button class="btn btn-primary me-md-2" type="button" id="recipe-del-btn">삭제</button>
+					<input type="hidden" name="bNumber" id="bNo" value="${ b.boardNo }">
+					<input type="hidden" name="rNumber" id="rNo" value="${ r[0].recipeNo }">
+				</c:if>
+				
+			</div>
+			<div id="tbdiv3" class="row text-center div-flexible col">
+				<table class="tbround bgcw">
+					<tr>
+						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
+						<c:forEach items="${ iList }" var="i">
+							<c:if test="${ i.titleImg == 0 }">
+								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
+									<img src="${ contextPath }/resources/image/${ i.imageName }">
+								</td>
+								<td class="td-bottomline" colspan='3' height="100px">
+									<div>${ b.title }</div>
+								</td>
+							</c:if>
+						</c:forEach>
+					</tr>
+					<tr>
+						<td style="width:100px">
+							<div class="recipe-option">	
+								<select id="sel-nation" class="form-select form-select-sm" disabled>
+									<c:choose>
+										<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>#한식</option></c:when>
+										<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>#중식</option></c:when>
+										<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>#양식</option></c:when>
+										<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>#일식</option></c:when>
+										<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>#분식</option></c:when>
+									</c:choose>
+								</select>	
+							</div>
+						</td>
+						<td style="width:100px">
+							<div class="recipe-option">
+								<select id="sel-easy"class="form-select form-select-sm" disabled>
+									<c:if test="${ r[0].difficulty eq 'easy' }">
+										<option value="easy" selected>하</option>
+									</c:if>
+									<c:if test="${ r[0].difficulty eq 'mid' }">	
+										<option value="mid" selected>중</option>
+									</c:if>
+									<c:if test="${ r[0].difficulty eq 'hard' }">
+										<option value="hard" selected>상</option>
+									</c:if>
+								</select>
+							</div>
+						</td>
+						<td id="recipe-own" style="font-size:15px;">작성자 : ${ b.writer }</td>
+					</tr>
+					<tr>
+						<td class="td-topline" colspan="3" height="300px" width="50px">
+							<div>요리 재료. ${ r[0].ingredients }</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important; justify-content:center;">
+				<table class="tbround bgcw" style="width:70%">
+					<tr height="100px">
+						<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
+						<td>${ r[0].intro }</td>
+					</tr>
+				</table>
+			</div>
+			<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
+				<table class="tbround bgcw" style="width:70%">
+	<!-- forEach : 사진 + 요리순서들 -->				
+					<c:forEach items="${ iList }" var="i" varStatus="status">
+						<c:if test="${i.titleImg == 1 }">
+							<tr>
+								<td style="width:300px;">
+									<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+										<img src="${ contextPath }/resources/image/${ i.imageName }" height="250px" width="250px"/>
+									</div>
+								</td>
+								<td>
+									<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
+										${ contents[status.index - 1] }
+									</div>
+								</td>
+							</tr>
 						</c:if>
 					</c:forEach>
-				</tr>
-				<tr>
-					<td style="width:100px">
-						<div class="recipe-option">	
-							<select id="sel-nation" class="form-select form-select-sm" disabled>
-								<c:choose>
-									<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>#한식</option></c:when>
-									<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>#중식</option></c:when>
-									<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>#양식</option></c:when>
-									<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>#일식</option></c:when>
-									<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>#분식</option></c:when>
-								</c:choose>
-							</select>	
-						</div>
-					</td>
-					<td style="width:100px">
-						<div class="recipe-option">
-							<select id="sel-easy"class="form-select form-select-sm" disabled>
-								<c:if test="${ r[0].difficulty eq 'easy' }">
-									<option value="easy" selected>하</option>
-								</c:if>
-								<c:if test="${ r[0].difficulty eq 'mid' }">	
-									<option value="mid" selected>중</option>
-								</c:if>
-								<c:if test="${ r[0].difficulty eq 'hard' }">
-									<option value="hard" selected>상</option>
-								</c:if>
-							</select>
-						</div>
-					</td>
-					<td id="recipe-own" style="font-size:15px;">${ b.writer }</td>
-				</tr>
-				<tr>
-					<td class="td-topline" colspan="3" height="300px" width="50px">
-						<div>요리 재료. ${ r[0].ingredients }</div>
-					</td>
-				</tr>
-			</table>
+				</table>
+				<div>&nbsp;</div>
+				<div></div>
+			</div>
 		</div>
-		<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important; justify-content:center;">
-			<table class="tbround bgcw" style="width:70%">
-				<tr height="100px">
-					<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
-					<td>${ r[0].intro }</td>
-				</tr>
-			</table>
-		</div>
-		<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
-			<table class="tbround bgcw" style="width:70%">
-<!-- forEach : 사진 + 요리순서들 -->				
-				<c:forEach items="${ iList }" var="i" varStatus="status">
-					<c:if test="${i.titleImg == 1 }">
-						<tr>
-							<td style="width:300px;">
-								<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
-									<img src="${ contextPath }/resources/uploadImgs/${ i.imageName }" height="250px" width="250px"/>
-								</div>
-							</td>
-							<td>
-								<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
-									${ contents[status.index - 1] }
-								</div>
-							</td>
-						</tr>
-					</c:if>
-				</c:forEach>
-			</table>
-			<div>&nbsp;</div>
-			<div></div>
-		</div>
-	</div>
+	</form>
 	<hr>
 	
 	<form>
@@ -318,7 +323,7 @@
 									<div class="card shadow-sm">
 										<c:forEach items="${iListAll }" var="ila">
 											<c:if test="${ ila.recipeNo == rList.recipeNo }">
-											<img src="저장소 그 긴거 /${ ila.imageName }" width="100%" height="225px"/>
+											<img src="${ contextPath }/resources/image/${ ila.imageName }" width="100%" height="225px"/>
 											<div class="card-body">
 												<p class="card-text" style="text-align:center;height:15px;">${ bList.title }</p>
 												<div class="d-flex justify-content-between align-items-center">
@@ -339,7 +344,25 @@
 			</div>
 		</div>
 	</div>	
-		
+	
+	<div class="modal fade" tabindex="-1" role="dialog" id="modalChoice">
+		<div class="modal-dialog" role="document">
+    		<div class="modal-content rounded-3 shadow">
+      			<div class="modal-body p-4 text-center">
+        			<h3 class="mb-0">정말로 삭제하시겠습니까?</h3>
+        			<p class="mb-0">삭제 후 글은 복구할 수 없습니다.</p>
+      			</div>
+      			<div class="modal-footer flex-nowrap p-0">
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="delete">
+        				<strong>네</strong>
+        			</button>
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
+	
 		
 	<div class="mx-auto" style="display:flex; justify-content:center;">
 		<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id ="go_list_button" style="width:80px;">목록</a>
@@ -356,9 +379,35 @@
 					const bNo = this.querySelector('.bNo').value; 
 					const rNo = this.querySelector('.rNo').value;
 					console.log(bNo);
-					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo+'&page='+${pi.currentPage};
+					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo;
 				});
 			}
+			
+			const edit = document.getElementById('recipe-up-btn');
+			const form = document.getElementById('updelForm');
+			if(edit != null){
+				edit.addEventListener('click',()=>{
+					form.action = '${contextPath}/updateRecipe.re';
+					form.submit();
+				});
+			}
+			
+			if(document.getElementById('recipe-del-btn') != null){
+				document.getElementById('recipe-del-btn').addEventListener('click',() => {
+					$('#modalChoice').modal('show');
+				});
+			}
+			
+			const del = document.getElementById('delete');
+			
+				del.addEventListener('click',()=>{
+					
+					form.action = '${contextPath}/deleteRecipe.re';
+					form.submit();
+				});
+			
+			
+			
 		}
 	</script>
 	
