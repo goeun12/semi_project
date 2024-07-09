@@ -6,17 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link href="resources/css/myWritePage.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <title>My Write Page</title>
+<style type="text/css">
+	
+	#pagination{font-size:15px;
+				text-align:center;}
+	
+	.pageItem{margin-right:10px;}
+	
+	.pageLink{color:black;
+			text-decoration-color:black;
+			text-decoration-line:none;}
+
+</style>
 </head>
 <body style="background:#FFFBF2;">
+	<jsp:include page="../common/header.jsp"/>
 	<div id="wrap" class="wrap">
-		<jsp:include page="../common/header.jsp"/>
 		<div id="container">
-			<div style="padding-top:1rem !important; padding-bottom:5rem !important;" class="row py-lg-5">
+			<div style="padding-top:1rem !important; padding-bottom:5rem !important;" class="py-lg-5">
      			<div id="login_bar" class="col-lg-6 col-md-8">
-        			<h3 class="fw-bold">내가 쓴 글 목록</h3>
+        			<p>내가 쓴 글 목록</p>
       			</div><br>
       		</div>
 			<div id="board_table_div" style="min-width:1000px;">	
@@ -24,92 +36,96 @@
 					<table class="table table-hover table_hover" id="table">
 					  <thead>
 					    <tr>
-					      <th scope="col" style="width: 5%;">번호</th>
-					      <th scope="col" style="width: 10%;">게시판
-					      <th scope="col" style="width: 55%;">제목</th>
-					      <th scope="col" style="width: 10%;">작성일</th>
+					      <th scope="col" style="width: 5%; text-align: center;">번호</th>
+					      <th scope="col" style="width: 10%; text-align: center;">게시판
+					      <th scope="col" style="width: 55%; text-align: center;">제목</th>
+					      <th scope="col" style="width: 10%; text-align: center;">작성일</th>
 					    </tr>
 					  </thead>
 					  <tbody class="table-group-divider table_body">
-					    <tr>
-					      <td scope="row" class="board_num">10</td>
-					      <td class="board_num">꿀팁</td>
-					      <td>꿀팁 게시글 5입니다.</td>
-					      <td class="board_num">2024-06-17</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">9</td>
-					      <td class="board_num">레시피</td>
-					      <td>계란찜</td>
-					      <td class="board_num">2024-06-10</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">8</td>
-					      <td class="board_num">꿀팁</td>
-					      <td>밥 먹기 전에 해두면 좋은 것들</td>
-					      <td class="board_num">2024-06-04</td>
-					    </tr>
-						<tr>
-					      <td scope="row" class="board_num">7</td>
-					      <td class="board_num">레시피</td>
-					      <td>김치찌개</td>
-					      <td class="board_num">2024-06-04</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">6</td>
-					      <td class="board_num">레시피</td>
-					      <td>딸기 탕후루</td>
-					      <td class="board_num">2024-05-30</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">5</td>
-					      <td class="board_num">꿀팁</td>
-					      <td>의외로 집에 있으면 좋은 조미료</td>
-					      <td class="board_num">2024-05-27</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">4</td>
-					      <td class="board_num">레시피</td>
-					      <td>매운 짜장면</td>
-					      <td class="board_num">2024-05-20</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">3</td>
-					      <td class="board_num">꿀팁</td>
-					      <td>꿀팁 쓸만한 게 뭐가 있다고</td>
-					      <td class="board_num">2024-05-19</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">2</td>
-					      <td class="board_num">꿀팁</td>
-					      <td>나 계란찜 좋아하는데</td>
-					      <td class="board_num">2024-05-17</td>
-					    </tr>
-					    <tr>
-					      <td scope="row" class="board_num">1</td>
-					      <td class="board_num">레시피</td>
-					      <td>소세지가 들어간 계란말이</td>
-					      <td class="board_num">2024-05-13</td>
-					    </tr>
+					  	<c:forEach items="${ list }" var="b">
+						  	<tr>
+						      <td scope="row" class="board_num">${ b.boardNo }</td>
+						      <td class="board_num">${ b.boardGenre }</td>
+						      <td>${ b.title }</td>
+						      <td class="board_num">${ b.updateDate }</td>
+						    </tr>
+					  	</c:forEach>
 					  </tbody>
 					</table>			
 				</div>
-				<div class="mx-auto" id="page_navigation" style="width: 210px;">
-					  <ul class="pagination pagination-sm">
-					    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-					    <li class="page-item"><a class="page-link" href="#">1</a></li>
-					    <li class="page-item"><a class="page-link" href="#">2</a></li>
-					    <li class="page-item"><a class="page-link" href="#">3</a></li>
-					    <li class="page-item"><a class="page-link" href="#">4</a></li>
-					    <li class="page-item"><a class="page-link" href="#">5</a></li>
-					    <li class="page-item"><a class="page-link" href="#">다음</a></li>
-					  </ul>
+				<div class="mx-auto" id="pagination" style="width: 210px;">
+					<ul class="pagination">
+						<li class="pageItem">
+					 		<c:url value="${loc}" var="goBack">
+					 			<c:param name="page" value="${ pi.currentPage-1 }"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goBack}">이전</a>
+					 	</li>
+					 	<c:forEach begin ="${ pi.startPage }" end="${pi.endPage}" var="p" >
+					 		<c:url value="${loc}" var="goCurr">
+					 			<c:param name="page" value="${p}"/>
+					 		</c:url>
+					 	 	<li class="pageItem">
+					 			<a class="pageLink pNum" href="${goCurr}">${p}</a>
+					 	 	</li>				 	 
+					 	</c:forEach>
+					  	<li class="pageItem">
+					 		<c:url value="${loc}" var="goNext">
+					 			<c:param name="page" value="${pi.currentPage+1}"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goNext}">이후</a>
+					 	</li>
+					</ul>
 				</div>				
 			</div>
 		</div>	
-		<jsp:include page="../common/footer.jsp"/>
+		<jsp:include page="../common/topButton.jsp"></jsp:include>	
 	</div>
-</body>
-</html>
+	<jsp:include page="../common/footer.jsp"/>
+	<script>
+		window.onload = () => {
+			
+			const tbody = document.querySelector('tbody');
+			const tds = tbody.querySelectorAll('td');
+			
+			for(const td of tds){
+				td.addEventListener('click', function(){
+					const trTds = this.parentElement.querySelectorAll('td');
+					const boardNo = trTds[0].innerText;
+					
+					location.href="${contextPath}/selectMyBoard.bo?boardNo=" + boardNo + "&page=" + ${ pi.currentPage };
+				});
+			}
+		
+			const pageItems = document.getElementsByClassName("pageItem");
+			for(const pageItem of pageItems){
+				pageItem.addEventListener('focus', function(){
+					this.style.background='white';
+					this.style.color='black';
+					this.stylw.border='none';
+				});	
+				
+				pageItem.addEventListener("click", function(){
+					this.style.textDecoration = 'underline'; 
+					this.style.fontWeight= 'bold';
+					this.style.boxShadow = 'none';
+					this.style.color='black';
+				});				
+				
+			}
+			
+			const pNums = document.getElementsByClassName("pNum");
+			for(const pNum of pNums){
+				if(pNum.innerHTML == '${pi.currentPage}'){
+					pNum.style.textDecoration = 'underline';
+					pNum.style.fontWeight= 'bold';
+				}
+			}
+			
+			
+			
+		}
+	</script>
 </body>
 </html>
