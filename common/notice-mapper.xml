@@ -56,8 +56,27 @@
 	</update>
 	
 	
+	<select id="noticeSearchLis" resultType="Notice">
+		select * 
+		from board
+		where board_genre = '공지'
+			and status = 'Y'	
+			and title = % || #{key} || %
+		order by board_no	
+	</select>
 	
 	
+	
+	<select id = "noticeCommon">
+	
+	select * 
+		from board
+		where board_genre = '공지'
+			and status = 'Y'	
+			and board_no = ( select max(board_no)
+							 from board)
+	
+	</select>
 	
 	
 	
