@@ -10,6 +10,7 @@
 		width: 50%; height:50px;
 		margin-left:25%;
 		margin-block-end:0;
+		margin-bottom: 80px;
 		text-align: center;
 		text-decoration:none;
 		font-size:25px; font-weight:700;
@@ -17,7 +18,6 @@
 		
 #notice_up_del{ width: 70%;
 			margin-bottom: 10px;
-			margin-top:80px;
 			margin-left: 15%;
 			padding-left:55%;
 			text-align: right;}
@@ -57,14 +57,14 @@
 					
 	
 #notice_update_button, #notice_delete_button{background:#b3b3b3; 
-											color:white; 
-											width:80px;
-											height:40px;
-											border:none; 
-											border-radius:10px;
-											text-decoration:none; 
-											font-size:20px
-											}
+						color:white; 
+						width:80px;
+						height:40px;
+						border:none; 
+						border-radius:10px;
+						text-decoration:none; 
+						font-size:20px
+						}
 				
 #go_list_button{background:#f24822;				
 				color:white; 
@@ -77,15 +77,6 @@
 				margin-top:30px;}				
 
 
-
-
-
-
-
-
-
-
-				
 
 
 
