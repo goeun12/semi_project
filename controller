@@ -1,0 +1,70 @@
+	// 로그아웃
+	@RequestMapping("logout.user")
+	public String logout(SessionStatus session) {
+		session.setComplete();
+		
+		return "redirect:loginView.user";
+	}
+
+	// 회원가입 화면으로 이동
+	@RequestMapping("joinView.user")
+	public String joinView() {
+		
+		return "join_account";
+	}
+	
+	// 아이디 중복확인
+	@RequestMapping("checkId.user")
+	@ResponseBody
+	public int checkId(@RequestParam("id") String id) {
+		return mService.checkId(id);
+	}
+	
+	
+	// 회원가입 과정
+	@RequestMapping("joinMember.user")
+	public String joinMember(@ModelAttribute Member m) {
+		m.setPwd(bcrypt.encode(m.getPwd()));
+		int result = mService.joinMember(m);
+		if(result > 0) {
+			return "redirect:loginView.user";
+		}else {
+			throw new AllException("회원가입에 실패하였습니다.");
+		}
+	}
+	
+	// 회원정보 수정 화면으로 이동
+	@RequestMapping("edit.user")
+	public String editView() {
+		return "modify_account";
+	}
+
+	// 회원정보 수정 기능
+	@RequestMapping("/modify.user")
+	public String updateMember(@ModelAttribute Member m, HttpSession session, Model model) {
+		if(m.getPwd().equals("")) {
+			m.setPwd(((Member)session.getAttribute("loginUser")).getPwd());
+		} else {
+			m.setPwd(bcrypt.encode(m.getPwd()));
+		}
+		int result = mService.updateMember(m);
+		if(result > 0) {
+			model.addAttribute("loginUser", mService.login(m));
+			return "../home";
+		} else {
+			throw new AllException("회원정보 수정에 실패하였습니다.");
+		}
+	}
+
+	// 탈퇴 기능
+	@RequestMapping("delete.user")
+	public String deleteMember(@RequestParam("id") String id) {
+		int result = mService.deleteMember(id);
+		if(result > 0) {
+			return "redirect:logout.user";
+		} else {
+			throw new AllException("회원 탈퇴에 실패하였습니다.");
+		}
+	}
+	
+}
