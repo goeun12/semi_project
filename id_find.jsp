@@ -13,7 +13,7 @@
 <body style="background-color: #FFFBF2;">
 	<jsp:include page="../common/header.jsp"/>
 	<div id="container" class="text-center" style="padding-bottom: 3rem !important;">
-		<div style="padding-top:1.5rem !important; padding-bottom:4rem !important;" class="row py-lg-5">
+		<div style="padding-top:1.5rem !important; padding-bottom:4rem !important;" class="py-lg-5">
     			<div id="login_bar">
        			<p>아이디 찾기</p>
      			</div><br>
