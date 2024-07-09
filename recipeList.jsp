@@ -174,26 +174,7 @@
 </head>
 <body>
 
-<div id="header">
-	<div id="header_menu" class="header_common">
-		<a href="#" class="button"><img src="#" id="logo"></a>
-		<a href="#" id="main" class="button">레시피</a>	
-		<a href="#" id="tip" class="button">꿀팁</a>
-		<a href="#" id="comm" class="button">메뉴 추천</a>
-		<a href="#" id="notice" class="button">공지사항</a>
-	</div>
-	<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
-	<div id="header_user" class="header_common">
-		<!-- 로그인 x 상태 -->
-		<div id="header_user_noUser">
-			<a href="#" id="user_login" class="button_user">로그인</a>&nbsp;&nbsp;&nbsp;
-			<a href="#" id="user_join" class="button_user">회원가입</a>
-		</div>
-		<!-- 로그인 o 상태 -->
-		<!-- 클릭시 아래에 팝업 만들어지게 해야됨 -->
-		<!-- <div id="user_login_complete" class="button"><button id="mypage_list">▼</button><label for="mypage_list">신짱구님, 환영합니다.&nbsp;</label></div> -->
-	</div>
-</div>
+<jsp:include page="../common/header.jsp"/>
 
 <div id="gotop-button"><a href=""><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 
@@ -333,5 +314,6 @@
 		</div>
 	</div>
 </div>
+<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
