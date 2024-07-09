@@ -1,3 +1,0 @@
-	int joinMember(Member m);
-
-	int checkId(String id);

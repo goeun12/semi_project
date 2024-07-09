@@ -1,0 +1,7 @@
+	int joinMember(Member m);
+
+	int checkId(String id);
+
+	int updateMember(Member m);
+
+	int deleteMember(String id);
