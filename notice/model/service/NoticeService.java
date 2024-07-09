@@ -21,4 +21,9 @@ public interface NoticeService {
 
 	int noticeDelete(int boardNo);
 
+	ArrayList<Notice> noticeSearchList(PageInfo pi, String key);
+
+	Notice noticeCommon();
+	
+
 }
