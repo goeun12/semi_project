@@ -45,7 +45,8 @@
 	
 #notice_table{background:white;
 				width: 70%;
-				margin-left:15%;		
+				margin-left:15%;
+	      			margin-top:40px;
 				padding: 20px;			
 				border: 1px solid lightgray; 	border-radius:10px;
 				font-weight:100;}
