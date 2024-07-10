@@ -117,7 +117,7 @@
 							border: none;
 							color:black;}
 .page-link:hover{color:black; font-size:large; text-decoration:underline;}
-
+.preview{width:250px;height:250px;}
 
 
 
@@ -134,7 +134,7 @@
 	</div>
 	
 	<!-- 1번째 칸 -->
-<form action="${contextPath }/insertRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
+<form action="${contextPath }/insertRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data" onsubmit="return doNot();">	
 	<div>
 		<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
 	
@@ -209,7 +209,7 @@
 				<tr>
 					<td class="td-jus-con previewImg">
 						<div class="slim-border mb-3 text-center td-div-img">
-							<input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file" onchange="readURL(this);">
+							<input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file">
 							<img class="preview" />
 						</div>
 					</td>
@@ -239,12 +239,20 @@
 			}
 			const imgPre = targetInput.nextElementSibling;
 			console.log(targetInput.value);
-			
-			
-		})
+			console.log(targetInput.files);
+			var fReader = new FileReader();
+			fReader.onload = function(event){
+				imgPre.src = event.target.result;
+				imgPre.style.width = '250px';
+				impPre.style.height = '250px';
+			};
+			fReader.readAsDataURL(targetInput.files[0]);
+		});
+		
+		
 	}
 	
-		function readURL(input){
+		/* function readURL(input){
 			var imgArr = document.getElementsByClassName("preview");
 				if(input.files[0]){
 					var trNo = document.getElementById("table_body").childElementCount;
@@ -260,7 +268,7 @@
 					imgArr[0].src = "";
 					}
 				}		
-		}
+		} */
 		function previewIMG(This){
 			var firImg = document.getElementById("firImg");
 			if(This.files[0]){
@@ -298,13 +306,31 @@
 				textvalue += i.value+'§§●';
 			}
 			document.getElementById("inputContent").value = textvalue;
-			console.log(document.getElementById("inputContent").value);
+			
+		}
+		
+		function doNot(){
+			const inputs = document.getElementsByName("file");
+			let count = 0;
+			for(const f of inputs){
+				console.log(f.value);
+				if(f.value == ""){
+					count = count + 1;
+				}
+			}
+			if(count>0){ // count>0 -> 이미지 빈칸이 있다
+				alert("이미지를 모두 넣어주세요");
+				return false;
+			} else{
+				return true;
+			}
+			
 		}
 		
 		function add_tr(table_body){
 			let tbody = document.getElementById("table_body");
 			const newTr = document.createElement('tr');
-			newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file" onchange="readURL(this);"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+			newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
 			tbody.append(newTr);
 		}
 		
