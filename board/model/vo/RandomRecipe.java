@@ -17,7 +17,7 @@ public class RandomRecipe {
 	private int boardNo;
 	private int title;
 	private int recipeNo;
-	private int imgNo;
+	private int imageNo;
 	private String imageURL;
 	private String imageName;
 	private int titleImg;
