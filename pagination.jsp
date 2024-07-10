@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#pagination{width: 12%
+#pagination{width: 12%;
 			margin-left:44%;
 			font-size:15px;
 			text-align:center;}
