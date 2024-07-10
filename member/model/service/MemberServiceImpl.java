@@ -49,4 +49,25 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Board> selectBoardList(PageInfo pi, String id) {
 		return mDAO.selectBoardList(sqlSession, pi, id);
 	}
+	
+	@Override
+	public int insertMember(Member m) {
+		return mDAO.insertMember(sqlSession, m);
+	}
+	
+	@Override
+	public int updateMember(Member m) {
+		return mDAO.updateMember(sqlSession, m);
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		return mDAO.deleteMember(sqlSession, id);
+	}
+
+	@Override
+	public int checkId(String id) {
+		return mDAO.checkId(sqlSession, id);
+	}
+
 }

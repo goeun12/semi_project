@@ -39,5 +39,21 @@ public class MemberDAO {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectBoardList", id, rowBounds);
 	}
+	
+	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateMember", m);
+	}
+
+	public int deleteMember(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.update("memberMapper.deleteMember", id);
+	}
+
+	public int checkId(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.checkId", id);
+	}
 
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.google.gson.Gson;
 import com.project.aloneBab.board.model.vo.Board;
+import com.project.aloneBab.common.AllException;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.common.Pagination;
 import com.project.aloneBab.member.model.exception.MemberException;
@@ -49,13 +50,17 @@ public class MemberController {
 						HttpSession session) {
 		Member loginUser = mService.login(m);
 		
-		if(bcrypt.matches(m.getPwd(), loginUser.getPwd())) {
-			session.setAttribute("loginUser", loginUser);
-			
-			if(change.equals("Y")) {
-				return "redirect:edit.user";	// 회원 정보 수정 페이지로 가기
+		if(loginUser != null) {
+			if(bcrypt.matches(m.getPwd(), loginUser.getPwd())) {
+				session.setAttribute("loginUser", loginUser);
+				
+				if(change.equals("Y")) {
+					return "redirect:edit.user";	// 회원 정보 수정 페이지로 가기
+				} else {
+					return "redirect:recipe.re";	// 레시피 리스트로 가기
+				}
 			} else {
-				return "redirect:recipe.re";	// 레시피 리스트로 가기
+				throw new MemberException("로그인에 실패하였습니다.");
 			}
 		} else {
 			throw new MemberException("로그인에 실패하였습니다.");
@@ -68,6 +73,67 @@ public class MemberController {
 		session.setComplete();
 		
 		return "redirect:loginView.user";
+	}
+
+	// 회원가입 화면으로 이동
+	@RequestMapping("joinView.user")
+	public String joinView() {
+		
+		return "join_account";
+	}
+	
+	// 아이디 중복확인
+	@RequestMapping("checkId.user")
+	@ResponseBody
+	public int checkId(@RequestParam("id") String id) {
+		return mService.checkId(id);
+	}
+	
+		
+	// 회원가입 과정
+	@RequestMapping("joinMember.user")
+	public String joinMember(@ModelAttribute Member m) {
+		m.setPwd(bcrypt.encode(m.getPwd()));
+		int result = mService.insertMember(m);
+		if(result > 0) {
+			return "redirect:loginView.user";
+		}else {
+			throw new AllException("회원가입에 실패하였습니다.");
+		}
+	}
+	
+	// 회원정보 수정 화면으로 이동
+	@RequestMapping("edit.user")
+	public String editView() {
+		return "modify_account";
+	}
+
+	// 회원정보 수정 기능
+	@RequestMapping("/modify.user")
+	public String updateMember(@ModelAttribute Member m, HttpSession session, Model model) {
+		if(m.getPwd().equals("")) {
+			m.setPwd(((Member)session.getAttribute("loginUser")).getPwd());
+		} else {
+			m.setPwd(bcrypt.encode(m.getPwd()));
+		}
+		int result = mService.updateMember(m);
+		if(result > 0) {
+			model.addAttribute("loginUser", mService.login(m));
+			return "../home";
+		} else {
+			throw new AllException("회원정보 수정에 실패하였습니다.");
+		}
+	}
+
+	// 탈퇴 기능
+	@RequestMapping("delete.user")
+	public String deleteMember(@RequestParam("id") String id) {
+		int result = mService.deleteMember(id);
+		if(result > 0) {
+			return "redirect:logout.user";
+		} else {
+			throw new AllException("회원 탈퇴에 실패하였습니다.");
+		}
 	}
 	
 	// 아이디/비밀번호 찾기 화면으로 이동
@@ -166,20 +232,4 @@ public class MemberController {
 		
 		
 	}
-	
-	
-	// 회원가입 화면으로 이동
-	@RequestMapping("joinView.user")
-	public String joinView() {
-		
-		return "join_account";
-	}
-	
-	// 회원정보 수정 화면으로 이동
-	@RequestMapping("edit.user")
-	public String editView() {
-		
-		return "modify_account";
-	}
-	
 }
