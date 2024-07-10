@@ -57,12 +57,13 @@
 		where board_no = #{boardNo}		
 	</update>
 	
+
 	<select id="noticeSearchList" resultType="Notice">
 		select * 
 		from board
 		where board_genre = '공지'
 			and status = 'Y'	
-			and title = '%' || #{key} || '%'
+			and title like '%' || #{key} || '%'
 		order by board_no desc
 	</select>
 	
@@ -71,9 +72,10 @@
 	<select id = "noticeCommon" resultType="Notice">	
 		select * 
 		from board
-		where board_genre = '공지'
-			and status = 'Y'	
-			and board_no = (select max(board_no) from board)
+		where status = 'Y'	
+				and board_no = (select max(board_no) 
+							from board 
+							where board_genre = '공지')
 	
 	</select>
 	
