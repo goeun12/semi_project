@@ -107,7 +107,7 @@
 						$.ajax({
 							url: '${contextPath}/noticeDelete.no',
 							data : {boardNo : '${no.boardNo}'},
-							succesㄴ : data => {
+							success : data => {
 								if(data > 0){
 									alert("게시글 삭제를 성공하였습니다.");
 									location.href="${contextPath}/notice.no";
