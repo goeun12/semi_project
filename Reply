@@ -12,9 +12,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Reply {
+	private int refBoardId;
 	private int replyId;
 	private String replyContent;
-	private int refBoardId;
 	private String replyWriter;
 	private String nickName;
 	private Date replyCreateDate;
