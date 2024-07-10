@@ -8,13 +8,18 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-public class Image {
-	private int imageNo;
+public class RandomRecipe {
+	private int boardNo;
+	private int title;
 	private int recipeNo;
+	private int imageNo;
 	private String imageURL;
 	private String imageName;
 	private int titleImg;
+	
+	
+	
 }
