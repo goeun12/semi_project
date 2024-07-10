@@ -63,4 +63,8 @@ public class NoticeDAO {
 		return sqlSession.selectOne("noticeMapper.noticeCommon");
 	}
 
+	public int countUpdate(SqlSessionTemplate sqlSession, Notice no) {
+
+		return sqlSession.update("noticeMapper.countUpdate", no);
+	}
 }
