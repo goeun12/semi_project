@@ -17,27 +17,22 @@
     		<p>공지사항 게시판</p>
   		</div>
   		
-		<form action="noticeSearch">
-			<div class="input-group mb-3" id="search_notice">
+		<form action="noticeSearch.no">
+			<div class="input-group mb-3" id="search_notice" style="margin-top:50px;">
 	 			<input type="text" class="form-control" name="key" value="${key}" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">	
 	 			<button class="btn btn-outline-secondary" id="search_button">검색</button>
 			</div>
 		</form>	
-		
-			<c:if test="${loginUser.isAdmin == 'Y' }">
-				<div id="write_div">
-					<a class="btn btn-primary me-md-2" href="${ contextPath }/noticeWriteView.no" role="button" id ="notice_write_button">글쓰기</a>
-				</div>	
-			</c:if>
+
 			
-		<div id="notice_table_div">	
+		<div id="notice_table_div" >	
 			<div id="notice_table">
-				<c:if test="${listCount == 0)}">
+				<c:if test="${listCount == 0}">
 					<p>해당 키워드에 대한 검색 결과가 없습니다.<p>
 					<p>다시 시도해 주세요.<p>				
 				</c:if>
 				
-				<c:if test="${listCount > 0)}">				
+				<c:if test="${listCount > 0}">				
 					<table class="table table-hover">
 					  <thead>
 					    <tr>
@@ -69,8 +64,8 @@
 			<jsp:include page="../common/pagination.jsp"></jsp:include>
 						
 		</div>
-		<div>
-			<a class="btn btn-primary me-md-2" href="${ contextPath }/notice.no" role="button" id="go_list_button">목록</a>		
+		<div class="mx-auto" style="width: 80px;">
+			<a class="btn btn-primary me-md-2" href="${contextPath}/notice.no" role="button" id="go_list_button">목록</a>		
 		</div>	
 		
 		<jsp:include page="../common/topButton.jsp"></jsp:include>	
@@ -82,19 +77,15 @@
 	<script>
 		window.onload = () => {
 			const searchButton = document.getElementById("search_button");
-			const writeButton = document.getElementById("notice_write_button");
-			
-			const buttons = [searchButton, writeButton];
-			for(button of buttons){
-				button.addEventListener('mouseover',function(){
-					this.style.background = "#a5250a";
-					this.style.fontWeight = "600";
-				})
-				button.addEventListener('mouseout',function(){
-					this.style.fontWeight = "400";
-					this.style.background ="#f24822";
-				})
-			}
+
+			searchButton.addEventListener('mouseover',function(){
+				this.style.background = "#a5250a";
+				this.style.fontWeight = "600";
+			});
+			searchButton.addEventListener('mouseout',function(){
+				this.style.fontWeight = "400";
+				this.style.background ="#f24822";
+			});			
 			
 			
 			const tds = document.getElementsByTagName("td")
@@ -103,12 +94,12 @@
 					const tr = this.parentElement
 					tr.style.cursor="pointer"
 					
-				})
+				});
 				td.addEventListener('mouseout',function(){
 					const tr = this.parentElement
 					tr.style.cursor="default"
 					
-				})
+				});
 			}
 			
 			const inputs = document.getElementsByTagName("input")
