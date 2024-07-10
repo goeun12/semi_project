@@ -72,13 +72,12 @@
 	<select id = "noticeCommon" resultType="Notice">	
 		select * 
 		from board
-		where status = 'Y'	
-				and board_no = (select max(board_no) 
-							from board 
-							where board_genre = '공지')
+		where board_no = (select max(board_no) 
+				from board 
+				where board_genre = '공지'
+					and status = 'Y')
 	
 	</select>
-	
 	
 	
 	
