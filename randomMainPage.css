@@ -34,7 +34,7 @@
 			margin-bottom:55px;}
 
 	
-#nation>label{width:16%; margin-right:8%;
+#nation>label{width:14%; margin-right:5%;
 				height:60px;
 				padding-top:10px;
 				border:2px solid lightgray;
@@ -58,5 +58,36 @@
 				text-decoration:none; 
 				font-size:55px; font-weight:500;
 				line-height: 65px;}
+
+#img{width:40%; min-width: 350px; 
+	height:500px;
+	margin-top:50px;
+	text-align: center;
+}
+
+#img_title{ font-size:20px; font-weight:700; 
+	color:gray; text-align: center; font-size:20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
