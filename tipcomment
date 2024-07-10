@@ -66,9 +66,11 @@
 				    
 				    	<c:forEach items="${ list }" var="r">
 							<tr>
-								<td>${ r.nickName }</td>
+								<td>${ r.replyNo }</td>
+								<td>${ r.replyWriter }</td>
 								<td>${ r.replyContent }</td>
-								<td>${ r.replyModifyDate }</td>
+								<td>${ r.replyCreateDate }</td>
+								<td>${ r.replyStatus }</td>
 								<td>
 									<input type="hidden" value="${r.replyId }" name="replyId">
 									<c:if test="${ r.replyWriter eq loginUser.id }">
@@ -116,34 +118,8 @@
 					dataType: 'json', 
 					success: data => {
 						console.log(data);
-						const tbody = document.querySelector('tbody');
-						tbody.innerHTML = '';
-						for(const r of data){
-							const tr = document.createElement('tr')
-							
-							const writerTd = document.createElement('td');
-							writerTd.innerText = r.nameNick;
-							const contentTd = document.createElement('td');
-							contentTd.innerText = r.replyContent;
-							const dateTd = document.createElement('td');
-							dateTd.innerText = r.replyModifyDate;
-							
-							const iconTd = document.createElement('td');
-							if(r.replyWriter == '$(loginUser.id)'){
-								iconTd.innerHTML = '<input type="hidden" value="' + r.replyId + '" name="replyId"><span class="updel"><svg ${ r.replyContent } + '" id="replyContent">';
-							}
-							
-							tr.append(writerTd);
-							tr.append(contentTd);
-							tr.append(dateTd);
-							tr.append(iconTd);
-							
-							tbody.append(tr);
-						}					
 						
-						document.getElementById('replyContent').value = '';
 					},
-					error: data => console.log(data)
 				});
 			});
 		}
