@@ -117,7 +117,7 @@
 							border: none;
 							color:black;}
 .page-link:hover{color:black; font-size:large; text-decoration:underline;}
-
+.preview{width:250px;height:250px;}
 
 
 
@@ -140,11 +140,11 @@
 	
 			<table class="tbround bgcw" style="width:100%;">
 				<tr>
-					<td class="td-rightline" colspan='2' rowspan='3' style="width:28%">
+					<td class="td-rightline" colspan='2' rowspan='3' style="width:26%">
 						<input class="form-control form-control-lg td-input" id="formFileLg" type="file" name="file" accept="image/*" onchange="previewIMG(this);">
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
-								<img src="폴더 그 긴거 뭐 아무튼/${ i.imageName }" id="firImg" width="350px" height="350px">
+								<img src="${contextPath}/resources/image/${ i.imageName }" id="firImg" width="350px" height="350px">
 							</c:if>
 						</c:forEach>
 					</td>
@@ -245,12 +245,7 @@
 		</div>
 	
 	
-	<!-- 3번째 칸 -->
-	<!-- 
-		 단계 추가를 눌렀을 때 칸이 늘어나지 않는다면 253줄 id="table_body" 첫 자식을 tr로 인식하지 못하는 것임
-		 function add_tr() 에서 tbody.firstElementChild 를 자식을 찾게 바꿔줘야 함
-	 -->
-	 
+	
 		<div class="row text-center div-min-width" style="margin-left:auto; margin-right:auto;width:70%;">
 			<table class="tbround bgcw">
 				<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
@@ -261,12 +256,12 @@
 									<td class="td-jus-con previewImg">
 										<div class="slim-border mb-3 text-center td-div-img">
 											<input class="form-control form-control-lg" type="file" accept="image/*" name="file">
-											<img src="폴더 그 긴거/${ i.imageName }" class="preview"/>
+											<img src="${contextPath}/resources/image/${ i.imageName }" class="preview"/>
 										</div>
 									</td>
 									<td>
 										<div class="slim-border mb-3 text-center div-textarea pad-top50">
-											<textarea class="making-num " placeholder="1. ㅇㅇㅇ">${ contents[status.index] }</textarea>
+											<textarea class="making-num " placeholder="1. ㅇㅇㅇ">${ contents[status.index - 1] }</textarea>
 										</div>
 									</td>
 								</tr>
