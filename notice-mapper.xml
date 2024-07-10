@@ -79,7 +79,11 @@
 	
 	</select>
 	
-	
+	<update id="countUpdate">
+		update board 
+		set board_count = #{boardCount}
+		where board_no = #{boardNo}		
+	</update>
 	
 	
 	
