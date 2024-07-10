@@ -17,19 +17,24 @@
     		<p>공지사항 게시판</p>
   		</div>
   		
-		<form action="noticeSearch">
+  		<jsp:include page="noticeCommon.jsp"/>
+  		
+		<form action="noticeSearch.no">
 			<div class="input-group mb-3" id="search_notice">
-	 			<input type="text" class="form-control" name="Key" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">
+	 			<input type="text" class="form-control" name="key" placeholder="공지사항 검색" aria-label="Recipient's username" aria-describedby="search_button">
 	 			<button class="btn btn-outline-secondary" id="search_button">검색</button>
 			</div>
 		</form>	
 		
-		<c:if test="${loginUser.isAdmin == 'Y' }">
+		
+		<c:if test="${loginUser.isAdmin == 'Y'}">
 			<div id="write_div">
 				<a class="btn btn-primary me-md-2" href="${ contextPath }/noticeWriteView.no" role="button" id ="notice_write_button">글쓰기</a>
 			</div>	
 		</c:if>
 		
+			
+			
 		<div id="notice_table_div">	
 			<div id="notice_table">
 				<table class="table table-hover">
@@ -74,16 +79,26 @@
 			const searchButton = document.getElementById("search_button");
 			const writeButton = document.getElementById("notice_write_button");
 			
-			const buttons = [searchButton, writeButton];
-			for(button of buttons){
-				button.addEventListener('mouseover',function(){
+
+			searchButton.addEventListener('mouseover',function(){
+				this.style.background = "#a5250a";
+				this.style.fontWeight = "600";
+			});
+			searchButton.addEventListener('mouseout',function(){
+				this.style.fontWeight = "400";
+				this.style.background ="#f24822";
+			});
+
+			
+			if('${loginUser.isAdmin}' == "Y"){			
+				writeButton.addEventListener('mouseover',function(){
 					this.style.background = "#a5250a";
 					this.style.fontWeight = "600";
-				})
-				button.addEventListener('mouseout',function(){
+				});
+				writeButton.addEventListener('mouseout',function(){
 					this.style.fontWeight = "400";
 					this.style.background ="#f24822";
-				})
+				});
 			}
 			
 			
