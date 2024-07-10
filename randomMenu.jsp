@@ -18,39 +18,43 @@
     		<p>오늘의 혼밥심</p>
   		</div>
 
-		<form action="randomChoice.re" >
+		<form action="randomChoice.re" method="get">
 			<div id = "choice">					
 				<p id="info">선택한 카테고리에 맞는 혼밥 메뉴 레시피를 추천해드립니다.</p>
 				
 				<div id = "nation">
-					<input type="checkbox" name="nation" value="ko" class="btn-check" id="nation1" autocomplete="off">
+					<input type="checkbox" name="nation" value="kr" class="btn-check" id="nation1" autocomplete="off">
 					<label class="btn" for="nation1">한식</label>
 					
-					<input type="checkbox" name="nation" value="ch" class="btn-check" id="nation2" autocomplete="off">
+					<input type="checkbox" name="nation" value="cn" class="btn-check" id="nation2" autocomplete="off">
 					<label class="btn" for="nation2">중식</label>
 					
-					<input type="checkbox" name="nation" value="ja" class="btn-check" id="nation3" autocomplete="off">
+					<input type="checkbox" name="nation" value="jp" class="btn-check" id="nation3" autocomplete="off">
 					<label class="btn" for="nation3">일식</label>
 					
-					<input type="checkbox" name="nation" value="west" class="btn-check" id="nation4" autocomplete="off">
+					<input type="checkbox" name="nation" value="us" class="btn-check" id="nation4" autocomplete="off">
 					<label class="btn" for="nation4">양식</label>
+					
+					<input type="checkbox" name="nation" value="no" class="btn-check" id="nation5" autocomplete="off">
+					<label class="btn" for="nation5">분식</label>
 				</div>
 				<div id = "difficulty">
 					<input type="checkbox" name="difficulty" value="easy" class="btn-check" id="difficulty1" autocomplete="off">
 					<label class="btn" for="difficulty1">손쉬움</label>
 					
-					<input type="checkbox" name="difficulty" value="nomal" class="btn-check" id="difficulty2" autocomplete="off">
+					<input type="checkbox" name="difficulty" value="mid" class="btn-check" id="difficulty2" autocomplete="off">
 					<label class="btn" for="difficulty2">평범함</label>
 					
 					<input type="checkbox" name="difficulty" value="hard" class="btn-check" id="difficulty3" autocomplete="off">
 					<label class="btn" for="difficulty3">어려움</label>				
 				</div>			
 			</div>
-			<div id="img" style="display:hidden">
-				<img alt="" src=""/>
+			<div class="mx-auto" id="img" style="display: none">
+				<p id="img_title">${randomRecipe.title}</p>
+				<a href="${contextPath}/randomContent.re"><img alt="" src="${contextPath}/resources/image/${randomRecipe.imageName}"/></a>			
 			</div>
-			<div  class="mx-auto" style="width:160px;">
-				<a class="btn btn-primary me-md-2" href="noticeWritePage.html" role="button" id ="submit_button">?</a>
+			<div class="mx-auto" style="width:160px;">
+				<button class="btn btn-primary me-md-2" role="submit" id ="submit_button">?</button>
 			</div>
 		</form>	
 		
@@ -84,6 +88,39 @@
 			submitButton.addEventListener('mouseout',function(){
 				this.style.fontSize = "55px";
 			})
+			
+			submitButton.addEventListener('click', ()=>{
+				const img = document.getElementbyId("img");
+				img.style.display = 'block';
+			})
+			
+			
+			
+			
+			
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 				
 		}
