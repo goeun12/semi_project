@@ -326,7 +326,7 @@ public class BoardController {
 		JSONArray array = new JSONArray();
 		for(Reply reply : list) {
 			JSONObject json = new JSONObject(); // {key:value}
-			json.put("replyId", reply.getReplyId());
+			json.put("replyId", reply.getReplyNo());
 			json.put("replyContent", reply.getReplyContent());
 			json.put("refBoardId", reply.getRefBoardId());
 			json.put("replyWriter", reply.getReplyWriter());
