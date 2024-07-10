@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	<select id="selectMyBoard" resultType="Board">
+		select * from board where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectRecipe" resultType="Recipe">
+		select * from recipe where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectImage" resultType="Image">
+		select * from image where recipe_no = #{recipeNo}
+	</select>
+	
+	<select id="randomChoice" resultType="RandomRecipe">
+		select board.board_no, board.title, image.img_no, recipe.recipe_no, image.image_URL, image.image_name
+		from board
+			join recipe using(board_no)
+			join image on(recipe.recipe_no=image.recipe_no)	
+		where board.board_genre = '레시피'
+			and board.status = 'Y'
+			and image.title_img = 0
+			and recipe.nation in 
+			<foreach item="item" collection="nation" open="(" separator="," close=")">
+			#{item}
+			</foreach>
+			and recipe.difficulty in
+			<foreach item="item" collection="difficulty" open="(" separator="," close=")">
+			#{item}
+			</foreach>	
+	</select>
+</mapper>
