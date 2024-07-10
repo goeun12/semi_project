@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link href="resources/css/noticeContentPage.css" rel="stylesheet" type="text/css"/>
@@ -18,7 +18,6 @@
     		<p>공지사항 게시판</p>
   		</div>
   		
-
 		<c:if test="${loginUser.isAdmin == 'Y' }">
 			<div id ="notice_up_del" >
 				<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${no.boardNo}" role="button"  id ="notice_update_button">수정</a>
@@ -72,14 +71,13 @@
 		</div>
 
 		<div class="mx-auto" style="width: 80px;">
-			<c:if test="${ empty myPage }">
-				<a class="btn btn-primary me-md-2" href="${ contextPath }/notice.no" role="button" id="go_list_button">목록</a>
-			</c:if>
-			<c:if test="${ !empty myPage }">
-				<a class="btn btn-primary me-md-2" href="${ contextPath }/write.user" role="button" id="go_list_button">목록</a>
-			</c:if>
-		</div>
-
+        	 <c:if test="${ empty myPage }">
+            	<a class="btn btn-primary me-md-2" href="${ contextPath }/notice.no" role="button" id="go_list_button">목록</a>
+         	</c:if>
+         	<c:if test="${ !empty myPage }">
+            	<a class="btn btn-primary me-md-2" href="${ contextPath }/write.user" role="button" id="go_list_button">목록</a>
+         	</c:if>
+      	</div>
 		<jsp:include page="../common/topButton.jsp"></jsp:include>	
 	</div>
 	<jsp:include page="../common/footer.jsp" />
@@ -88,7 +86,6 @@
 		
 	<script>
 		window.onload = () => {
-			console.log('${myPage}');
 			const goListButton = document.getElementById("go_list_button");
 			const updateButton = document.getElementById("notice_update_button");
 			const deleteButton = document.getElementById("notice_delete_button");
@@ -103,27 +100,30 @@
 			});
 			
 			
-			deleteButton.addEventListener('click',function(){
-				const del = window.confirm("정말 게시글을 삭제하시겠습니까?")
-				if(del){
-					$.ajax({
-						url: '${contextPath}/noticeDelete.no',
-						data : {boardNo : '${no.boardNo}'},
-						succesㄴ : data => {
-							if(data > 0){
-								alert("게시글 삭제를 성공하였습니다.");
-								location.href="${contextPath}/notice.no";
-							}							
-						},
-						error:data => {
-							throw new AllException("공지사항 게시글을 삭제하지 못했습니다");
-						}		
-					});
-										
-				}else{
-					alert("게시글 삭제를 취소하였습니다.");
-				}
-			});
+			if('${loginUser.isAdmin}' == "Y"){	
+				deleteButton.addEventListener('click',function(){
+					const del = window.confirm("정말 게시글을 삭제하시겠습니까?")
+					if(del){
+						$.ajax({
+							url: '${contextPath}/noticeDelete.no',
+							data : {boardNo : '${no.boardNo}'},
+							succesㄴ : data => {
+								if(data > 0){
+									alert("게시글 삭제를 성공하였습니다.");
+									location.href="${contextPath}/notice.no";
+								}							
+							},
+							error:data => {
+								throw new AllException("공지사항 게시글을 삭제하지 못했습니다");
+							}		
+						});
+											
+					}else{
+						alert("게시글 삭제를 취소하였습니다.");
+					}
+				});
+			}
+			
 			
 			const tds = document.getElementsByTagName("td")
 			for(td of tds){
@@ -145,6 +145,30 @@
 					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo;					
 				});				
 			}
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 	</script>
 </body>
