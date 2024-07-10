@@ -260,7 +260,7 @@
 								<tr>
 									<td class="td-jus-con previewImg">
 										<div class="slim-border mb-3 text-center td-div-img">
-											<input class="form-control form-control-lg" type="file" accept="image/*" name="file" onchange="readURL(this);">
+											<input class="form-control form-control-lg" type="file" accept="image/*" name="file">
 											<img src="폴더 그 긴거/${ i.imageName }" class="preview"/>
 										</div>
 									</td>
@@ -287,24 +287,36 @@
 		<input type="hidden" name="content" id="inputContent"/>
 	
 		<script>
-			function readURL(input){
-				var imgArr = document.getElementsByClassName("preview");
-					if(input.files[0]){
-						var trNo = document.getElementById("table_body").childElementCount;
-						console.log(trNo);
-						if(imgArr.length == trNo){
-							var reader = new FileReader();
-							reader.onload = function(e){
-								imgArr[trNo-1].src = e.target.result;
-								imgArr[trNo-1].style.width = '250px';
-								imgArr[trNo-1].style.height = '250px';
-							};
-						reader.readAsDataURL(input.files[0]);
-						} else{
-						imgArr[0].src = "";
-						}
-					}		
+			window.onload=()=>{
+				const tbody = document.getElementById("table_body");
+				tbody.addEventListener('click',e=>{
+					
+					const eventTarget = e.target;
+					console.log(eventTarget);
+					
+					const targetTagName = eventTarget.tagName.toLowerCase();
+					let targetSVG = null;
+					switch(targetTagName){
+					case 'tr' : targetInput = eventTarget.children[0].children[0].children[0];break;
+					case 'td' : targetInput = eventTarget.parentElement.children[0].children[0].children[0];break;
+					case 'div' : targetInput = eventTarget.parentElement.parentElement.children[0].children[0].children[0];break;
+					case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[0].children[0].children[0];break;
+					}
+					const imgPre = targetInput.nextElementSibling;
+					console.log(targetInput.value);
+					console.log(targetInput.files);
+					var fReader = new FileReader();
+					fReader.onload = function(event){
+						imgPre.src = event.target.result;
+						imgPre.style.width = '250px';
+						impPre.style.height = '250px';
+					};
+					fReader.readAsDataURL(targetInput.files[0]);
+				});
+				
+				
 			}
+			
 			function previewIMG(This){
 				var firImg = document.getElementById("firImg");
 				if(This.files[0]){
@@ -331,14 +343,9 @@
 			
 			function add_tr(table_body){
 				let tbody = document.getElementById("table_body");
-				let tr = tbody.firstElementChild;
-				let tr_clone = tr.cloneNode(true);
-				tr_clone.children[0].children[0].children[1].src = null;
-				tr_clone.children[0].children[0].children[0].value = null;
-				tr_clone.children[1].children[0].children[0].value = null;
-				
-				tbody.append(tr_clone);
-				clean_first_tr(tbody.firstElementChild);
+				const newTr = document.createElement('tr');
+				newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+				tbody.append(newTr);
 			}
 			
 			function clean_first_tr(firstTr){
