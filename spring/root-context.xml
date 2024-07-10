@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+   	<!-- DataSource등록 -->
+   	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+    	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+      	<property name="url" value="jdbc:oracle:thin:@112.221.156.36:9999:orcl"/>
+      	<property name="username" value="HONBAPSIM"/>
+      	<property name="password" value="HONBAPSIM"/>
+   	</bean>  
+	
+	<!-- sqlSession 등록 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+																			<!-- classpath: -> src/main/resources를 뜻함 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"/>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000"/>
+	</bean>	
+</beans>
