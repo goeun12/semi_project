@@ -224,7 +224,7 @@
 	<script>
 	window.onload=()=>{
 		const tbody = document.getElementById("table_body");
-		tbody.addEventListener('click',e=>{
+		tbody.addEventListener('mouseout',e=>{
 			
 			const eventTarget = e.target;
 			console.log(eventTarget);
