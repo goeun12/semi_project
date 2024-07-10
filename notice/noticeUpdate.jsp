@@ -35,7 +35,7 @@
 			</div>
 				
 			<div class="mx-auto" style="width:80px;">
-				<input type="hidden" name="boardNo" value="${boardNo}">
+				<input type="hidden" name="boardNo" value="${no.boardNo}">
 				<button type="submit" class="btn btn-primary me-md-2" id ="submit_button">등록</button>
 			</div>
 		</form>	
