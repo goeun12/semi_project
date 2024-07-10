@@ -138,9 +138,12 @@ public class NoticeController {
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("key", key);
 		
-		if(listCount > 0) {
-			PageInfo pi = PageInfo.getPagination(currentPage, listCount);
-			ArrayList<Notice> noticeSearchList = nService.noticeSearchList(pi, key);			
+		PageInfo pi = PageInfo.getPagination(currentPage, listCount);
+		ArrayList<Notice> noticeSearchList = nService.noticeSearchList(pi, key);
+		System.out.println(noticeSearchList);
+		
+		if(listCount > 0) {	
+			model.addAttribute("page", currentPage);
 			model.addAttribute("pi", pi);
 			model.addAttribute("noticeSearchList", noticeSearchList);
 		
@@ -150,10 +153,10 @@ public class NoticeController {
 			model.addAttribute("msg", "검색 결과가 없습니다.");
 			
 			return "noticeSearchList";
+		
 		}else{
 			throw new AllException("검색 결과를 조회하지 못했습니다.");
-		}
-		
+		}		
 	}
 	
 	@RequestMapping(value="noticeCommon.no", produces="application/json; charset=UTF-8")
