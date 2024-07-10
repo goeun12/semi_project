@@ -145,7 +145,7 @@
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
 								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
-									<img src="${ contextPath }/resources/image/${ i.imageName }">
+									<img src="${ contextPath }/resources/image/${ i.imageName }" width="400px" height="400px">
 								</td>
 								<td class="td-bottomline" colspan='3' height="100px">
 									<div>${ b.title }</div>
@@ -158,11 +158,11 @@
 							<div class="recipe-option">	
 								<select id="sel-nation" class="form-select form-select-sm" disabled>
 									<c:choose>
-										<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>#한식</option></c:when>
-										<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>#중식</option></c:when>
-										<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>#양식</option></c:when>
-										<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>#일식</option></c:when>
-										<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>#분식</option></c:when>
+										<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>한식</option></c:when>
+										<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>중식</option></c:when>
+										<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>양식</option></c:when>
+										<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>일식</option></c:when>
+										<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>분식</option></c:when>
 									</c:choose>
 								</select>	
 							</div>
@@ -345,6 +345,23 @@
 		</div>
 	</div>	
 	
+	<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
+		<div class="modal-dialog" role="document">
+    		<div class="modal-content rounded-3 shadow">
+      			<div class="modal-body p-4 text-center">
+        			<h3 class="mb-0">정말 수정하시겠습니까?</h3>
+        			<p class="mb-0">수정 시 기존 이미지들은 모두 삭제됩니다.</p>
+      			</div>
+      			<div class="modal-footer flex-nowrap p-0">
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="edit">
+        				<strong>네</strong>
+        			</button>
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
 	<div class="modal fade" tabindex="-1" role="dialog" id="modalChoice">
 		<div class="modal-dialog" role="document">
     		<div class="modal-content rounded-3 shadow">
@@ -373,7 +390,7 @@
 	
 	<script>
 		window.onload=()=>{
-			const divs = document.getElementsByClassName('card');
+			/* const divs = document.getElementsByClassName('card');
 			for(const div of divs){
 				div.addEventListener('click',function(){
 					const bNo = this.querySelector('.bNo').value; 
@@ -381,16 +398,29 @@
 					console.log(bNo);
 					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo;
 				});
-			}
+			} */
 			
-			const edit = document.getElementById('recipe-up-btn');
 			const form = document.getElementById('updelForm');
+			/* const edit = document.getElementById('recipe-up-btn');
 			if(edit != null){
 				edit.addEventListener('click',()=>{
 					form.action = '${contextPath}/updateRecipe.re';
 					form.submit();
 				});
+			} */
+			
+			if(document.getElementById('recipe-up-btn') != null){
+				document.getElementById('recipe-up-btn').addEventListener('click',() => {
+					$('#modalEdit').modal('show');
+				});
 			}
+			
+			const goEdit = document.getElementById('edit');
+			goEdit.addEventListener('click',()=>{
+				form.action = '${contextPath}/updateRecipe.re';
+				form.submit();
+			});
+			
 			
 			if(document.getElementById('recipe-del-btn') != null){
 				document.getElementById('recipe-del-btn').addEventListener('click',() => {
