@@ -16,15 +16,15 @@ import lombok.ToString;
 @ToString
 public class Notice {
 	
-	public int boardNo;
-	public String boardGenre;
-	public String writer;
-	public String title;
-	public String content;
-	public Date createDate;
-	public Date updateDate;
-	public char status;
-	public int count;
+	private int boardNo;
+	private String boardGenre;
+	private String writer;
+	private String title;
+	private String content;
+	private Date createDate;
+	private Date updateDate;
+	private char status;
+	private int count;
 
 	
 }
