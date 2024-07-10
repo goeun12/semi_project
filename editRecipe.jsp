@@ -287,7 +287,6 @@
 				tbody.addEventListener('mouseout',e=>{
 					
 					const eventTarget = e.target;
-					console.log(eventTarget);
 					
 					const targetTagName = eventTarget.tagName.toLowerCase();
 					let targetSVG = null;
@@ -298,8 +297,6 @@
 					case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[0].children[0].children[0];break;
 					}
 					const imgPre = targetInput.nextElementSibling;
-					console.log(targetInput.value);
-					console.log(targetInput.files);
 					var fReader = new FileReader();
 					fReader.onload = function(event){
 						imgPre.src = event.target.result;
