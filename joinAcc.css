@@ -12,14 +12,14 @@ body{background-color: #FFFBF2;}
 	text-align: center;
 	text-decoration: none;
 	font-size: 25px;
-	font-weight: bold;
+	font-family: 'MinSans-Bold';
 	margin-top: 80px;
 	line-height: 50px;
 	border-radius: 5px;
 }
 
 .account_table_div {
-	font-family: "Nanum Gothic";
+	font-family: 'MinSans-Regular';
 	margin-top: 50px;
 	margin-left: auto; 
 	margin-right: auto;
@@ -38,7 +38,6 @@ body{background-color: #FFFBF2;}
 	border-right: none;
 	border-bottom: 1px solid lightgray;
 }
-/* .lastTr{border-bottom: 0px;} */
 #lastTrBTh{border-bottom: none;}
 #lastTrBTd{border-bottom: none;}
 .table_In_Infor{font-size: small;}
@@ -65,7 +64,8 @@ body{background-color: #FFFBF2;}
 	border: none; color: white;
 	font-size: 15px; 
 	border-radius: 10px;
-	font-weight: 700;
+	font-family: 'MinSans-Bold';
 	margin-top: 30px; margin-bottom: 15px;
+	font-family: 'MinSans-Bold';
 }
 #join_button:hover{background-color: #a5250a;}
