@@ -9,7 +9,7 @@
 	
 	<update id="updateMember">
 		update member
-		set name = #{name}, pwd = #{pwd}, phone = #{phone}
+		set name = #{name}, pwd = #{pwd}, phone = #{phone}, address = #{address}
 		where id = #{id}
 	</update>
 	
