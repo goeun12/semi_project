@@ -67,4 +67,14 @@ public class NoticeDAO {
 
 		return sqlSession.update("noticeMapper.countUpdate", no);
 	}
+	
+	public ArrayList<Reply> rpList(SqlSessionTemplate sqlSession, int boardNo) {
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.rpList", boardNo);
+	}
+
+
+
+
+	
 }
