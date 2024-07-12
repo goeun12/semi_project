@@ -63,7 +63,7 @@
 					<tr>
 						<th style="border-bottom: none;">주소</th>
 						<td style="border-bottom: none;">
-							<input type="text" class="modifyInput" id="sample4_roadAddress" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
+							<input type="text" style="cursor:default;" class="modifyInput" id="sample4_roadAddress" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
 							<input type="text" class="modifyInput" id="sample4_detailAddress" placeholder="상세 주소 입력" value="${ fn:split(loginUser.address, '§§●')[1] }" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
