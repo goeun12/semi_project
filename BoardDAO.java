@@ -11,6 +11,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.PageInfo;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 
 @Repository("bDAO")
 public class BoardDAO {
@@ -83,6 +84,10 @@ public class BoardDAO {
 
 	public int editImage(SqlSessionTemplate sqlSession, ArrayList<Image> iList) {
 		return sqlSession.insert("recipe-mapper.editImage", iList);
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, Integer bNo) {
+		return (ArrayList)sqlSession.selectList("recipe-mapper.selectReplyList", bNo);
 	}
 
 
