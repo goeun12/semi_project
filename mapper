@@ -4,7 +4,7 @@
 	
 	<insert id="insertMember">
 		insert into member
-		values(#{id}, #{name}, #{pwd}, #{phone}, default, default, default)
+		values(#{id}, #{name}, #{pwd}, #{phone}, #{address}, default, default, default)
 	</insert>
 	
 	<update id="updateMember">
