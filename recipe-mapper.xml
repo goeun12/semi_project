@@ -4,7 +4,7 @@
 	
 	
 	
-<!-- 일반 조회, 메인화면 -->	
+<!-- 일반 조회, 메인화면  -->	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from board
