@@ -296,7 +296,7 @@
 	
 		
 	<div class="mx-auto" style="display:flex; justify-content:center;">
-		<a class="btn btn-primary me-md-2" href="recipeMain.jsp" role="button" id ="go_list_button" style="width:80px;">목록</a>
+		<a class="btn btn-primary me-md-2" href="${contextPath}/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
 	</div>
 	<div>&nbsp;</div>
 	<div id="gotop-button"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
