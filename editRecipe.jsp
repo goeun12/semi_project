@@ -139,6 +139,7 @@
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${ i.titleImg == 1 }">
 								<tr>
+									<td style="width:150px; text-align:center;font-size:30px">step${status.index }</td>
 									<td class="td-jus-con previewImg">
 										<div class="slim-border mb-3 text-center td-div-img">
 											<input class="form-control form-control-lg" type="file" accept="image/*" name="file">
@@ -223,8 +224,10 @@
 			function add_tr(table_body){
 				let tbody = document.getElementById("table_body");
 				const newTr = document.createElement('tr');
-				newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+				newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
 				tbody.append(newTr);
+				let trCount = tbody.childElementCount;
+				tbody.lastElementChild.children[0].innerText = 'step' + trCount;
 			}
 			
 			function clean_first_tr(firstTr){
