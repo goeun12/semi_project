@@ -92,15 +92,26 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.selectRecommendBoardList(sqlSession, nation);
 	}
 
-//	@Override
-//	public ArrayList<Recipe> selectDivideRecipeList(DivideSearch ds) {
-//		return bDAO.selectDivideRecipeList(sqlSession,ds);
-//	}
-//
-//	@Override
-//	public ArrayList<Image> selectDivdeImageList(DivideSearch ds) {
-//		return bDAO.selectDivdeImageList(sqlSession,ds);
-//	}
+	@Override
+	public int updateRecipe(Recipe recipe) {
+		return bDAO.updateRecipe(sqlSession, recipe);
+	}
+
+	@Override
+	public void deleteImage(int recipeNo) {
+		bDAO.deleteImage(sqlSession,recipeNo);
+	}
+
+	@Override
+	public int updateBoard(Board b) {
+		return bDAO.updateBoard(sqlSession, b);
+	}
+
+	@Override
+	public int editImage(ArrayList<Image> iList) {
+		return bDAO.editImage(sqlSession, iList);
+	}
+
 
 	
 }
