@@ -66,7 +66,7 @@
 					<tr>
 						<th>주소</th>
 						<td>
-							<input type="text" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
+							<input type="text" style="cursor:default;" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
 							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소 입력" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
