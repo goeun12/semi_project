@@ -17,11 +17,11 @@ public class NoticeDAO {
 		return sqlSession.selectOne("noticeMapper.noticeListCount", key);
 	}
 
-	public ArrayList<Notice> noticeList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Notice> noticeList(SqlSessionTemplate sqlSession, PageInfo pi, String boardGenre) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimite();
 		RowBounds RowBounds = new RowBounds(offset, pi.getBoardLimite());
 		
-		return (ArrayList)sqlSession.selectList("noticeMapper.noticeList", RowBounds);
+		return (ArrayList)sqlSession.selectList("noticeMapper.noticeList", boardGenre, RowBounds);
 	}
 
 	public Notice noticeSelect(SqlSessionTemplate sqlSession, int boardNo) {
