@@ -4,7 +4,7 @@
 	
 	
 	
-<!-- 일반 조회, 메인화면  -->	
+<!-- 일반 조회, 메인화면 -->	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from board
@@ -28,10 +28,16 @@
 	</select>
 	
 	<select id="selectBoardList" resultType="Board">
-		select *
+		<!-- select *
 		from board
-			join member on(writer = id)
+			join recipe using(board_no)
 		where board.status = 'Y' and board_genre = #{i}
+		order by board_no desc -->
+		select b.board_no, board_genre, writer, title, content, create_date, update_date, status, board_count
+		from board b
+			left join recipe r on(b.board_no = r.board_no)
+			left join image i on(r.recipe_no = i.recipe_no)
+		where b.status = 'Y' and b.board_genre = '레시피' and title_img ='0'
 		order by board_no desc
 	</select>
 	
@@ -95,6 +101,12 @@
 			where title_img = 0
 		</if><!-- 썸네일 가져오기 -->
 		order by image_no asc
+	</select>
+	
+	<select id="selectReplyList" resultType="Reply">
+		select *
+		from reply
+		where board_no = #{bNo}
 	</select>
 	
 	<select id="selectBoard" resultType="Board">
