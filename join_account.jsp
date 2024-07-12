@@ -60,18 +60,18 @@
 					<tr>
 						<th>휴대폰번호</th>
 						<td colspan="2">
-							<input type="text" id="phone" class="joinInput" name="phone" placeholder="-를 포함하여 입력해 주세요"/>
+							<input type="text" id="phone" class="joinInput" name="phone" placeholder="- 포함 입력"/>
 						</td>
 					</tr>
 					<tr>
 						<th>주소</th>
 						<td>
-							<input type="text" class="joinInput" id="sample4_roadAddress" placeholder="도로명 주소" readonly>
-							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소" required="required">
+							<input type="text" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
+							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소 입력" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
 						<td>
-							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소찾기">
+							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 						</td>
 					</tr>
 					<tr>
@@ -95,17 +95,6 @@
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		var themeObj = {
-		   bgColor: "#FFFBF2", //바탕 배경색
-		   searchBgColor: "#F24822", //검색창 배경색
-		   //contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-		   pageBgColor: "#F9AE98", //페이지 배경색
-		   textColor: "#000000", //기본 글자색
-		   queryTextColor: "#FFFFFF", //검색창 글자색
-		   postcodeTextColor: "#FB9374", //우편번호 글자색
-		   emphTextColor: "#000000" //강조 글자색
-		   //outlineColor: "", //테두리
-		};
 		function sample4_execDaumPostcode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -129,6 +118,16 @@
 							document.getElementsByName('address')[0].value = roadAddr + '§§●' + document.getElementById('sample4_detailAddress').value;
 						}
 					})
+	            },
+	            theme: {
+	            	bgColor: "#FFFBF2", //바탕 배경색
+	      		   searchBgColor: "#F24822", //검색창 배경색
+	      		   //contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+	      		   pageBgColor: "#F9AE98", //페이지 배경색
+	      		   textColor: "#000000", //기본 글자색
+	      		   queryTextColor:  "#FFFFFF", //검색창 글자색
+	      		   postcodeTextColor:  "#FB9374", //우편번호 글자색
+	      		   emphTextColor: "#000000" //강조 글자색
 	            }
 	        }).open();
 	    }
