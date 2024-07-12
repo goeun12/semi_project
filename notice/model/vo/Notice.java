@@ -24,7 +24,7 @@ public class Notice {
 	private Date createDate;
 	private Date updateDate;
 	private char status;
-	private int count;
+	private int boardCount;
 
 	
 }
