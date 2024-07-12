@@ -8,173 +8,13 @@
 <title>레시피 메인</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
-<link href="../../../resources/css/allCss.css" rel="stylesheet" type="text/css">
+<link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 
-<style>
-
-
-
-
-
-
-
-
-.bgcw{background-color:white;}
-.bottom-padding{padding-bottom:2rem !important;}
-
-
-#clickbody{background-color:#fffbf2; font-size:20px;}
-.card-text>a{text-decoration:none;color:black;}
-.card-body>p{height:15px;}
-.container{min-width:1250px;}
-.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
-					font-family: "나눔고딕"; font-size:20px}
-.card-text{font-size:15px;}
-.card:hover{cursor:pointer;}
-
-
-.div-flexible{display:flex;}
-.div-center{justify-content:center;}
-.div-textarea{margin-left:100px;margin-top:30px;width:600px; height:300px;}
-.div-min-width{min-width:1250px;}
-
-
-#foodname{text-align:center;}
-#formFileLg{position : relative; top:-185px;}
-
-
-#gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
-#go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
-#go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
-#go_list_button{margin-top:30px;}
-
-
-#minus-level{background-color:#b3b3b3; font-weight:400;border:none}
-#minus-level:hover{background-color:rgb(129,129,129)}
-.making-num{border: 0; width:70%; height:80%;resize:none;}
-.making-num:focus{outline:0}
-.margin-lrt{margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;}
-.margin-lrpx{margin-left:50px; margin-right:50px;}
-#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
-#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white;}
-#mypage_Menu li {margin-bottom: 15px; margin-top: 23px;}
-#mypage_Menu a{color: black; text-decoration: none;}
-#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
-
-
-#notice_up_del{margin-bottom: 15px;}
-
-
-.recipe-option{width:150px;padding-left:30px; padding-right:30px;padding-bottom:10px;padding-top:10px;}
-.row-cols-md-3>*{flex:0 0 auto; width:25%;}
-#recipe-recommend{border-radius:10px;}
-#recipe-body{background-color:#fffbf2;}
-#recipe-up-btn,#recipe-del-btn{background-color:#b3b3b3;border:none}
-#recipe-title{font-size:40px;font-weight:300;}
-
-
-.slim-border{border:0.5px solid lightgray;}
-#search_button{width:80px;}
-#show-more{margin-left:50px; height:30px; width:100px;background-color:white;border-radius:10px;}
-#show-more>a{text-decoration:none;color:black;}
-#search_button,#write-button{background:#f24822; color:white; border:none; 
-							height:40px;
-							text-decoration:none; 
-							font-size:20px;
-				 			width:80px;
-					}
-#search_button:hover,#write-button:hover{background:#a5250a;font-weight:700}
-#sel-nation,#sel-easy{font-size:15px;}
-
-
-.td-rightline{border-right: 0.5px solid lightgray;}
-.td-topline{border-top: 0.5px solid lightgray;}
-.td-leftline{border-left: 0.5px solid lightgray;}
-.td-bottomline{border-bottom: 0.5px solid lightgray;}
-.td-center{display:flex; text-align:center;}
-#tbdiv3{margin-bottom:2rem !important;margin-left:auto;margin-right:auto;width:70%; justify-content:center;}
-.td-input:focus{outline:none;}
-.td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
-.td-textarea:focus{outline:none;}
-.td-div-img{margin-left:50px;margin-top:30px;width:250px; height:300px;}
-.tbround {
-	border-collapse: collapse;
-	border-radius: 10px;
-	border-style: hidden;
-	box-shadow: 0 0 0 1px lightgray;
-}
-.td-topline>div{border:1px solid black;
-				width:95%;
-				height:95%;
-				margin-left:2%;
-				display:flex;
-				justify-content:center;
-				align-items:center
-}
-.td-topline>div:hover{border:none}
-#text-ingre{width:90%; padding-left:30px;padding-right:30px;}
-.top-padding{padding-top:3rem !important;}
-
-
-#up-del-btn{width:70%; justify-content:flex-end; margin-right:auto; margin-left:auto; margin-bottom:15px;}
-
-
-.pad-top70{padding-top:70px;}
-.pad20{padding:20px;}
-.pagination-sm .page-link {background: none;
-							border: none;
-							color:black;}
-.page-link:hover{color:black; font-size:large; text-decoration:underline;}
-
-
-#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.searchbar{margin-left:20%;}
-.searchButton{margin-right:20%;}
-.notice_title{background:#f9ae98;
-			width: 50%; height:50px;
-			margin-left:25%;
-			margin-block-end:0;
-			text-align: center;
-			text-decoration:none;
-			font-size:35px;
-}
-.everybox{min-width:1250px;}
-.py-5{margin-left:100px;margin-right:200px;background-color:#fffbf2;}
-</style>
+<style></style>
 </head>
 <body>
 
-<jsp:include page="../common/header.jsp"/>
+
 
 <div id="gotop-button"><a href=""><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 
@@ -193,11 +33,11 @@
 			</div>
 		</div>
 		
-		<form action="${contextPath }/bunryuRecipe.re">
+		<form>
 			<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 				<div class="input-group mb-3" style="width:85%;">
-					<input type="text" class="form-control searchbar" name="searchWord" placeholder="찾고자 하는 단어를 입력해주세요.">
-					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button" name="searchButton">검색</button>
+					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요">
+					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button">검색</button>
 				</div>
 			</div>
 	
@@ -281,6 +121,19 @@
 					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo+'&page='+${pi.currentPage};
 				});
 			}
+			
+			const search = document.getElementById('search_button');
+			search.addEventListener('click',()=>{
+				const searchWord = document.getElementById('searchWord').value;
+				const nation = document.getElementById('sel-nation').value;
+				const difficulty = document.getElementById('sel-easy').value;
+				
+				console.log(searchWord);
+				console.log(nation);
+				console.log(difficulty);
+				
+				location.href = '${contextPath}/searchRecipe.re?searchWord='+searchWord+'&nation='+nation+'&difficulty='+difficulty;
+			})
 		}
 	</script>
 	
@@ -314,6 +167,5 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
