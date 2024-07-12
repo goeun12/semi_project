@@ -87,6 +87,12 @@
 	
 	
 	
+	<select id="rpList" resultType="Reply">
+		select *
+		from reply
+		where board_no = #{boardNo}
+		
+	</select>
 	
 	
 	
