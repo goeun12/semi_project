@@ -36,39 +36,39 @@
 						<th>아이디</th>
 						<td><input type="text" id="modify_id" class="modifyInput" name="id" value="${ loginUser.id }" readonly/></td>
 						<td style="text-align: right">
-							<span class="table_In_Infor" id="inforId">아이디는 수정이 불가합니다 &nbsp;</span>
+							<span class="table_In_Infor" id="inforId">아이디는 수정이 불가합니다</span>
 						</td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="2"><input type="password" id="modify_pwd" class="modifyInput" name="pwd" placeholder="(비밀번호 변경 시 입력)"/></td>
+						<td colspan="2"><input type="password" id="modify_pwd" class="modifyInput" name="pwd" placeholder="비밀번호 변경 시 입력"/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
 						<td>
-							<input type="password" id="modify_rePwd" class="modifyInput" name="rePwd" placeholder="(비밀번호 변경 시 입력)"/>
+							<input type="password" id="modify_rePwd" class="modifyInput" name="rePwd" placeholder="비밀번호 변경 시 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right; width: 200px;">
-							<span class="table_In_Infor" id="inforPwd"> &nbsp;</span>
+							<span class="table_In_Infor" id="inforPwd"></span>
 						</td>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td colspan="2"><input type="text" id="modify_name" class="modifyInput" name="name" value="${ loginUser.name }"/></td>
+						<td colspan="2"><input type="text" id="modify_name" class="modifyInput" name="name" value="${ loginUser.name }" placeholder="필수 입력"/></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호</th>
-						<td colspan="2"><input type="text" id="modify_phone" class="modifyInput" name="phone" value="${ loginUser.phone }"/></td>
+						<td colspan="2"><input type="text" id="modify_phone" class="modifyInput" name="phone" value="${ loginUser.phone }" placeholder="- 포함 입력"/></td>
 					</tr>
 					<tr>
 						<th style="border-bottom: none;">주소</th>
 						<td style="border-bottom: none;">
-							<input type="text" class="modifyInput" id="sample4_roadAddress" placeholder="도로명 주소" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
-							<input type="text" class="modifyInput" id="sample4_detailAddress" placeholder="상세 주소" value="${ fn:split(loginUser.address, '§§●')[1] }" required="required">
+							<input type="text" class="modifyInput" id="sample4_roadAddress" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
+							<input type="text" class="modifyInput" id="sample4_detailAddress" placeholder="상세 주소 입력" value="${ fn:split(loginUser.address, '§§●')[1] }" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
 						<td style="border-bottom: none;">
-							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소찾기">
+							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 						</td>
 					</tr>
 				</table>
@@ -102,11 +102,21 @@
 	                document.getElementById("sample4_detailAddress").value = detailAddress;
 	              	
 					document.getElementById('sample4_detailAddress').addEventListener('focusout', function() {
-						if(document.getElementById("sample4_roadAddress").value !== '' && document.getElementById('sample4_detailAddress').value != ''){
+						if(document.getElementById("sample4_roadAddress").value !== '' && document.getElementById('sample4_detailAddress').value !== ''){
 							document.getElementsByName('address')[0].value = roadAddr + '§§●' + document.getElementById('sample4_detailAddress').value;
 						}
 					})
-	            }
+	            },
+	            theme: {
+					bgColor: "#FFFBF2", //바탕 배경색
+					searchBgColor: "#F24822", //검색창 배경색
+					//contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+					pageBgColor: "#F9AE98", //페이지 배경색
+					textColor: "#000000", //기본 글자색
+					queryTextColor:  "#FFFFFF", //검색창 글자색
+					postcodeTextColor:  "#FB9374", //우편번호 글자색
+					emphTextColor: "#000000" //강조 글자색
+				}
 	        }).open();
 	    }
 		
@@ -125,7 +135,7 @@
 			}
 			
 			let phone = document.getElementById('modify_phone');
-			const regPho = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+			const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 			let nameInput = document.getElementById('modify_name');
 			const regName = /[^가-힣a-zA-Z]/g;
 			
