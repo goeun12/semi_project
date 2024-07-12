@@ -82,7 +82,12 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDAO.noticeCommon(sqlSession);
 	}
 
-	
+	@Override
+	public ArrayList<Reply> rpList(int boardNo) {
+		
+		return nDAO.rpList(sqlSession, boardNo);
+	}
+
 	
 	
 	
