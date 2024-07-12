@@ -49,7 +49,7 @@
 						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
-								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:32%">
+								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:30%">
 									<img src="${ contextPath }/resources/image/${ i.imageName }" width="400px" height="400px">
 								</td>
 								<td class="td-bottomline" colspan='4' height="47px">
@@ -110,9 +110,9 @@
 	<!-- forEach : 사진 + 요리순서들 -->				
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${i.titleImg == 1 }">
-							<tr>
-								<td style="width:300px;">
-									<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+							<tr style="border-bottom: 0.5px solid lightgray;">
+								<td style="width:400px;">
+									<div class="mb-3 text-center" style="margin-left:auto;margin-right:auto;margin-top:1rem !important;width:250px;height:250px;">
 										<img src="${ contextPath }/resources/image/${ i.imageName }" height="250px" width="250px"/>
 									</div>
 								</td>
@@ -296,7 +296,7 @@
 	
 		
 	<div class="mx-auto" style="display:flex; justify-content:center;">
-		<a class="btn btn-primary me-md-2" href="${contextPath}/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
+		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
 	</div>
 	<div>&nbsp;</div>
 	<div id="gotop-button"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
