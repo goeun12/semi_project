@@ -34,9 +34,14 @@ public interface BoardService {
 
 	ArrayList<Board> selectRecommendBoardList(String nation);
 
-//	ArrayList<Recipe> selectDivideRecipeList(DivideSearch ds);
-//
-//	ArrayList<Image> selectDivdeImageList(DivideSearch ds);
+	int updateRecipe(Recipe recipe);
+
+	void deleteImage(int recipeNo);
+
+	int updateBoard(Board b);
+
+	int editImage(ArrayList<Image> iList);
+
 
 
 }
