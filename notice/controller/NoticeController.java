@@ -33,7 +33,7 @@ public class NoticeController {
 		int listCount = nService.noticeListCount(null);		
 
 		PageInfo pi = PageInfo.getPagination(currentPage, listCount);
-		ArrayList<Notice> noticeList = nService.noticeList(pi);
+		ArrayList<Notice> noticeList = nService.noticeList(pi, "공지");
 		
 		if(noticeList != null) {
 			model.addAttribute("pi", pi);
