@@ -1,0 +1,4 @@
+@RequestMapping("privacy.com")
+	public String privacy() {
+		return "common/privacy";
+	}
