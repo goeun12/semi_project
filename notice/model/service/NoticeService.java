@@ -26,5 +26,5 @@ public interface NoticeService {
 
 	Notice noticeCommon();
 
-
+	ArrayList<Reply> rpList(int boardNo);
 }
