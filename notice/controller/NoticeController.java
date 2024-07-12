@@ -53,13 +53,13 @@ public class NoticeController {
 		
 		Notice no = nService.noticeSelect(boardNo, loginUser);
 		ArrayList<Notice> noticeListMin =  nService.noticeListMin(boardNo);
-		
+		ArrayList<Reply> rpList =  nService.rpList(boardNo);
 		
 		if(no != null) {
 			model.addAttribute("no",no);
 			model.addAttribute("noticeListMin", noticeListMin);
 			model.addAttribute("myPage", myPage);
-			
+			model.addAttribute("rpList", rpList);
 			return "noticeContent";
 		}else {
 			throw new AllException("공지사항 게시글을 불러오지 못했습니다");
