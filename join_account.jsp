@@ -34,7 +34,7 @@
 					<tr>
 						<th>아이디</th>
 						<td>
-							<input type="text" id="join_id" class="joinInput" name="id" placeholder="(영문이나 숫자만 입력)"/>
+							<input type="text" id="join_id" class="joinInput" name="id" placeholder="영문이나 숫자만 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
 							<span class="table_In_Infor" id="inforId"></span>
@@ -42,12 +42,12 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="필수 입력"/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
 						<td>
-							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="(필수 입력)"/>
+							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="필수 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right; width: 200px;">
 							<label class="table_In_Infor" id="inforPwd"></label>
@@ -55,12 +55,12 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="name" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="name" placeholder="필수 입력"/></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호</th>
 						<td colspan="2">
-							<input type="text" id="phone" class="joinInput" name="phone" placeholder="(- 제외 입력)"/>
+							<input type="text" id="phone" class="joinInput" name="phone" placeholder="-를 포함하여 입력해 주세요"/>
 						</td>
 					</tr>
 					<tr>
@@ -174,7 +174,7 @@
 			}
 			
 			let phone = document.getElementById('phone');
-			const regPho = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+			const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 			let nameInput = document.getElementById('join_name');
 			const regName = /[^가-힣a-zA-Z]/g;
 			
