@@ -9,103 +9,8 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
-<link href="resources/css/allCss.css" rel="stylesheet" type="text/css">
+<link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 <style>
-.bgcw{background-color:white;}
-.bottom-padding{padding-bottom:2rem !important;}
-
-
-#clickbody{background-color:#fffbf2; font-size:20px;}
-.card-text>a{text-decoration:none;color:black;}
-.card-body>p{height:15px;}
-.container{border-radius:10px; min-width:1250px;}
-.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
-					font-family: "나눔고딕"; font-size:20px}
-.card-text{font-size:15px;}
-
-
-.div-flexible{display:flex;}
-.div-center{justify-content:center;}
-.div-textarea{margin-left:100px;margin-top:30px;width:600px; height:300px;}
-.div-min-width{min-width:1250px;}
-
-
-#foodname{text-align:center;}
-
-
-#gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
-#go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
-#go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
-#go_list_button{margin-top:30px;}
-
-
-#minus-level{background-color:#b3b3b3; font-weight:400;border:none}
-#minus-level:hover{background-color:rgb(129,129,129)}
-.making-num{border: 0; width:70%; height:80%;resize:none;}
-.making-num:focus{outline:0}
-.margin-lrt{margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;}
-.margin-lrpx{margin-left:50px; margin-right:50px;}
-#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px;}
-#mypage_Menu{display: none; height: 150px; border: 1px solid lightgray; background: white;}
-#mypage_Menu li {margin-bottom: 15px; margin-top: 23px;}
-#mypage_Menu a{color: black; text-decoration: none;}
-#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
-
-
-#notice_up_del{margin-bottom: 15px;}
-
-
-.recipe-option{width:150px;padding-left:30px; padding-right:30px;padding-bottom:10px;padding-top:10px;}
-.row-cols-md-3>*{flex:0 0 auto; width:25%;}
-#recipe-recommend{border-radius:10px;}
-#recipe-body{background-color:#fffbf2;}
-#recipe-up-btn,#recipe-del-btn{background-color:#b3b3b3;border:none}
-#recipe-title{font-size:40px;font-weight:300;}
-
-
-.slim-border{border:0.5px solid lightgray;}
-#search_button{width:80px;}
-#show-more{margin-left:50px; height:30px; width:100px;background-color:white;border-radius:10px;}
-#show-more>a{text-decoration:none;color:black;}
-#search_button,#write-button{background:#f24822; color:white; border:none; 
-							height:40px;
-							text-decoration:none; 
-							font-size:20px;
-				 			width:80px;
-					}
-#search_button:hover,#write-button:hover{background:#a5250a;font-weight:700}
-#sel-nation,#sel-easy{font-size:15px;}
-
-
-.td-rightline{border-right: 0.5px solid lightgray;}
-.td-topline{border-top: 0.5px solid lightgray;}
-.td-leftline{border-left: 0.5px solid lightgray;}
-.td-bottomline{border-bottom: 0.5px solid lightgray;}
-.td-center{display:flex; text-align:center;}
-#tbdiv3{margin-bottom:2rem !important;margin-left:auto;margin-right:auto;width:70%; justify-content:center;}
-.td-input:focus{outline:none;}
-.td-textarea{width:80%;height:80%;border:0;resize:none;font-size:20px;}
-.td-textarea:focus{outline:none;}
-.td-div-img{margin-left:50px;margin-top:30px;width:250px; height:300px;}
-.tbround {
-	border-collapse: collapse;
-	border-radius: 10px;
-	border-style: hidden;
-	box-shadow: 0 0 0 1px lightgray;
-}
-#text-ingre{width:90%; padding-left:30px;padding-right:30px;}
-.top-padding{padding-top:3rem !important;}
-
-
-#up-del-btn{width:70%; justify-content:flex-end; margin-right:auto; margin-left:auto; margin-bottom:15px;}
-
-
-.pad-top70{padding-top:70px;}
-.pad20{padding:20px;}
-.pagination-sm .page-link {background: none;
-							border: none;
-							color:black;}
-.page-link:hover{color:black; font-size:large; text-decoration:underline;}
 
 </style>
 </head>
@@ -144,10 +49,10 @@
 						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
-								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:40%">
+								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:32%">
 									<img src="${ contextPath }/resources/image/${ i.imageName }" width="400px" height="400px">
 								</td>
-								<td class="td-bottomline" colspan='3' height="100px">
+								<td class="td-bottomline" colspan='4' height="47px">
 									<div>${ b.title }</div>
 								</td>
 							</c:if>
@@ -183,10 +88,11 @@
 							</div>
 						</td>
 						<td id="recipe-own" style="font-size:15px;">작성자 : ${ b.writer }</td>
+						<td style="font-size:15px;">조회수 : ${ b.boardCount }</td>
 					</tr>
 					<tr>
-						<td class="td-topline" colspan="3" height="300px" width="50px">
-							<div>요리 재료. ${ r[0].ingredients }</div>
+						<td class="td-topline" colspan="4" height="300px" width="50px">
+							<div>${ r[0].ingredients }</div>
 						</td>
 					</tr>
 				</table>
@@ -212,7 +118,7 @@
 								</td>
 								<td>
 									<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
-										${ contents[status.index - 1] }
+										${ status.index }. ${ contents[status.index - 1] }
 									</div>
 								</td>
 							</tr>
@@ -297,6 +203,9 @@
 		</div>
 	</div>
 	
+	
+	
+	
 	<hr>
 	<div class="grid text-center div-flexible div-center div-min-width" style="margin-left:50px;margin-right:50px;">
 		<div class="g-col-6 div-center div-flexible" id="recipe-recommend">
@@ -310,37 +219,42 @@
 				</c:choose>
 			</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
 		</div>
-		<div class="div-center div-flexible slim-border" id="show-more"><a href="recipeMain.jsp">더보기</a></div>
+		<form action="${contextPath }/searchRecipe.re">
+			<div class="div-center div-flexible slim-border" id="show-more">
+				<button style="border:none; background-color:white;">더보기</button>
+				<input type="hidden" name="nation" value="${ rList[0].nation }">
+			</div>
+		</form>
 	</div>
 	<div class="py-5 div-min-width">
 		<div class="container" style="padding-bottom:15px; width:70%;">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-				<div class="col pad20" style="padding-left:20px;padding-right:20px;">
-					<c:forEach items="${ bList }" var="bList">
-						<c:if test="${ status.index < 4 }">
-							<c:forEach items="${ rList }" var="rList">
-								<c:if test="${ rList.boardNo == bList.boardNo }">
+				<c:forEach items="${ bList }" var="bList" varStatus="status">
+					<c:if test="${ status.index < 4 }">
+						<c:forEach items="${ rList }" var="rList">
+							<c:if test="${ rList.boardNo == bList.boardNo }">
+								<div class="col pad20 width25" style="padding-left:20px;padding-right:20px; width:25%">
 									<div class="card shadow-sm">
 										<c:forEach items="${iListAll }" var="ila">
 											<c:if test="${ ila.recipeNo == rList.recipeNo }">
-											<img src="${ contextPath }/resources/image/${ ila.imageName }" width="100%" height="225px"/>
-											<div class="card-body">
-												<p class="card-text" style="text-align:center;height:15px;">${ bList.title }</p>
-												<div class="d-flex justify-content-between align-items-center">
-													<div class="btn-group"></div>
-													<small class="text-body-secondary"></small>
+												<img src="${ contextPath }/resources/image/${ ila.imageName }" width="100%" height="225px"/>
+												<div class="card-body">
+													<p class="card-text" style="text-align:center;height:15px;">${ bList.title }</p>
+													<div class="d-flex justify-content-between align-items-center">
+														<div class="btn-group"></div>
+														<small class="text-body-secondary"></small>
+													</div>
 												</div>
-											</div>
-											<input type="hidden" name="bNo" value="${ bList.boardNo }">
-											<input type="hidden" name="rNo" value="${ rList.recipeNo }">
+												<input type="hidden" name="bNo" class="bNo" value="${ bList.boardNo }">
+												<input type="hidden" name="rNo" class="rNo" value="${ rList.recipeNo }">
 											</c:if>
 										</c:forEach>
 									</div>
-								</c:if>
-							</c:forEach>
-						</c:if>
-					</c:forEach>
-				</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</c:if>
+				</c:forEach>
 			</div>
 		</div>
 	</div>	
@@ -350,7 +264,7 @@
     		<div class="modal-content rounded-3 shadow">
       			<div class="modal-body p-4 text-center">
         			<h3 class="mb-0">정말 수정하시겠습니까?</h3>
-        			<p class="mb-0">수정 시 기존 이미지들은 모두 삭제됩니다.</p>
+        			<p class="mb-0">수정 시 기존 이미지들은 다시 입력해야 합니다.</p>
       			</div>
       			<div class="modal-footer flex-nowrap p-0">
         			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="edit">
@@ -390,24 +304,23 @@
 	
 	<script>
 		window.onload=()=>{
-			/* const divs = document.getElementsByClassName('card');
+			const divs = document.getElementsByClassName('card');
 			for(const div of divs){
 				div.addEventListener('click',function(){
 					const bNo = this.querySelector('.bNo').value; 
 					const rNo = this.querySelector('.rNo').value;
 					console.log(bNo);
-					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo;
+					console.log(rNo);
+					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo+'&page=1';
 				});
-			} */
+			}
+			
+//			document.getElementById('show-more').addEventListener('click',()=>{
+//				location.href = '${contextPath}/searchRecipe.re?nation='+${rList[0].nation};
+//				console.log(${rList[0].nation});
+//			});
 			
 			const form = document.getElementById('updelForm');
-			/* const edit = document.getElementById('recipe-up-btn');
-			if(edit != null){
-				edit.addEventListener('click',()=>{
-					form.action = '${contextPath}/updateRecipe.re';
-					form.submit();
-				});
-			} */
 			
 			if(document.getElementById('recipe-up-btn') != null){
 				document.getElementById('recipe-up-btn').addEventListener('click',() => {
