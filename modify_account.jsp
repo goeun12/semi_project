@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/modifyAcc.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <style>
 	@font-face {
 	    font-family: 'MinSans-Regular';
@@ -47,7 +48,7 @@
 						<td>
 							<input type="password" id="modify_rePwd" class="modifyInput" name="rePwd" placeholder="(비밀번호 변경 시 입력)"/>
 						</td>
-						<td style='text-align: right'>
+						<td class="infor_Td" style="text-align: right; width: 200px;">
 							<span class="table_In_Infor" id="inforPwd"> &nbsp;</span>
 						</td>
 					</tr>
@@ -60,13 +61,13 @@
 						<td colspan="2"><input type="text" id="modify_phone" class="modifyInput" name="phone" value="${ loginUser.phone }"/></td>
 					</tr>
 					<tr>
-						<th id="modify_lastTrBTh">주소</th>
-						<td id="modify_lastTrBTd">
+						<th style="border-bottom: none;">주소</th>
+						<td style="border-bottom: none;">
 							<input type="text" class="modifyInput" id="sample4_roadAddress" placeholder="도로명 주소" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
 							<input type="text" class="modifyInput" id="sample4_detailAddress" placeholder="상세 주소" value="${ fn:split(loginUser.address, '§§●')[1] }" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
-						<td>
+						<td style="border-bottom: none;">
 							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소찾기">
 						</td>
 					</tr>
