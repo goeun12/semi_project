@@ -120,15 +120,15 @@
 					})
 	            },
 	            theme: {
-	            	bgColor: "#FFFBF2", //바탕 배경색
-	      		   searchBgColor: "#F24822", //검색창 배경색
-	      		   //contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-	      		   pageBgColor: "#F9AE98", //페이지 배경색
-	      		   textColor: "#000000", //기본 글자색
-	      		   queryTextColor:  "#FFFFFF", //검색창 글자색
-	      		   postcodeTextColor:  "#FB9374", //우편번호 글자색
-	      		   emphTextColor: "#000000" //강조 글자색
-	            }
+					bgColor: "#FFFBF2", //바탕 배경색
+					searchBgColor: "#F24822", //검색창 배경색
+					//contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+					pageBgColor: "#F9AE98", //페이지 배경색
+					textColor: "#000000", //기본 글자색
+					queryTextColor:  "#FFFFFF", //검색창 글자색
+					postcodeTextColor:  "#FB9374", //우편번호 글자색
+					emphTextColor: "#000000" //강조 글자색
+				}
 	        }).open();
 	    }
 		
