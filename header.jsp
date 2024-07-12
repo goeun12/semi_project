@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
 	<%--헤더의 모든 요소 감싸기--%>
 	#header{
 		min-width: 1250px; background: #F24822; height: 60px; width: 100%; 
 		top: 0px; left: 0px; right: 0px; display: flex; justify-content: space-between;
+		z-index: 100;
 	}
    	#header_left_div{display: flex;}
  	<%--로고 이미지--%>
@@ -25,14 +27,14 @@
 	.button a{color: black; text-decoration: none;}
 	#header_right_div{display: flex; align-items: flex-end;}
 	<%--로그인 o, x 전부 감싸는--%>
-	#header_user{margin-right: 25px; height: 60px; float: right; display: flex; align-items: center;}   <%--학원 컴퓨터로는 #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
+	#header_user{margin-right: 25px; height: 60px; float: right; display: flex; align-items: center;}
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
  	.button_user:hover{font-weight: 600;}
 	<%--로그인 o 감싸는 div--%>
 	#user_login_complete{
-		border: 4px solid #FFFBF2; width: 200px; 
+		border: 4px solid #FFFBF2; width: auto; 
 		background: #FFFBF2; color: black;
 		display: flex; align-items: center;
 	}
@@ -51,30 +53,30 @@
 	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
 	<header id="header">
 		<div id="header_left_div">
-			<a href="#" id="logoImg_A"><img src="img/logo.png" id="logoImg" alt="로고"></a>
+			<a href="#" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
 			<div id="header_menu" class="header_common d-flex align-items-center">
-				<a href="../board/recipe.html" id="main" class="button">레시피</a>
-				<a href="#" id="tip" class="button">꿀팁</a>
-				<a href="../recommend/randomMainPage.html" id="comm" class="button">메뉴 추천</a>
-				<a href="../notice/noticeMainPage.html" id="notice" class="button">공지사항</a>
+				<a href="${ contextPath }/recipe.re" id="main" class="button">레시피</a>
+				<a href="${ contextPath }/tip.tip" id="tip" class="button">꿀팁</a>
+				<a href="${ contextPath }/random.re" id="comm" class="button">메뉴 추천</a>
+				<a href="${ contextPath }/notice.no" id="notice" class="button">공지사항</a>
 			</div>
 		</div>
 		<div id="header_right_div">
 			<!-- 로그인 했을 때 다르게 바뀌게도 해야 됨 -->
 			<div id="header_user" class="header_common">
 				<!-- 로그인 x -->
-<%-- 				<c:if test="${ empty loginUser }"> --%>
-<!-- 					<div id="header_user_noUser"> -->
-<%-- 		 				<a href="${ contextPath }/loginView.user" id="user_login" class="button_user" style="margin-right: 15px;">로그인</a> --%>
-<%-- 		 				<a href="${ contextPath }/joinView.user" id="user_join" class="button_user">회원가입</a> --%>
-<!-- 	 				</div>			 -->
-<%-- 	 			</c:if> --%>
+ 				<c:if test="${ empty loginUser }">
+ 					<div id="header_user_noUser">
+ 		 				<a href="${ contextPath }/loginView.user" id="user_login" class="button_user" style="margin-right: 15px;">로그인</a> 
+ 		 				<a href="${ contextPath }/joinView.user" id="user_join" class="button_user">회원가입</a> 
+ 	 				</div>			 
+ 	 			</c:if> 
 				<!-- 로그인 o -->
-				<c:if test="${ empty loginUser }">
+				<c:if test="${ !empty loginUser }">
 					<div id="user_login_complete">
 						<span>
 							<label id="mypage_list" class="mypageMenu">▼</label>
-							<label class="mypageMenu">신짱구님, 환영합니다&nbsp;</label>
+							<label class="mypageMenu">${ loginUser.name }님, 환영합니다&nbsp;</label>
 						</span>
 					</div>
 					<div id="mypage_Menu">
