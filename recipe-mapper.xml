@@ -94,6 +94,7 @@
 		<if test="rId == null">
 			where title_img = 0
 		</if><!-- 썸네일 가져오기 -->
+		order by image_no asc
 	</select>
 	
 	<select id="selectBoard" resultType="Board">
