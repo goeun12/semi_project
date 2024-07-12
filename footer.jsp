@@ -120,7 +120,7 @@
 				</ol>
 				<div id="right_box">
 					<div id="right_footer">
-						<a href="" target="_blank"><label style="padding-right: 40px; cursor: pointer;">개인정보처리방침</label></a>
+						<a href="${contextPath}/privacy.com" target="_blank"><label style="padding-right: 40px; cursor: pointer;">개인정보처리방침</label></a>
 						<span style="color: #C3C3C3;">고객지원: 02.888.9999</span>
 					</div>
 				</div>
