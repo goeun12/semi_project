@@ -23,6 +23,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.PageInfo;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.Pagination;
 import com.project.aloneBab.member.model.vo.Member;
 
@@ -39,7 +40,8 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 12);
 		
 		ArrayList<Board> bList = bService.selectBoardList(pi, "레시피");
-//		System.out.println(bList);
+//		System.out.println(bList); "pi 넣어서 사이즈 무조건 12"
+		
 		ArrayList<Recipe> rList = bService.selectRecipeList(null);
 		// null 넘기면 : 전체 조회(레시피 다가져옴)
 //		System.out.println(rList);
@@ -149,6 +151,7 @@ public class BoardController {
 				ArrayList<Board> bList = bService.selectRecommendBoardList(r.get(0).getNation()); // 같은 국가의 요리들 목록
 				ArrayList<Recipe> rList = bService.selectRecipeList(null); // 전체 레시피 리스트
 				ArrayList<Image> iListAll = bService.selectImageList(null); // 썸네일 사진 목록
+				ArrayList<Reply> rpList = bService.selectReplyList((Integer)bNo); // 선택 보드 넘버의 댓글 목록
 				Collections.shuffle(bList);
 				
 				model.addAttribute("b",b);
@@ -156,6 +159,7 @@ public class BoardController {
 				model.addAttribute("iList", iList);
 				model.addAttribute("contents", contents);
 				model.addAttribute("rList", rList);
+				model.addAttribute("rpList", rpList);
 				model.addAttribute("iListAll", iListAll);
 				model.addAttribute("bList", bList);
 				
@@ -209,6 +213,7 @@ public class BoardController {
 		
 		int result1 = 0;
 		int result2 = 0;
+		int result3 = 0;
 		if(iList.isEmpty()) {
 			// 이미지가 없다는 뜻
 			// 이미지 안넣냐고 물어보기
@@ -216,8 +221,8 @@ public class BoardController {
 		} else {
 			result1 = bService.insertBoard(b); // 게시판에 넣는 서비스 성공시 1
 			if(result1>0) {
-				int rResult = bService.insertRecipe(recipe);
-				if(rResult>0) {
+				result3 = bService.insertRecipe(recipe);
+				if(result3>0) {
 					for(Image i : iList) {
 						i.setRecipeNo(recipe.getRecipeNo());
 					}
@@ -229,19 +234,19 @@ public class BoardController {
 				return "에러페이지";
 			}
 		} // if(iList.isEmpty()) 문 탈출
-		if(result1 + result2 == 1 + iList.size()) { // 잘 들어갔다는 뜻
-//			if(result2 == 0) { // 이미지가 없다는 뜻, 우린 이미지 없으면 작성 불가능
-//				return "redirect:";
-//			} else {
-//			}
-			
-			return "redirect:recipe.re";
+		if(result1 == 1) { // 잘 들어갔다는 뜻
+			if(result3 == 1) {
+				if(result2 >0) {
+					return "redirect:recipe.re";
+				}
+			}
 		} else { // 에러가 나서 레시피 작성에 실패한 경우
 			for(Image i : iList) {
 				deleteFile(i.getImageName(), req);
 			}
-			return "redirect:index.jsp";
+			return "에러페이지";
 		}
+		return "redirect:recipe.re";
 	}
 	
 	// 이미지 저장 메소드
@@ -422,58 +427,6 @@ public class BoardController {
 		
 		return "randomMenu";
 	}
-
-	//랜덤메뉴
-	@RequestMapping(value="randomChoice.re", produces="application/json; charset=UTF-8")
-	@ResponseBody
-	public String randomChoice(@RequestParam("form") String form) {
-				
-		if(form != null && !form.isEmpty()) {
-			String[] splitAnq = form.split("&"); // 배열 : nation=cn, nation=jp, ....
-			
-			ArrayList<String> nation = new ArrayList<String>();
-			ArrayList<String> difficulty = new ArrayList<String>();
-			for(String elem : splitAnq) {
-				String[] splitEq = elem.split("=");
-				if(splitEq[0].equals("nation")) {
-					nation.add(splitEq[1]);
-				} else {
-					difficulty.add(splitEq[1]);
-				}
-			}
-				
-			HashMap<String, Object> key = new HashMap<String, Object>();
-			key.put("nation", nation);
-			key.put("difficulty", difficulty);
-							
-			ArrayList<RandomRecipe> ra = bService.randomChoice(key);
-			
-				
-			Random random = new Random();			
-			int num = random.nextInt(ra.size());	
-				
-			RandomRecipe randomRecipe = ra.get(num);	
-		
-			
-			JSONObject json = new JSONObject();
-			json.put("boardNo", randomRecipe.getBoardNo());
-			json.put("title", randomRecipe.getTitle());
-			json.put("recipeNo", randomRecipe.getRecipeNo());
-			json.put("imageNo", randomRecipe.getImageNo());
-			json.put("imageURL", randomRecipe.getImageURL());
-			json.put("imageName", randomRecipe.getImageName());
-			json.put("titleImg", randomRecipe.getTitleImg());
-			
-			return json.toString();					
-		}else {
-			return "0";
-		}
-		
-	}
-
-
-
-
 	
 	// 공지사항 목록 페이지 이동
 	@RequestMapping("notice.no")
