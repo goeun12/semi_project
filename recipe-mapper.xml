@@ -11,19 +11,18 @@
 		where status = 'Y' and board_genre = #{i}
 	</select>
 	
-	<!--  -->
 	<select id="getDivideCount" resultType="_int">
 		select count(*)
 		from board
 			join recipe using(board_no)
-		where board_status = 'Y'
-		<if test="ds.nation != all">
+		where status = 'Y'
+		<if test="nation != 'all'">
 			and nation = #{nation}
 		</if>
-		<if test="ds.difficulty != all">
+		<if test="difficulty != 'all'">
 			and difficulty = #{difficulty}
 		</if>
-		<if test="ds.searchWord != null">
+		<if test="searchWord != null">
 			and title like '%'||#{searchWord}||'%'
 		</if>
 	</select>
@@ -41,13 +40,13 @@
 		from board
 			join recipe using(board_no)
 		where status = 'Y' and board_genre = '레시피'
-		<if test="ds.nation != all">
+		<if test="nation != 'all'">
 			and nation = #{nation}
 		</if>
-		<if test="ds.difficulty != all">
+		<if test="difficulty != 'all'">
 			and difficulty = #{difficulty}
 		</if>
-		<if test="ds.searchWord != null">
+		<if test="searchWord != null">
 			and title like '%'||#{searchWord}||'%'
 		</if>
 	</select>
@@ -57,22 +56,8 @@
 		select *
 		from board
 			join recipe using(board_no)
-		where nation = #{nation}
+		where nation = #{nation} and status = 'Y'
 	</select>
-	<!-- <select id="selectDivdeRecipeList">
-		select *
-		from recipe
-		<if test="ds.nation != null">
-			and nation = #{ds.nation}
-		</if>
-		<if test="ds.difficulty != null">
-			and difficulty = #{ds.difficulty}
-		</if>
-	</select>
-	
-	<select id="selectDivdeImageList">
-		
-	</select> -->
 	
 	
 	
@@ -124,8 +109,22 @@
 		where board_no = #{bId}
 	</update>
 	
+	<update id="updateBoard">
+		update board
+		set title = #{title}, content = #{content}
+		where board_no = #{boardNo}
+	</update>
 	
+	<update id="updateRecipe">
+		update recipe
+		set intro = #{intro}, nation = #{nation}, difficulty = #{difficulty}, ingredients = #{ingredients}
+		where board_no = #{boardNo}
+	</update>
 	
+	<!-- <update id="editRecipe">
+		update recipe
+		set 
+	</update> -->
 	
 	<insert id="insertBoard">
 		insert into board
@@ -134,7 +133,7 @@
 	
 	<insert id="insertRecipe">
 		insert into recipe
-		values(seq_recipe.nextval,seq_board.currval, #{intro}, #{nation}, #{difficulty}, #{ingredients})
+			values(seq_recipe.nextval,seq_board.currval, #{intro}, #{nation}, #{difficulty}, #{ingredients})
 	</insert>
 	
 	<!--
@@ -159,13 +158,24 @@
 		select * from dual
 	</insert>
 	
+	<insert id="editImage">
+		insert all
+		<foreach collection="list" item="item" separator=" ">
+			into image values(new_iid, #{item.recipeNo}, #{item.imageURL}, #{item.imageName}, #{item.titleImg})
+		</foreach>
+		select * from dual
+	</insert>
+	
 	<update id="deleteRecipe">
 		update board
 		set status = 'N'
 		where board_no = #{bId}
 	</update>
 	
-	
+	<delete id="deleteImage">
+		delete image
+		where recipe_no = #{recipeNo}
+	</delete>
 	
 	
 	
