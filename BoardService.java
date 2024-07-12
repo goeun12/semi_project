@@ -7,6 +7,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.PageInfo;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 
 public interface BoardService {
 
@@ -41,6 +42,8 @@ public interface BoardService {
 	int updateBoard(Board b);
 
 	int editImage(ArrayList<Image> iList);
+
+	ArrayList<Reply> selectReplyList(Integer bNo);
 
 
 
