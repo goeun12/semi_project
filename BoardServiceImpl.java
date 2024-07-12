@@ -12,6 +12,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.PageInfo;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 
 
 @Service("bService")
@@ -110,6 +111,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int editImage(ArrayList<Image> iList) {
 		return bDAO.editImage(sqlSession, iList);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(Integer bNo) {
+		return bDAO.selectReplyList(sqlSession, bNo);
 	}
 
 
