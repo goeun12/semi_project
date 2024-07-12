@@ -1,5 +1,0 @@
-INSERT INTO MEMBER VALUES(SEQ_MEMBER.NEXTVAL, '첫번째', 'user01', '1111', '010-1111-2222', default, default, sysdate);
-INSERT INTO MEMBER VALUES(SEQ_MEMBER.NEXTVAL, '둘둘둘', 'user02', '2222', '010-2222-3333', default, default, sysdate);
-INSERT INTO MEMBER VALUES(SEQ_MEMBER.NEXTVAL, '셋셋셋', 'user03', '3333', '010-3333-4444', default, default, sysdate);
-INSERT INTO MEMBER VALUES(SEQ_MEMBER.NEXTVAL, '넷넷넷', 'user04', '4444', '010-4444-5555', default, default, sysdate);
-INSERT INTO MEMBER VALUES(SEQ_MEMBER.NEXTVAL, '오오오', 'user05', '5555', '010-5555-6666', default, default, sysdate);
