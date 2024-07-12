@@ -69,13 +69,22 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("recipe-mapper.selectRecommendBoardList", nation);
 	}
 
-//	public ArrayList<Recipe> selectDivideRecipeList(SqlSessionTemplate sqlSession, DivideSearch ds) {
-//		return (ArrayList)sqlSession.selectList("recipe-mapper.selectDivideRecipeList", ds);
-//	}
-//
-//	public ArrayList<Image> selectDivdeImageList(SqlSessionTemplate sqlSession, DivideSearch ds) {
-//		return (ArrayList)sqlSession.selectList("recipe-mapper.selectDivdeImageList", ds);
-//	}
+	public int updateRecipe(SqlSessionTemplate sqlSession, Recipe recipe) {
+		return sqlSession.update("recipe-mapper.updateRecipe", recipe);
+	}
+
+	public void deleteImage(SqlSessionTemplate sqlSession, int recipeNo) {
+		sqlSession.delete("recipe-mapper.deleteImage", recipeNo);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("recipe-mapper.updateBoard", b);
+	}
+
+	public int editImage(SqlSessionTemplate sqlSession, ArrayList<Image> iList) {
+		return sqlSession.insert("recipe-mapper.editImage", iList);
+	}
+
 
 
 }
