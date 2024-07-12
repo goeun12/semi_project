@@ -15,7 +15,7 @@
 	<select id="noticeList" resultType="Notice">
 		select * 
 		from board
-		where board_genre = '공지'
+		where board_genre = #{boardGenre}
 			and status = 'Y'	
 		order by board_no desc
 	</select>
