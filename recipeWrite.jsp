@@ -80,7 +80,7 @@
 			<tr>
 				<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 				<td width="" height="60px" style="padding-left:50px">
-					<textarea id="text-ingre" name="intro" class="td-textarea" rows='2' placeholder="요리에 대한 간단한 소개"></textarea>
+					<textarea id="text-ingre" name="intro" class="td-textarea" rows='2' maxlength="40" placeholder="40글자 이내로 적어주세요"></textarea>
 				</td>
 			</tr>
 		</table>
