@@ -10,7 +10,7 @@ public interface NoticeService {
 
 	int noticeListCount(String key);
 
-	ArrayList<Notice> noticeList(PageInfo pi);
+	ArrayList<Notice> noticeList(PageInfo pi, String boardGenre);
 
 	Notice noticeSelect(int boardNo, Member loginUser);
 
