@@ -80,7 +80,7 @@
 			<tr>
 				<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
 				<td width="" height="60px" style="padding-left:50px">
-					<textarea id="text-ingre" name="intro" class="td-textarea" rows='2' maxlength="40" placeholder="40글자 이내로 적어주세요"></textarea>
+					<textarea id="text-ingre" name="intro" class="td-textarea" rows='2' maxlength="50" placeholder="55글자 이내로 적어주세요"></textarea>
 				</td>
 			</tr>
 		</table>
@@ -93,6 +93,7 @@
 			<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 			<tbody id="table_body">
 				<tr>
+					<td style="width:150px; text-align:center;font-size:30px">step1</td>
 					<td class="td-jus-con previewImg">
 						<div class="slim-border mb-3 text-center td-div-img">
 							<input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file">
@@ -101,7 +102,7 @@
 					</td>
 					<td>
 						<div class="slim-border mb-3 text-center div-textarea pad-top50">
-							<textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea>
+							<textarea class="making-num " placeholder="해당 순서의 레시피를 작성해 주세요"></textarea>
 						</div>
 					</td>
 				</tr>
@@ -213,9 +214,13 @@
 		function add_tr(table_body){
 			let tbody = document.getElementById("table_body");
 			const newTr = document.createElement('tr');
-			newTr.innerHTML = '<td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+			newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
 			tbody.append(newTr);
+			let trCount = tbody.childElementCount;
+			tbody.lastElementChild.children[0].innerText = 'step' + trCount;
 		}
+		
+		$('#plus-level').mouseup
 		
 		function clean_first_tr(firstTr){
 			let children = firstTr.children;
