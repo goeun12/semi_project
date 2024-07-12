@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 #container{
+	font-family: 'MinSans-Regular';
 	min-width: 1200px;
 	width: 100%;
 	font-size: 20px;
@@ -9,7 +10,7 @@
 #login_bar{
 	background:#f9ae98; width: 50%; height:50px; margin-left:25%;
   	text-align: center; text-decoration: none; font-size: 25px;
-  	font-weight: bold; margin-top: 80px; line-height: 50px; border-radius: 5px;
+  	font-family: 'MinSans-Bold'; margin-top: 80px; line-height: 50px; border-radius: 5px;
 }
 
 #find_block{
@@ -111,7 +112,7 @@ tr>td[class="table_label"]{
 
 .table_label{
 	text-align: center;
-	font-weight: bold;
+	font-family: 'MinSans-Bold';
 }
 
 #find_name{

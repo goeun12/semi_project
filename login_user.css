@@ -5,13 +5,13 @@
 	width: 100%;
 	font-size: 20px;
 	min-height: 805px;
-	font-family:"나눔고딕";
+	font-family: 'MinSans-Regular';
 }
 #login_bar{
 	min-width:783px;
 	background:#f9ae98; width: 50%; height:50px; margin-left:25%;
   	text-align: center; text-decoration: none; font-size: 25px;
-  	font-weight: bold; margin-top: 80px; line-height: 50px; border-radius: 5px;
+  	font-family: 'MinSans-Bold'; margin-top: 80px; line-height: 50px; border-radius: 5px;
 	
 }
 
@@ -87,7 +87,7 @@
 	border: none;
 	color: white;
 	font-size: 20px;
-	font-weight: 700;
+	font-family: 'MinSans-Bold';
 	border-radius: 10px;
 }
 
