@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
+					font-family: "나눔고딕"; font-size:20px;  }
+	
+	
+	
+	/*게시판 제목*/
+	#honey_title{background:#f9ae98;
+			width: 50%; height:50px;
+			margin_top:80px;/*네비바와 간격*/
+			margin-left:25%;
+			margin-block-end:0;
+			text-align: center;
+			text-decoration:none;
+			font-size:25px;
+			border-radius:10px;
+			border-top: 50px
+			
+			}
+	
+	/*공지바 */
+	#notice_recent{width: 40%;
+					margin-left:30%;
+					height:40px;
+					border-radius: 10px;
+					font-size: 20px;
+					}
+	
+	/*레시피 검색바*/	
+	#search_receipe{width: 40%;
+					margin-left:30%;
+					height:40px;
+					font-size: 20px;
+					border-radius: 10px;
+					
+					}
+					
+	/*글 목록 테이블*/				
+	#honey_table_div{background:white;
+					width: 70%;
+					margin-left:15%;		
+					padding: 20px;			
+					border-radius: 10px;
+					border: 1px solid lightgray;
+					border-radius:10px;
+					font-weight:100;
+					cursor: pointer;
+					}
+	.pagination-sm .page-link {background: none;
+								border: none;
+								color:black;}
+	[id*="button"]{background:#f24822; color:white; border:none; 
+					height:40px;
+					text-decoration:none; 
+					font-size:20px
+					}
+	#search_button{width:80px;}
+	#search_button:hover{
+	font-weight: bold;
+	background-color: #a5250a;	
+	}
+	/* 글쓰기 버튼*/
+	.honeyWritePage-container{
+		text-align:right;
+		margin-right: 280px;
+		margin-bottom: 15px;
+		}
+	#honey_write_button{
+		width: 120px;
+		height: 40px;
+		background: #F24822;
+		cursor: pointer;
+		border: none;
+		color: white;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+	
+	#honey_write_button:hover{
+	font-weight: bold;
+	background-color: #a5250a;
+	}
+
+

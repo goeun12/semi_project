@@ -1,0 +1,115 @@
+
+@charset "UTF-8";
+
+.container-fluid{background:#fffbf2; padding:0;  min-width: 1200px;
+					font-family: "나눔고딕"; font-size:20px; padding-bottom:15%;}
+	
+#honey_title{background:#f9ae98;
+		width: 50%; height:50px;
+		margin-left:25%;
+		margin-top:80px;
+		margin-block-end:0;
+		text-align: center;
+		text-decoration:none;
+		font-size:25px; font-weight:700;
+		line-height:50px; border-radius:5px;}	
+		
+		
+#honey_up_del{width: 190px; 
+			margin-left:74%; 
+			margin-top:70px;
+			margin-bottom: 10px;}
+
+		
+#content_title{width: 70%;
+				margin-top:15px;
+				margin-left:15%;
+				height:60px;}
+#notic_content_title_{width:140px; text-align: center; font-size:20px; font-weight:550; }
+
+#notic_content_title{margin:0; 
+					padding-top:12px;
+					font-size:20px; font-weight:100;}
+
+	
+#notic_content_text{background:white;
+					width: 70%;
+					margin-left:15%;
+					padding : 40px;
+					min-height: 500px;
+					border: 1px solid lightgray; border-radius:10px; 
+					font-size:20px; 
+					}
+
+	
+#honey_table{background:white;
+				width: 70%;
+				margin-left:15%;		
+				padding: 20px;			
+				border: 1px solid lightgray; 	border-radius:10px;
+				font-weight:100;}
+					
+	
+[id*="button"]{background:#b3b3b3; color:white; border:none; 
+				width:80px;
+				height:40px;
+				border-radius:10px;
+				text-decoration:none; 
+				font-size:20px
+				}
+				
+#go_list_button{background:#f24822;
+				margin-top:30px;}				
+
+#updateTip:focus{
+	outline: none;
+	box-shadow: none;
+}
+
+#go_list_button:focus, #go_list_button:active {
+	outline: none;
+    box-shadow: none;
+} 
+
+
+#honey_delete_button:hover {
+	font-weight: bold;
+	background-color: #a5250a;
+}
+
+#honey_delete_button:focus, #honey_delete_button:active{
+	outline: none;
+    box-shadow: none;
+}
+
+#tipUpdate:hover {
+	font-weight: bold;
+	background-color: #a5250a;
+}
+
+#tipUpdate:focus, #tipUpdate:active{
+	outline: none;
+    box-shadow: none;
+}
+
+
+#go_top_button{background:#f24822; color:white;
+				width:50px; height:60px;
+				position:fixed;
+				left:93%;
+				top:83%;
+				margin-top:30px;
+				font-size:15px; text-decoration:none;
+				border:none; border-radius:15px;}
+
+#footer{background:#fffbf2;
+		min-width: 1200px;
+		margin-top:10%;
+		border-top: 2px solid rgb(179, 179, 179); background: #e9ecf2;
+		height: 54px;
+		}
+.font{color: #000000; margin-bottom: 3px; font-size: 15px;}
+
+#footer_inner{width: 80%;
+	display: inline-block;
+	margin: 10px 20px;}
