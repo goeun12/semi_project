@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<select id="login" resultType="Member">
+		select * from member where id = #{id} and status = 'Y'
+	</select>
+
+	<select id="findId" resultType="Member">
+		select * from member where name = #{name} and phone = #{phone} and status = 'Y'
+	</select>
+	
+	<select id="findPw" resultType="Member">
+		select * from member where id = #{id} and name = #{name} and phone = #{phone} and status = 'Y'
+	</select>
+	
+	<update id="updatePwd">
+		update member set pwd = #{pwd} where id = #{id}
+	</update>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*) from board where writer = #{id} and status = 'Y'
+	</select>
+	
+	<select id="selectBoardList" resultType="Board">
+		select * from board where status = 'Y' and writer = #{id} order by board_no desc
+	</select>
+	
+	<select id="checkId" resultType="_int">
+		select count(*) from member where id = #{id}
+	</select>
+	
+	<insert id="insertMember">
+		insert into member
+		values(#{id}, #{name}, #{pwd}, #{phone}, #{address}, default, default, default)
+	</insert>
+	
+	<update id="updateMember">
+		update member
+		set name = #{name}, pwd = #{pwd}, phone = #{phone}, address = #{address}
+		where id = #{id}
+	</update>
+	
+	<update id="deleteMember">
+		update member
+		set status = 'N'
+		where id = #{id}
+	</update>
+</mapper>
