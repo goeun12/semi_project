@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
+<link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 <link href="resources/css/noticeContentPage.css" rel="stylesheet" type="text/css"/>
 <title>Insert title here</title>
 </head>
@@ -21,7 +22,7 @@
 		<c:if test="${loginUser.isAdmin == 'Y' }">
 			<div id ="notice_up_del" >
 				<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${no.boardNo}" role="button"  id ="notice_update_button">수정</a>
-				<button class="btn btn-primary me-md-2" role="button" id ="notice_delete_button">삭제</button>
+				<button class="btn btn-primary me-md-2" type="button" id ="notice_delete_button">삭제</button>
 			</div>
 		</c:if>
 		
@@ -40,7 +41,7 @@
 				<p id="notic_content_text">${no.content }</p>
 			</div>
 		</div>
-
+		<jsp:include page="../common/reply.jsp"></jsp:include>	
 
 		<div id="notice_table">
 			<table class="table table-hover ">
@@ -63,12 +64,35 @@
 					      <td scope="row">${nlm.boardNo}</td>
 					      <td class="listContent">${nlm.title}</td>
 					      <td>${nlm.updateDate}</td>
-					      <td>${nlm.count}</td>
+					      <td>${nlm.boardCount}</td>
 					    </tr>
 				    </c:forEach>
 				  </tbody>
 			</table>
 		</div>
+		
+		
+				
+		<div class="modal fade" tabindex="-1" role="dialog" id="modalChoice">
+			<div class="modal-dialog" role="document">
+	    		<div class="modal-content rounded-3 shadow">
+	      			<div class="modal-body p-4 text-center">
+	        			<h3 class="mb-0">정말로 삭제하시겠습니까?</h3>
+	        			<p class="mb-0">삭제 후 글은 복구할 수 없습니다.</p>
+	      			</div>
+	      			<div class="modal-footer flex-nowrap p-0">
+	        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="delete">
+	        				<strong>네</strong>
+	        			</button>
+	        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal" id="deleteNo">
+	        				아니오
+	        			</button>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
+		
+		
 
 		<div class="mx-auto" style="width: 80px;">
         	 <c:if test="${ empty myPage }">
@@ -98,78 +122,57 @@
 				this.style.fontWeight = "400";
 				this.style.background = "#f24822";
 			});
+						
 			
-			
-			if('${loginUser.isAdmin}' == "Y"){	
-				deleteButton.addEventListener('click',function(){
-					const del = window.confirm("정말 게시글을 삭제하시겠습니까?")
-					if(del){
-						$.ajax({
-							url: '${contextPath}/noticeDelete.no',
-							data : {boardNo : '${no.boardNo}'},
-							success : data => {
-								if(data > 0){
-									alert("게시글 삭제를 성공하였습니다.");
-									location.href="${contextPath}/notice.no";
-								}							
-							},
-							error:data => {
-								throw new AllException("공지사항 게시글을 삭제하지 못했습니다");
-							}		
-						});
+			if(deleteButton != null){
+				deleteButton.addEventListener('click', function(){
+					$('#modalChoice').modal('show');
+				});			
+			};
 											
-					}else{
-						alert("게시글 삭제를 취소하였습니다.");
-					}
+			const del = document.getElementById('delete');
+			const delNo = document.getElementById('deleteNo')
+					
+			del.addEventListener('click',()=>{
+				$.ajax({
+					url: '${contextPath}/noticeDelete.no',
+					data : {boardNo : '${no.boardNo}'},
+					dataType : 'json',
+					success : data => {
+						if(data == '0'){
+							location.href="${contextPath}/notice.no";
+						}							
+					},
+					error:data => {
+						console.log(data)
+					}		
 				});
-			}
-			
-			
-			const tds = document.getElementsByTagName("td")
-			for(td of tds){
-				td.addEventListener('mouseover',function(){
-					const tr = this.parentElement
-					tr.style.cursor="pointer"	
-				});
-				td.addEventListener('mouseout',function(){
-					const tr = this.parentElement
-					tr.style.cursor="default"				
-				});
-			}
-			
+									
+			})
+		
+		
 			const noticeListTrs = document.getElementsByClassName("noticeListTr");
 			for(const noticeListTr of noticeListTrs){
-		
+				noticeListTr.addEventListener('mouseover',function(){
+					this.style.cursor="pointer"	
+				});
+				noticeListTr.addEventListener('mouseout',function(){
+					this.style.cursor="default"				
+				});
+										
 				noticeListTr.addEventListener('click', function(){
 					const boardNo = this.children[0].innerHTML;
 					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo;					
 				});				
 			}
-			
-			
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+						
 			
 		}
 	</script>
+	
+	
+	
+	
+	
 </body>
 </html>
