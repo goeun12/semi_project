@@ -27,7 +27,7 @@ public class NoticeController {
 	
 	
 	@RequestMapping("notice.no")
-	public String noticeListView(@RequestParam(value="Page", defaultValue="1") int currentPage, Model model) {		
+	public String noticeListView(@RequestParam(value="page", defaultValue="1") int currentPage, Model model) {		
 
 		
 		int listCount = nService.noticeListCount(null);		
