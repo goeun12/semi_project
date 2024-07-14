@@ -24,6 +24,26 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.randomChoice(sqlSession, key);
 	}
 
+	@Override
+	public int insertReply(Reply rp) {
+
+		return bDAO.insertReply(sqlSession, rp);
+	}
+
+	
+	@Override
+	public int deleteReply(int replyNo) {
+		
+		return bDAO.deleteReply(sqlSession, replyNo);
+	}
+
+	@Override
+	public int updateReply(Reply rp) {
+
+		return bDAO.updateReply(sqlSession, rp);
+	}
+
+	
 
 	
 	
