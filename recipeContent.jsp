@@ -61,30 +61,20 @@
 					<tr>
 						<td style="width:100px">
 							<div class="recipe-option">	
-								<select id="sel-nation" class="form-select form-select-sm" disabled>
-									<c:choose>
-										<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>한식</option></c:when>
-										<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>중식</option></c:when>
-										<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>양식</option></c:when>
-										<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>일식</option></c:when>
-										<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>분식</option></c:when>
-									</c:choose>
-								</select>	
+								<c:choose>
+									<c:when test="${ r[0].nation eq 'kr' }">한식</c:when>
+									<c:when test="${ r[0].nation eq 'cn' }">중식</c:when>
+									<c:when test="${ r[0].nation eq 'us' }">양식</c:when>
+									<c:when test="${ r[0].nation eq 'jp' }">일식</c:when>
+									<c:when test="${ r[0].nation eq 'no' }">분식</c:when>
+								</c:choose>
 							</div>
 						</td>
 						<td style="width:100px">
 							<div class="recipe-option">
-								<select id="sel-easy"class="form-select form-select-sm" disabled>
-									<c:if test="${ r[0].difficulty eq 'easy' }">
-										<option value="easy" selected>하</option>
-									</c:if>
-									<c:if test="${ r[0].difficulty eq 'mid' }">	
-										<option value="mid" selected>중</option>
-									</c:if>
-									<c:if test="${ r[0].difficulty eq 'hard' }">
-										<option value="hard" selected>상</option>
-									</c:if>
-								</select>
+								<c:if test="${ r[0].difficulty eq 'easy' }">하</c:if>
+								<c:if test="${ r[0].difficulty eq 'mid' }">중</c:if>
+								<c:if test="${ r[0].difficulty eq 'hard' }">상</c:if>
 							</div>
 						</td>
 						<td id="recipe-own" style="font-size:15px;">작성자 : ${ b.writer }</td>
