@@ -112,4 +112,91 @@ public class BoardController {
 		
 	}
 
+
+	@RequestMapping(value="insertReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody	
+	public String insertReply(@RequestParam("boardNo") int boardNo, @RequestParam("rpWriter") String writer, @RequestParam("rpContent") String content) {
+		
+		Reply rp = new Reply();
+		rp.setBoardNo(boardNo);
+		rp.setWriter(writer);
+		rp.setContent(content);
+		
+		int result = bService.insertReply(rp);
+		
+		rp = bService.selectReply(rp);
+		
+		if(result > 0) {
+			JSONObject json = new JSONObject();
+			
+			json.put("replyNo", rp.getReplyNo());
+			json.put("content", rp.getContent());
+			json.put("writer", rp.getWriter());
+			json.put("updateDate", rp.getUpdateDate());
+			
+
+			return json.toString();			
+		}else {
+			throw new AllException("댓글을 등록하지 못했습니다");
+		}
+		
+	}
+	
+	@RequestMapping(value="deleteReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String deleteReply(@RequestParam("replyNo") int replyNo) {
+		
+		int result = bService.deleteReply(replyNo);
+		
+		if(result > 0 ) {
+			return "0";
+		}else {
+			throw new AllException("댓글을 삭제하지 못했습니다");
+		}
+	}
+	
+	@RequestMapping(value="updateReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String updateReply(@RequestParam("replyNo") int replyNo, @RequestParam("content") String content) {
+		Reply rp = new Reply();
+		rp.setReplyNo(replyNo);
+		rp.setContent(content);
+		System.out.println(rp);
+		
+		
+		int result = bService.updateReply(rp);
+		
+		if(result > 0 ) {
+			JSONObject json = new JSONObject();
+			json.put("content", rp.getContent());
+						
+			System.out.println("json" + json);
+			return json.toString();
+		}else {
+			throw new AllException("댓글을 수정하지 못했습니다");
+		}
+	}
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 }
