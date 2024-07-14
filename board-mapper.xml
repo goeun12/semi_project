@@ -23,6 +23,27 @@
 			</if>
 	</select>
 	
+	<insert id="insertReply" useGeneratedKeys="true">
+		<selectKey resultType="_int" keyProperty="replyNo" order="BEFORE">
+			select seq_reply.nextval from dual  		
+		</selectKey>	
+		insert into reply
+		values(#{replyNo}, #{writer}, #{boardNo}, #{content}, sysdate, sysdate, default)	
+	</insert>
+
+	<update id="deleteReply">
+		update reply
+		set status = 'N'
+		where reply_no = #{replyNo}	
+	</update>
+	
+	
+	<update id="updateReply" useGeneratedKeys="true">	
+		update reply
+		set content = #{content}
+		where reply_no = #{replyNo}	
+	</update>
+	
 	
 
 
