@@ -14,6 +14,7 @@ public interface BoardService {
 	int deleteReply(int replyNo);
 
 	int updateReply(Reply rp);
-	
+
+	Reply selectReply(Reply rp);
 
 }
