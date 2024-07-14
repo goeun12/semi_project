@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.admin_container{
+	margin: 0px;
+	font-family: 'MinSans-Regular';
+	min-width: 1200px;
+	width: 100%;
+	font-size: 20px;
+	min-height: 814.5px;
+}
+
+.admin_page{
+	margin-top: 120px;
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.title_user{
+	height: 40px;
+	border-bottom: 2px solid gray;
+	padding-bottom: 7px;
+}
+
+.title_text{
+	margin-left: 55px;
+}
+
+.user_category{
+	float: right;
+	margin-top: 15px;
+	padding-right: 40px;
+}
+
+.select_botton input:focus, .search_user input:focus{
+	box-shadow: none;
+}
+
+.select_botton, .search_user{
+	display: inline-block;
+}
+
+.user_table_div{
+	width: 85%;
+	margin: 80px auto 0;
+}
+
+.user_table{
+	background: white;
+	border-radius: 15px;
+	border: 1px solid lightgray;
+	padding-bottom: 30px;
+}
+
+.user_table>table{
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+thead th{
+	border-bottom: 1px solid black;
+}
+
+tbody td>div{
+	border: 1px solid black;
+	height: 80%;
+	width: 45%;
+	display: inline-block;
+	padding-top: 3%;
+	cursor: pointer;
+}
+
+.selectState{
+	background: lightgray;
+}
+
+.unselectState{
+	background: none;
+}
