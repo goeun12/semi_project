@@ -92,15 +92,7 @@
 	border-style: hidden;
 	box-shadow: 0 0 0 1px lightgray;
 }
-.td-topline>div{border:1px solid black;
-				width:95%;
-				height:95%;
-				margin-left:2%;
-				display:flex;
-				justify-content:center;
-				align-items:center
-}
-.td-topline>div:hover{border:none}
+
 #text-ingre{width:90%; padding-left:30px;padding-right:30px;}
 .top-padding{padding-top:3rem !important;}
 
