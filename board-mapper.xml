@@ -45,7 +45,12 @@
 	</update>
 	
 	
-
+	<select id="selectReply" resultType="Reply">
+		select *
+		from reply
+		where reply_no = #{replyNo}
+	</select>
+	
 
 
 
