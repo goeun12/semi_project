@@ -9,6 +9,11 @@ public interface BoardService {
 
 	ArrayList<RandomRecipe> randomChoice(HashMap<String, Object> key);
 
+	int insertReply(Reply rp);
+
+	int deleteReply(int replyNo);
+
+	int updateReply(Reply rp);
 	
 
 }
