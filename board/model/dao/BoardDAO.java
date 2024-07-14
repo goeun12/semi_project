@@ -30,6 +30,11 @@ public class BoardDAO {
 		
 		return sqlSession.update("boardMapper.updateReply", rp);
 	}
-	
+
+	public Reply selectReply(SqlSessionTemplate sqlSession, Reply rp) {
+		
+		return sqlSession.selectOne("boardMapper.selectReply",rp);
+	}
+
 
 }
