@@ -16,6 +16,20 @@ public class BoardDAO {
 		return (ArrayList)sqlSession.selectList("boardMapper.randomChoice", key);
 	}
 
+	public int insertReply(SqlSessionTemplate sqlSession, Reply rp) {
+
+		return sqlSession.insert("boardMapper.insertReply",rp);
+	}
+
+	public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
+		
+		return sqlSession.update("boardMapper.deleteReply", replyNo);
+	}
+
+	public int updateReply(SqlSessionTemplate sqlSession, Reply rp) {
+		
+		return sqlSession.update("boardMapper.updateReply", rp);
+	}
 	
 
 }
