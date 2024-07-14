@@ -43,6 +43,12 @@ public class BoardServiceImpl implements BoardService {
 		return bDAO.updateReply(sqlSession, rp);
 	}
 
+	@Override
+	public Reply selectReply(Reply rp) {
+		
+		return bDAO.selectReply(sqlSession, rp);
+	}
+
 	
 
 	
