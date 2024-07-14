@@ -55,38 +55,61 @@ public class BoardController {
 	
 	
 
-		@RequestMapping("random.re")
-		public String randomView() {
-			
-			return "randomMenu";
-		}
-
-		@RequestMapping("randomChoice.re")
-		public String randomChoice(@RequestParam("nation") String[] nation, @RequestParam("difficulty") String[] difficulty, Model model) {
-					
-		HashMap<String, Object> key = new HashMap<String, Object>();
-		key.put("nation", nation);
-		key.put("difficulty", difficulty);
-						
-		ArrayList<RandomRecipe> ra = bService.randomChoice(key);
+	@RequestMapping("random.re")
+	public String randomView() {
 		
-		Random random = new Random();			
-		int num = random.nextInt(ra.size() + 1);	
-			
-		RandomRecipe randomRecipe = ra.get(num);	
-			
-		model.addAttribute(randomRecipe);
-						
 		return "randomMenu";
-		}
-		
-		
-		
-		@RequestMapping("randomContent.re")
-		public String randomContent() {
-			
-			return "randomMenu";
-		}
+	}
 
+
+	@RequestMapping(value="randomChoice.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String randomChoice(@RequestParam("form") String form) {
+
+		ModelAndView mav = new ModelAndView ();
+		if(form != null && !form.isEmpty()) {
+			String[] splitAnq = form.split("&"); // 배열 : nation=cn, nation=jp,
+			
+			ArrayList<String> nation = new ArrayList<String>();
+			ArrayList<String> difficulty = new ArrayList<String>();
+			for(String elem : splitAnq) {
+				String[] splitEq = elem.split("=");
+				if(splitEq[0].equals("nation")) {
+					nation.add(splitEq[1]);
+				} else {
+					difficulty.add(splitEq[1]);
+				}
+			}
+			
+		
+			HashMap<String, Object> key = new HashMap<String, Object>();
+			key.put("nation", nation);
+			key.put("difficulty", difficulty);
+							
+			ArrayList<RandomRecipe> ra = bService.randomChoice(key);
+			
+				
+			Random random = new Random();			
+			int num = random.nextInt(ra.size());	
+				
+			RandomRecipe randomRecipe = ra.get(num);	
+					
+			JSONObject json = new JSONObject();
+			json.put("boardNo", randomRecipe.getBoardNo());
+			json.put("title", randomRecipe.getTitle());
+			json.put("recipeNo", randomRecipe.getRecipeNo());
+			json.put("imageNo", randomRecipe.getImageNo());
+			json.put("imageURL", randomRecipe.getImageURL());
+			json.put("imageName", randomRecipe.getImageName());
+			json.put("titleImg", randomRecipe.getTitleImg());
+
+			return json.toString();
+				
+					
+		}else {
+			return "0";
+		}
+		
+	}
 
 }
