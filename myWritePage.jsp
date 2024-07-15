@@ -15,12 +15,12 @@
 	<jsp:include page="../common/header.jsp"/>
 	<div id="wrap" class="wrap">
 		<div id="container">
-			<div style="padding-top:1rem !important; padding-bottom:5rem !important;" class="py-lg-5">
+			<div style="padding-top:1rem !important; padding-bottom:5rem !important; min-width:1580px;" class="py-lg-5">
      			<div id="login_bar" class="col-lg-6 col-md-8">
         			<p>내가 쓴 글 목록</p>
       			</div><br>
       		</div>
-			<div id="board_table_div" style="min-width:1000px;">	
+			<div id="board_table_div">	
 				<div id="board_table">
 					<table class="table table-hover" id="table">
 					  <thead>
