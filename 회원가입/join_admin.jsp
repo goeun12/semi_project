@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="resources/css/joinAcc.css" rel="stylesheet" type="text/css">
+<link href="resources/css/joinAdmin.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
 <style>
 	@font-face {
@@ -30,7 +30,7 @@
 		</div>
 		<form action="${contextPath}/signUpAdmin.user" method="post" id="joinAdminForm">
 			<div class="join admin_table_div">
-				<table class="join account_table" border="1">
+				<table class="join admin_table" border="1">
 					<tr>
 						<th>아이디</th>
 						<td>
@@ -67,12 +67,12 @@
 					</tr>
 					<tr>
 						<th id="lastTrBTh">관리자 비밀번호 인증</th>
-						<td id="lastTrBTd" colspan="2"><input type="text" id="adminPwd" placeholder="관리자 인증 비밀번호를 입력해 주세요."/></td>
+						<td id="lastTrBTd" colspan="2"><input type="text" id="adminPwd" class="joinInput" placeholder="관리자 인증 비밀번호를 입력해 주세요."/></td>
 					</tr>
 				</table>
 			</div>
 			<div>
-				<button id="join_button" type="button">회원가입</button>
+				<button id="admin_button" type="button">관리자 가입</button>
 			</div>
 		</form>
 	</div>	
