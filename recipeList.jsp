@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레시피 메인</title>
+<title>혼밥심 입니다</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-
+<jsp:include page="../common/header.jsp"></jsp:include>
 
 <div id="gotop-button"><a href=""><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 
@@ -33,11 +33,11 @@
 			</div>
 		</div>
 		
-		<form>
+		<form id="searchForm" action="${contextPath }/searchRecipe.re">
 			<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
 				<div class="input-group mb-3" style="width:85%;">
-					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요">
-					<button class="btn btn-outline-secondary searchButton" type="button" id="search_button">검색</button>
+					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요" onkeydown="search(this)">
+					<button class="btn btn-outline-secondary searchButton" id="search_button">검색</button>
 				</div>
 			</div>
 	
@@ -112,6 +112,8 @@
 	
 	<script>
 		window.onload=()=>{
+			
+			
 			const divs = document.getElementsByClassName('card');
 			for(const div of divs){
 				div.addEventListener('click',function(){
@@ -128,13 +130,14 @@
 				const nation = document.getElementById('sel-nation').value;
 				const difficulty = document.getElementById('sel-easy').value;
 				
-				console.log(searchWord);
-				console.log(nation);
-				console.log(difficulty);
-				
 				location.href = '${contextPath}/searchRecipe.re?searchWord='+searchWord+'&nation='+nation+'&difficulty='+difficulty;
-			})
+			});
+			
+			
+			
 		}
+		
+		
 	</script>
 	
 	
