@@ -31,7 +31,7 @@
 	
 	<insert id="insertMember">
 		insert into member
-		values(#{id}, #{name}, #{pwd}, #{phone}, #{address}, default, default, default)
+		values(#{id}, #{name}, #{pwd}, #{phone}, #{address}, #{isAdmin}, default, default, #{signupPath})
 	</insert>
 	
 	<update id="updateMember">
@@ -44,5 +44,22 @@
 		update member
 		set status = 'N'
 		where id = #{id}
+	</update>
+	
+	<select id="selectMemberList" resultType="Member">
+		select * from member
+		<where>
+			<if test="admin != null">
+				is_admin = #{admin}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectSearchMember" resultType="Member">
+		select * from member where name = #{search}
+	</select>
+	
+	<update id="updateAdminStatus">
+		update member set is_admin = #{isAdmin} where id = #{id}
 	</update>
 </mapper>

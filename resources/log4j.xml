@@ -10,6 +10,17 @@
 		</layout>
 	</appender>
 	
+	<appender name="loginLogDailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/logs/homBab/member/login.log"/>
+		<param name="Append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="DatePattern" value="'.'yyyyMMdd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss} [%p] login: %m%n"/>
+		</layout>
+	</appender>
+	
+	
 	<!-- Application Loggers -->
 	<logger name="com.project.aloneBab">
 		<level value="info" />
@@ -30,6 +41,11 @@
 
 	<logger name="org.springframework.web">
 		<level value="info" />
+	</logger>
+	
+	<logger name="com.project.aloneBab.common.LoginLogInterceptor" additivity="false">
+		<level value="info"/>
+		<appender-ref ref="loginLogDailyRollingFile"/>
 	</logger>
 
 	<!-- Root Logger -->

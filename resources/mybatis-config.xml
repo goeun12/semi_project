@@ -14,6 +14,7 @@
 		<typeAlias type="com.project.aloneBab.board.model.vo.Image" alias="Image"/>
 		<typeAlias type="com.project.aloneBab.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.project.aloneBab.board.model.vo.RandomRecipe" alias="RandomRecipe"/>
+		<typeAlias type="com.project.aloneBab.board.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<mappers>
