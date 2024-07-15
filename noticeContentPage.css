@@ -4,7 +4,8 @@
 				padding-top:80px;
 				padding-bottom:20%; 
 				min-width: 1200px;
-				font-family: "나눔고딕"; font-size:20px}
+				font-family: 'MinSans-Regular';
+		 		font-size:20px;}
 	
 #notice_title{background:#f9ae98;
 		width: 50%; height:50px;
