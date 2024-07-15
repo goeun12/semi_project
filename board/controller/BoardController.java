@@ -66,7 +66,6 @@ public class BoardController {
 	@ResponseBody
 	public String randomChoice(@RequestParam("form") String form) {
 
-		ModelAndView mav = new ModelAndView ();
 		if(form != null && !form.isEmpty()) {
 			String[] splitAnq = form.split("&"); // 배열 : nation=cn, nation=jp,
 			
@@ -88,24 +87,27 @@ public class BoardController {
 							
 			ArrayList<RandomRecipe> ra = bService.randomChoice(key);
 			
-				
-			Random random = new Random();			
-			int num = random.nextInt(ra.size());	
-				
-			RandomRecipe randomRecipe = ra.get(num);	
+			if(ra != null && !ra.isEmpty()) {
+				Random random = new Random();			
+				int num = random.nextInt(ra.size());	
 					
-			JSONObject json = new JSONObject();
-			json.put("boardNo", randomRecipe.getBoardNo());
-			json.put("title", randomRecipe.getTitle());
-			json.put("recipeNo", randomRecipe.getRecipeNo());
-			json.put("imageNo", randomRecipe.getImageNo());
-			json.put("imageURL", randomRecipe.getImageURL());
-			json.put("imageName", randomRecipe.getImageName());
-			json.put("titleImg", randomRecipe.getTitleImg());
+				RandomRecipe randomRecipe = ra.get(num);	
+						
+				JSONObject json = new JSONObject();
+				json.put("boardNo", randomRecipe.getBoardNo());
+				json.put("title", randomRecipe.getTitle());
+				json.put("recipeNo", randomRecipe.getRecipeNo());
+				json.put("imageNo", randomRecipe.getImageNo());
+				json.put("imageURL", randomRecipe.getImageURL());
+				json.put("imageName", randomRecipe.getImageName());
+				json.put("titleImg", randomRecipe.getTitleImg());
 
-			return json.toString();
-				
-					
+				return json.toString();
+								
+			} else {
+				return "1";
+			}
+							
 		}else {
 			return "0";
 		}
