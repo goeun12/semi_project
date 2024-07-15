@@ -124,7 +124,7 @@
 							$('#img_div').css('height','60px');
 							$('#img_div').css('margin-left','23%');
 							$('#img_div').css('margin-top','15px');
-							$('#img_div').css('font-size','15px');
+							$('#img_div').css('font-size','18px');
 							$('#img_div').css('font-weight','700');
 							$('#img_div').css('text-align','center');
 							$('#img_div').css('line-height','60px');
