@@ -15,7 +15,8 @@
 				margin-left:15%;		
 				padding: 20px;			
 				border: 1px solid lightgray; border-radius:10px;
-				font-weight:100;}
+				font-weight:100;
+				font-family: 'MinSans-Regular';}
 	
 	tbody{font-size:18px;
 	}
