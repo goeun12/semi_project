@@ -21,15 +21,15 @@
 			<div class="user_category">
 				<div class="select_botton">
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="inlineCheckbox1" name="search" value="total" checked>
+						<input class="form-check-input" type="radio" id="inlineCheckbox1" name="search" value="total" <c:if test="${ check == 'total' }"> checked</c:if>/>
 						<label class="form-check-label" for="inlineCheckbox1">전체</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="inlineCheckbox2" name="search" value="N">
+						<input class="form-check-input" type="radio" id="inlineCheckbox2" name="search" value="N" <c:if test="${ check == 'N' }"> checked</c:if>>
 						<label class="form-check-label" for="inlineCheckbox2">일반</label>
 					</div>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" id="inlineCheckbox3" name="search" value="Y">
+						<input class="form-check-input" type="radio" id="inlineCheckbox3" name="search" value="Y" <c:if test="${ check == 'Y' }"> checked</c:if>>
 						<label class="form-check-label" for="inlineCheckbox3">관리자</label>
 					</div>
 				</div>
@@ -45,19 +45,20 @@
 					<table class="table">
 						<thead>
 					    	<tr>
-					      		<th scope="col" style="width: 13%;">아이디</th>
+					      		<th scope="col" style="width: 11%;">아이디</th>
 					      		<th scope="col" style="width: 8%;">이름</th>
 					      		<th scope="col" style="width: 15%;">전화번호</th>
-					      		<th scope="col" style="width: 37%;">주소</th>
+					      		<th scope="col" style="width: 35%;">주소</th>
 					      		<th scope="col" style="width: 10%;">가입날짜</th>
-					      		<th scope="col" style="width: 8%;">활동 여부</th>
-					      		<th scope="col" style="width: 15%;">관리자 여부</th>
+					      		<th scope="col" style="width: 4%;">활동</th>
+					      		<th scope="col" style="width: 8%;">관리자 여부</th>
+					      		<th scope="col" style="width: 20%;">가입 경로</th>
 					    	</tr>
 					  	</thead>
 					  	<tbody>
 					  		<c:if test="${ empty userList }">
 					  			<tr>
-					  				<td colspan="6">사용자 정보가 없습니다.</td>
+					  				<td colspan="8">사용자 정보가 없습니다.</td>
 					  			</tr>
 					  		</c:if>
 					  		<c:if test="${ !empty userList }">
@@ -73,6 +74,14 @@
 							      			<div class='${ l.isAdmin == "Y" ? "selectState" : "unselectState" }'>Y</div>
 							      			<div class='${ l.isAdmin == "N" ? "selectState" : "unselectState" }'>N</div>
 							      		</td>
+							      		<td>
+											<c:if test="${ l.signupPath == 'SEARCH' }">검색</c:if>
+											<c:if test="${ l.signupPath == 'HOMEPAGE' }">홈페이지</c:if>
+											<c:if test="${ l.signupPath == 'INTRODUCE' }">지인 소개</c:if>
+											<c:if test="${ l.signupPath == 'INTERNET' }">카페/커뮤니티</c:if>
+											<c:if test="${ l.signupPath == 'ETC' }">기타</c:if>
+											<c:if test="${ l.signupPath == 'ADMIN' }">관리자</c:if>
+										</td>
 							    	</tr>
 					  			</c:forEach>
 					  		</c:if>
@@ -89,68 +98,7 @@
 			
 			for(const check of checkes){
 				check.addEventListener('change', function(){
-					if(check.checked){
-						$.ajax({
-							url: "${contextPath}/adminUserList.user",
-							data: {
-								admin: check.value
-							},
-							dataType: 'json',
-							success: data => {
-								console.log(data);
-								const tbody = document.querySelector('tbody');
-								tbody.innerHTML = '';
-								
-								if(data != null){
-									console.log('adsf');
-									for(const d of data){
-										const tr = document.createElement('tr');
-										
-										const idTd = document.createElement('td');
-										idTd.innerText = d.id;
-										
-										const nameTd = document.createElement('td');
-										nameTd.innerText = d.name;
-										
-										const phoneTd = document.createElement('td');
-										phoneTd.innerText = d.phone;
-										
-										const addressTd = document.createElement('td');
-										const arrAdd = d.address.split('§§●');
-										console.log(arrAdd[1]);
-										if(arrAdd[1] != null){
-											addressTd.innerText = arrAdd[0] + ' ' + arrAdd[1];
-										} else{
-											addressTd.innerText = arrAdd[0];
-										}
-										
-										const joinDateTd = document.createElement('td');
-										joinDateTd.innerText = d.joinDate;
-										
-										const statusTd = document.createElement('td');
-										statusTd.innerText = d.status;
-										
-										const isAdminTd = document.createElement('td');
-										isAdminTd.innerText = d.isAdmin;
-										
-										tr.append(idTd);
-										tr.append(nameTd);
-										tr.append(phoneTd);
-										tr.append(addressTd);
-										tr.append(joinDateTd);
-										tr.append(statusTd);
-										tr.append(isAdminTd);
-										
-										tbody.append(tr);
-									}
-								} else{
-									console.log('else');
-									tbody.innerHTML = '<tr><td colspan="6">사용자 정보가 없습니다.</td></tr>';
-								}
-							},
-							error: data => console.log('error')
-						});
-					}
+					location.href="${contextPath}/admin.user?check=" + check.value;
 				});
 			}
 			
@@ -160,64 +108,7 @@
 			
 			btn.addEventListener('click', function(){
 				if(input.value != ''){
-					$.ajax({
-						url: "${contextPath}/searchUser.user",
-						data: {
-							search: input.value
-						},
-						dataType: 'json',
-						success: data => {
-							console.log (data);
-							tbody.innerHTML = '';
-							
-							if(data != null){
-								console.log('adsf');
-								for(const d of data){
-									const tr = document.createElement('tr');
-									
-									const idTd = document.createElement('td');
-									idTd.innerText = d.id;
-									
-									const nameTd = document.createElement('td');
-									nameTd.innerText = d.name;
-									
-									const phoneTd = document.createElement('td');
-									phoneTd.innerText = d.phone;
-									
-									const addressTd = document.createElement('td');
-									const arrAdd = d.address.split('§§●');
-									if(arrAdd[1] == null){
-										addressTd.innerText = arrAdd[0];
-									} else{
-										addressTd.innerText = arrAdd[0] + ' ' + arrAdd[1];
-									}
-									
-									const joinDateTd = document.createElement('td');
-									joinDateTd.innerText = d.joinDate;
-									
-									const statusTd = document.createElement('td');
-									statusTd.innerText = d.status;
-									
-									const isAdminTd = document.createElement('td');
-									isAdminTd.innerText = d.isAdmin;
-									
-									tr.append(idTd);
-									tr.append(nameTd);
-									tr.append(phoneTd);
-									tr.append(addressTd);
-									tr.append(joinDateTd);
-									tr.append(statusTd);
-									tr.append(isAdminTd);
-									
-									tbody.append(tr);
-								}
-							} else{
-								console.log('else');
-								tbody.innerHTML = '<tr><td colspan="6">사용자 정보가 없습니다.</td></tr>';
-							}
-						},
-						error: data => console.log('error')
-					});
+					location.href="${contextPath}/searchUser.user?search=" + input.value;
 				}
 			});
 			
