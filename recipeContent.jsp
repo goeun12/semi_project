@@ -11,20 +11,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 <style>
+#clickbody{font-family: 'MinSans-Regular';}
 
 </style>
 </head>
 <body id="clickbody">
 		
 	<jsp:include page="../common/header.jsp"/>
-	<!-- 
-			검색창
-			
-			밸류 가져와서 필터링
-	 -->
 	<div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
 		<form action="${contextPath }/bunryuRecipe.re">
-			<div class="div-center div-flexible" style="padding-top:10px;padding-bottom:10px; ">
+			<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px; ">
 				<div class="input-group mb-3" style="width:70%">
 					<input name="searchWord" type="text" class="form-control searchbar" placeholder="찾고자 하는 단어를 입력해주세요.">
 					<button class="btn btn-outline-secondary searchButton" id="search_button">검색</button>
@@ -34,7 +30,7 @@
 	</div>
 	<form method="POST" id="updelForm">
 		<div class="div-min-width">
-			<div class="div-flexible text-center" id="up-del-btn">
+			<div class="div-flex text-center" id="up-del-btn">
 				<c:if test="${ loginUser.id == b.writer }">
 					<button class="btn btn-primary me-md-2" type="button" id="recipe-up-btn">수정</button>
 					<button class="btn btn-primary me-md-2" type="button" id="recipe-del-btn">삭제</button>
@@ -43,7 +39,7 @@
 				</c:if>
 				
 			</div>
-			<div id="tbdiv3" class="row text-center div-flexible col">
+			<div id="tbdiv3" class="row text-center div-flex col">
 				<table class="tbround bgcw">
 					<tr>
 						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
@@ -70,15 +66,15 @@
 								</c:choose>
 							</div>
 						</td>
-						<td style="width:100px">
+						<td style="width:130px">
 							<div class="recipe-option">
-								<c:if test="${ r[0].difficulty eq 'easy' }">하</c:if>
-								<c:if test="${ r[0].difficulty eq 'mid' }">중</c:if>
-								<c:if test="${ r[0].difficulty eq 'hard' }">상</c:if>
+								<c:if test="${ r[0].difficulty eq 'easy' }">난이도 : 하</c:if>
+								<c:if test="${ r[0].difficulty eq 'mid' }">난이도 : 중</c:if>
+								<c:if test="${ r[0].difficulty eq 'hard' }">난이도 : 상</c:if>
 							</div>
 						</td>
-						<td id="recipe-own" style="font-size:15px;">작성자 : ${ b.writer }</td>
-						<td style="font-size:15px;">조회수 : ${ b.boardCount }</td>
+						<td id="recipe-own" style="font-size:20px;">작성자 : ${ b.writer }</td>
+						<td style="font-size:20px;">조회수 : ${ b.boardCount }</td>
 					</tr>
 					<tr>
 						<td class="td-topline" colspan="4" height="300px" width="50px">
@@ -120,85 +116,24 @@
 			</div>
 		</div>
 	</form>
-	<hr>
 	
-	<form>
-		<div style="margin-left: 10px;">
-			<div class="input-group mb-3" id="comment">
-	 			<input type="text" class="form-control" name="noticeKey" placeholder="댓글을 적어주세요" >
-	 			<button class="btn btn-outline-secondary" id="search_button">등록</button>
-			</div>	
-		</div>
-	</form>	
+	<div class="mx-auto" style="display:flex; justify-content:center;">
+		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
+	</div>
+	<hr>
 
-	<div class="div-flexible div-center" style="height: 50px"></div>
+	<div class="div-flex div-center" style="height: 50px"></div>
 
 
 <%-- 댓글 --%>
-	<div id="honey_table_div">	
-		<div id="honey_table">
-			<table class="table table-hover " style="width: 1300px; margin-left:120px;" border="1" >
-			  <thead>
-			    <tr>
-					<th scope="col" style="width: 100px; font-weight:700; text-align: center; ">글번호</th>
-					<th scope="col" style="width: 200px; font-weight:700; text-align: center;">ID</th>
-					<th scope="col" style="width: 600px; font-weight:700; ">댓글 내용</th>
-					<th scope="col" style="width: 100px; font-weight:700; text-align: center;">작성일</th>
-					<th scope="col" style="width: 300px; font-weight:700; text-align: center;">수정/삭제</th>
-			    </tr>
-			  </thead>
-			  <tbody class="table-group-divider" >
-			    <tr>
-				      <td scope="row" style="text-align: center;">1</td>
-				      <td style="text-align: center;">yerin</td>
-				      <td>인생은 무엇인가? </td>
-				      <td style="text-align: center;">2024.06.10</td>
-				      <td> </td>
-			    </tr>
-			    <tr>
-				      <td scope="row"  style="text-align: center;">2</td>
-				      <td style="text-align: center;">jungmin</td>
-				      <td>피자나 시켜 먹자</td>
-				      <td style="text-align: center;">2024.06.10</td>
-				      <td> </td>
-			    </tr>
-			    <tr>
-				      <td scope="row" style="text-align: center;">3</td>
-				      <td style="text-align: center;">namhee</td>
-				      <td>돈 없어서 못 먹음</td>
-				      <td style="text-align: center;">2024.06.10</td>
-				      <td> </td>
-			    </tr>
-				<tr>
-				      <td scope="row" style="text-align: center;">4</td>
-				      <td style="text-align: center;">goeun</td>
-				      <td>집가고 싶다. </td>
-				      <td style="text-align: center;">2024.06.10</td>
-				      <td> </td>
-			    </tr>
-			    <tr>
-				      <td scope="row" style="text-align: center;">5</td>
-				      <td style="text-align: center;">iohc</td>
-				      <td>졸림</td>
-				      <td style="text-align: center;">2024.06.10</td>
-				      <td> 
-				      	<div id ="notice_up_del" >
-							<a class="btn btn-primary me-md-2" href="#" role="button" id ="update_button">수정</a>
-							<a class="btn btn-primary me-md-2" href="#" role="button" id ="delete_button">삭제</a>
-						</div>
-				      </td>
-			    </tr>
-			  </tbody>
-			</table>			
-		</div>
-	</div>
 	
+	<jsp:include page="../common/reply.jsp"/>
 	
 	
 	
 	<hr>
-	<div class="grid text-center div-flexible div-center div-min-width" style="margin-left:50px;margin-right:50px;">
-		<div class="g-col-6 div-center div-flexible" id="recipe-recommend">
+	<div class="grid text-center div-flex div-center div-min-width" style="margin-left:50px;margin-right:50px;">
+		<div class="g-col-6 div-center div-flex" id="recipe-recommend">
 			<span>
 				<c:choose>
 					<c:when test="${ r[0].nation eq 'kr' }">한식</c:when>
@@ -210,7 +145,7 @@
 			</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
 		</div>
 		<form action="${contextPath }/searchRecipe.re">
-			<div class="div-center div-flexible slim-border" id="show-more">
+			<div class="div-center div-flex slim-border" id="show-more">
 				<button style="border:none; background-color:white;">더보기</button>
 				<input type="hidden" name="nation" value="${ rList[0].nation }">
 			</div>
