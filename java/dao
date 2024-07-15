@@ -1,5 +1,9 @@
-	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
+	public int joinMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+
+	public int checkId(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.checkId", id);
 	}
 
 	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
@@ -7,9 +11,9 @@
 	}
 
 	public int deleteMember(SqlSessionTemplate sqlSession, String id) {
-		return sqlSession.update("memberMapper.updateDel", id);
+		return sqlSession.update("memberMapper.deleteMember", id);
 	}
 
-	public int checkId(SqlSessionTemplate sqlSession, String id) {
-		return sqlSession.selectOne("memberMapper.seleteId", id);
+	public int joinAdmin(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
 	}
