@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class RandomRecipe {
 	private int boardNo;
-	private int title;
+	private String title;
 	private int recipeNo;
 	private int imageNo;
 	private String imageURL;
