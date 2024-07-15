@@ -22,7 +22,7 @@
 	<!-- 1번째 칸 -->
 <form action="${contextPath }/editRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
 	<div>
-		<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
+		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
 	
 			<table class="tbround bgcw" style="width:100%;">
 				<tr>
@@ -157,7 +157,7 @@
 				</tbody>
 			</table>
 			<div>&nbsp;</div>
-			<div class="div-flexible div-center" style="height: 50px">
+			<div class="div-flex div-center" style="height: 50px">
 				<div>
 					<button class="btn btn-primary me-md-2" id="plus-level" type="button" onclick="add_tr('table_body')">단계 추가</button>
 				</div>
