@@ -91,7 +91,7 @@
 		select *
 		from reply
 		where board_no = #{boardNo}
-		
+			and status = 'Y'
 	</select>
 	
 	
