@@ -56,7 +56,7 @@ public class NoticeController {
 		ArrayList<Reply> rpList =  nService.rpList(boardNo);
 		
 		if(no != null) {
-			model.addAttribute("no",no);
+			model.addAttribute("b",no);
 			model.addAttribute("noticeListMin", noticeListMin);
 			model.addAttribute("myPage", myPage);
 			model.addAttribute("rpList", rpList);
