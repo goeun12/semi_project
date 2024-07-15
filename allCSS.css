@@ -3,17 +3,21 @@
 .bottom-padding{padding-bottom:2rem !important;}
 
 
-#clickbody{background-color:#fffbf2; font-size:20px;}
+
+#clickbody{background-color:#fffbf2; font-size:20px;font-family: 'MinSans-Regular';}
 .card-text>a{text-decoration:none;color:black;}
 .card-body>p{height:15px;}
 .container{min-width:1250px;}
-.container-fluid{background:#fffbf2; padding-bottom: 15%; min-width: 1200px;
-					font-family: "나눔고딕"; font-size:20px}
+.container-fluid{background:#fffbf2; 
+				 min-width: 1250px;
+				 padding-top:80px;
+				 padding-bottom:10%;
+				font-family: "MinSans-Regular"; font-size:20px}
 .card-text{font-size:15px;}
 .card:hover{cursor:pointer;}
 
 
-.div-flexible{display:flex;}
+.div-flex{display:flex;}
 .div-center{justify-content:center;}
 .div-textarea{margin-left:100px;margin-top:30px;width:600px; height:300px;}
 .div-min-width{min-width:1250px;}
@@ -54,7 +58,7 @@
 .recipe-option{width:150px;padding-left:30px; padding-right:30px;padding-bottom:10px;padding-top:10px;}
 .row-cols-md-3>*{flex:0 0 auto; width:25%;}
 #recipe-recommend{border-radius:10px;}
-#recipe-body{background-color:#fffbf2;}
+#recipe-body{background-color:#fffbf2;font-family: 'MinSans-Regular';}
 #recipe-up-btn,#recipe-del-btn{background-color:#b3b3b3;border:none}
 #recipe-title{font-size:40px;font-weight:300;}
 
@@ -150,4 +154,3 @@
 	
 	background-color: #c0c0c0;
 }
-
