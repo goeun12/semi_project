@@ -21,13 +21,15 @@
 	<context:component-scan base-package="com.project.aloneBab" />
 	
 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<mvc:exclude-mapping path="notice.no"/>
-			<mvc:exclude-mapping path="noticeSelect.no"/>
-			<bean class="com.project.aloneBab.common.AdminInterceptor" id="admin"></bean>
-		</mvc:interceptor>
-	
-	</mvc:interceptors>
+      <mvc:interceptor>
+         <mvc:mapping path="/noticeWriteView.no"/>
+         <mvc:mapping path="/noticeWrite.no"/>
+         <mvc:mapping path="/noticeUpdateView.no"/>
+         <mvc:mapping path="/noticeUpdate.no"/>
+         <mvc:mapping path="/noticeDelete.no"/>
+         <bean class="com.project.aloneBab.common.AdminInterceptor" id="admin"></bean>
+      </mvc:interceptor>
+   
+   </mvc:interceptors>
 
 </beans>

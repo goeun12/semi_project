@@ -34,7 +34,7 @@
 					<tr>
 						<th>아이디</th>
 						<td>
-							<input type="text" id="join_id" class="joinInput" name="id" placeholder="(영문이나 숫자만 입력)"/>
+							<input type="text" id="join_id" class="joinInput" name="id" placeholder="영문이나 숫자만 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
 							<span class="table_In_Infor" id="inforId"></span>
@@ -42,12 +42,12 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="필수 입력"/></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
 						<td>
-							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="(필수 입력)"/>
+							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="필수 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right; width: 200px;">
 							<label class="table_In_Infor" id="inforPwd"></label>
@@ -55,39 +55,40 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="name" placeholder="(필수 입력)"/></td>
+						<td colspan="2"><input type="text" id="join_name" class="joinInput" name="name" placeholder="필수 입력"/></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호</th>
 						<td colspan="2">
-							<input type="text" id="phone" class="joinInput" name="phone" placeholder="(- 제외 입력)"/>
+							<input type="text" id="phone" class="joinInput" name="phone" placeholder="- 포함 입력"/>
 						</td>
 					</tr>
-					<tr>
+					<tr class="memberTr">
 						<th>주소</th>
 						<td>
-							<input type="text" class="joinInput" id="sample4_roadAddress" placeholder="도로명 주소" readonly>
-							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소" required="required">
+							<input type="text" style="cursor:default;" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
+							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소 입력" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
 						<td>
-							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소찾기">
+							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 						</td>
 					</tr>
-					<tr>
+					<tr class="memberTr">
 						<th id="lastTrBTh">가입경로</th>
 						<td id="lastTrBTd" colspan="2">
-							<input type="radio" name="joinLoc" class="joinInputRa" id="search" value="search" checked/><label class="joinInputRa Lab" for="search">검색</label>
-							<input type="radio" name="joinLoc" class="joinInputRa" id="homePage" value="homePage"/><label class="joinInputRa Lab" for="homePage">홈페이지</label>
-							<input type="radio" name="joinLoc" class="joinInputRa" id="shoutOut" value="shoutOut"/><label class="joinInputRa Lab" for="shoutOut">지인 소개</label>
-							<input type="radio" name="joinLoc" class="joinInputRa" id="cafeCom" value="cafeCom"/><label class="joinInputRa Lab" for="cafeCom">카페/커뮤니티</label>
-							<input type="radio" name="joinLoc" class="joinInputRa" id="none" value="none"/><label class="joinInputRa Lab" for="none">기타</label>
+							<input type="radio" name="signupPath" class="joinInputRa" id="search" value="SEARCH" checked/><label class="joinInputRa Lab" for="search">검색</label>
+							<input type="radio" name="signupPath" class="joinInputRa" id="homePage" value="HOMEPAGE"/><label class="joinInputRa Lab" for="homePage">홈페이지</label>
+							<input type="radio" name="signupPath" class="joinInputRa" id="introduce" value="INTRODUCE"/><label class="joinInputRa Lab" for="introduce">지인 소개</label>
+							<input type="radio" name="signupPath" class="joinInputRa" id="cafeCom" value="INTERNET"/><label class="joinInputRa Lab" for="cafeCom">카페/커뮤니티</label>
+							<input type="radio" name="signupPath" class="joinInputRa" id="etc" value="ETC"/><label class="joinInputRa Lab" for="etc">기타</label>
 						</td>
 					</tr>
 				</table>
 			</div>
 			<div>
 				<button id="join_button" type="button">회원가입</button>
+				<button id="a_admin" type="button">관리자 회원가입</button>
 			</div>
 		</form>
 	</div>	
@@ -95,17 +96,6 @@
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		var themeObj = {
-		   bgColor: "#FFFBF2", //바탕 배경색
-		   searchBgColor: "#F24822", //검색창 배경색
-		   //contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-		   pageBgColor: "#F9AE98", //페이지 배경색
-		   textColor: "#000000", //기본 글자색
-		   queryTextColor: "#FFFFFF", //검색창 글자색
-		   postcodeTextColor: "#FB9374", //우편번호 글자색
-		   emphTextColor: "#000000" //강조 글자색
-		   //outlineColor: "", //테두리
-		};
 		function sample4_execDaumPostcode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -129,9 +119,23 @@
 							document.getElementsByName('address')[0].value = roadAddr + '§§●' + document.getElementById('sample4_detailAddress').value;
 						}
 					})
-	            }
+	            },
+	            theme: {
+					bgColor: "#FFFBF2", //바탕 배경색
+					searchBgColor: "#F24822", //검색창 배경색
+					//contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+					pageBgColor: "#F9AE98", //페이지 배경색
+					textColor: "#000000", //기본 글자색
+					queryTextColor:  "#FFFFFF", //검색창 글자색
+					postcodeTextColor:  "#FB9374", //우편번호 글자색
+					emphTextColor: "#000000" //강조 글자색
+				}
 	        }).open();
 	    }
+		
+		document.getElementById('a_admin').addEventListener('click', () => {
+			location.href="${ contextPath }/joinAdmin.user";
+		});
 		
 		const inputs = document.getElementsByClassName('joinInput');
 		let pwd = document.getElementById('join_pwd');
@@ -174,7 +178,7 @@
 			}
 			
 			let phone = document.getElementById('phone');
-			const regPho = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
+			const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 			let nameInput = document.getElementById('join_name');
 			const regName = /[^가-힣a-zA-Z]/g;
 			

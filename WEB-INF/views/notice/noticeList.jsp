@@ -57,7 +57,7 @@
 					      <td scope="row">${nl.boardNo}</td>
 					      <td class="listContent">${nl.title}</td>
 					      <td>${nl.updateDate}</td>
-					      <td>${nl.count}</td>
+					      <td>${nl.boardCount}</td>
 					    </tr>
 				    </c:forEach>
 				  </tbody>
@@ -158,6 +158,16 @@
 					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo;					
 				});				
 			}
+
+			
+
+			
+			
+			
+			
+			
+			
+			
 		}
 	</script>
 </body>

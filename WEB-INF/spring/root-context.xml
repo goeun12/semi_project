@@ -10,7 +10,7 @@
       <property name="url" value="jdbc:oracle:thin:@112.221.156.36:9999:orcl"/>
       <property name="username" value="HONBAPSIM"/>
       <property name="password" value="HONBAPSIM"/>
-   </bean> 
+   </bean>
    
    <!-- sqlSession 등록 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -23,5 +23,11 @@
 	</bean>
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 파일 업로드 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000"/>
 	</bean>
 </beans>

@@ -17,28 +17,9 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/user/" />
+		<property name="prefix" value="/WEB-INF/views/common/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
 	<context:component-scan base-package="com.project.aloneBab" />
-	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/write.user"/>
-			<mvc:mapping path="/edit.user"/>
-			<bean class="com.project.aloneBab.common.LoginCheckInterceptor" id="loginCheck"/>
-		</mvc:interceptor>
-		
-		<mvc:interceptor>
-			<mvc:mapping path="/login.user"/>
-			<bean class="com.project.aloneBab.common.LoginLogInterceptor" id="loginLog"/>
-		</mvc:interceptor>
-		
-		<mvc:interceptor>
-			<mvc:mapping path="/admin.user"/>
-			<mvc:mapping path="/searchUser.user"/>
-			<bean class="com.project.aloneBab.common.AdminInterceptor" id="admin"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
 </beans>

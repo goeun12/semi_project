@@ -49,7 +49,7 @@
 						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
-								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:32%">
+								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:30%">
 									<img src="${ contextPath }/resources/image/${ i.imageName }" width="400px" height="400px">
 								</td>
 								<td class="td-bottomline" colspan='4' height="47px">
@@ -61,30 +61,20 @@
 					<tr>
 						<td style="width:100px">
 							<div class="recipe-option">	
-								<select id="sel-nation" class="form-select form-select-sm" disabled>
-									<c:choose>
-										<c:when test="${ r[0].nation eq 'kr' }"><option value="kr" selected>한식</option></c:when>
-										<c:when test="${ r[0].nation eq 'cn' }"><option value="cn" selected>중식</option></c:when>
-										<c:when test="${ r[0].nation eq 'us' }"><option value="us" selected>양식</option></c:when>
-										<c:when test="${ r[0].nation eq 'jp' }"><option value="jp" selected>일식</option></c:when>
-										<c:when test="${ r[0].nation eq 'no' }"><option value="no" selected>분식</option></c:when>
-									</c:choose>
-								</select>	
+								<c:choose>
+									<c:when test="${ r[0].nation eq 'kr' }">한식</c:when>
+									<c:when test="${ r[0].nation eq 'cn' }">중식</c:when>
+									<c:when test="${ r[0].nation eq 'us' }">양식</c:when>
+									<c:when test="${ r[0].nation eq 'jp' }">일식</c:when>
+									<c:when test="${ r[0].nation eq 'no' }">분식</c:when>
+								</c:choose>
 							</div>
 						</td>
 						<td style="width:100px">
 							<div class="recipe-option">
-								<select id="sel-easy"class="form-select form-select-sm" disabled>
-									<c:if test="${ r[0].difficulty eq 'easy' }">
-										<option value="easy" selected>하</option>
-									</c:if>
-									<c:if test="${ r[0].difficulty eq 'mid' }">	
-										<option value="mid" selected>중</option>
-									</c:if>
-									<c:if test="${ r[0].difficulty eq 'hard' }">
-										<option value="hard" selected>상</option>
-									</c:if>
-								</select>
+								<c:if test="${ r[0].difficulty eq 'easy' }">하</c:if>
+								<c:if test="${ r[0].difficulty eq 'mid' }">중</c:if>
+								<c:if test="${ r[0].difficulty eq 'hard' }">상</c:if>
 							</div>
 						</td>
 						<td id="recipe-own" style="font-size:15px;">작성자 : ${ b.writer }</td>
@@ -110,9 +100,9 @@
 	<!-- forEach : 사진 + 요리순서들 -->				
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${i.titleImg == 1 }">
-							<tr>
-								<td style="width:300px;">
-									<div class="mb-3 text-center" style="margin:auto;width:250px;height:250px;">
+							<tr style="border-bottom: 0.5px solid lightgray;">
+								<td style="width:400px;">
+									<div class="mb-3 text-center" style="margin-left:auto;margin-right:auto;margin-top:1rem !important;width:250px;height:250px;">
 										<img src="${ contextPath }/resources/image/${ i.imageName }" height="250px" width="250px"/>
 									</div>
 								</td>
@@ -295,13 +285,17 @@
 	
 	
 		
-	<div class="mx-auto" style="display:flex; justify-content:center;">
-		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
-	</div>
+	<div class="mx-auto" style="width: 80px;">
+        	 <c:if test="${ empty myPage }">
+            	<a class="btn btn-primary me-md-2" href="${ contextPath }/recipe.re?page=${page}" role="button" id="go_list_button">목록</a>
+         	</c:if>
+         	<c:if test="${ !empty myPage }">
+            	<a class="btn btn-primary me-md-2" href="${ contextPath }/write.user?page=${page}" role="button" id="go_list_button">목록</a>
+         	</c:if>
+      	</div>
 	<div>&nbsp;</div>
-	<div id="gotop-button"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 	<jsp:include page="../common/footer.jsp"/>
-	
+	<jsp:include page="../common/topButton.jsp"/>
 	<script>
 		window.onload=()=>{
 			const divs = document.getElementsByClassName('card');
