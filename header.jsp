@@ -64,7 +64,7 @@
 	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
 	<header id="header">
 		<div id="header_left_div">
-			<c:if test="${ loginUser.isAdmin == 'N' }">
+			<c:if test="${ empty loginUser || loginUser.isAdmin == 'N' }">
 	            <a href="${ contextPath }/" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
 	         </c:if>
 	         <c:if test="${ loginUser.isAdmin == 'Y' }">
