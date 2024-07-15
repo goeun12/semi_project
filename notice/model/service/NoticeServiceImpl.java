@@ -39,9 +39,9 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		if(loginUser != null && loginUser.getId() != no.getWriter()) {
 			no.setBoardCount(no.getBoardCount() + 1);
+			int result = nDAO.countUpdate(sqlSession, no);
 		}
 		
-		int result = nDAO.countUpdate(sqlSession, no);
 
 		return no;
 	}
