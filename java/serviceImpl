@@ -1,8 +1,13 @@
 	@Override
-	public int insertMember(Member m) {
-		return mDAO.insertMember(sqlSession, m);
+	public int joinMember(Member m) {
+		return mDAO.joinMember(sqlSession, m);
 	}
-	
+
+	@Override
+	public int checkId(String id) {
+		return mDAO.checkId(sqlSession, id);
+	}
+
 	@Override
 	public int updateMember(Member m) {
 		return mDAO.updateMember(sqlSession, m);
@@ -14,6 +19,6 @@
 	}
 
 	@Override
-	public int checkId(String id) {
-		return mDAO.checkId(sqlSession, id);
+	public int joinAdmin(Member m) {
+		return mDAO.joinAdmin(sqlSession, m);
 	}
