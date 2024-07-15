@@ -5,3 +5,5 @@
 	int updateMember(Member m);
 
 	int deleteMember(String id);
+
+	int joinAdmin(Member m);
