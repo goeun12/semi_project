@@ -25,6 +25,7 @@
 #foodname{text-align:center;}
 
 
+
 #gotop-button{position: fixed; right: 30px; bottom: 100px; z-index:99;}
 #go_list_button:hover, #plus-level:hover{background-color:#a5250a;font-weight:600;}
 #go_list_button, #plus-level{background-color:#f24822;border:0;font-weight:400;}
@@ -79,6 +80,7 @@
 .td-topline{border-top: 0.5px solid lightgray;}
 .td-leftline{border-left: 0.5px solid lightgray;}
 .td-bottomline{border-bottom: 0.5px solid lightgray;}
+.td-bottomline>div{display:flex; justify-content:center;}
 .td-center{display:flex; text-align:center;}
 #tbdiv3{margin-bottom:2rem !important;margin-left:auto;margin-right:auto;width:70%; justify-content:center;}
 .td-input:focus{outline:none;}
@@ -91,6 +93,7 @@
 	border-style: hidden;
 	box-shadow: 0 0 0 1px lightgray;
 }
+.td-topline>div{display:flex; justify-content:center;}
 #text-ingre{width:90%; padding-left:30px;padding-right:30px;}
 .top-padding{padding-top:3rem !important;}
 
@@ -144,6 +147,6 @@
 	background-color: #c0c0c0;
 }
 #delete_button{
+	
 	background-color: #c0c0c0;
 }
-

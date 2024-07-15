@@ -73,7 +73,19 @@ body{background-color: #FFFBF2;}
 	font-size: 15px; 
 	border-radius: 10px;
 	font-family: 'MinSans-Bold';
-	margin-top: 30px; margin-bottom: 15px;
+	margin-top: 30px; margin-bottom: 30px;
 	font-family: 'MinSans-Bold';
 }
 #join_button:hover{background-color: #a5250a;}
+
+#a_admin{
+	background-color: lightgray;
+	width: 120px; height: 40px;
+	cursor: pointer;
+	border: none; 
+	font-size: 15px; 
+	border-radius: 10px;
+	margin-left: 80px;
+	color: white;
+	font-family: 'MinSans-Bold';
+}
