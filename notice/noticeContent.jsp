@@ -21,7 +21,7 @@
   		
 		<c:if test="${loginUser.isAdmin == 'Y' }">
 			<div id ="notice_up_del" >
-				<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${no.boardNo}" role="button"  id ="notice_update_button">수정</a>
+				<a class="btn btn-primary me-md-2" href="${contextPath}/noticeUpdateView.no?boardNo=${b.boardNo}" role="button"  id ="notice_update_button">수정</a>
 				<button class="btn btn-primary me-md-2" type="button" id ="notice_delete_button">삭제</button>
 			</div>
 		</c:if>
@@ -35,10 +35,10 @@
 					</svg>								  			
 	  				&nbsp공지사항
 		  		</span>
-	 			<span class="form-control" id="notic_content_title">${no.title }</span>
+	 			<span class="form-control" id="notic_content_title">${b.title }</span>
 			</div>
 			<div>
-				<p id="notic_content_text">${no.content }</p>
+				<p id="notic_content_text">${b.content }</p>
 			</div>
 		</div>
 		<jsp:include page="../common/reply.jsp"></jsp:include>	
@@ -136,7 +136,7 @@
 			del.addEventListener('click',()=>{
 				$.ajax({
 					url: '${contextPath}/noticeDelete.no',
-					data : {boardNo : '${no.boardNo}'},
+					data : {boardNo : '${b.boardNo}'},
 					dataType : 'json',
 					success : data => {
 						if(data == '0'){
