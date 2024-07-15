@@ -10,7 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 
-<style></style>
+<style>
+#recipe-body{font-family: 'MinSans-Regular';}
+</style>
 
 </head>
 <body id="recipe-body">
@@ -22,7 +24,7 @@
 	<!-- 1번째 칸 -->
 <form action="${contextPath }/insertRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data" onsubmit="return doNot();">	
 	<div>
-		<div id="tbdiv3" class="row text-center div-flexible col div-min-width">
+		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
 	
 			<table class="tbround bgcw" style="width:100%;">
 				<tr>
@@ -171,7 +173,7 @@
 	
 		
 		<div>&nbsp;</div>
-		<div class="div-flexible div-center" style="height: 50px">
+		<div class="div-flex div-center" style="height: 50px">
 			<div>
 				<button class="btn btn-primary me-md-2" id="plus-level" type="button" onclick="add_tr('table_body')">단계 추가</button>
 			</div>
