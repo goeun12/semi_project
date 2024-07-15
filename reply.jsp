@@ -135,7 +135,7 @@
 				replyWriteButton.addEventListener('click',()=>{
 					$.ajax({
 						url : '${contextPath}/insertReply.bo',
-						data : { boardNo : ${no.boardNo}, rpWriter :'${loginUser.id}', rpContent : document.getElementById("insertReply").value},
+						data : { boardNo : ${b.boardNo}, rpWriter :'${loginUser.id}', rpContent : document.getElementById("insertReply").value},
 						dataType : 'json',
 						success : data =>{
 							console.log(data)
