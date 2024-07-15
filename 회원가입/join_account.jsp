@@ -63,7 +63,7 @@
 							<input type="text" id="phone" class="joinInput" name="phone" placeholder="- 포함 입력"/>
 						</td>
 					</tr>
-					<tr>
+					<tr class="memberTr">
 						<th>주소</th>
 						<td>
 							<input type="text" style="cursor:default;" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
@@ -74,7 +74,7 @@
 							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 						</td>
 					</tr>
-					<tr>
+					<tr class="memberTr">
 						<th id="lastTrBTh">가입경로</th>
 						<td id="lastTrBTd" colspan="2">
 							<input type="radio" name="signupPath" class="joinInputRa" id="search" value="SEARCH" checked/><label class="joinInputRa Lab" for="search">검색</label>
@@ -88,11 +88,9 @@
 			</div>
 			<div>
 				<button id="join_button" type="button">회원가입</button>
+				<button id="a_admin" type="button">관리자 회원가입</button>
 			</div>
 		</form>
-		<div style="text-align: right;">
-			<a id="a_admin" href="${ contextPath }/joinAdmin.user">관리자 회원가입</a>
-		</div>
 	</div>	
 	<jsp:include page="../common/footer.jsp"/>
 
@@ -134,6 +132,10 @@
 				}
 	        }).open();
 	    }
+		
+		document.getElementById('a_admin').addEventListener('click', () => {
+			location.href="${ contextPath }/joinAdmin.user";
+		});
 		
 		const inputs = document.getElementsByClassName('joinInput');
 		let pwd = document.getElementById('join_pwd');
