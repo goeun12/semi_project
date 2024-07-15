@@ -97,7 +97,7 @@
 					data : {form:form},
 					dataType : 'json',
 					success : data => {	
-						if(data == "0"){
+						if(data == '0'){
 							const string = '<p id="not">카테고리를 선택해주세요.</p>';
 							$('#img_div').html(string);	
 							
@@ -113,6 +113,22 @@
 							$('#img_div').css('text-align','center');
 							$('#img_div').css('line-height','60px');
 														
+						}else if(data == '1'){
+							const string = '<p id="not">해당 카테고리에 등록된 레시피가 아직 없어요.</n> 자신만의 레시피를 등록해 보는건 어떠세요?</p>';
+							$('#img_div').html(string);	
+							
+							$('#img_div').css('border','1px solid lightgray');
+							$('#img_div').css('background','white');
+							$('#img_div').css('border-radius','10px');
+							$('#img_div').css('width','54%');
+							$('#img_div').css('height','60px');
+							$('#img_div').css('margin-left','23%');
+							$('#img_div').css('margin-top','15px');
+							$('#img_div').css('font-size','15px');
+							$('#img_div').css('font-weight','700');
+							$('#img_div').css('text-align','center');
+							$('#img_div').css('line-height','60px');
+			
 						}else{
 						
 							const string = '<p id="img_title">'+data.title+'</p><img id="img" width="350px" height="350px" src="${contextPath}/resources/image/' +data.imageName+'"/>';
@@ -134,6 +150,7 @@
 							$('#img_title').css('color','black');
 							$('#img').css('height','350px');
 							$('#img').css('margin-top','5px');
+							$('#img').css('cursor', 'pointer');
 							
 							const img = document.querySelector('#img');
 							
@@ -155,28 +172,6 @@
 			
 			
 		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 				
 		}
