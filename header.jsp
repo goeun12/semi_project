@@ -24,7 +24,7 @@
 	#header{
 		min-width: 1250px; background: #F24822; height: 60px; width: 100%; 
 		top: 0px; left: 0px; right: 0px; display: flex; justify-content: space-between;
-		z-index: 100; font-family: 'MinSans-Regular';
+		z-index: 100;
 	}
    	#header_left_div{display: flex;}
  	<%--로고 이미지--%>
@@ -33,7 +33,7 @@
 	#header_menu{margin-left:10px; float: left; display: flex; align-items: center;}
 	<%--로고~공지사항까지 각각의 a태그 class="button"--%>
  	.button{color: white; text-decoration: none; font-size: 20px; margin-right: 20px;}
-	.button:hover{font-family: 'MinSans-Bold';}
+	.button:hover{font-weight: 600;}
 	<%--로고~공지사항 버튼의 a태그들--%>
 	.button a{color: black; text-decoration: none;}
 	#header_right_div{display: flex; align-items: flex-end;}
@@ -42,7 +42,7 @@
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
- 	.button_user:hover{font-family: 'MinSans-Bold';}
+ 	.button_user:hover{font-weight: 600;}
 	<%--로그인 o 감싸는 div--%>
 	#user_login_complete{
 		border: 4px solid #FFFBF2; width: auto; 
@@ -56,7 +56,7 @@
  	#mypage_Menu ul{padding-left: 0px; width: 206px; text-align: center;}
  	#mypage_Menu li {width: 100%; height: 100%; list-style: none; padding-top: 10px; padding-bottom: 10px;}
 	#mypage_Menu a{color: black; text-decoration: none;}
-	#mypage_Menu a:hover{color: #0080ff; font-family: 'MinSans-Bold';}
+	#mypage_Menu a:hover{color: #0080ff; font-weight: 600;}
 	
 </style>
 </head>
@@ -70,6 +70,9 @@
 				<a href="${ contextPath }/tip.tip" id="tip" class="button">꿀팁</a>
 				<a href="${ contextPath }/random.re" id="comm" class="button">메뉴 추천</a>
 				<a href="${ contextPath }/notice.no" id="notice" class="button">공지사항</a>
+				<c:if test="${ !empty loginUser && loginUser.isAdmin == 'Y' }">
+					<a href="${ contextPath }/admin.user" id="admin" class="button">회원 정보 조회</a>
+				</c:if>
 			</div>
 		</div>
 		<div id="header_right_div">
