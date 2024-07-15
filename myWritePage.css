@@ -29,7 +29,11 @@ body{
 	border: 1px solid lightgray;
 	border-radius:15px;
 	font-family: 'MinSans-Bold';
-	min-width: 1000px;
+	min-width: 1200px;
+}
+
+#board_table_div>tbody{
+	font-family: 'MinSans-Regular';
 }
 
 .container-fluid{
