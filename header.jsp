@@ -64,7 +64,12 @@
 	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
 	<header id="header">
 		<div id="header_left_div">
-			<a href="${ contextPath }/" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
+			<c:if test="${ loginUser.isAdmin == 'N' }">
+	            <a href="${ contextPath }/" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
+	         </c:if>
+	         <c:if test="${ loginUser.isAdmin == 'Y' }">
+	            <a href="${ contextPath }/admin.user" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
+	         </c:if>
 			<div id="header_menu" class="header_common d-flex align-items-center">
 				<a href="${ contextPath }/recipe.re" id="main" class="button">레시피</a>
 				<a href="${ contextPath }/tip.tip" id="tip" class="button">꿀팁</a>
