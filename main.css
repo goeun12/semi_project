@@ -2,52 +2,33 @@
 #wrap{
 	position: relative; height: 100%;
 }
-#login_link{
-	color: white;
-	background: #F24822;
-}
-#joi_user{
-	margin: 0px auto;
-	width: 50px;
-}
-#insert_link{
-	color: white;
-	background: #F24822;
-}
-#user_login_complete{border: 4px solid #FFFBF2; background: #FFFBF2; color: black;}
-#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
-#header_user_noUser{margin-top: 13px;}
-.header_common #user_login_complete{margin-top: 8px;}
-#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
-#mypage_Menu{
-	display: none;
-	width: 200px; height: 150px;
-	background-color: white;
-	border: 1px solid lightgray;
-}
-#mypage_Menu li {margin-bottom: 20px;}
-
-#mypage_list{border: 0px; background: #FFFBF2; color: #FFC7C2; font-size: 17px; margin-top: 2px;}
-.mainDiv{text-align: center; padding-top: 30px;}
 
 #container{
 	min-width: 1200px;
 	width: 100%;
-	margin-top: 10%;
+	margin-top: 5%;
+}
+
+#indexLogoImg{
+	width: 1105px;
+    height: 500px;
+    padding-left: 160px;
+    margin: 0 auto;
+    float: left;
 }
 
 #bar{
 	color: #F24822;
 	padding: 10px 40px 10px 40px;
-	width: 70%;
-	height: 250px;
+	width: 100%;
+	height: 400px;
 	text-align: center;
 	background: #FFFBF2;
 	border-radius: 15px; 
 }
 
 
-#main{
+#main_Div{
 	margin: 0px auto 3%;
 	height: 100px;
 	text-align: center;
@@ -61,17 +42,9 @@
 .find_join_in{
 	display:inline-block;
 	padding-top: 10px;
-	height: 60px;
+	width: 100px;
 }
 
-#login{
-	margin: 0px auto;
-	width: 150px;
-}
-#join{
-	margin: 0px auto;
-	width: 150px;
-}
 
 #recipy{
 	margin: 0px auto;
@@ -85,10 +58,7 @@
 	margin: 0px auto;
 	width: 150px;
 }
-#join_user{
-	margin: 0px auto;
-	width: 300px;
-}
+
 
 .button_find_join{
 	text-decoration: none;
@@ -121,22 +91,8 @@
 	background: #F24822;
 }
 
-.font_text{
-	padding-top: 15px;
-}
+
 .fo_text{
 	padding-top: 30px;
 	font-size: 90px;
-}
-
-#footer{
-	border-top: 2px solid rgb(144, 144, 144); background: #B3B3B3;
-	text-align: center;
-	min-width: 1200px;
-}
-.font{color: #000000; margin-bottom: 3px;}
-#footer_inner{
-	margin: 0 auto;
-	width: 100%;
-	padding-bottom: 108px;
 }
