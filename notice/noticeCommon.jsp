@@ -50,7 +50,7 @@ span{height:30px;}
 			success: data =>{
 				if(data != null){
 					noticeCommon.innerText = data.boardTitle;
-					
+					noticeCommon.style.cursor='pointer'
 					noticeCommon.addEventListener('click', ()=>{
 						location.href='${contextPath}/noticeSelect.no?boardNo='+data.boardNo;
 					});
