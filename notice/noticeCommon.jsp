@@ -13,7 +13,7 @@
 
 
 .div-flexible{font-family:"나눔고딕"; font-size:17px;
-			width:50% ; margin-left:25%;
+			width:50% ; margin-left:auto; margin-right:auto;
 			margin-top:30px; margin-bottom:30px; 
 			height:35px; border:1px solid #f9ae98; border-radius:8px;
 			background:white;
