@@ -102,33 +102,33 @@
 
 			const replyWriteButton = document.getElementById("reply_write_button");		
 			
-			const inputs = document.getElementsByTagName("input")
-			if(inputs != null){
-				for(const input of inputs ){
-					input.addEventListener('focus', function(){
-						this.style.boxShadow = 'none';
-						this.style.borderColor = "#b3b3b3";
-					});
+			
+			const inputCSS = function(){
+				const inputs = document.getElementsByTagName("input")
+				if(inputs != null){
+					for(const input of inputs ){
+						input.addEventListener('focus', function(){
+							this.style.boxShadow = 'none';
+							this.style.borderColor = "#b3b3b3";
+						});
+					}				
 				}				
 			}
-					
-			replyWriteButton.addEventListener('mouseover',function(){
-				this.style.background = "#a5250a";
-				this.style.fontWeight = "600";
-			});
-			replyWriteButton.addEventListener('mouseout',function(){
-				this.style.fontWeight = "400";
-				this.style.background ="#f24822";
-			});
 			
-			const replyUpButtons = document.getElementsByClassName("reply_ update_");	
-			const replyDelButtons = document.getElementsByClassName("reply_ delete_");				
-			const upDelButtons = document.getElementsByClassName('reply_');
+						
+			inputCSS();
 			
-			for(const upDelButton of upDelButtons){
-				upDelButton.style.background = "#b3b3b3";
-				upDelButton.style.borderColor = '#b3b3b3';
+			if(replyWriteButton != null){
+				replyWriteButton.addEventListener('mouseover',function(){
+					this.style.background = "#a5250a";
+					this.style.fontWeight = "600";
+				});
+				replyWriteButton.addEventListener('mouseout',function(){
+					this.style.fontWeight = "400";
+					this.style.background ="#f24822";
+				});	
 			}
+			
 
 					
 			if(replyWriteButton != null){ 
@@ -156,8 +156,6 @@
 					    	replyTbody.insertBefore(insertTr, replyTbodyFirstChlidren);			
 					    	document.getElementById("insertReply").value='';
 					    	
-					    	upDel();
-					    	
 					
 						},						
 						error : data => {
@@ -169,116 +167,100 @@
 			}
 		
 			
+			const replyUpButtons = document.getElementsByClassName("reply_ update_");	
+			const replyDelButtons = document.getElementsByClassName("reply_ delete_");				
+			const upDelButtons = document.getElementsByClassName('reply_');
 			
-			const upDel = function(){
-				
-				for(const replyDelButton of replyDelButtons){
-					if(replyDelButton != null){ 
-						replyDelButton.addEventListener('click', function(){
-							
-							const delTr = this.parentElement.parentElement;					
-							
-							$.ajax({
-								url : '${contextPath}/deleteReply.bo',
-								data : {replyNo : this.previousElementSibling.previousElementSibling.value},
-								dataType : 'json',
-								success : data =>{								
-									if(data = "0"){
-										delTr.remove();									
-									}		
-								},
-								error : data => {
-									console.log(data)
-								}
-							});
-							
-						});	
-					}				
-				}
-			
-			
-				for(const replyUpButton of replyUpButtons){
-					if(replyUpButton != null && replyUpButton.innerText == '수정'){ 			
-						replyUpButton.addEventListener('click', function(){
-							
-							if(this.innerText != '등록'){
-								const contentTd = this.parentElement.previousElementSibling;
-								const contentTdVal = contentTd.innerText;
-								const inputTag = document.createElement('input');
-								inputTag.className = 'form-control';
-								inputTag.value = contentTdVal;
-								
-								contentTd.innerHTML='';
-								contentTd.appendChild(inputTag);	
-							}
-							
-							this.innerText = '등록'
-							if(inputs != null){
-								for(const input of inputs ){
-									input.addEventListener('focus', function(){
-										this.style.boxShadow = 'none';
-										this.style.borderColor = "#b3b3b3";
-									});
-								}				
-							}
-													
-							if(this.innerText == '등록'){
-								const contentTd = this.parentElement.previousElementSibling;
-								this.addEventListener('click', function(){
-									
-									 const inputValue = contentTd.firstElementChild.value;								
-				
-									$.ajax({
-										url: '${contextPath}/updateReply.bo',
-										data : {replyNo : this.previousElementSibling.value , content :inputValue},
-									 	dataType : 'json',
-									 	success : data => {
-									 		
-									 		contentTd.innerHTML='';
-									 		contentTd.innerText = data.content;
-									 		this.innerText = '수정';
-									 		location.reload()
-								 										 		
-									 	},
-									 	error : data => {
-											console.log(data)
-										}
-									});
-								});
-							}
-						});					
-					}
-				}				
+			for(const upDelButton of upDelButtons){
+				upDelButton.style.background = "#b3b3b3";
+				upDelButton.style.borderColor = '#b3b3b3';
 			}
+						
 			
-		
-			upDel();
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			const replyTbody = document.querySelector('#replyTbody');
+			if(replyTbody){
+				replyTbody.addEventListener('click', (e)=>{
+					const eventTarget = e.target;
+					console.log(eventTarget)
+					
+					const tagetTagName = eventTarget.tagName.toLowerCase();
+					if(tagetTagName == 'button'){
+						const targetButton = eventTarget;	
+						console.log("타겟" + targetButton)
+						
+						if(targetButton != null){
+							if(targetButton.className.includes('delete_')){
+								console.log("딜" + targetButton)
+								const delTr = targetButton.parentElement.parentElement;
+								$.ajax({
+									url : '${contextPath}/deleteReply.bo',
+									data : {replyNo : targetButton.previousElementSibling.previousElementSibling.value},
+									dataType : 'json',
+									success : data =>{								
+										if(data == "0"){
+											delTr.remove();									
+										}		
+									},
+									error : data => {
+										console.log(data)
+									}
+								});
+									
+								
+							}else if(targetButton.className.includes('update_')){
+								console.log("업" + targetButton)	
+									if(targetButton.innerText != '등록'){
+										const contentTd = targetButton.parentElement.previousElementSibling;
+										const contentTdVal = contentTd.innerText;
+										const inputTag = document.createElement('input');
+										inputTag.className = 'form-control';
+										inputTag.value = contentTdVal;
+										
+										contentTd.innerHTML='';
+										contentTd.appendChild(inputTag);	
+										
+										
+										targetButton.innerText = '등록'
+										inputCSS();
+										
+										
+										if(targetButton.innerText == '등록'){
+											const contentTd = targetButton.parentElement.previousElementSibling;
+											targetButton.addEventListener('click', function(){
+												if(contentTd){
+													 if(contentTd.firstElementChild != null){
+														 $.ajax({
+																url: '${contextPath}/updateReply.bo',
+																data : {replyNo : targetButton.previousElementSibling.value , content :contentTd.firstElementChild.value},
+															 	dataType : 'json',
+															 	success : data => {
+															 		
+															 		contentTd.innerHTML='';
+															 		contentTd.innerText = data.content;
+															 		this.innerText = '수정';
+															 		//location.reload()
+														 										 		
+															 	},
+															 	error : data => {
+																	console.log(data)
+																}
+															});				
+														 													 
+													 }								
+														
+										
+												}
+											});
+										}
+									
+									}	
+							}						
+						}							
+					}
+															
+				});
+				
+			}
 		
 	</script>
 </body>
