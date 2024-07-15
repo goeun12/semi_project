@@ -121,6 +121,19 @@
 			<br>
 			<br>
 	
+	
+	
+	
+			
+<!-- 
+	수업시간에 한 pagination 써먹기
+ -->
+			
+			<jsp:include page="../common/pagination.jsp"/>
+		</div>
+	</div>
+
+</div>
 	<script>
 		window.onload=()=>{
 			
@@ -152,19 +165,6 @@
 		
 		
 	</script>
-	
-	
-	
-			
-<!-- 
-	수업시간에 한 pagination 써먹기
- -->
-			
-			<jsp:include page="../common/pagination.jsp"/>
-		</div>
-	</div>
-
-</div>
 
 </body>
 </html>
