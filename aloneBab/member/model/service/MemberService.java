@@ -20,11 +20,19 @@ public interface MemberService {
 
 	ArrayList<Board> selectBoardList(PageInfo pi, String id);
 
-	int insertMember(Member m);
+	int joinMember(Member m);
 
 	int checkId(String id);
 
 	int updateMember(Member m);
 
 	int deleteMember(String id);
+
+	int joinAdmin(Member m);
+
+	ArrayList<Member> selectMemberList(String admin);
+
+	ArrayList<Member> selectSearchMember(String search);
+
+	int updateAdminStatus(Member m);
 }

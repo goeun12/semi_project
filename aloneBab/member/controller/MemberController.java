@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -35,6 +37,42 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
+	@RequestMapping("admin.user")
+	public String adminView(@RequestParam(value="check", defaultValue="total") String check, Model model) {
+			
+		ArrayList<Member> mList = null;
+		
+		if(check.equals("total")) {
+			mList = mService.selectMemberList(null);
+		} else {
+			mList = mService.selectMemberList(check);
+		}
+		
+		model.addAttribute("check", check);
+		model.addAttribute("userList", mList);	
+		
+		return "adminPage";
+	}
+	
+	@RequestMapping("searchUser.user")
+	public String searchUser(@RequestParam("search") String search,
+							 Model model) {
+		
+		ArrayList<Member> userList = mService.selectSearchMember(search);
+		
+		model.addAttribute("userList", userList);
+		
+		return "adminPage";
+	}
+	
+	@RequestMapping("adminUpdateStatus.user")
+	@ResponseBody
+	public String adminUpdateStatus(@ModelAttribute Member m) {
+		int result = mService.updateAdminStatus(m);
+		
+		return result == 1 ? "success" : "fail";
+	}
+	
 	// 로그인 화면으로 이동
 	@RequestMapping("loginView.user")
 	public String loginView(Model model) {
@@ -57,7 +95,11 @@ public class MemberController {
 				if(change.equals("Y")) {
 					return "redirect:edit.user";	// 회원 정보 수정 페이지로 가기
 				} else {
-					return "redirect:recipe.re";	// 레시피 리스트로 가기
+					if(loginUser.getIsAdmin().equals("N")) {
+						return "redirect:recipe.re";	// 레시피 리스트로 가기
+					} else {
+						return "redirect:admin.user";	// 관리자 페이지
+					}
 				}
 			} else {
 				throw new MemberException("로그인에 실패하였습니다.");
@@ -89,12 +131,13 @@ public class MemberController {
 		return mService.checkId(id);
 	}
 	
-		
+	
 	// 회원가입 과정
 	@RequestMapping("joinMember.user")
 	public String joinMember(@ModelAttribute Member m) {
 		m.setPwd(bcrypt.encode(m.getPwd()));
-		int result = mService.insertMember(m);
+		m.setIsAdmin("N");
+		int result = mService.joinMember(m);
 		if(result > 0) {
 			return "redirect:loginView.user";
 		}else {
@@ -104,7 +147,7 @@ public class MemberController {
 	
 	// 회원정보 수정 화면으로 이동
 	@RequestMapping("edit.user")
-	public String editView() {
+	public String editView(Model model) {
 		return "modify_account";
 	}
 
@@ -116,17 +159,19 @@ public class MemberController {
 		} else {
 			m.setPwd(bcrypt.encode(m.getPwd()));
 		}
+		if(m.getAddress().equals("")) {
+			m.setAddress(((Member)session.getAttribute("loginUser")).getAddress());
+		}
 		int result = mService.updateMember(m);
-		System.out.println(m.getAddress());
 		if(result > 0) {
 			model.addAttribute("loginUser", mService.login(m));
-			return "redirect:recipe.re";
+			return "../home";
 		} else {
 			throw new AllException("회원정보 수정에 실패하였습니다.");
 		}
 	}
 
-	// 탈퇴 기능
+	// 회원 탈퇴 기능
 	@RequestMapping("delete.user")
 	public String deleteMember(@RequestParam("id") String id) {
 		int result = mService.deleteMember(id);
@@ -134,6 +179,25 @@ public class MemberController {
 			return "redirect:logout.user";
 		} else {
 			throw new AllException("회원 탈퇴에 실패하였습니다.");
+		}
+	}
+	
+	// 관리자 회원가입 페이지 이동
+	@RequestMapping("joinAdmin.user")
+	public String joinAdmin() {
+		return "join_admin";
+	}
+	
+	// 관리자 회원가입 기능
+	@RequestMapping("signUpAdmin.user")
+	public String joinAdmin(@ModelAttribute Member m) {
+		m.setPwd(bcrypt.encode(m.getPwd()));
+		m.setIsAdmin("Y");
+		int result = mService.joinMember(m);
+		if(result > 0) {
+			return "../home";
+		} else {
+			throw new AllException("관리자 회원가입에 실패하였습니다.");
 		}
 	}
 	
@@ -225,12 +289,17 @@ public class MemberController {
 		if(list != null) {
 			model.addAttribute("list", list);
 			model.addAttribute("pi", pi);
+			model.addAttribute("page", currentPage);
 			
 			return "myWritePage";
 		} else {
 			throw new MemberException("나의 글 조회를 실패했습니다.");
 		}
-		
-		
+				
+	}
+	
+	@RequestMapping("privacy.com")
+	public String privacy() {
+		return "privacy";
 	}
 }

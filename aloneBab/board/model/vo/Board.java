@@ -10,8 +10,8 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
 public class Board {
 	private int boardNo;
@@ -22,5 +22,5 @@ public class Board {
 	private Date createDate;
 	private Date updateDate;
 	private String status;
-	private int boardCount;
+	private int boardCount;	
 }

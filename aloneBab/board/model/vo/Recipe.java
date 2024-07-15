@@ -16,4 +16,5 @@ public class Recipe {
 	private String nation;
 	private String difficulty;
 	private String ingredients;
+	
 }

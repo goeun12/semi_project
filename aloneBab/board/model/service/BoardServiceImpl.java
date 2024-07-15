@@ -13,6 +13,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.RandomRecipe;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.PageInfo;
 
 
@@ -115,6 +116,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public ArrayList<Reply> selectReplyList(Integer bNo) {
+		return bDAO.selectReplyList(sqlSession, bNo);
+	}
+	
+	@Override
+	public ArrayList<RandomRecipe> randomChoice(HashMap<String, Object> key) {
+		// TODO Auto-generated method stub
+		return bDAO.randomChoice(sqlSession, key);
+	}
+	
+	@Override
 	public Board selectMyBoard(int boardNo) {
 		return bDAO.selectMyBoard(sqlSession, boardNo);
 	}
@@ -125,14 +137,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public ArrayList<Image> selectImage(int recipeNo) {
-		return bDAO.selectImage(sqlSession, recipeNo);
+	public Board tipcomment(int bId, String id) {
+		Board b = bDAO.tipcomment(sqlSession, bId);
+		if(b != null) {
+			if(id != null && !b.getWriter().equals(id)) {
+				int result = bDAO.updateCount(sqlSession, bId);
+				if(result > 0) {
+					b.setBoardCount(b.getBoardCount() + 1);
+				}
+			}
+		}
+		return null;
 	}
 	
 	@Override
-	public ArrayList<RandomRecipe> randomChoice(HashMap<String, Object> key) {
-		// TODO Auto-generated method stub
-		return bDAO.randomChoice(sqlSession, key);
+	public ArrayList<Reply> tipcomment(PageInfo pi) {
+		return bDAO.tipcomment(sqlSession, pi);
+	}
+	
+	@Override
+	public int getTipListCount(String i) {
+		return bDAO.getTipListCount(sqlSession, i);
 	}
 	
 	@Override
@@ -148,7 +173,54 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board selectTip(int bNo, String id) {
 		Board b = bDAO.selectTip(sqlSession, bNo);
+		if(b != null) {
+			if(id != null && !b.getWriter().equals(id)) {
+				int result = bDAO.updateCountTip(sqlSession, bNo);
+				if(result> 0){
+					b.setBoardCount(b.getBoardCount()+1);
+				}
+			}
+		}
 		return b;
 	}
+	
+	@Override
+	public int updateTip(Board b) {
+		return bDAO.updateTip(sqlSession, b);
+	}
 
+	@Override
+	public int deleteTip(int bNo) {
+		return bDAO.deleteTip(sqlSession, bNo);
+	}
+
+	@Override
+	public ArrayList<Board> searchTip(String searchType, String honeyKeyword) {
+		return bDAO.searchTip(sqlSession, searchType, honeyKeyword);
+	}
+	
+	@Override
+	public int insertReply(Reply rp) {
+
+		return bDAO.insertReply(sqlSession, rp);
+	}
+
+	
+	@Override
+	public int deleteReply(int replyNo) {
+		
+		return bDAO.deleteReply(sqlSession, replyNo);
+	}
+
+	@Override
+	public int updateReply(Reply rp) {
+
+		return bDAO.updateReply(sqlSession, rp);
+	}
+
+	@Override
+	public Reply selectReply(Reply rp) {
+		
+		return bDAO.selectReply(sqlSession, rp);
+	}
 }

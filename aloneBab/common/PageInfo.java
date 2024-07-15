@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class PageInfo {
 	private int currentPage;
 	private int listCount;
@@ -19,5 +19,4 @@ public class PageInfo {
 	private int startPage;
 	private int endPage;
 	private int boardLimit;
-	
 }

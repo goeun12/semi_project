@@ -2,6 +2,7 @@ package com.project.aloneBab.board.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,6 +13,7 @@ import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
 import com.project.aloneBab.board.model.vo.RandomRecipe;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.PageInfo;
 
 @Repository("bDAO")
@@ -87,6 +89,19 @@ public class BoardDAO {
 		return sqlSession.insert("recipe-mapper.editImage", iList);
 	}
 
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, Integer bNo) {
+		return (ArrayList)sqlSession.selectList("recipe-mapper.selectReplyList", bNo);
+	}
+	
+	public ArrayList<RandomRecipe> randomChoice(SqlSessionTemplate sqlSession, HashMap<String, Object> key) {
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.randomChoice", key);
+	}
+
+	public int tipUpdateView(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.tipUpdateView",b);
+	}
+	
 	public Board selectMyBoard(SqlSessionTemplate sqlSession, int boardNo) {
 		return sqlSession.selectOne("boardMapper.selectMyBoard", boardNo);
 	}
@@ -95,18 +110,29 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.selectRecipe", boardNo);
 	}
 
-	public ArrayList<Image> selectImage(SqlSessionTemplate sqlSession, int recipeNo) {
-		return (ArrayList)sqlSession.selectList("boardMapper.selectImage", recipeNo);
-	}
-	
-	public ArrayList<RandomRecipe> randomChoice(SqlSessionTemplate sqlSession, HashMap<String, Object> key) {
+	public ArrayList<Reply> tipcomment(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds RowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.randomChoice", key);
+		return (ArrayList)sqlSession.selectList("boardMapper.tipcomment", RowBounds);
+	}
+
+	public Board tipcomment(SqlSessionTemplate sqlSession, int bId) {
+		return sqlSession.selectOne("boardMapper.selectBoard", bId);
 	}
 	
+	public int getTipListCount(SqlSessionTemplate sqlSession, String i) {
+		return sqlSession.selectOne("boardMapper.getListCount", i);
+	}
+	
+	public int updateCountTip(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.update("boardMapper.updateCount", bNo);
+	}
+
 	public ArrayList<Board> tipListView(SqlSessionTemplate sqlSession, PageInfo pi, String i) {
 		int offset = (pi.getCurrentPage() - 1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
 		return (ArrayList)sqlSession.selectList("boardMapper.tipListView", i, rowBounds);
 	}
 
@@ -118,9 +144,41 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.selectTip", bNo);
 	}
 
-	public int tipUpdateView(SqlSessionTemplate sqlSession, Board b) {
-		return sqlSession.update("boardMapper.tipUpdateView",b);
+	public int updateTip(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.updateTip",b);
 	}
 
+	public int deleteTip(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.update("boardMapper.deleteTip", bNo);
+	}
+
+	public ArrayList<Board> searchTip(SqlSessionTemplate sqlSession, String searchType, String honeyKeyword) {
+	    HashMap<String, Object> params = new HashMap<>();
+	    params.put("searchType", searchType);
+	    params.put("honeyKeyword", honeyKeyword);
+	    
+	    List<Board> result = sqlSession.selectList("boardMapper.searchTip", params);
+	    return new ArrayList<>(result); // List를 ArrayList로 변환
+	}
+	
+	public int insertReply(SqlSessionTemplate sqlSession, Reply rp) {
+
+		return sqlSession.insert("boardMapper.insertReply",rp);
+	}
+
+	public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
+		
+		return sqlSession.update("boardMapper.deleteReply", replyNo);
+	}
+
+	public int updateReply(SqlSessionTemplate sqlSession, Reply rp) {
+		
+		return sqlSession.update("boardMapper.updateReply", rp);
+	}
+	
+public Reply selectReply(SqlSessionTemplate sqlSession, Reply rp) {
+		
+		return sqlSession.selectOne("boardMapper.selectReply",rp);
+	}
 
 }

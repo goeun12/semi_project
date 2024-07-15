@@ -2,6 +2,7 @@ package com.project.aloneBab.notice.model.service;
 
 import java.util.ArrayList;
 
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.member.model.vo.Member;
 import com.project.aloneBab.notice.model.vo.Notice;
@@ -10,7 +11,7 @@ public interface NoticeService {
 
 	int noticeListCount(String key);
 
-	ArrayList<Notice> noticeList(PageInfo pi);
+	ArrayList<Notice> noticeList(PageInfo pi, String boardGenre);
 
 	Notice noticeSelect(int boardNo, Member loginUser);
 
@@ -26,5 +27,5 @@ public interface NoticeService {
 
 	Notice noticeCommon();
 
-
+	ArrayList<Reply> rpList(int boardNo);
 }

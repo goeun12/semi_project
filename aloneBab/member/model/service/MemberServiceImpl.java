@@ -51,10 +51,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public int insertMember(Member m) {
-		return mDAO.insertMember(sqlSession, m);
+	public int joinMember(Member m) {
+		return mDAO.joinMember(sqlSession, m);
 	}
-	
+
+	@Override
+	public int checkId(String id) {
+		return mDAO.checkId(sqlSession, id);
+	}
+
 	@Override
 	public int updateMember(Member m) {
 		return mDAO.updateMember(sqlSession, m);
@@ -66,8 +71,24 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int checkId(String id) {
-		return mDAO.checkId(sqlSession, id);
+	public int joinAdmin(Member m) {
+		return mDAO.joinAdmin(sqlSession, m);
 	}
+	
+	@Override
+	public ArrayList<Member> selectMemberList(String admin) {
+		return mDAO.selectMemberList(sqlSession, admin);
+	}
+	
+	@Override
+	public ArrayList<Member> selectSearchMember(String search) {
+		return mDAO.selectSearchMember(sqlSession, search);
+	}
+	
+	@Override
+	public int updateAdminStatus(Member m) {
+		return mDAO.updateAdminStatus(sqlSession, m);
+	}
+	
 
 }

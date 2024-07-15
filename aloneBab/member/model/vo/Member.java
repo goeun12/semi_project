@@ -22,4 +22,5 @@ public class Member {
 	private String isAdmin;
 	private String status;
 	private Date joinDate;
+	private String signupPath;
 }

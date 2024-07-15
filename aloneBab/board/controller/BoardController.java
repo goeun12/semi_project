@@ -5,24 +5,30 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.project.aloneBab.board.model.exception.BoardException;
 import com.project.aloneBab.board.model.service.BoardService;
 import com.project.aloneBab.board.model.vo.Board;
 import com.project.aloneBab.board.model.vo.DivideSearch;
 import com.project.aloneBab.board.model.vo.Image;
+import com.project.aloneBab.board.model.vo.RandomRecipe;
 import com.project.aloneBab.board.model.vo.Recipe;
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.AllException;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.common.Pagination;
@@ -41,7 +47,8 @@ public class BoardController {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 12);
 			
 			ArrayList<Board> bList = bService.selectBoardList(pi, "레시피");
-//			System.out.println(bList);
+//			System.out.println(bList); "pi 넣어서 사이즈 무조건 12"
+			
 			ArrayList<Recipe> rList = bService.selectRecipeList(null);
 			// null 넘기면 : 전체 조회(레시피 다가져옴)
 //			System.out.println(rList);
@@ -131,9 +138,10 @@ public class BoardController {
 			}
 		}
 		
+		
 		// 레시피 상세 보기
 		@RequestMapping("recipeContent.re")
-		public String recipeContentView(@RequestParam("bNo") int bNo, @RequestParam("page") int page, @RequestParam("rNo") int rNo,  HttpSession session, Model model) {
+		public String recipeContentView(@RequestParam("bNo") int bNo, @RequestParam(value="page", defaultValue="1") int page, @RequestParam("rNo") int rNo, @RequestParam(value="myPage", defaultValue="") String myPage, HttpSession session, Model model) {
 			//Member loginUser = (Member)session.getAttribute("loginUser");
 			String id = null;
 			if((Member)session.getAttribute("loginUser") != null) {
@@ -150,6 +158,7 @@ public class BoardController {
 					ArrayList<Board> bList = bService.selectRecommendBoardList(r.get(0).getNation()); // 같은 국가의 요리들 목록
 					ArrayList<Recipe> rList = bService.selectRecipeList(null); // 전체 레시피 리스트
 					ArrayList<Image> iListAll = bService.selectImageList(null); // 썸네일 사진 목록
+					ArrayList<Reply> rpList = bService.selectReplyList((Integer)bNo); // 선택 보드 넘버의 댓글 목록
 					Collections.shuffle(bList);
 					
 					model.addAttribute("b",b);
@@ -157,12 +166,15 @@ public class BoardController {
 					model.addAttribute("iList", iList);
 					model.addAttribute("contents", contents);
 					model.addAttribute("rList", rList);
+					model.addAttribute("rpList", rpList);
 					model.addAttribute("iListAll", iListAll);
 					model.addAttribute("bList", bList);
+					model.addAttribute("myPage", myPage);
+					model.addAttribute("page", page);
 					
 					return "recipeContent";
 				} else {
-					throw new AllException("게시글 조회를 실패하였습니다.");
+					return "에러페이지";
 				}
 			
 		}
@@ -195,7 +207,7 @@ public class BoardController {
 					img.setImageURL(returnArr[0]);
 					iList.add(img);
 				} else {
-					throw new AllException("이미지를 불러오지 못했습니다.");
+					System.out.println("보컨 136"); // 뭔가 에러 아무튼 돌려보내면 됨
 				}
 			}
 			
@@ -214,7 +226,7 @@ public class BoardController {
 			if(iList.isEmpty()) {
 				// 이미지가 없다는 뜻
 				// 이미지 안넣냐고 물어보기
-				throw new AllException("이미지를 불러오지 못했습니다.");
+				System.out.println("이미지 리스트 없음");
 			} else {
 				result1 = bService.insertBoard(b); // 게시판에 넣는 서비스 성공시 1
 				if(result1>0) {
@@ -225,10 +237,10 @@ public class BoardController {
 						}
 						result2 = bService.insertImage(iList); // 성공시 이미지 갯수만큼 n
 					}else {
-						throw new AllException("레시피 등록에 실패하였습니다.");
+						return "에러페이지";
 					}
 				}else {
-					throw new AllException("게시글 등록에 실패하였습니다.");
+					return "에러페이지";
 				}
 			} // if(iList.isEmpty()) 문 탈출
 			if(result1 == 1) { // 잘 들어갔다는 뜻
@@ -241,7 +253,7 @@ public class BoardController {
 				for(Image i : iList) {
 					deleteFile(i.getImageName(), req);
 				}
-				throw new AllException("게시글 등록에 실패하였습니다.");
+				return "에러페이지";
 			}
 			return "redirect:recipe.re";
 		}
@@ -294,9 +306,9 @@ public class BoardController {
 				model.addAttribute("iList", iList);
 				model.addAttribute("contents", contents);
 				
-				return "recipeEdit";
+				return "editRecipe";
 			} else {
-				throw new AllException("게시글을 불러오는 데에 실패하였습니다.");
+				return "에러페이지";
 			}
 		}
 		
@@ -322,7 +334,7 @@ public class BoardController {
 					img.setImageURL(returnArr[0]);
 					iList.add(img);
 				} else {
-					throw new AllException("이미지를 불러오지 못했습니다."); // 뭔가 에러 아무튼 돌려보내면 됨
+					return "에러페이지"; // 뭔가 에러 아무튼 돌려보내면 됨
 				}
 			}
 			
@@ -339,7 +351,7 @@ public class BoardController {
 			int result2 = 0;
 			if(iList.isEmpty()) {
 				// 이미지 하나라도 비어있으면 못 넘어오게 바꿈 = 여기 절대 못지나감
-				return "redirect:recipe.re";
+				return "redirect:recipeList.jsp";
 			} else {
 				result1 = bService.updateBoard(b); // 게시판에 넣는 서비스 성공시 1
 				if(result1>0) {
@@ -351,10 +363,10 @@ public class BoardController {
 						bService.deleteImage(recipe.getRecipeNo()); // 기존 이미지 다 삭제
 						result2 = bService.editImage(iList); // 성공시 이미지 갯수만큼 n
 					}else {
-						throw new AllException("레시피 등록에 실패하였습니다.");
+						return "에러페이지";
 					}
 				}else {
-					throw new AllException("게시글 등록에 실패하였습니다.");
+					return "에러페이지";
 				}
 				
 				// return 없음 313줄
@@ -384,9 +396,9 @@ public class BoardController {
 				for(Image i : iList) {
 					deleteFile(i.getImageName(), req);
 				}
-				return "redirect:/";
+				return "redirect:index.jsp";
 			}
-			return "redirect:recipe.re";
+			return "redirect:recipeList.jsp";
 		}	
 			
 		@RequestMapping("deleteRecipe.re")
@@ -395,7 +407,7 @@ public class BoardController {
 			if(bResult > 0) {
 				return "redirect:recipe.re";
 			} else {
-				throw new AllException("게시글 삭제를 실패하였습니다.");
+				return "에러페이지";
 			}
 		}
 
@@ -411,21 +423,16 @@ public class BoardController {
 		String genre = board.getBoardGenre();
 		
 		model.addAttribute("myPage", "Y");
+		model.addAttribute("page", page);
 		
 		if(genre.equals("레시피")) {
 			Recipe recipe = bService.selectRecipe(board.getBoardNo());
-			ArrayList<Image> iList = bService.selectImage(recipe.getRecipeNo());
 			
-			model.addAttribute("board", board);
-			model.addAttribute("recipe", recipe);
-			model.addAttribute("iList", iList);
-			model.addAttribute("page", page);
+			model.addAttribute("bNo", boardNo);
+			model.addAttribute("rNo", recipe.getRecipeNo());
 			
-			return "recipeContent";	// redirect로 상세조회 페이지 url넣기
+			return "redirect:recipeContent.re";	// redirect로 상세조회 페이지 url넣기
 		} else {
-			
-			model.addAttribute("page", page);
-			
 			if(genre.equals("꿀팁")) {
 				model.addAttribute("board", board);
 				return "tipContent"; // redirect로 상세조회 페이지 url넣기
@@ -439,6 +446,188 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping("tipcomment.tip")
+	public String tipcomment(@RequestParam(value="Page", defaultValue="1") int currentPage, Model model) {		
+
+		
+		int listCount = bService.getListCount(null);		
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		ArrayList<Reply> tipcomment = bService.tipcomment(pi);
+		
+		if(tipcomment != null) {
+			model.addAttribute("pi", pi);
+			model.addAttribute("tipcomment", tipcomment);
+			return "tipcomment";
+		}else {
+			throw new AllException();
+		}
+		
+		
+	}
+	
+	@RequestMapping(value="insertReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody	
+	public String insertReply(@RequestParam("boardNo") int boardNo, @RequestParam("rpWriter") String writer, @RequestParam("rpContent") String content) {
+		
+		Reply rp = new Reply();
+		rp.setBoardNo(boardNo);
+		rp.setWriter(writer);
+		rp.setContent(content);
+		
+		int result = bService.insertReply(rp);
+		
+		rp = bService.selectReply(rp);
+		
+		if(result > 0) {
+			JSONObject json = new JSONObject();
+			
+			json.put("replyNo", rp.getReplyNo());
+			json.put("content", rp.getContent());
+			json.put("writer", rp.getWriter());
+			json.put("updateDate", rp.getUpdateDate());
+			
+
+			return json.toString();			
+		}else {
+			throw new AllException("댓글을 등록하지 못했습니다");
+		}
+		
+	}
+	
+	@RequestMapping(value="deleteReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String deleteReply(@RequestParam("replyNo") int replyNo) {
+		
+		int result = bService.deleteReply(replyNo);
+		
+		if(result > 0 ) {
+			return "0";
+		}else {
+			throw new AllException("댓글을 삭제하지 못했습니다");
+		}
+	}
+	
+	@RequestMapping(value="updateReply.bo", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String updateReply(@RequestParam("replyNo") int replyNo, @RequestParam("content") String content) {
+		Reply rp = new Reply();
+		rp.setReplyNo(replyNo);
+		rp.setContent(content);
+		System.out.println(rp);
+		
+		
+		int result = bService.updateReply(rp);
+		
+		if(result > 0 ) {
+			JSONObject json = new JSONObject();
+			json.put("content", rp.getContent());
+						
+			System.out.println("json" + json);
+			return json.toString();
+		}else {
+			throw new AllException("댓글을 수정하지 못했습니다");
+		}
+	}
+	
+	
+	@RequestMapping("random.re")
+	public String randomView() {
+		
+		return "randomMenu";
+	}
+
+	@RequestMapping(value="randomChoice.re", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String randomChoice(@RequestParam("form") String form, ModelAndView mav) {
+
+		if(form != null && !form.isEmpty()) {
+			String[] splitAnq = form.split("&"); // 배열 : nation=cn, nation=jp,
+			
+			ArrayList<String> nation = new ArrayList<String>();
+			ArrayList<String> difficulty = new ArrayList<String>();
+			for(String elem : splitAnq) {
+				String[] splitEq = elem.split("=");
+				if(splitEq[0].equals("nation")) {
+					nation.add(splitEq[1]);
+				} else {
+					difficulty.add(splitEq[1]);
+				}
+			}
+			
+		
+			HashMap<String, Object> key = new HashMap<String, Object>();
+			key.put("nation", nation);
+			key.put("difficulty", difficulty);
+							
+			ArrayList<RandomRecipe> ra = bService.randomChoice(key);
+			
+				
+			Random random = new Random();			
+			int num = random.nextInt(ra.size());	
+				
+			RandomRecipe randomRecipe = ra.get(num);	
+					
+			JSONObject json = new JSONObject();
+			json.put("boardNo", randomRecipe.getBoardNo());
+			json.put("title", randomRecipe.getTitle());
+			json.put("recipeNo", randomRecipe.getRecipeNo());
+			json.put("imageNo", randomRecipe.getImageNo());
+			json.put("imageURL", randomRecipe.getImageURL());
+			json.put("imageName", randomRecipe.getImageName());
+			json.put("titleImg", randomRecipe.getTitleImg());
+
+			return json.toString();
+				
+					
+		}else {
+			return "0";
+		}
+		
+	}
+	
+	
+	@RequestMapping("randomContent.re")
+	public String randomContent() {
+		
+		return "randomMenu";
+	}
+	
+	@RequestMapping("search.tip")
+	public String searchTip(
+	    @RequestParam(value = "page", defaultValue = "1") int currentPage,
+	    @RequestParam(value = "searchType") String searchType,
+	    @RequestParam(value = "honeyKeyword") String honeyKeyword,
+	    Model model
+	) {
+	    // 게시판 분류 '꿀팁'에 대한 게시물 수 가져오기
+	    int listCount = bService.getTipListCount("꿀팁");
+
+	    // 검색 결과 가져오기
+	    ArrayList<Board> result = bService.searchTip(searchType, honeyKeyword);
+	    
+	    // 페이지 정보 설정
+	    PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
+	    
+	    // 검색 결과에 따라 페이지네이션이 적용된 게시물 리스트 가져오기
+	    ArrayList<Board> list = bService.tipListView(pi, "꿀팁");
+
+	    // 모델에 데이터 추가
+	    if (!result.isEmpty()) {
+	        model.addAttribute("list", list);
+	        model.addAttribute("result", result);
+	        model.addAttribute("searchType", searchType);
+	        model.addAttribute("honeyKeyword", honeyKeyword);
+	        model.addAttribute("pi", pi); // 페이지 정보 추가
+
+	        return "tipSearch"; // 해당 뷰로 이동    
+	    } else {
+	        model.addAttribute("msg", "검색 결과가 없습니다.");
+	        return "tipSearch"; // 뷰 이름이 동일하더라도 메시지를 전달
+	    }
+	}
+
+	
 	// 꿀팁 목록 페이지 이동
 	@RequestMapping("tip.tip")
 	public String tipListView(@RequestParam(value="page", defaultValue="1")int currentPage, Model model) {
@@ -446,7 +635,7 @@ public class BoardController {
 		// 게시글 불러오고 숫자 셈
 		int listCount = bService.getListCount("꿀팁");
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		
 		ArrayList<Board> list = bService.tipListView(pi, "꿀팁");
 		
@@ -456,7 +645,7 @@ public class BoardController {
 		
 			return "tipList";
 		} else {
-			throw new BoardException("게시글 조회 실패.");
+			throw new AllException("게시글 조회 실패.");
 		}
 	}
 	
@@ -472,7 +661,7 @@ public class BoardController {
 		if(result >0) {
 			return "redirect:tip.tip";
 		}else {
-			throw new BoardException("게시글 작성 실패했어요.");		
+			throw new AllException("게시글 작성 실패했어요.");		
 		}
 	}
 	
@@ -491,7 +680,7 @@ public class BoardController {
 			model.addAttribute("page", page);
 			return "tipContent";
 		}else {
-			throw new BoardException("게시글 상세보기 실패.");		
+			throw new AllException("게시글 상세보기 실패.");		
 		}
 	}
 	
@@ -501,9 +690,9 @@ public class BoardController {
 		return "tipWrite";
 	}
 	
-	//수정폼
+	//꿅수정폼
 	@RequestMapping("updateForm.tip")
-	public String updateForm(@RequestParam("bNo") int bNo, @RequestParam("page") int page, Model model) {
+	public String updateForm(@RequestParam("bNo")int bNo, @RequestParam("page") int page, Model model) {
 		Board b = bService.selectTip(bNo, null);
 		model.addAttribute("b", b);
 		model.addAttribute("page", page); 
@@ -513,18 +702,32 @@ public class BoardController {
 	
 	// 꿀팁 수정
 	@RequestMapping("update.tip")
-	public String tipUpdateView(@ModelAttribute Board b, @RequestParam("page") int page, Model model) {
-//		b.setBoardGenre("꿀팁");
-//		int result = bService.tipUpdateView(b);
-//		if(result>0) {
-//			model.addAttribute("bNo", b.getBoardNo());
-//			model.addAttribute("page", page);
-//			return "redirect:tip.tip";  
-//		} else {
-//			throw new BoardException("게시글 수정을 실패했어요.");
-//		}
-		return null;
+	public String updateTip(@ModelAttribute Board b, @RequestParam("page") int page, Model model) {
+
+		b.setBoardGenre("꿀팁");
+	    
+		int result = bService.updateTip(b);
+		
+		if(result>0) {
+			model.addAttribute("bNo", b.getBoardNo());
+			model.addAttribute("page", page);
+			return "redirect:detail.tip"; 
+			
+		} else {
+			throw new AllException("게시글 수정을 실패했어요.");
+		}
 	}
 	
+	// 꿀팁 삭제
+	@RequestMapping("delete.tip")
+	public String deleteTip(@RequestParam("bNo")int bNo) {
+		int result = bService.deleteTip(bNo);
+		if(result>0) {
+			return "redirect:tip.tip";
+		}else {
+			throw new AllException("게시글 삭제를 실패했습니다.");
+		}
+		
+	}
 	
 }

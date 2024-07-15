@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.member.model.vo.Member;
 import com.project.aloneBab.notice.model.dao.NoticeDAO;
@@ -27,9 +28,9 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public ArrayList<Notice> noticeList(PageInfo pi) {
+	public ArrayList<Notice> noticeList(PageInfo pi, String boardGenre) {
 		
-		return nDAO.noticeList(sqlSession, pi);
+		return nDAO.noticeList(sqlSession, pi, boardGenre );
 	}
 
 	@Override
@@ -38,9 +39,11 @@ public class NoticeServiceImpl implements NoticeService{
 		Notice no = nDAO.noticeSelect(sqlSession, boardNo);
 		
 		if(loginUser != null && loginUser.getId() != no.getWriter()) {
-			no.setCount(no.getCount()+1);
+			no.setBoardCount(no.getBoardCount() + 1);
 		}
-			
+		
+		int result = nDAO.countUpdate(sqlSession, no);
+
 		return no;
 	}
 
@@ -80,7 +83,12 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDAO.noticeCommon(sqlSession);
 	}
 
-	
+	@Override
+	public ArrayList<Reply> rpList(int boardNo) {
+		
+		return nDAO.rpList(sqlSession, boardNo);
+	}
+
 	
 	
 	

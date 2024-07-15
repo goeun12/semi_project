@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.notice.model.vo.Notice;
 
@@ -17,11 +18,11 @@ public class NoticeDAO {
 		return sqlSession.selectOne("noticeMapper.noticeListCount", key);
 	}
 
-	public ArrayList<Notice> noticeList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Notice> noticeList(SqlSessionTemplate sqlSession, PageInfo pi, String boardGenre) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds RowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("noticeMapper.noticeList", RowBounds);
+		return (ArrayList)sqlSession.selectList("noticeMapper.noticeList", boardGenre, RowBounds);
 	}
 
 	public Notice noticeSelect(SqlSessionTemplate sqlSession, int boardNo) {
@@ -63,4 +64,18 @@ public class NoticeDAO {
 		return sqlSession.selectOne("noticeMapper.noticeCommon");
 	}
 
+	public int countUpdate(SqlSessionTemplate sqlSession, Notice no) {
+
+		return sqlSession.update("noticeMapper.countUpdate", no);
+	}
+	
+	public ArrayList<Reply> rpList(SqlSessionTemplate sqlSession, int boardNo) {
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.rpList", boardNo);
+	}
+
+
+
+
+	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.AllException;
 import com.project.aloneBab.common.PageInfo;
 import com.project.aloneBab.common.Pagination;
@@ -28,13 +29,13 @@ public class NoticeController {
 	
 	
 	@RequestMapping("notice.no")
-	public String noticeListView(@RequestParam(value="Page", defaultValue="1") int currentPage, Model model) {		
+	public String noticeListView(@RequestParam(value="page", defaultValue="1") int currentPage, Model model) {		
 
 		
 		int listCount = nService.noticeListCount(null);		
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5);
-		ArrayList<Notice> noticeList = nService.noticeList(pi);
+		ArrayList<Notice> noticeList = nService.noticeList(pi, "공지");
 		
 		if(noticeList != null) {
 			model.addAttribute("pi", pi);
@@ -48,18 +49,20 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("noticeSelect.no")
-	public String noticeSelect(@RequestParam("boardNo") int boardNo, @RequestParam(value="myPage", defaultValue="") String myPage, Model model, HttpSession session) {
+	public String noticeSelect(@RequestParam("boardNo") int boardNo, @RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="myPage", defaultValue="") String myPage, Model model, HttpSession session) {
 		
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		Notice no = nService.noticeSelect(boardNo, loginUser);
 		ArrayList<Notice> noticeListMin =  nService.noticeListMin(boardNo);
-		
+		ArrayList<Reply> rpList =  nService.rpList(boardNo);
 		
 		if(no != null) {
-			model.addAttribute("no",no);
+			model.addAttribute("b",no);
 			model.addAttribute("noticeListMin", noticeListMin);
 			model.addAttribute("myPage", myPage);
+			model.addAttribute("page", page);
+			model.addAttribute("rpList", rpList);
 			
 			return "noticeContent";
 		}else {
@@ -171,6 +174,11 @@ public class NoticeController {
 		return json.toString();
 		
 	}
+	
+	
+	
+	
+	
 	
 	
 	
