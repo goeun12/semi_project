@@ -25,6 +25,7 @@
 	@RequestMapping("joinMember.user")
 	public String joinMember(@ModelAttribute Member m) {
 		m.setPwd(bcrypt.encode(m.getPwd()));
+		m.setIsAdmin("N");
 		int result = mService.joinMember(m);
 		if(result > 0) {
 			return "redirect:loginView.user";
@@ -35,7 +36,7 @@
 	
 	// 회원정보 수정 화면으로 이동
 	@RequestMapping("edit.user")
-	public String editView() {
+	public String editView(Model model) {
 		return "modify_account";
 	}
 
@@ -59,7 +60,7 @@
 		}
 	}
 
-	// 탈퇴 기능
+	// 회원 탈퇴 기능
 	@RequestMapping("delete.user")
 	public String deleteMember(@RequestParam("id") String id) {
 		int result = mService.deleteMember(id);
@@ -70,4 +71,21 @@
 		}
 	}
 	
-}
+	// 관리자 회원가입 페이지 이동
+	@RequestMapping("joinAdmin.user")
+	public String joinAdmin() {
+		return "join_admin";
+	}
+	
+	// 관리자 회원가입 기능
+	@RequestMapping("signUpAdmin.user")
+	public String joinAdmin(@ModelAttribute Member m) {
+		m.setPwd(bcrypt.encode(m.getPwd()));
+		m.setIsAdmin("Y");
+		int result = mService.joinMember(m);
+		if(result > 0) {
+			return "../home";
+		} else {
+			throw new AllException("관리자 회원가입에 실패하였습니다.");
+		}
+	}
