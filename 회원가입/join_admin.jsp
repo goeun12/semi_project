@@ -110,7 +110,7 @@
 			}
 		}
 		
-		document.getElementById('join_button').addEventListener('click', e => {			
+		document.getElementById('admin_button').addEventListener('click', e => {			
 			let count = 0;
 			for(const input of inputs){
 				if(input.value.trim() == ''){
