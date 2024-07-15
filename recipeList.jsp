@@ -24,7 +24,8 @@
 				 min-width: 1250px;
 				 padding-top:80px;
 				 padding-bottom:10%;
-				font-family: "나눔고딕"; font-size:20px}
+				font-family: "MinSans-Regular;"; font-size:20px}
+.py-5{margin-right:auto;margin-left:auto;}
 </style>
 </head>
 <body>
@@ -134,6 +135,7 @@
 	</div>
 
 </div>
+<jsp:include page="../common/footer.jsp"/>
 	<script>
 		window.onload=()=>{
 			
