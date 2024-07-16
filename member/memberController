@@ -1,281 +1,174 @@
-package com.project.aloneBab.member.controller;
-
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-
-import com.google.gson.Gson;
-import com.project.aloneBab.board.model.vo.Board;
-import com.project.aloneBab.common.AllException;
-import com.project.aloneBab.common.PageInfo;
-import com.project.aloneBab.common.Pagination;
-import com.project.aloneBab.member.model.exception.MemberException;
-import com.project.aloneBab.member.model.service.MemberService;
-import com.project.aloneBab.member.model.vo.Member;
-
-@Controller
-@SessionAttributes("loginUser")
-public class MemberController {
-	
-	@Autowired
-	private BCryptPasswordEncoder bcrypt;
-	
-	@Autowired
-	private MemberService mService;
-	
-	@RequestMapping("admin.user")
-	public String adminView(@RequestParam(value="check", defaultValue="total") String check, Model model) {
-			
-		ArrayList<Member> mList = null;
-		
-		if(check.equals("total")) {
-			mList = mService.selectMemberList(null);
-		} else {
-			mList = mService.selectMemberList(check);
-		}
-		
-		model.addAttribute("check", check);
-		model.addAttribute("userList", mList);	
-		
-		return "adminPage";
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page errorPage="/common/errorPage.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="resources/css/joinAdmin.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+<style>
+	@font-face {
+	    font-family: 'MinSans-Regular';
+	    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
-	
-	@RequestMapping("searchUser.user")
-	public String searchUser(@RequestParam("search") String search,
-							 Model model) {
-		
-		ArrayList<Member> userList = mService.selectSearchMember(search);
-		
-		model.addAttribute("userList", userList);
-		
-		return "adminPage";
+	@font-face {
+	    font-family: 'MinSans-Bold';
+	    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Bold.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
 	}
-	
-	@RequestMapping("adminUpdateStatus.user")
-	@ResponseBody
-	public String adminUpdateStatus(@ModelAttribute Member m) {
-		int result = mService.updateAdminStatus(m);
+</style>
+</head>
+<body style="margin: 0px; background-color: #FFFBF2;">
+	<jsp:include page="../common/header.jsp"/>
+	<div class="mainDiv">
+		<div class="joinAdmin title">
+			<p>관리자 회원가입</p>
+		</div>
+		<form action="${contextPath}/signUpAdmin.user" method="post" id="joinAdminForm">
+			<div class="join admin_table_div">
+				<table class="join admin_table" border="1">
+					<tr>
+						<th>아이디</th>
+						<td>
+							<input type="text" id="admin_id" class="joinInput" name="id" placeholder="영문이나 숫자만 입력"/>
+						</td>
+						<td class="infor_Td" style="text-align: right">
+							<span class="table_In_Infor" id="inforId"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td colspan="2"><input type="password" id="admin_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="필수 입력"/></td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인</th>
+						<td>
+							<input type="password" id="admin_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="필수 입력"/>
+						</td>
+						<td class="infor_Td" style="text-align: right; width: 200px;">
+							<label class="table_In_Infor" id="inforPwd"></label>
+						</td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td colspan="2"><input type="text" id="admin_name" class="joinInput" name="name" placeholder="필수 입력"/></td>
+					</tr>
+					<tr>
+						<th>휴대폰번호</th>
+						<td colspan="2">
+							<input type="text" id="phone" class="joinInput" name="phone" placeholder="- 포함 입력"/>
+							<input type="hidden" name="address" value="여기는 혼밥심"/>
+							<input type="hidden" name="signupPath" value="ADMIN"/>
+						</td>
+					</tr>
+					<tr>
+						<th id="lastTrBTh">관리자 비밀번호 인증</th>
+						<td id="lastTrBTd" colspan="2"><input type="password" id="adminPwd" class="joinInput" name="adminPwd" placeholder="관리자 인증 비밀번호를 입력해 주세요."/></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<button id="admin_button" type="button">관리자 가입</button>
+			</div>
+		</form>
+	</div>	
+	<jsp:include page="../common/footer.jsp"/>
+
+	<script>
+		window.onload = () => {
+			const inputs = document.getElementsByClassName('joinInput');
+			let phone = document.getElementById('phone');
+			const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
+			let nameInput = document.getElementById('admin_name');
+			const regName = /[^가-힣a-zA-Z]/g;
 		
-		return result == 1 ? "success" : "fail";
-	}
-	
-	// 로그인 화면으로 이동
-	@RequestMapping("loginView.user")
-	public String loginView(Model model) {
-		
-		return "login_user";
-	}
-	
-	// 로그인 과정
-	@RequestMapping("login.user")
-	public String login(@ModelAttribute Member m,
-						@RequestParam("change") String change,
-						Model model,
-						HttpSession session) {
-		Member loginUser = mService.login(m);
-		
-		if(loginUser != null) {
-			if(bcrypt.matches(m.getPwd(), loginUser.getPwd())) {
-				session.setAttribute("loginUser", loginUser);
-				
-				if(change.equals("Y")) {
-					return "redirect:edit.user";	// 회원 정보 수정 페이지로 가기
-				} else {
-					if(loginUser.getIsAdmin().equals("N")) {
-						return "redirect:recipe.re";	// 레시피 리스트로 가기
-					} else {
-						return "redirect:admin.user";	// 관리자 페이지
+			document.getElementById('admin_button').addEventListener('click', e => {			
+				let count = 0;
+				for(const input of inputs){
+					if(input.value.trim() == ''){
+						count++;
 					}
 				}
+				
+				
+				if(count <= 6 && count > 0){
+					alert('필수 항목을 입력해 주세요.');
+					for(input of inputs){
+						if(input.value == ''){
+							input.focus();
+						}
+					}
+				} else if(!pwdCheck()){
+					alert('비밀번호가 일치하지 않습니다.');
+					pwd.focus();
+				} else if(inforId.innerText.includes('불가한')){
+					alert('다른 아이디를 입력해 주세요.');
+					idInput.focus();
+				} else if(!regPho.test(phone.value)){
+					alert('유효한 전화번호가 아닙니다. 다시 입력해 주세요.');
+					phone.focus();
+				} else if(regName.test(nameInput.value)) {
+					alert('이름을 다시 입력해 주세요.');
+					nameInput.focus();
+				} else if(count == 0 && pwdCheck() && inforId.innerText.includes('사용 가능한')) {
+					document.querySelector("#joinAdminForm").submit();
+					
+				}
+			});
+		}
+		
+		let pwd = document.getElementById('admin_pwd');
+		let rePwd = document.getElementById('admin_rePwd');
+		const inforPwd = document.getElementById('inforPwd');
+		const inforId = document.getElementById('inforId');
+		let idInput = document.getElementById('admin_id');
+		const adminPwd = document.getElementById('adminPwd');
+		const regId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		
+		idInput.addEventListener('focusout', checkId);
+		pwd.addEventListener('focusout', pwdCheck);
+		rePwd.addEventListener('focusout', pwdCheck);
+		
+		function checkId(){
+			let id = idInput.value;
+			if(id.trim() != ''){
+				$.ajax({
+					url: 'checkId.user',
+					data: {id:id},
+					success: (data) => {
+						if(data == 0 && !regId.test(id)){
+							inforId.innerText = '사용 가능한 아이디입니다';
+							inforId.style.color = 'green'
+							return true;
+						} else {
+							inforId.innerText = '사용 불가한 아이디입니다';
+							inforId.style.color = 'red';
+							return false;
+						}
+					},
+					error: data => console.log(data)
+				});
+			}
+		}
+		
+		function pwdCheck(){
+			if(pwd.value === rePwd.value && (pwd.value.trim() != '' || rePwd.value.trim() != '')){
+				inforPwd.innerText = '비밀번호가 일치합니다';
+				inforPwd.style.color = 'green';
+				return true;
 			} else {
-				throw new MemberException("로그인에 실패하였습니다.");
+				inforPwd.innerText = '비밀번호가 일치하지 않습니다';
+				inforPwd.style.color = 'red';
+				return false;
 			}
-		} else {
-			throw new MemberException("로그인에 실패하였습니다.");
-		}
-	}
-	
-	// 로그아웃
-	@RequestMapping("logout.user")
-	public String logout(SessionStatus session) {
-		session.setComplete();
+		};
 		
-		return "redirect:loginView.user";
-	}
-
-	// 회원가입 화면으로 이동
-	@RequestMapping("joinView.user")
-	public String joinView() {
-		
-		return "join_account";
-	}
+	</script>
 	
-	// 아이디 중복확인
-	@RequestMapping("checkId.user")
-	@ResponseBody
-	public int checkId(@RequestParam("id") String id) {
-		return mService.checkId(id);
-	}
-	
-	
-	// 회원가입 과정
-	@RequestMapping("joinMember.user")
-	public String joinMember(@ModelAttribute Member m) {
-		m.setPwd(bcrypt.encode(m.getPwd()));
-		m.setIsAdmin("N");
-		int result = mService.joinMember(m);
-		if(result > 0) {
-			return "redirect:loginView.user";
-		}else {
-			throw new AllException("회원가입에 실패하였습니다.");
-		}
-	}
-	
-	// 회원정보 수정 화면으로 이동
-	@RequestMapping("edit.user")
-	public String editView(Model model) {
-		return "modify_account";
-	}
-
-	// 회원정보 수정 기능
-	@RequestMapping("/modify.user")
-	public String updateMember(@ModelAttribute Member m, HttpSession session, Model model) {
-		if(m.getPwd().equals("")) {
-			m.setPwd(((Member)session.getAttribute("loginUser")).getPwd());
-		} else {
-			m.setPwd(bcrypt.encode(m.getPwd()));
-		}
-		if(m.getAddress().equals("")) {
-			m.setAddress(((Member)session.getAttribute("loginUser")).getAddress());
-		}
-		int result = mService.updateMember(m);
-		if(result > 0) {
-			model.addAttribute("loginUser", mService.login(m));
-			return "redirect:recipe.re";
-		} else {
-			throw new AllException("회원정보 수정에 실패하였습니다.");
-		}
-	}
-
-	// 회원 탈퇴 기능
-	@RequestMapping("delete.user")
-	public String deleteMember(@RequestParam("id") String id) {
-		int result = mService.deleteMember(id);
-		if(result > 0) {
-			return "redirect:logout.user";
-		} else {
-			throw new AllException("회원 탈퇴에 실패하였습니다.");
-		}
-	}
-	
-	// 관리자 회원가입 페이지 이동
-	@RequestMapping("joinAdmin.user")
-	public String joinAdminView() {
-		return "join_admin";
-	}
-	
-	// 관리자 회원가입 기능
-	@RequestMapping("signUpAdmin.user")
-	public String joinAdmin(@ModelAttribute Member m) {
-		m.setPwd(bcrypt.encode(m.getPwd()));
-		m.setIsAdmin("Y");
-		int result = mService.joinMember(m);
-		if(result > 0) {
-			return "redirect:loginView.user";
-		} else {
-			throw new AllException("관리자 회원가입에 실패하였습니다.");
-		}
-	}
-	
-	// 아이디/비밀번호 찾기 화면으로 이동
-	@RequestMapping("findInfo.user")
-	public String findInfoView() {
-		
-		return "id_find";
-	}
-	
-	// 아이디 찾기 화면으로 이동
-	@RequestMapping("findIdView.user")
-	public String findIdView() {
-		
-		return "id_find";
-	}	
-	
-	// 아이디 찾기 과정		-> Ajax 활용?
-	@RequestMapping("findId.user")
-	@ResponseBody
-	public void findId(@ModelAttribute Member m,
-					   HttpServletResponse response) {
-		Member user = mService.findId(m);
-		
-		Gson gson = new Gson();
-		response.setContentType("application/json; charset=UTF-8");
-		try {
-			gson.toJson(user, response.getWriter());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	// 비밀번호 찾기 화면으로 이동
-	@RequestMapping("findPwView.user")
-	public String findPwView() {
-		
-		return "pw_find";
-	}
-	
-	// 비밀번호 찾기 과정		-> Ajax 활용?
-	@RequestMapping("findPw.user")
-	@ResponseBody
-	public void findPw(@ModelAttribute Member m,
-					   HttpServletResponse response) {
-		Member user = mService.findPw(m);
-		
-		if(user != null) {
-			int num = (int)(Math.random() * 1000000);
-			String rowPwd = String.valueOf(num);
-			
-			while(rowPwd.length() != 6) {
-				rowPwd += "0";
-			}
-			
-			String pwd = bcrypt.encode(rowPwd);
-			Member member = new Member();
-			member.setId(user.getId());
-			member.setPwd(pwd);
-			
-			mService.updatePwd(member);
-			
-			user.setPwd(rowPwd);
-		}
-		
-		Gson gson = new Gson();
-		response.setContentType("application/json; charset=UTF-8");
-		try {
-			gson.toJson(user, response.getWriter());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-
-	
-	@RequestMapping("privacy.com")
-	public String privacy() {
-		return "privacy";
-	}
-}
+</body>
+</html>
