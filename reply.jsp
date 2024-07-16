@@ -38,8 +38,7 @@
 						border:none; 
 						border-radius:10px;
 						text-decoration:none; 
-						font-size:20px;
-						font-size:10px;}
+						font-size:20px;}
 
 
 </style>
