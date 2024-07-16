@@ -19,7 +19,6 @@
 	   
 	</div>
 	
-	<!-- 1번째 칸 -->
 <form action="${contextPath }/editRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
 	<div>
 		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
@@ -68,7 +67,7 @@
 										<option value="ko">한식</option>
 										<option value="cn">중식</option>
 										<option value="us">양식</option>
-										<option value="jp" selected>#일식</option>
+										<option value="jp" selected>일식</option>
 										<option value="no">분식</option>
 									</c:when>
 									<c:when test="${ r[0].nation eq 'no' }">
@@ -76,7 +75,7 @@
 										<option value="cn">중식</option>
 										<option value="us">양식</option>
 										<option value="jp">일식</option>
-										<option value="no" selected>#분식</option>
+										<option value="no" selected>분식</option>
 									</c:when>
 								</c:choose>
 							</select>	
@@ -118,7 +117,6 @@
 	
 	
 	
-	<!-- 2번째 칸 -->
 		<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:auto; margin-right:auto; height:100px;width:70%">
 			<table class="tbround bgcw">
 				<tr>
@@ -134,7 +132,6 @@
 	
 		<div class="row text-center div-min-width" style="margin-left:auto; margin-right:auto;width:70%;">
 			<table class="tbround bgcw">
-				<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 				<tbody id="table_body">
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${ i.titleImg == 1 }">
@@ -168,6 +165,21 @@
 		</div>
 		<input type="hidden" name="content" id="inputContent"/>
 	
+
+	
+		<input type="hidden" name="boardNo" value="${ b.boardNo }">
+		<input type="hidden" name="recipeNo" value="${ r[0].recipeNo }">
+		<div>&nbsp;</div>
+		
+		<div class="mx-auto" style="width:80px;">
+			<button class="btn btn-primary me-md-2" type="submit" id="go_list_button" onclick="getAllMaking();">등록</button>
+		</div>
+		<div>&nbsp;</div>
+	</div>
+</form>	
+	<jsp:include page="../common/footer.jsp"/>
+
+
 		<script>
 			window.onload=()=>{
 				const tbody = document.getElementById("table_body");
@@ -251,17 +263,7 @@
 				}
 			}
 		</script>
-	
-		<input type="hidden" name="boardNo" value="${ b.boardNo }">
-		<input type="hidden" name="recipeNo" value="${ r[0].recipeNo }">
-		<div>&nbsp;</div>
-		
-		<div class="mx-auto" style="width:80px;">
-			<button class="btn btn-primary me-md-2" type="submit" id="go_list_button" onclick="getAllMaking();">등록</button>
-		</div>
-		<div>&nbsp;</div>
-	</div>
-</form>	
-	<jsp:include page="../common/footer.jsp"/>
+
+
 </body>
 </html>
