@@ -34,7 +34,7 @@
 					<tr>
 						<th>아이디</th>
 						<td>
-							<input type="text" id="join_id" class="joinInput" name="id" placeholder="영문이나 숫자만 입력"/>
+							<input type="text" id="join_id" class="joinInput" name="id" placeholder="영문 대/소문자, 숫자로 이루어진 4~10글자"/>
 						</td>
 						<td class="infor_Td" style="text-align: right">
 							<span class="table_In_Infor" id="inforId"></span>
@@ -42,15 +42,20 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="2"><input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="필수 입력"/></td>
+						<td>
+							<input type="password" id="join_pwd" class="joinInput" name="pwd" autocomplete="off" placeholder="영문 대/소문자, 숫자, 특수문자로 이루어진 6~15글자"/>
+						</td>
+						<td class="infor_Td" style="text-align: right; width: 225px;">
+							<label class="table_In_Infor" id="inforPwd"></label>
+						</td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
 						<td>
 							<input type="password" id="join_rePwd" class="joinInput" name="rePwd" autocomplete="off" placeholder="필수 입력"/>
 						</td>
-						<td class="infor_Td" style="text-align: right; width: 200px;">
-							<label class="table_In_Infor" id="inforPwd"></label>
+						<td class="infor_Td" style="text-align: right;">
+							<label class="table_In_Infor" id="inforRePwd"></label>
 						</td>
 					</tr>
 					<tr>
@@ -66,11 +71,11 @@
 					<tr class="memberTr">
 						<th>주소</th>
 						<td>
-							<input type="text" style="cursor:default;" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
+							<input type="text" style="cursor:default; width: 450px;" class="joinInput" id="sample4_roadAddress" placeholder="주소 찾기 버튼을 눌러 주세요" readonly>
 							<input type="text" class="joinInput" id="sample4_detailAddress" placeholder="상세 주소 입력" required="required">
 							<input type="hidden" value="" name="address"/>
 						</td>
-						<td>
+						<td style="text-align: center;">
 							<input type="button" id="addressSearch" onclick="sample4_execDaumPostcode()" value="주소 찾기">
 						</td>
 					</tr>
@@ -163,6 +168,9 @@
 				} else if(!pwdCheck()){
 					alert('비밀번호가 일치하지 않습니다.');
 					pwd.focus();
+				} else if(inforPwd.innerText.includes('특수문자')){
+					alert('다른 비밀번호를 입력해 주세요.');
+					pwd.focus();
 				} else if(inforId.innerText.includes('불가한')){
 					alert('다른 아이디를 입력해 주세요.');
 					idInput.focus();
@@ -181,10 +189,12 @@
 		
 		let pwd = document.getElementById('join_pwd');
 		let rePwd = document.getElementById('join_rePwd');
-		const inforPwd = document.getElementById('inforPwd');
+		let inforPwd = document.getElementById('inforPwd');
+		let inforRePwd = document.getElementById('inforRePwd');
 		const inforId = document.getElementById('inforId');
 		let idInput = document.getElementById('join_id');
-		const regId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		const regId = /^[A-Za-z0-9]{4,10}$/;
+		const regPwd = /^[A-Za-z0-9@.]{6,15}$/;
 		
 		idInput.addEventListener('focusout', checkId);
 		pwd.addEventListener('focusout', pwdCheck);
@@ -197,7 +207,7 @@
 					url: 'checkId.user',
 					data: {id:id},
 					success: (data) => {
-						if(data == 0 && !regId.test(id)){
+						if(data == 0 && regId.test(id)){
 							inforId.innerText = '사용 가능한 아이디입니다';
 							inforId.style.color = 'green'
 							return true;
@@ -212,19 +222,21 @@
 			}
 		}
 		
-		
-		
-		
 		function pwdCheck(){
 			if(pwd.value === rePwd.value && (pwd.value.trim() != '' || rePwd.value.trim() != '')){
-				inforPwd.innerText = '비밀번호가 일치합니다';
-				inforPwd.style.color = 'green';
+				if(!regPwd.test(pwd.value)){
+					inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
+					inforPwd.style.color = 'red';
+				}
+				inforRePwd.innerText = '비밀번호가 일치합니다';
+				inforRePwd.style.color = 'green';
 				return true;
 			} else {
-				inforPwd.innerText = '비밀번호가 일치하지 않습니다';
-				inforPwd.style.color = 'red';
+				inforRePwd.innerText = '비밀번호가 일치하지 않습니다';
+				inforRePwd.style.color = 'red';
 				return false;
 			}
+			
 		};
 		
 	</script>
