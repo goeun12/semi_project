@@ -119,13 +119,14 @@ public class NoticeController {
 	
 	}
 
-	@RequestMapping("noticeDelete.no")
-	public int noticeDelete(@RequestParam("boardNo") int boardNo) {
+	@RequestMapping(value="noticeDelete.no", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String noticeDelete(@RequestParam("boardNo") int boardNo) {
 		
 		int result = nService.noticeDelete(boardNo);
 		
 		if(result > 0 ) {
-			return result;
+			return "1";
 		}else {
 			throw new AllException("공지사항 게시글을 삭제하지 못했습니다");
 		}
