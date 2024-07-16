@@ -9,6 +9,28 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link href="resources/css/noticeMainPage.css" rel="stylesheet" type="text/css"/>
 <title>Insert title here</title>
+<style type="text/css">
+	
+	#pagination{width: 20%;
+         margin-left:44%;
+         font-size:15px;
+         text-align:center;
+         font-family: 'MinSans-Regular';}
+
+	.pageItem{margin-right:10px; text-align:center;}
+
+	.pageLink{color:black;
+      text-decoration-color:black;
+      text-decoration-line:none;
+      text-align:center;}
+
+	.pNum-c{
+  			font-family: 'MinSans-Bold';
+   			text-decoration: underline;
+			}	
+
+</style>
+
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"/>
@@ -53,7 +75,7 @@
 						      <td scope="row">${nsl.boardNo}</td>
 						      <td class="listContent">${nsl.title}</td>
 						      <td>${nsl.updateDate}</td>
-						      <td>${nsl.count}</td>
+						      <td>${nsl.boardCount}</td>
 						    </tr>
 					    </c:forEach>
 					  </tbody>
@@ -61,7 +83,43 @@
 				</c:if>			
 			</div>
 			
-			<jsp:include page="../common/pagination.jsp"></jsp:include>
+			<div id="pagination">
+				<ul class="pagination">
+					<c:if test="${pi.currentPage > 1}">
+						<li class="pageItem">
+					 		<c:url value="${loc}" var="goBack">
+					 			<c:param name="key" value="${key}"/>
+					 			<c:param name="page" value="${pi.currentPage-1 }"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goBack}">이전</a>
+					 	</li>
+				 	</c:if>
+				 	<c:forEach begin ="${pi.startPage }" end="${pi.endPage}" var="p" >
+				 		<c:url value="${loc}" var="goCurr">
+				 			<c:param name="key" value="${key}"/>
+				 			<c:param name="page" value="${p}"/>
+				 		</c:url>
+				 	 	<li class="pageItem">
+				 			<c:if test="${ p eq pi.currentPage }">
+                    			<a class="pageLink pNum-c" href="${goCurr}">${p}</a>
+                			 </c:if>
+                			 <c:if test="${ p ne pi.currentPage }">
+                  				 <a class="pageLink pNum" href="${goCurr}">${p}</a>
+                			 </c:if>
+				 	 	</li>				 	 
+				 	</c:forEach>
+				 	<c:if test="${pi.currentPage < pi.maxPage}">
+					  	<li class="pageItem">
+					 		<c:url value="${loc}" var="goNext">
+					 			<c:param name="key" value="${key}"/>
+					 			<c:param name="page" value="${pi.currentPage+1 }"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goNext}">이후</a>
+					 	</li>
+				 	</c:if>
+				 	
+				</ul>
+			</div>	
 						
 		</div>
 		<div class="mx-auto" style="width: 80px;">
@@ -141,10 +199,13 @@
 		
 				noticeListTr.addEventListener('click', function(){
 					const boardNo = this.children[0].innerHTML;
-					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo;					
+					location.href='${contextPath}/noticeSelect.no?boardNo='+boardNo
 				});				
 			}
 
+			
+			
+			
 			
 
 			
