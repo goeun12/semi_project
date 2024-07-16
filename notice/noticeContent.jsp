@@ -139,7 +139,7 @@
 					data : {boardNo : '${b.boardNo}'},
 					dataType : 'json',
 					success : data => {
-						if(data == '0'){
+						if(data == '1'){
 							location.href="${contextPath}/notice.no";
 						}							
 					},
