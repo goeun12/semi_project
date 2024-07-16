@@ -12,7 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
-<body style="background-color: #FFFBF2; margin: 0;">
+<body style="background-color: #FFFBF2; margin: 0; min-width:1820px;">
 	<jsp:include page="../common/header.jsp"/>
 	<div class="admin_container">
 		<div class="admin_page">
