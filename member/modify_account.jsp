@@ -41,7 +41,8 @@
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td colspan="2"><input type="password" id="modify_pwd" class="modifyInput" name="pwd" placeholder="비밀번호 변경 시 입력"/></td>
+						<td><input type="password" id="modify_pwd" class="modifyInput" name="pwd" placeholder="비밀번호 변경 시 입력"/></td>
+						<td class="infor_Td" style="text-align: right; width: 225px;"><label class="table_In_Infor" id="inforPwd"></label></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
@@ -49,7 +50,7 @@
 							<input type="password" id="modify_rePwd" class="modifyInput" name="rePwd" placeholder="비밀번호 변경 시 입력"/>
 						</td>
 						<td class="infor_Td" style="text-align: right; width: 200px;">
-							<span class="table_In_Infor" id="inforPwd"></span>
+							<label class="table_In_Infor" id="inforRePwd"></label>
 						</td>
 					</tr>
 					<tr>
@@ -62,7 +63,7 @@
 					</tr>
 					<tr>
 						<th style="border-bottom: none;">주소</th>
-						<td style="border-bottom: none;">
+						<td style="border-bottom: none; width: 450px;">
 							<input type="text" class="modifyInput" id="sample4_roadAddress" value="${ fn:split(loginUser.address, '§§●')[0] }" readonly>
 							<input type="text" class="modifyInput" id="sample4_detailAddress" placeholder="상세 주소 입력" value="${ fn:split(loginUser.address, '§§●')[1] }" required="required">
 							<input type="hidden" value="" name="address"/>
@@ -132,8 +133,11 @@
 						input.focus();
 					}
 				}
-			} else if(document.getElementById('modify_pwd').value.trim() != '' && !pwdCheck()){
+			} else if(!pwdCheck()){
 				alert('비밀번호가 일치하지 않습니다.');
+				pwd.focus();
+			} else if(inforPwd.innerText.includes('특수문자')){
+				alert('다른 비밀번호를 입력해 주세요.');
 				pwd.focus();
 			} else if(!regPho.test(phone.value)){
 				alert('유효한 전화번호가 아닙니다. 다시 입력해 주세요.');
@@ -159,22 +163,31 @@
 		
 		let pwd = document.getElementById('modify_pwd');
 		let rePwd = document.getElementById('modify_rePwd');
-		const inforPwd = document.getElementById('inforPwd');
+		let inforPwd = document.getElementById('inforPwd');
+		let inforRePwd = document.getElementById('inforRePwd');
+		const regPwd = /^[A-Za-z0-9@.]{6,15}$/;
 		
-		const pwdCheck = () => {
+		pwd.addEventListener('focusout', pwdCheck);
+		rePwd.addEventListener('focusout', pwdCheck);
+		
+		function pwdCheck(){
 			if(pwd.value === rePwd.value && pwd.value.trim() != ''){
-				inforPwd.innerText = '사용 가능한 비밀번호입니다';
-				inforPwd.style.color = 'green';
+				if(!regPwd.test(pwd.value)){
+					inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
+					inforPwd.style.color = 'red';
+				} else {
+					inforPwd.innerText = '';
+				}
+				inforRePwd.innerText = '비밀번호가 일치합니다';
+				inforRePwd.style.color = 'green';
 				return true;
 			} else {
-				inforPwd.innerText = '비밀번호가 일치하지 않습니다';
-				inforPwd.style.color = 'red';
+				inforRePwd.innerText = '비밀번호가 일치하지 않습니다';
+				inforRePwd.style.color = 'red';
 				return false;
 			}
 		}
 		
-		pwd.addEventListener('focusout', pwdCheck);
-		rePwd.addEventListener('focusout', pwdCheck);
 	</script>
 </head>
 <body>
