@@ -13,7 +13,8 @@
 #pagination{width: 20%;
 			margin-left:44%;
 			font-size:15px;
-			text-align:center;}
+			text-align:center;
+			font-family: 'MinSans-Regular';}
 
 .pageItem{margin-right:10px; text-align:center;}
 
@@ -22,6 +23,10 @@
 		text-decoration-line:none;
 		text-align:center;}
 
+.pNum-c{
+	font-family: 'MinSans-Bold';
+	text-decoration: underline;
+}
 </style>
 
 </head>
@@ -42,7 +47,12 @@
 		 			<c:param name="page" value="${p}"/>
 		 		</c:url>
 		 	 	<li class="pageItem">
-		 			<a class="pageLink pNum" href="${goCurr}">${p}</a>
+		 	 		<c:if test="${ p eq pi.currentPage }">
+		 	 			<a class="pageLink pNum-c" href="${goCurr}">${p}</a>
+		 	 		</c:if>
+		 	 		<c:if test="${ p ne pi.currentPage }">
+			 			<a class="pageLink pNum" href="${goCurr}">${p}</a>
+		 	 		</c:if>
 		 	 	</li>				 	 
 		 	</c:forEach>
 		 	<c:if test="${pi.currentPage < pi.maxPage}">
