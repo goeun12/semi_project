@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.aloneBab.board.model.vo.Reply;
 import com.project.aloneBab.common.AllException;
 import com.project.aloneBab.common.PageInfo;
+import com.project.aloneBab.common.Pagination;
 import com.project.aloneBab.member.model.vo.Member;
 import com.project.aloneBab.notice.model.service.NoticeService;
 import com.project.aloneBab.notice.model.vo.Notice;
@@ -32,7 +34,7 @@ public class NoticeController {
 		
 		int listCount = nService.noticeListCount(null);		
 
-		PageInfo pi = PageInfo.getPagination(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		ArrayList<Notice> noticeList = nService.noticeList(pi, "공지");
 		
 		if(noticeList != null) {
@@ -132,15 +134,14 @@ public class NoticeController {
 	
 	
 	@RequestMapping("noticeSearch.no")
-	public String noticeSearch(@RequestParam("key") String key, @RequestParam(value="Page", defaultValue="1") int currentPage, Model model) {
+	public String noticeSearch(@RequestParam("key") String key, @RequestParam(value="page", defaultValue="1") int currentPage, Model model) {
 		
 		int listCount = nService.noticeListCount(key);		
 		model.addAttribute("listCount", listCount);
 		model.addAttribute("key", key);
 		
-		PageInfo pi = PageInfo.getPagination(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 10);
 		ArrayList<Notice> noticeSearchList = nService.noticeSearchList(pi, key);
-		System.out.println(noticeSearchList);
 		
 		if(listCount > 0) {	
 			model.addAttribute("page", currentPage);
