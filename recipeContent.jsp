@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레시피 클릭했음</title>
+<title>레시피 상세조회</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
@@ -16,14 +16,17 @@
 </style>
 </head>
 <body id="clickbody">
-		
 	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/topButton.jsp"/>
 	<div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
-		<form action="${contextPath }/bunryuRecipe.re">
-			<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px; ">
+		<form action="${contextPath }/bunryuRecipe.re" id="searchForm" onsubmit="return false"">
+			<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px;">
 				<div class="input-group mb-3" style="width:70%">
-					<input name="searchWord" type="text" class="form-control searchbar" placeholder="찾고자 하는 단어를 입력해주세요.">
-					<button class="btn btn-outline-secondary searchButton" id="search_button">검색</button>
+					<input name="searchWord" id="searchWord" type="text" class="form-control searchbar"
+					onkeyup="if(event.keyCode=='13'){event.preventDefault(); fnSearch();}" placeholder="찾고자 하는 단어를 입력해주세요.">
+					<input type="hidden" name="difficulty" value="all">
+					<input type="hidden" name="nation" value="all">
+					<button class="btn btn-outline-secondary searchButton" id="search_button" type="button">검색</button>
 				</div>
 			</div>
 		</form>
@@ -42,7 +45,6 @@
 			<div id="tbdiv3" class="row text-center div-flex col">
 				<table class="tbround bgcw">
 					<tr>
-						<!-- 사진리스트 = 클릭했던 게시글 번호를 가진 레시피 번호를 가진 사진들 -->
 						<c:forEach items="${ iList }" var="i">
 							<c:if test="${ i.titleImg == 0 }">
 								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:30%">
@@ -86,14 +88,12 @@
 			<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important; justify-content:center;">
 				<table class="tbround bgcw" style="width:70%">
 					<tr height="100px">
-						<!-- <td width="200px" height="50px" style="border-right:0.5px solid black">재료</td> -->
 						<td>${ r[0].intro }</td>
 					</tr>
 				</table>
 			</div>
 			<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
 				<table class="tbround bgcw" style="width:70%">
-	<!-- forEach : 사진 + 요리순서들 -->				
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${i.titleImg == 1 }">
 							<tr style="border-bottom: 0.5px solid lightgray;">
@@ -125,7 +125,6 @@
 	<div class="div-flex div-center" style="height: 50px"></div>
 
 
-<%-- 댓글 --%>
 	
 	<jsp:include page="../common/reply.jsp"/>
 	
@@ -224,7 +223,6 @@
 		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
 	</div>
 	<div>&nbsp;</div>
-	<div id="gotop-button"><a href="#top"><img src="topButton.png" style="width:50px; height:50px;"></a></div>
 	<jsp:include page="../common/footer.jsp"/>
 	
 	<script>
@@ -239,11 +237,6 @@
 					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo+'&page=1';
 				});
 			}
-			
-//			document.getElementById('show-more').addEventListener('click',()=>{
-//				location.href = '${contextPath}/searchRecipe.re?nation='+${rList[0].nation};
-//				console.log(${rList[0].nation});
-//			});
 			
 			const form = document.getElementById('updelForm');
 			
@@ -275,8 +268,19 @@
 				});
 			
 			
-			
+			const search = document.getElementById('search_button');
+			search.addEventListener('click',()=>{
+				const searchWord = document.getElementById('searchWord').value;
+				const nation = "all";
+				const difficulty = "all";
+				location.href = '${contextPath}/searchRecipe.re?searchWord='+searchWord+'&nation='+nation+'&difficulty='+difficulty;
+			});
 		}
+		
+		function fnSearch(){
+			location.href = '${contextPath}/searchRecipe.re?searchWord='+document.getElementById('searchWord').value + '&nation=all&difficulty=all';
+		}
+		
 	</script>
 	
 	
