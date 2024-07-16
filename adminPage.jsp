@@ -8,12 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/adminPage.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body style="background-color: #FFFBF2; margin: 0;">
 	<jsp:include page="../common/header.jsp"/>
-		<div class="admin_container">
+	<div class="admin_container">
 		<div class="admin_page">
 			<div class="title_user">
 				<h2><label class="title_text">사용자 정보 조회</label></h2>
@@ -55,7 +56,7 @@
 					      		<th scope="col" style="width: 20%;">가입 경로</th>
 					    	</tr>
 					  	</thead>
-					  	<tbody>
+					  	<tbody style="vertical-align: middle;">
 					  		<c:if test="${ empty userList }">
 					  			<tr>
 					  				<td colspan="8">사용자 정보가 없습니다.</td>
@@ -92,6 +93,23 @@
 		</div>
 	</div>
 	
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal-admin-in">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content rounded-3 shadow">
+      			<div class="modal-body p-4 text-center">
+        			<h3 class="mb-0">관리자로 임명하시겠습니까?</h3>
+        			<p class="mb-0">확인 클릭 시 관리자로 임명됩니다.</p>
+      			</div>
+      			<div class="modal-footer flex-nowrap p-0">
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="ok">
+        				<strong>네</strong>
+        			</button>
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
 	<script>
 		window.onload = () => {
 			const checkes = document.getElementsByName('search');
@@ -113,19 +131,23 @@
 			});
 			
 			const divs = tbody.querySelectorAll('div');
+			const mBody = document.getElementsByClassName('modal-body')[0];
 			for(const div of divs){
 				div.addEventListener('click', function(){
 					if(this.className == 'unselectState'){
-						console.log(this.value);
+						console.log(this.innerText);
 						let answer;
 						if(this.innerText == 'Y'){
-							answer = window.confirm("관리자로 임명하시겠습니까?");
+							$('#modal-admin-in').modal('show');
 						} else {
-							answer = window.confirm("관리자 임명을 취소하시겠습니까?");
+							
+							mBody.children[0].innerText = '관리자 임명을 취소하시겠습니까?';
+							mBody.children[1].innerText = '확인 클릭 시 관리자 임명을 취소합니다.';
+							$('#modal-admin-in').modal('show');
 						}
 						
-						if (answer == true){
-							const myTd = this.parentElement;
+						document.getElementById('ok').addEventListener('click', function(){
+							const myTd = div.parentElement;
 							const myTr = myTd.parentElement;
 							const id = myTr.children[0].innerText;
 							
@@ -134,24 +156,27 @@
 								url: "${contextPath}/adminUpdateStatus.user",
 								data: {
 									id: id,
-									isAdmin: this.innerText
+									isAdmin: div.innerText
 								},
 								success: data => {
 									if(data == "success"){
-										this.className = 'selectState';
+										div.className = 'selectState';
 										for(const siblings of myTd.children){
-											if(siblings != this){
+											if(siblings != div){
 												siblings.className = 'unselectState';
 											}
 											
 										}
+										$('#modal-admin-in').modal('hide');
 									} else{
 										alert('상태 변경을 실패하였습니다.');
 									}
 								},
 								error: data => console.log('error')
 							});
-						}
+							mBody.children[0].innerText = '관리자로 임명하시겠습니까?';
+							mBody.children[1].innerText = '확인 클릭 시 관리자로 임명됩니다.';
+						});
 					}
 				});
 			}
