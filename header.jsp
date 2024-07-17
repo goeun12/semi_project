@@ -1,294 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>혼밥심 입니다</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
-<link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
+<title>header</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
-#clickbody{font-family: 'MinSans-Regular';}
-
+	@font-face {
+	    font-family: 'MinSans-Regular';
+	    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	@font-face {
+	    font-family: 'MinSans-Bold';
+	    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Bold.woff') format('woff');
+	    font-weight: normal;
+	    font-style: normal;
+	}
+	<%--헤더의 모든 요소 감싸기--%>
+	#header{
+		min-width: 1250px; background: #F24822; height: 60px; width: 100%; 
+		top: 0px; left: 0px; right: 0px; display: flex; justify-content: space-between;
+		z-index: 100; font-family: 'MinSans-Regular';
+	}
+   	#header_left_div{display: flex;}
+ 	<%--로고 이미지--%>
+	#logoImg{width:35px; height: 38px; margin-left: 20px; margin-right: 20px; float: left; margin-top: 10px;}
+ 	<%--레시피~공지사항 감싸는 div--%>
+	#header_menu{margin-left:10px; float: left; display: flex; align-items: center;}
+	<%--로고~공지사항까지 각각의 a태그 class="button"--%>
+ 	.button{color: white; text-decoration: none; font-size: 20px; margin-right: 20px;}
+	.button:hover{font-family: 'MinSans-Bold';}
+	<%--로고~공지사항 버튼의 a태그들--%>
+	.button a{color: black; text-decoration: none;}
+	#header_right_div{display: flex; align-items: flex-end;}
+	<%--로그인 o, x 전부 감싸는--%>
+	#header_user{margin-right: 25px; height: 60px; float: right; display: flex; align-items: center;}   <%--학원 컴퓨터로는 #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
+	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
+	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
+ 	.button_user{color: white; text-decoration: none; font-size: 18px;}
+ 	.button_user:hover{font-family: 'MinSans-Bold';}
+	<%--로그인 o 감싸는 div--%>
+	#user_login_complete{
+		border: 4px solid #FFFBF2; width: auto; 
+		background: #FFFBF2; color: black;
+		display: flex; align-items: center;
+		width: 220px; 
+	}
+	#user_login_complete_span{margin-left: auto; margin-right: auto;}
+	<%--이름 왼쪽 역삼각형--%>
+	#mypage_list{border: 0px; color: #FFC7C2; font-size: 17px; margin-right: 5px;}
+	<%--toggle 메뉴 리스트 감싸는 div--%>
+	#mypage_Menu{display: none; border: 1px solid lightgray; background: white; z-index: 100; position: absolute; top: 45px; width: 220px; height: 137px;}
+ 	#mypage_Menu ul{padding: 0; text-align: center; margin: 0;}
+ 	#mypage_Menu li {width: 100%; list-style: none; margin: 0; padding: 10px; border-top: 1px solid lightgray;}
+	#mypage_Menu a{color: black; text-decoration: none;}
+	#mypage_Menu a:hover{color: #0080ff; font-family: 'MinSans-Bold';}
+	
 </style>
 </head>
-<body id="clickbody">
-	<jsp:include page="../common/header.jsp"/>
-	<jsp:include page="../common/topButton.jsp"/>
-	<div style="margin-left: 10rem !important; margin-right: 10rem !important; margin-top:7rem !important;" class="row py-lg-5">
-		<form action="${contextPath }/bunryuRecipe.re" id="searchForm" onsubmit="return false"">
-			<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px;">
-				<div class="input-group mb-3" style="width:70%">
-					<input name="searchWord" id="searchWord" type="text" class="form-control searchbar"
-					onkeyup="if(event.keyCode=='13'){event.preventDefault(); fnSearch();}" placeholder="찾고자 하는 단어를 입력해주세요.">
-					<input type="hidden" name="difficulty" value="all">
-					<input type="hidden" name="nation" value="all">
-					<button class="btn btn-outline-secondary searchButton" id="search_button" type="button">검색</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<form method="POST" id="updelForm">
-		<div class="div-min-width">
-			<div class="div-flex text-center" id="up-del-btn">
-				<c:if test="${ loginUser.id == b.writer }">
-					<button class="btn btn-primary me-md-2" type="button" id="recipe-up-btn">수정</button>
-					<button class="btn btn-primary me-md-2" type="button" id="recipe-del-btn">삭제</button>
-					<input type="hidden" name="bNumber" id="bNo" value="${ b.boardNo }">
-					<input type="hidden" name="rNumber" id="rNo" value="${ r[0].recipeNo }">
+<body>
+	<c:set value="${ pageContext.servletContext.contextPath }" var="contextPath" scope="application"/>
+	<header id="header">
+		<div id="header_left_div">
+			<c:if test="${ empty loginUser || loginUser.isAdmin == 'N' }">
+	            <a href="${ contextPath }/" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
+	         </c:if>
+	         <c:if test="${ loginUser.isAdmin == 'Y' }">
+	            <a href="${ contextPath }/admin.user" id="logoImg_A"><img src="${contextPath}/resources/image/logo.png" id="logoImg" alt="로고"></a>
+	         </c:if>
+			<div id="header_menu" class="header_common d-flex align-items-center">
+				<a href="${ contextPath }/recipe.re" id="main" class="button">레시피</a>
+				<a href="${ contextPath }/tip.tip" id="tip" class="button">꿀팁</a>
+				<a href="${ contextPath }/random.re" id="comm" class="button">메뉴 추천</a>
+				<a href="${ contextPath }/notice.no" id="notice" class="button">공지사항</a>
+				<c:if test="${ !empty loginUser && loginUser.isAdmin == 'Y' }">
+					<a href="${ contextPath }/admin.user" id="admin" class="button">회원 정보 조회</a>
 				</c:if>
-				
-			</div>
-			<div id="tbdiv3" class="row text-center div-flex col">
-				<table class="tbround bgcw">
-					<tr>
-						<c:forEach items="${ iList }" var="i">
-							<c:if test="${ i.titleImg == 0 }">
-								<td class="td-rightline text-center" colspan='2' rowspan='3' style="width:30%">
-									<img src="${ contextPath }/resources/image/${ i.imageName }" width="400px" height="400px">
-								</td>
-								<td class="td-bottomline" colspan='4' height="47px">
-									<div>${ b.title }</div>
-								</td>
-							</c:if>
-						</c:forEach>
-					</tr>
-					<tr>
-						<td style="width:100px">
-							<div class="recipe-option">	
-								<c:choose>
-									<c:when test="${ r[0].nation eq 'kr' }">한식</c:when>
-									<c:when test="${ r[0].nation eq 'cn' }">중식</c:when>
-									<c:when test="${ r[0].nation eq 'us' }">양식</c:when>
-									<c:when test="${ r[0].nation eq 'jp' }">일식</c:when>
-									<c:when test="${ r[0].nation eq 'no' }">분식</c:when>
-								</c:choose>
-							</div>
-						</td>
-						<td style="width:130px">
-							<div class="recipe-option">
-								<c:if test="${ r[0].difficulty eq 'easy' }">난이도 : 하</c:if>
-								<c:if test="${ r[0].difficulty eq 'mid' }">난이도 : 중</c:if>
-								<c:if test="${ r[0].difficulty eq 'hard' }">난이도 : 상</c:if>
-							</div>
-						</td>
-						<td id="recipe-own" style="font-size:20px;">작성자 : ${ b.writer }</td>
-						<td style="font-size:20px;">조회수 : ${ b.boardCount }</td>
-					</tr>
-					<tr>
-						<td class="td-topline" colspan="4" height="300px" width="50px">
-							<div>${ r[0].ingredients }</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class="row mb-3 text-center div-min-width" style="margin-bottom:2rem !important; justify-content:center;">
-				<table class="tbround bgcw" style="width:70%">
-					<tr height="100px">
-						<td>${ r[0].intro }</td>
-					</tr>
-				</table>
-			</div>
-			<div class="row mb-3 text-center div-min-width" style="margin-left:auto; margin-right:auto; justify-content:center;">
-				<table class="tbround bgcw" style="width:70%">
-					<c:forEach items="${ iList }" var="i" varStatus="status">
-						<c:if test="${i.titleImg == 1 }">
-							<tr style="border-bottom: 0.5px solid lightgray;">
-								<td style="width:400px;">
-									<div class="mb-3 text-center" style="margin-left:auto;margin-right:auto;margin-top:1rem !important;width:250px;height:250px;">
-										<img src="${ contextPath }/resources/image/${ i.imageName }" height="250px" width="250px"/>
-									</div>
-								</td>
-								<td>
-									<div class=" mb-3 text-center" style="padding-top:70px;margin-left:50px;margin-right:30px;margin-top:30px;height:250px;">
-										${ status.index }. ${ contents[status.index - 1] }
-									</div>
-								</td>
-							</tr>
-						</c:if>
-					</c:forEach>
-				</table>
-				<div>&nbsp;</div>
-				<div>&nbsp;</div>
-				
 			</div>
 		</div>
-	</form>
-	
-	<jsp:include page="../common/reply.jsp"/>
-	<br><br>
-	
-	<div class="mx-auto" style="display:flex; justify-content:center;">
-           <c:if test="${ empty myPage }">
-            <a class="btn btn-primary me-md-2" href="${ contextPath }/recipe.re" role="button" id="go_list_button" style="width:80px;">목록</a>
-         </c:if>
-         <c:if test="${ !empty myPage }">
-            <a class="btn btn-primary me-md-2" href="${ contextPath }/myBoardList.user?page=${page}" role="button" id="go_list_button" style="width:80px;">목록</a>
-         </c:if>
-      </div>
-	
-	<div class="div-flex div-center" style="height: 50px"></div>
-
-
-	
-	
-	
-	
-	
-	<hr>
-	<div class="grid text-center div-flex div-center div-min-width" style="margin-left:50px;margin-right:50px;">
-		<div class="g-col-6 div-center div-flex" id="recipe-recommend">
-			<span>
-				<c:choose>
-					<c:when test="${ r[0].nation eq 'kr' }">한식</c:when>
-					<c:when test="${ r[0].nation eq 'cn' }">중식</c:when>
-					<c:when test="${ r[0].nation eq 'us' }">양식</c:when>
-					<c:when test="${ r[0].nation eq 'jp' }">일식</c:when>
-					<c:when test="${ r[0].nation eq 'no' }">분식</c:when>
-				</c:choose>
-			</span> 레시피를 조회하셨네요. 다른 메뉴는 어떠세요?
-		</div>
-		<form action="${contextPath }/searchRecipe.re">
-			<div class="div-center div-flex slim-border" id="show-more">
-				<button style="border:none; background-color:white;">더보기</button>
-				<input type="hidden" name="nation" value="${ r[0].nation }">
-			</div>
-		</form>
-	</div>
-	<div class="py-5 div-min-width">
-		<div class="container" style="padding-bottom:15px; width:70%;">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-				<c:forEach items="${ bList }" var="bList" varStatus="status">
-					<c:if test="${ status.index < 4 }">
-						<c:forEach items="${ rList }" var="rList">
-							<c:if test="${ rList.boardNo == bList.boardNo }">
-								<div class="col pad20 width25" style="padding-left:20px;padding-right:20px; width:25%">
-									<div class="card shadow-sm">
-										<c:forEach items="${iListAll }" var="ila">
-											<c:if test="${ ila.recipeNo == rList.recipeNo }">
-												<img src="${ contextPath }/resources/image/${ ila.imageName }" width="100%" height="225px"/>
-												<div class="card-body">
-													<p class="card-text" style="text-align:center;height:15px;">${ bList.title }</p>
-													<div class="d-flex justify-content-between align-items-center">
-														<div class="btn-group"></div>
-														<small class="text-body-secondary"></small>
-													</div>
-												</div>
-												<input type="hidden" name="bNo" class="bNo" value="${ bList.boardNo }">
-												<input type="hidden" name="rNo" class="rNo" value="${ rList.recipeNo }">
-											</c:if>
-										</c:forEach>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</c:if>
-				</c:forEach>
+		<div id="header_right_div">
+			<div id="header_user" class="header_common">
+				<!-- 로그인 x -->
+ 				<c:if test="${ empty loginUser }">
+ 					<div id="header_user_noUser">
+ 		 				<a href="${ contextPath }/loginView.user" id="user_login" class="button_user" style="margin-right: 15px;">로그인</a> 
+ 		 				<a href="${ contextPath }/joinView.user" id="user_join" class="button_user">회원가입</a> 
+ 	 				</div>			 
+ 	 			</c:if> 
+				<!-- 로그인 o -->
+				<c:if test="${ !empty loginUser }">
+					<div id="user_login_complete">
+						<span id="user_login_complete_span">
+							<label id="mypage_list" class="mypageMenu">▼</label>
+							<label class="mypageMenu">${ loginUser.name }님, 환영합니다&nbsp;</label>
+						</span>
+					</div>
+					<div id="mypage_Menu">
+						<ul>
+							<li><a href="${ contextPath }/myBoardList.user">작성한 게시글 보기</a></li>
+							<li><a href="${ contextPath }/edit.user">회원정보 조회 / 수정</a></li>
+							<li><a href="${ contextPath }/logout.user">로그아웃</a></li>
+						</ul>
+					</div>
+				</c:if>
 			</div>
 		</div>
-	</div>	
-	
-	<div class="modal fade" tabindex="-1" role="dialog" id="modalEdit">
-		<div class="modal-dialog" role="document">
-    		<div class="modal-content rounded-3 shadow">
-      			<div class="modal-body p-4 text-center">
-        			<h3 class="mb-0">정말 수정하시겠습니까?</h3>
-        			<p class="mb-0">수정 시 기존 이미지들은 다시 입력해야 합니다.</p>
-      			</div>
-      			<div class="modal-footer flex-nowrap p-0">
-        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="edit">
-        				<strong>네</strong>
-        			</button>
-        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
-      			</div>
-    		</div>
-  		</div>
-	</div>
-	
-	<div class="modal fade" tabindex="-1" role="dialog" id="modalChoice">
-		<div class="modal-dialog" role="document">
-    		<div class="modal-content rounded-3 shadow">
-      			<div class="modal-body p-4 text-center">
-        			<h3 class="mb-0">정말로 삭제하시겠습니까?</h3>
-        			<p class="mb-0">삭제 후 글은 복구할 수 없습니다.</p>
-      			</div>
-      			<div class="modal-footer flex-nowrap p-0">
-        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="delete">
-        				<strong>네</strong>
-        			</button>
-        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
-      			</div>
-    		</div>
-  		</div>
-	</div>
-	
-	
-		
-	<div>&nbsp;</div>
-	<jsp:include page="../common/footer.jsp"/>
+	</header>
 	
 	<script>
-		window.onload=()=>{
-			const divs = document.getElementsByClassName('card');
-			for(const div of divs){
-				div.addEventListener('click',function(){
-					const bNo = this.querySelector('.bNo').value; 
-					const rNo = this.querySelector('.rNo').value;
-					console.log(bNo);
-					console.log(rNo);
-					location.href = '${contextPath}/recipeContent.re?bNo='+bNo+'&rNo='+rNo+'&page=1';
-				});
-			}
-			
-			const form = document.getElementById('updelForm');
-			
-			if(document.getElementById('recipe-up-btn') != null){
-				document.getElementById('recipe-up-btn').addEventListener('click',() => {
-					$('#modalEdit').modal('show');
-				});
-			}
-			
-			const goEdit = document.getElementById('edit');
-			goEdit.addEventListener('click',()=>{
-				form.action = '${contextPath}/updateRecipe.re';
-				form.submit();
+		$(()=>{
+			$('#user_login_complete').click(function() {
+				$(this).next().slideToggle();
 			});
-			
-			
-			if(document.getElementById('recipe-del-btn') != null){
-				document.getElementById('recipe-del-btn').addEventListener('click',() => {
-					$('#modalChoice').modal('show');
-				});
-			}
-			
-			const del = document.getElementById('delete');
-			
-				del.addEventListener('click',()=>{
-					
-					form.action = '${contextPath}/deleteRecipe.re';
-					form.submit();
-				});
-			
-			
-			const search = document.getElementById('search_button');
-			search.addEventListener('click',()=>{
-				const searchWord = document.getElementById('searchWord').value;
-				const nation = "all";
-				const difficulty = "all";
-				location.href = '${contextPath}/searchRecipe.re?searchWord='+searchWord+'&nation='+nation+'&difficulty='+difficulty;
-			});
-		}
-		
-		function fnSearch(){
-			location.href = '${contextPath}/searchRecipe.re?searchWord='+document.getElementById('searchWord').value + '&nation=all&difficulty=all';
-		}
-		
+		})
 	</script>
-	
-	
-	
 </body>
 </html>
