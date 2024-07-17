@@ -14,7 +14,7 @@
 
 .div-flexible{font-family: 'MinSans-Regular'; font-size:17px;
 			width:50% ; margin-left:auto; margin-right:auto;
-			margin-top:30px; margin-bottom:30px; 
+			margin-top:60px; margin-bottom:60px; 
 			height:35px; border:1px solid #f9ae98; border-radius:8px;
 			background:white;
 			line-height:30px;	
