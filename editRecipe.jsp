@@ -10,7 +10,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 
-<style></style>
+<style>
+#edit-div{font-family:'MinSans-Regular';}
+.border-lr-radius{border-top-left-radius:10px; border-top-right-radius:10px;}
+</style>
 
 </head>
 <body id="recipe-body">
@@ -19,8 +22,9 @@
 	   
 	</div>
 	
+	<!-- 1번째 칸 -->
 <form action="${contextPath }/editRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
-	<div>
+	<div id="edit-div">
 		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
 	
 			<table class="tbround bgcw" style="width:100%;">
@@ -117,6 +121,7 @@
 	
 	
 	
+	<!-- 2번째 칸 -->
 		<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:auto; margin-right:auto; height:100px;width:70%">
 			<table class="tbround bgcw">
 				<tr>
@@ -132,6 +137,7 @@
 	
 		<div class="row text-center div-min-width" style="margin-left:auto; margin-right:auto;width:70%;">
 			<table class="tbround bgcw">
+				<!-- 아래 버튼 클릭 -> tr부분 테이블 안에 추가 -->
 				<tbody id="table_body">
 					<c:forEach items="${ iList }" var="i" varStatus="status">
 						<c:if test="${ i.titleImg == 1 }">
@@ -145,7 +151,7 @@
 									</td>
 									<td>
 										<div class="slim-border mb-3 text-center div-textarea pad-top50">
-											<textarea class="making-num " placeholder="1. ㅇㅇㅇ">${ contents[status.index - 1] }</textarea>
+											<textarea class="making-num " placeholder="번호 없이 해당 순서의 레시피를 작성해 주세요">${ contents[status.index - 1] }</textarea>
 										</div>
 									</td>
 								</tr>
@@ -165,21 +171,6 @@
 		</div>
 		<input type="hidden" name="content" id="inputContent"/>
 	
-
-	
-		<input type="hidden" name="boardNo" value="${ b.boardNo }">
-		<input type="hidden" name="recipeNo" value="${ r[0].recipeNo }">
-		<div>&nbsp;</div>
-		
-		<div class="mx-auto" style="width:80px;">
-			<button class="btn btn-primary me-md-2" type="submit" id="go_list_button" onclick="getAllMaking();">등록</button>
-		</div>
-		<div>&nbsp;</div>
-	</div>
-</form>	
-	<jsp:include page="../common/footer.jsp"/>
-
-
 		<script>
 			window.onload=()=>{
 				const tbody = document.getElementById("table_body");
@@ -189,11 +180,12 @@
 					const targetTagName = eventTarget.tagName.toLowerCase();
 					let targetSVG = null;
 					switch(targetTagName){
-					case 'tr' : targetInput = eventTarget.children[0].children[0].children[0];break;
-					case 'td' : targetInput = eventTarget.parentElement.children[0].children[0].children[0];break;
-					case 'div' : targetInput = eventTarget.parentElement.parentElement.children[0].children[0].children[0];break;
-					case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[0].children[0].children[0];break;
+					case 'tr' : targetInput = eventTarget.children[1].children[0].children[0];break;
+					case 'td' : targetInput = eventTarget.parentElement.children[1].children[0].children[0];break;
+					case 'div' : targetInput = eventTarget.parentElement.parentElement.children[1].children[0].children[0];break;
+					case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[1].children[0].children[0];break;
 					}
+					console.log(targetInput);
 					const imgPre = targetInput.nextElementSibling;
 					var fReader = new FileReader();
 					fReader.onload = function(event){
@@ -236,7 +228,7 @@
 			function add_tr(table_body){
 				let tbody = document.getElementById("table_body");
 				const newTr = document.createElement('tr');
-				newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+				newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img border-lr-radius"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="번호 없이 해당 순서의 레시피를 작성해 주세요"></textarea></div></td>';
 				tbody.append(newTr);
 				let trCount = tbody.childElementCount;
 				tbody.lastElementChild.children[0].innerText = 'step' + trCount;
@@ -263,7 +255,17 @@
 				}
 			}
 		</script>
-
-
+	
+		<input type="hidden" name="boardNo" value="${ b.boardNo }">
+		<input type="hidden" name="recipeNo" value="${ r[0].recipeNo }">
+		<div>&nbsp;</div>
+		
+		<div class="mx-auto" style="width:80px;">
+			<button class="btn btn-primary me-md-2" type="submit" id="go_list_button" onclick="getAllMaking();">등록</button>
+		</div>
+		<div>&nbsp;</div>
+	</div>
+</form>	
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
