@@ -147,7 +147,7 @@
 			let phone = document.getElementById('phone');
 			const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 			let nameInput = document.getElementById('join_name');
-			const regName = /[^가-힣a-zA-Z]/g;
+			const regName = /^([가-힣]{2,6}|[a-zA-Z]{2,18})$/ 
 			
 			document.getElementById('join_button').addEventListener('click', e => {			
 				let count = 0;
@@ -177,7 +177,7 @@
 				} else if(!regPho.test(phone.value)){
 					alert('유효한 전화번호가 아닙니다. 다시 입력해 주세요.');
 					phone.focus();
-				} else if(regName.test(nameInput.value)) {
+				} else if(!regName.test(nameInput.value)) {
 					alert('이름을 다시 입력해 주세요.');
 					nameInput.focus();
 				} else if(count == 0 && pwdCheck() && inforId.innerText.includes('사용 가능한')) {
@@ -197,7 +197,7 @@
 		const regPwd = /^[A-Za-z0-9@.]{6,15}$/;
 		
 		idInput.addEventListener('focusout', checkId);
-		pwd.addEventListener('focusout', pwdCheck);
+		pwd.addEventListener('focusout', pwdReg);
 		rePwd.addEventListener('focusout', pwdCheck);
 		
 		function checkId(){
@@ -224,10 +224,6 @@
 		
 		function pwdCheck(){
 			if(pwd.value === rePwd.value && (pwd.value.trim() != '' || rePwd.value.trim() != '')){
-				if(!regPwd.test(pwd.value)){
-					inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
-					inforPwd.style.color = 'red';
-				}
 				inforRePwd.innerText = '비밀번호가 일치합니다';
 				inforRePwd.style.color = 'green';
 				return true;
@@ -237,7 +233,18 @@
 				return false;
 			}
 			
-		};
+		}
+		
+		function pwdReg(){
+			if(!regPwd.test(pwd.value)){
+				inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
+				inforPwd.style.color = 'red';
+				return false;
+			} else {
+				inforPwd.innerText = '';
+				return true;
+			}
+		}
 		
 	</script>
 	
