@@ -32,6 +32,9 @@
 				<a class="btn btn-primary me-md-2" href="${ contextPath }/noticeWriteView.no" role="button" id ="notice_write_button">글쓰기</a>
 			</div>	
 		</c:if>
+		<c:if test="${loginUser.isAdmin != 'Y'}"> 
+			<div id="write_div"></div>	
+		</c:if>
 		
 			
 			
