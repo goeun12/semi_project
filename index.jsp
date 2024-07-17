@@ -24,14 +24,11 @@
 			
 			<div id="main_box">
 				<button class="button_find_join btn" id="recipy_link" type="button" onclick="location.href='${contextPath}/recipe.re'">레시피 게시판</button>
-				<div id="join_user" class="find_join_in" style="width: 200px;"></div>
-				<button class="button_find_join btn" id="honey_link" type="button" onclick="location.href='${contextPath}/tip.tip'">꿀팁 게시판</button>
-				<div id="join_user" class="find_join_in" style="width: 200px;"></div>
+				<button class="button_find_join btn" id="honey_link" type="button" style="margin-right: 250px; margin-left: 250px;" onclick="location.href='${contextPath}/tip.tip'">꿀팁 게시판</button>
 				<button class="button_find_join btn" id="menu_link" type="button" onclick="location.href='${contextPath}/random.re'">메뉴 추천</button>
 			</div>
 		</div>
 	</div>
-	
 	
 </body>
 </html>
