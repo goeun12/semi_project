@@ -107,7 +107,17 @@
 							document.getElementsByName('address')[0].value = roadAddr + '§§●' + document.getElementById('sample4_detailAddress').value;
 						}
 					})
-	            }
+	            },
+	            theme: {
+					bgColor: "#FFFBF2", //바탕 배경색
+					searchBgColor: "#F24822", //검색창 배경색
+					//contentBgColor: "", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+					pageBgColor: "#F9AE98", //페이지 배경색
+					textColor: "#000000", //기본 글자색
+					queryTextColor:  "#FFFFFF", //검색창 글자색
+					postcodeTextColor:  "#FB9374", //우편번호 글자색
+					emphTextColor: "#000000" //강조 글자색
+				}
 	        }).open();
 	    }
 		
@@ -116,7 +126,7 @@
 		let phone = document.getElementById('modify_phone');
 		const regPho = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 		let nameInput = document.getElementById('modify_name');
-		const regName = /[^가-힣a-zA-Z]/g;
+		const regName = /^([가-힣]{2,6}|[a-zA-Z]{2,18})$/ 
 		
 		button.addEventListener('click', e => {			
 			let count = 0;
@@ -142,7 +152,7 @@
 			} else if(!regPho.test(phone.value)){
 				alert('유효한 전화번호가 아닙니다. 다시 입력해 주세요.');
 				phone.focus();
-			} else if(regName.test(nameInput.value)) {
+			} else if(!regName.test(nameInput.value)) {
 				alert('이름을 다시 입력해 주세요.');
 				nameInput.focus();
 			} else if(count == 0 && ((pwd.value.trim() == '' && rePwd.value.trim() == '') || (pwd.value.trim() != '' && pwdCheck()))) {
@@ -167,24 +177,31 @@
 		let inforRePwd = document.getElementById('inforRePwd');
 		const regPwd = /^[A-Za-z0-9@.]{6,15}$/;
 		
-		pwd.addEventListener('focusout', pwdCheck);
+		pwd.addEventListener('focusout', pwdReg);
 		rePwd.addEventListener('focusout', pwdCheck);
 		
 		function pwdCheck(){
 			if(pwd.value === rePwd.value && pwd.value.trim() != ''){
-				if(!regPwd.test(pwd.value)){
-					inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
-					inforPwd.style.color = 'red';
-				} else {
-					inforPwd.innerText = '';
-				}
 				inforRePwd.innerText = '비밀번호가 일치합니다';
 				inforRePwd.style.color = 'green';
 				return true;
-			} else {
+			} else if(pwd.value.trim() != '' && rePwd.value.trim() != '' && pwd.value != rePwd.value) {
 				inforRePwd.innerText = '비밀번호가 일치하지 않습니다';
 				inforRePwd.style.color = 'red';
 				return false;
+			} else if(pwd.value.trim() == '' && rePwd.value.trim() == ''){
+				return true;
+			}
+		}
+		
+		function pwdReg(){
+			if(pwd.value.trim() != '' && !regPwd.test(pwd.value)){
+				inforPwd.innerText = '비밀번호는 6~15자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요';
+				inforPwd.style.color = 'red';
+				return false;
+			} else {
+				inforPwd.innerText = '';
+				return true;
 			}
 		}
 		
