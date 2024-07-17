@@ -102,7 +102,7 @@ public class BoardController {
 //				return "recipeList"; // 돌려보냄
 
 			if(find.trim().isEmpty() && nation.equals("all") && diffi.equals("all")) {
-				return "recipeList";
+				return "redirect:recipe.re";
 			} else { // 무언가 검색어를 썼거나, 나라를 선택했거나, 난이도를 선택했음 
 				DivideSearch ds = new DivideSearch();
 				ds.setDifficulty(diffi);
