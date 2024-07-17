@@ -184,7 +184,7 @@
 			</c:if>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
 				<c:forEach items="${ bList }" var="b">
-					<div class="col pad20" style="padding-left:20px;padding-right:20px;">
+					<div class="col pad20" style="padding-left:20px;padding-right:20px; width:25%">
 						<div class="card shadow-sm">
 							<c:forEach items="${ rList }" var="r">
 								<c:if test="${ b.boardNo == r.boardNo }">
