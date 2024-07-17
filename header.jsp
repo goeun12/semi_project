@@ -38,7 +38,7 @@
 	.button a{color: black; text-decoration: none;}
 	#header_right_div{display: flex; align-items: flex-end;}
 	<%--로그인 o, x 전부 감싸는--%>
-	#header_user{margin-right: 25px; height: 60px; float: right; display: flex; align-items: center;}   <%--학원 컴퓨터로는 #header_user{margin-right: 20px; float: right; margin-top: 14px;}--%>
+	#header_user{margin-right: 25px; height: 60px; float: right; display: flex; align-items: center;}
 	#header_user>div:hover, #header_user button:hover, #header_user label:hover{cursor: pointer;}
 	<%--로그인 안 되어있을 시의 로그인+회원가입 각각의 a태그--%>
  	.button_user{color: white; text-decoration: none; font-size: 18px;}
