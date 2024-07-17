@@ -112,21 +112,29 @@
 					</c:forEach>
 				</table>
 				<div>&nbsp;</div>
-				<div></div>
+				<div>&nbsp;</div>
+				
 			</div>
 		</div>
 	</form>
 	
+	<jsp:include page="../common/reply.jsp"/>
+	<br><br>
+	
 	<div class="mx-auto" style="display:flex; justify-content:center;">
-		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
-	</div>
-	<hr>
-
+           <c:if test="${ empty myPage }">
+            <a class="btn btn-primary me-md-2" href="${ contextPath }/recipe.re" role="button" id="go_list_button" style="width:80px;">목록</a>
+         </c:if>
+         <c:if test="${ !empty myPage }">
+            <a class="btn btn-primary me-md-2" href="${ contextPath }/myBoardList.user?page=${page}" role="button" id="go_list_button" style="width:80px;">목록</a>
+         </c:if>
+      </div>
+	
 	<div class="div-flex div-center" style="height: 50px"></div>
 
 
 	
-	<jsp:include page="../common/reply.jsp"/>
+	
 	
 	
 	
@@ -146,7 +154,7 @@
 		<form action="${contextPath }/searchRecipe.re">
 			<div class="div-center div-flex slim-border" id="show-more">
 				<button style="border:none; background-color:white;">더보기</button>
-				<input type="hidden" name="nation" value="${ rList[0].nation }">
+				<input type="hidden" name="nation" value="${ r[0].nation }">
 			</div>
 		</form>
 	</div>
@@ -219,9 +227,6 @@
 	
 	
 		
-	<div class="mx-auto" style="display:flex; justify-content:center;">
-		<a class="btn btn-primary me-md-2" href="${contextPath }/recipe.re" role="button" id ="go_list_button" style="width:80px;">목록</a>
-	</div>
 	<div>&nbsp;</div>
 	<jsp:include page="../common/footer.jsp"/>
 	
