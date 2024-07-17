@@ -5,13 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레시피 적는중</title>
+<title>레시피 작성중입니다</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>    
 <link href='<c:url value="/resources/css/allCss.css"/>' rel="stylesheet" type="text/css">
 
 <style>
-#recipe-body{font-family: 'MinSans-Regular';}
+#write-div{font-family: 'MinSans-Regular';}
+.border-lr-radius{border-top-left-radius:10px; border-top-right-radius:10px;}
 </style>
 
 </head>
@@ -23,7 +24,7 @@
 	
 	<!-- 1번째 칸 -->
 <form action="${contextPath }/insertRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data" onsubmit="return doNot();">	
-	<div>
+	<div id="write-div">
 		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
 	
 			<table class="tbround bgcw" style="width:100%;">
@@ -80,7 +81,7 @@
 	<div class="row mb-3 text-center div-min-width" style="margin-bottom:1rem !important;margin-left:auto; margin-right:auto; height:100px;width:70%">
 		<table class="tbround bgcw">
 			<tr>
-				<td width="200px" height="50px" style="border-right:0.5px solid black;text-align:center;">요리 소개</td>
+				<td width="200px" height="50px" style="border-right:0.5px solid lightgray;text-align:center;">요리 소개</td>
 				<td width="" height="60px" style="padding-left:50px">
 					<textarea id="text-ingre" name="intro" class="td-textarea" rows='2' maxlength="50" placeholder="55글자 이내로 적어주세요"></textarea>
 				</td>
@@ -97,7 +98,7 @@
 				<tr>
 					<td style="width:150px; text-align:center;font-size:30px">step1</td>
 					<td class="td-jus-con previewImg">
-						<div class="slim-border mb-3 text-center td-div-img">
+						<div class="slim-border mb-3 text-center td-div-img border-lr-radius">
 							<input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file">
 							<img class="preview" />
 						</div>
@@ -120,10 +121,10 @@
 			const targetTagName = eventTarget.tagName.toLowerCase();
 			let targetSVG = null;
 			switch(targetTagName){
-			case 'tr' : targetInput = eventTarget.children[0].children[0].children[0];break;
-			case 'td' : targetInput = eventTarget.parentElement.children[0].children[0].children[0];break;
-			case 'div' : targetInput = eventTarget.parentElement.parentElement.children[0].children[0].children[0];break;
-			case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[0].children[0].children[0];break;
+			case 'tr' : targetInput = eventTarget.children[1].children[0].children[0];break;
+			case 'td' : targetInput = eventTarget.parentElement.children[1].children[0].children[0];break;
+			case 'div' : targetInput = eventTarget.parentElement.parentElement.children[1].children[0].children[0];break;
+			case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[1].children[0].children[0];break;
 			}
 			const imgPre = targetInput.nextElementSibling;
 			var fReader = new FileReader();
@@ -138,23 +139,6 @@
 		
 	}
 	
-		/* function readURL(input){
-			var imgArr = document.getElementsByClassName("preview");
-				if(input.files[0]){
-					var trNo = document.getElementById("table_body").childElementCount;
-					if(imgArr.length == trNo){
-						var reader = new FileReader();
-						reader.onload = function(e){
-							imgArr[trNo-1].src = e.target.result;
-							imgArr[trNo-1].style.width = '250px';
-							imgArr[trNo-1].style.height = '250px';
-						};
-					reader.readAsDataURL(input.files[0]);
-					} else{
-					imgArr[0].src = "";
-					}
-				}		
-		} */
 		function previewIMG(This){
 			var firImg = document.getElementById("firImg");
 			if(This.files[0]){
@@ -216,7 +200,7 @@
 		function add_tr(table_body){
 			let tbody = document.getElementById("table_body");
 			const newTr = document.createElement('tr');
-			newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="한 단계씩 추가해 주세요"></textarea></div></td>';
+			newTr.innerHTML = '<td style="width:150px; text-align:center;font-size:30px"></td><td class="td-jus-con previewImg"><div class="slim-border mb-3 text-center td-div-img border-lr-radius"><input class="form-control form-control-lg input-image" type="file" accept="image/*" name="file"><img class="preview" /></div></td><td><div class="slim-border mb-3 text-center div-textarea pad-top50"><textarea class="making-num " placeholder="해당 순서의 레시피를 작성해 주세요"></textarea></div></td>';
 			tbody.append(newTr);
 			let trCount = tbody.childElementCount;
 			tbody.lastElementChild.children[0].innerText = 'step' + trCount;
