@@ -1,0 +1,85 @@
+@charset "UTF-8";
+body{background-color: #FFFBF2;}
+
+/* 회원가입 infor ~ 버튼까지*/
+.mainDiv{text-align: center; padding-top: 30px;}
+
+/* 회원가입 */
+.title{
+	background:#f9ae98;
+	width: 50%; height:50px;
+	margin-left:25%;
+	text-align: center;
+	text-decoration: none;
+	font-size: 25px;
+	font-family: 'MinSans-Bold';
+	margin-top: 80px;
+	line-height: 50px;
+	border-radius: 5px;
+}
+
+.admin_table_div {
+	font-family: 'MinSans-Regular';
+	margin-top: 50px;
+	margin-left: auto; 
+	margin-right: auto;
+	display: inline-block;
+	border-radius: 10px;
+	border: none;
+}
+.admin_table th{
+	border-top: none; border-left: none; 
+	border-bottom: 1px solid lightgray;
+	font-size: 15px; width: 200px;
+	border-right: 1px solid lightgray;
+}
+.admin_table td{
+	text-align: left; border-top: none; 
+	border-right: none;
+	border-bottom: 1px solid lightgray;
+}
+#lastTrBTh{border-bottom: none;}
+#lastTrBTd{border-bottom: none;}
+.table_In_Infor{font-size: small; margin-right: 10px;}
+.admin_table{
+	margin-top: 30px; margin-bottom: 30px;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-collapse: separate;
+	border-spacing: 0px;
+	border-radius: 10px;
+	width: 900px; height: 300px;
+}
+.joinInput{
+	border: none; outline: none;
+	height: 30px; width: 80%; 
+	margin-left: 10px;
+	font-size: 15px;
+	background-color: none;
+}
+
+.joinInputRa{margin-left: 10px; font-size: 15px;}
+
+#admin_button{
+	width: 120px; height: 40px;
+	background-color: #F24822; cursor: pointer;
+	border: none; color: white;
+	font-size: 15px; 
+	border-radius: 10px;
+	font-family: 'MinSans-Bold';
+	margin-top: 30px; margin-bottom: 30px;
+	font-family: 'MinSans-Bold';
+}
+#admin_button:hover{background-color: #a5250a;}
+
+#join_go_button{
+	background-color: lightgray;
+	width: 120px; height: 40px;
+	cursor: pointer;
+	border: none; 
+	font-size: 15px; 
+	border-radius: 10px;
+	margin-left: 80px;
+	color: white;
+	font-family: 'MinSans-Bold';
+}
