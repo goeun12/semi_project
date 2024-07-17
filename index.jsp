@@ -15,7 +15,7 @@
 	<div id="wrap" class="wrap">
 
 		<div id="container" class="text-center container">
-			<div style="padding-top:1rem !important; padding-bottom:5rem !important;" class="row py-lg-5">
+			<div style="padding-top:1rem !important; padding-bottom:5rem !important; margin-left:55px;" class="row py-lg-5">
      			<div id="bar" class="col-lg-8 col-md-8">
         			<a href="${ contextPath }/recipe.re" class="button"><img src="resources/image/indexLogo.png" id="indexLogoImg" alt="로고"></a>
       			</div><br>
