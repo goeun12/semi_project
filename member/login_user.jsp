@@ -30,7 +30,7 @@
 							<div id="login_pwd" class="login_content_name">
 								<input type="password" id="pwd" name="pwd" class="login_content" placeholder="비밀번호">
 							</div>
-							<div id="login_alert" style="text-align: left;"></div>
+							<div id="login_alert" style="text-align: left; padding-left: 5px; padding-top: 5px;"></div>
 						</div>
 						
 						<div id="login_check">
@@ -38,6 +38,7 @@
 						</div>
 					</div>
 					<input type="hidden" name="change"/>
+					<input type="hidden" name="fail" value="${ fail }"/>
 				</form>
 				
 				<div id="find_join">
@@ -70,6 +71,12 @@
 				});
 			}
 			
+			const fail = document.getElementsByName('fail')[0];
+			if(fail.value == "fail"){
+				alertDiv.innerText = '아이디와 비밀번호를 정확히 입력해 주세요.';
+				alertDiv.style.color = 'red';
+			}
+			
 			if(${ !empty loginUser }){
 				alert('로그인이 되어있습니다.');
 				location.href="${contextPath}/recipe.re";
@@ -89,6 +96,7 @@
 				if(id.value.trim() == ''){
 					alertDiv.innerText = '아이디를 입력하세요.';
 					alertDiv.style.color = 'red';
+					alertDiv.style.fontSize = '20px;'
 					document.getElementById('login_id').style.border = '2px solid #F24822';
 					document.getElementById('login_pwd').style.border = '1px solid lightgray';
 					id.focus();
@@ -96,6 +104,7 @@
 				} else if(pwd.value.trim() == ''){
 					alertDiv.innerText = '비밀번호를 입력하세요.';
 					alertDiv.style.color = 'red';
+					alertDiv.style.fontSize = '20px;'
 					document.getElementById('login_id').style.border = '1px solid lightgray';
 					document.getElementById('login_pwd').style.border = '2px solid #F24822';
 					pwd.focus();
@@ -103,7 +112,19 @@
 				}
 			};
 			
+			id.addEventListener('focusin', function(){
+				document.getElementById('login_id').style.border = '2px solid #F24822';
+			});
+			id.addEventListener('focusout', function(){
+				document.getElementById('login_id').style.border = '1px solid lightgray';
+			});
 			
+			pwd.addEventListener('focusin', function(){
+				document.getElementById('login_pwd').style.border = '2px solid #F24822';
+			});
+			pwd.addEventListener('focusout', function(){
+				document.getElementById('login_pwd').style.border = '1px solid lightgray';
+			});
 		}
 	</script>
 	<% session.removeAttribute("msg"); %>

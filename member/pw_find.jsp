@@ -48,7 +48,7 @@
 							</tr>
 						</table>
 					</div>
-					<div id="find_alert" style="text-align: left;"></div>
+					<div id="find_alert" style="text-align: left; left; padding-left: 5px; padding-top: 5px;"></div>
 					<div id="find_check">
 						<button type="button" id="find_check_button">비밀번호 찾기</button>
 					</div>
@@ -133,6 +133,30 @@
 				}
 					
 			});
+			
+			name.addEventListener('focusin', function(){
+				document.getElementById('find_name').style.border = '2px solid #F24822';
+			});
+			name.addEventListener('focusout', function(){
+					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_name').style.borderBottom = '1px solid lightgray';
+			});
+			
+			phone.addEventListener('focusin', function(){
+				document.getElementById('find_phone').style.border = '2px solid #F24822';
+			});
+			phone.addEventListener('focusout', function(){
+					document.getElementById('find_phone').style.border = 'none';
+					document.getElementById('find_phone').style.borderBottom = '1px solid lightgray';
+			});
+			
+			id.addEventListener('focusin', function(){
+				document.getElementById('find_myId').style.border = '2px solid #F24822';
+			});
+			id.addEventListener('focusout', function(){
+				document.getElementById('find_myId').style.border = 'none';
+			});
+			
 		}
 	</script>
 </body>

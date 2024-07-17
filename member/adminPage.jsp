@@ -12,7 +12,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
-<body style="background-color: #FFFBF2; margin: 0; min-width:1820px;">
+<body style="background-color: #FFFBF2; margin: 0; min-width: 1820px;">
 	<jsp:include page="../common/header.jsp"/>
 	<div class="admin_container">
 		<div class="admin_page">
@@ -46,20 +46,19 @@
 					<table class="table">
 						<thead>
 					    	<tr>
-					      		<th scope="col" style="width: 11%;">아이디</th>
-					      		<th scope="col" style="width: 8%;">이름</th>
-					      		<th scope="col" style="width: 15%;">전화번호</th>
-					      		<th scope="col" style="width: 35%;">주소</th>
-					      		<th scope="col" style="width: 10%;">가입날짜</th>
-					      		<th scope="col" style="width: 4%;">활동</th>
+					      		<th scope="col" style="width: 15%;">아이디</th>
+					      		<th scope="col" style="width: 10%;">이름</th>
+					      		<th scope="col" style="width: 18%;">전화번호</th>
+					      		<th scope="col" style="width: 15%;">가입날짜</th>
+					      		<th scope="col" style="width: 8%;">활동</th>
 					      		<th scope="col" style="width: 8%;">관리자 여부</th>
-					      		<th scope="col" style="width: 20%;">가입 경로</th>
+					      		<th scope="col" style="width: 15%;">가입 경로</th>
 					    	</tr>
 					  	</thead>
 					  	<tbody style="vertical-align: middle;">
 					  		<c:if test="${ empty userList }">
 					  			<tr>
-					  				<td colspan="8">사용자 정보가 없습니다.</td>
+					  				<td colspan="7">사용자 정보가 없습니다.</td>
 					  			</tr>
 					  		</c:if>
 					  		<c:if test="${ !empty userList }">
@@ -68,9 +67,11 @@
 							      		<td>${ l.id }</td>
 							      		<td>${ l.name }</td>
 							      		<td>${ l.phone }</td>
-							      		<td>${ fn:split(l.address, '§§●')[0] } ${ fn:split(l.address, '§§●')[1] }</td>
 							      		<td>${ l.joinDate }</td>
-							      		<td>${ l.status }</td>
+							      		<td>
+							      			<div class='${ l.status == "Y" ? "selectState" : "unselectState" }'>Y</div>
+							      			<div class='${ l.status == "N" ? "selectState" : "unselectState" }'>N</div>
+							      		</td>
 							      		<td>
 							      			<div class='${ l.isAdmin == "Y" ? "selectState" : "unselectState" }'>Y</div>
 							      			<div class='${ l.isAdmin == "N" ? "selectState" : "unselectState" }'>N</div>
@@ -101,7 +102,24 @@
         			<p class="mb-0">확인 클릭 시 관리자로 임명됩니다.</p>
       			</div>
       			<div class="modal-footer flex-nowrap p-0">
-        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="ok">
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="a-ok">
+        				<strong>네</strong>
+        			</button>
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
+	
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal-status-in">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+    		<div class="modal-content rounded-3 shadow">
+      			<div class="modal-body p-4 text-center">
+        			<h3 class="mb-0">회원을 탈퇴시키겠습니까?</h3>
+        			<p class="mb-0">확인 클릭 시 선택한 회원이 탈퇴됩니다.</p>
+      			</div>
+      			<div class="modal-footer flex-nowrap p-0">
+        			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0 border-end" id="s-ok">
         				<strong>네</strong>
         			</button>
         			<button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">아니오</button>
@@ -131,56 +149,106 @@
 			});
 			
 			const divs = tbody.querySelectorAll('div');
-			const mBody = document.getElementsByClassName('modal-body')[0];
+			const amBody = document.getElementsByClassName('modal-body')[0];
+			const smBody = document.getElementsByClassName('modal-body')[1];
+			let myTr;
+			let myDiv;
+			let myTd;
 			for(const div of divs){
 				div.addEventListener('click', function(){
+					myDiv = this;
 					if(this.className == 'unselectState'){
 						console.log(this.innerText);
-						let answer;
-						if(this.innerText == 'Y'){
-							$('#modal-admin-in').modal('show');
-						} else {
-							
-							mBody.children[0].innerText = '관리자 임명을 취소하시겠습니까?';
-							mBody.children[1].innerText = '확인 클릭 시 관리자 임명을 취소합니다.';
-							$('#modal-admin-in').modal('show');
-						}
 						
-						document.getElementById('ok').addEventListener('click', function(){
-							const myTd = div.parentElement;
-							const myTr = myTd.parentElement;
-							const id = myTr.children[0].innerText;
-							
-							
-							$.ajax({
-								url: "${contextPath}/adminUpdateStatus.user",
-								data: {
-									id: id,
-									isAdmin: div.innerText
-								},
-								success: data => {
-									if(data == "success"){
-										div.className = 'selectState';
-										for(const siblings of myTd.children){
-											if(siblings != div){
-												siblings.className = 'unselectState';
-											}
-											
-										}
-										$('#modal-admin-in').modal('hide');
-									} else{
-										alert('상태 변경을 실패하였습니다.');
-									}
-								},
-								error: data => console.log('error')
-							});
-							mBody.children[0].innerText = '관리자로 임명하시겠습니까?';
-							mBody.children[1].innerText = '확인 클릭 시 관리자로 임명됩니다.';
-						});
+						myTd = this.parentElement;
+						myTr = myTd.parentElement;
+						const trChildren = myTr.children;
+						const status = trChildren[4];
+						const admin = trChildren[5];
+						
+						if(this.parentElement == admin){
+							if(this.innerText == 'Y'){
+								amBody.children[0].innerText = '관리자로 임명하시겠습니까?';
+								amBody.children[1].innerText = '확인 클릭 시 관리자로 임명됩니다.';
+								$('#modal-admin-in').modal('show');
+							} else {
+								amBody.children[0].innerText = '관리자 임명을 취소하시겠습니까?';
+								amBody.children[1].innerText = '확인 클릭 시 관리자 임명을 취소합니다.';
+								$('#modal-admin-in').modal('show');
+							}
+
+							// a-ok code
+						} else if(this.parentElement == status){
+							if(this.innerText == 'Y'){
+								smBody.children[0].innerText = '회원을 복구시키겠습니까?';
+								smBody.children[1].innerText = '확인 클릭 시 회원 정보가 복구됩니다.';
+								$('#modal-status-in').modal('show');
+							} else {
+								smBody.children[0].innerText = '회원을 탈퇴시키겠습니까?';
+								smBody.children[1].innerText = '확인 클릭 시 선택한 회원이 탈퇴됩니다.';
+								$('#modal-status-in').modal('show');
+							}
+
+							// s-ok code
+						}		
 					}
 				});
 			}
 			
+			
+			document.getElementById('a-ok').addEventListener('click', () => {
+				//console.log('click in id: ' + id);
+				//console.log('click in select: ' + div.innerText);
+				$.ajax({
+					url: "${contextPath}/adminUpdateStatus.user",
+					data: {
+						id: myTr.children[0].innerText,
+						isAdmin: myDiv.innerText
+					},
+					success: data => {
+						if(data == "success"){
+							myDiv.className = 'selectState';
+							for(const siblings of myTd.children){
+								if(siblings != myDiv){
+									siblings.className = 'unselectState';
+								}
+								
+							}
+							$('#modal-admin-in').modal('hide');
+						} else{
+							alert('상태 변경을 실패하였습니다.');
+						}
+					},
+					error: data => console.log('error')
+				});
+			});
+			
+			
+			document.getElementById('s-ok').addEventListener('click', function(){
+				
+				$.ajax({
+					url: "${contextPath}/updateStatus.user",
+					data: {
+						id: myTr.children[0].innerText,
+						status: myDiv.innerText
+					},
+					success: data => {
+						if(data == "success"){
+							myDiv.className = 'selectState';
+							for(const siblings of myTd.children){
+								if(siblings != myDiv){
+									siblings.className = 'unselectState';
+								}
+								
+							}
+							$('#modal-status-in').modal('hide');
+						} else{
+							alert('상태 변경을 실패하였습니다.');
+						}
+					},
+					error: data => console.log('error')
+				});
+			});
 			
 		}
 	</script>

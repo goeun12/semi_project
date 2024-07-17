@@ -44,7 +44,7 @@
 								<td id="find_phone"><input type="text" id="phone" name="phone" class="find_content" placeholder="휴대폰번호"></td>
 							</tr>
 						</table>
-						<div id="find_alert" style="text-align: left;"></div>		
+						<div id="find_alert" style="text-align: left; left; padding-left: 5px; padding-top: 5px;"></div>		
 						<div id="find_check">
 							<button type="button" id="find_check_button">아이디 찾기</button>
 						</div>
@@ -111,6 +111,20 @@
 				}
 			});
 			
+			name.addEventListener('focusin', function(){
+				document.getElementById('find_name').style.border = '2px solid #F24822';
+			});
+			name.addEventListener('focusout', function(){
+					document.getElementById('find_name').style.border = 'none';
+					document.getElementById('find_name').style.borderBottom = '1px solid lightgray';
+			});
+			
+			phone.addEventListener('focusin', function(){
+				document.getElementById('find_phone').style.border = '2px solid #F24822';
+			});
+			phone.addEventListener('focusout', function(){
+					document.getElementById('find_phone').style.border = 'none';
+			});
 		}
 	</script>
 </body>
