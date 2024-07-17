@@ -48,7 +48,7 @@
 
 			
 		<div id="notice_table_div" >	
-			<div id="notice_table">
+			<div id="notice_table" style="text-align:center;">
 				<c:if test="${listCount == 0}">
 					<p>해당 키워드에 대한 검색 결과가 없습니다.<p>
 					<p>다시 시도해 주세요.<p>				
@@ -80,46 +80,45 @@
 					    </c:forEach>
 					  </tbody>
 					</table>
+					<div id="pagination">
+						<ul class="pagination">
+							<c:if test="${pi.currentPage > 1}">
+								<li class="pageItem">
+							 		<c:url value="${loc}" var="goBack">
+							 			<c:param name="key" value="${key}"/>
+							 			<c:param name="page" value="${pi.currentPage-1 }"/>
+							 		</c:url>
+							 	 	<a class="pageLink" href="${goBack}">이전</a>
+							 	</li>
+						 	</c:if>
+						 	<c:forEach begin ="${pi.startPage }" end="${pi.endPage}" var="p" >
+						 		<c:url value="${loc}" var="goCurr">
+						 			<c:param name="key" value="${key}"/>
+						 			<c:param name="page" value="${p}"/>
+						 		</c:url>
+						 	 	<li class="pageItem">
+						 			<c:if test="${ p eq pi.currentPage }">
+		                    			<a class="pageLink pNum-c" href="${goCurr}">${p}</a>
+		                			 </c:if>
+		                			 <c:if test="${ p ne pi.currentPage }">
+		                  				 <a class="pageLink pNum" href="${goCurr}">${p}</a>
+		                			 </c:if>
+						 	 	</li>				 	 
+						 	</c:forEach>
+						 	<c:if test="${pi.currentPage < pi.maxPage}">
+							  	<li class="pageItem">
+							 		<c:url value="${loc}" var="goNext">
+							 			<c:param name="key" value="${key}"/>
+							 			<c:param name="page" value="${pi.currentPage+1 }"/>
+							 		</c:url>
+							 	 	<a class="pageLink" href="${goNext}">이후</a>
+							 	</li>
+						 	</c:if>
+						 	
+						</ul>
+					</div>						
 				</c:if>			
 			</div>
-			
-			<div id="pagination">
-				<ul class="pagination">
-					<c:if test="${pi.currentPage > 1}">
-						<li class="pageItem">
-					 		<c:url value="${loc}" var="goBack">
-					 			<c:param name="key" value="${key}"/>
-					 			<c:param name="page" value="${pi.currentPage-1 }"/>
-					 		</c:url>
-					 	 	<a class="pageLink" href="${goBack}">이전</a>
-					 	</li>
-				 	</c:if>
-				 	<c:forEach begin ="${pi.startPage }" end="${pi.endPage}" var="p" >
-				 		<c:url value="${loc}" var="goCurr">
-				 			<c:param name="key" value="${key}"/>
-				 			<c:param name="page" value="${p}"/>
-				 		</c:url>
-				 	 	<li class="pageItem">
-				 			<c:if test="${ p eq pi.currentPage }">
-                    			<a class="pageLink pNum-c" href="${goCurr}">${p}</a>
-                			 </c:if>
-                			 <c:if test="${ p ne pi.currentPage }">
-                  				 <a class="pageLink pNum" href="${goCurr}">${p}</a>
-                			 </c:if>
-				 	 	</li>				 	 
-				 	</c:forEach>
-				 	<c:if test="${pi.currentPage < pi.maxPage}">
-					  	<li class="pageItem">
-					 		<c:url value="${loc}" var="goNext">
-					 			<c:param name="key" value="${key}"/>
-					 			<c:param name="page" value="${pi.currentPage+1 }"/>
-					 		</c:url>
-					 	 	<a class="pageLink" href="${goNext}">이후</a>
-					 	</li>
-				 	</c:if>
-				 	
-				</ul>
-			</div>	
 						
 		</div>
 		<div class="mx-auto" style="width: 80px;">
