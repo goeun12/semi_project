@@ -29,12 +29,10 @@
 #nation{margin-left:10%; 
 		margin-top:40px;
 		margin-bottom:3%;}
-#difficulty{margin-left:12%; 
-			margin-top:50px;
-			margin-bottom:55px;}
-
+		
+#difficulty{width:80%; margin:50px 10%; text-align:center;}
 	
-#nation>label{width:14%; margin-right:5%;
+#nation>label{width:14%; margin-right:5%; 
 				height:60px;
 				padding-top:10px;
 				border:2px solid lightgray;
@@ -42,7 +40,8 @@
 				font-size:24px;
 				}
 
-#difficulty>label{width:20%; margin-right:12%;
+#difficulty>label{width:20%; 
+				margin:auto 5%;
 				height:60px;
 				padding-top:10px;
 				border:2px solid lightgray;
@@ -65,12 +64,8 @@
 	text-align: center;
 }
 
-#img_title{ font-size:20px; font-weight:700; 
-	color:gray; text-align: center; font-size:20px;}
-
-
-
-
+#img_title{font-size:28px; font-weight:700; 
+	color:gray; text-align: center;}
 
 
 
