@@ -26,6 +26,19 @@
 				 padding-bottom:10%;
 				font-family: "MinSans-Regular;"; font-size:20px}
 .py-5{margin-right:auto;margin-left:auto;}
+#searchWord{box-shadow:none; border-color:rgb(179,179,179)}
+#pagination{width: 20%;
+			margin-left:44%;
+			font-size:15px;
+			text-align:center;}
+
+.pageItem{margin-right:10px; text-align:center;}
+
+.pageLink{color:black;
+		text-decoration-color:black;
+		text-decoration-line:none;
+		text-align:center;}
+.container-fluid{font-family:'MinSans-Regular';}
 </style>
 </head>
 <body>
@@ -47,7 +60,12 @@
 	<form id="searchForm" action="${contextPath }/searchRecipe.re">
 		<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px; ">
 			<div class="input-group mb-3" style="width:85%;">
-				<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요"">
+				<c:if test="${ empty find }">
+					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요">
+				</c:if>
+				<c:if test="${ not empty find }">
+					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요" value="${find }">
+				</c:if>
 				<button class="btn btn-outline-secondary searchButton" id="search_button">검색</button>
 			</div>
 		</div>
@@ -56,21 +74,85 @@
 			<div class="div-flex div-center">
 				<div class="recipe-option">
 					<select id="sel-nation" class="form-select form-select-sm" name="nation" aria-label="Small select example">
-					  <option value="all"selected>국가</option>
-					  <option value="kr">한식</option>
-					  <option value="cn">중식</option>
-					  <option value="us">양식</option>
-					  <option value="jp">일식</option>
-					  <option value="no">분식</option>
+					  <c:choose>
+							<c:when test="${ nation eq 'all' or empty nation}">
+								<option value="all" selected>국가</option>
+								<option value="kr">한식</option>
+								<option value="cn">중식</option>
+								<option value="us">양식</option>
+								<option value="jp">일식</option>
+								<option value="no">분식</option>
+							</c:when>
+							<c:when test="${ nation eq 'kr' }">
+								<option value="all">국가</option>
+								<option value="kr" selected>한식</option>
+								<option value="cn">중식</option>
+								<option value="us">양식</option>
+								<option value="jp">일식</option>
+								<option value="no">분식</option>
+							</c:when>
+							<c:when test="${ nation eq 'cn' }">
+								<option value="all">국가</option>
+								<option value="ko">한식</option>
+								<option value="cn" selected>중식</option>
+								<option value="us">양식</option>
+								<option value="jp">일식</option>
+								<option value="no">분식</option>
+							</c:when>
+							<c:when test="${ nation eq 'us' }">
+								<option value="all">국가</option>
+								<option value="ko">한식</option>
+								<option value="cn">중식</option>
+								<option value="us" selected>양식</option>
+								<option value="jp">일식</option>
+								<option value="no">분식</option>
+							</c:when>
+							<c:when test="${ nation eq 'jp' }">
+								<option value="all">국가</option>
+								<option value="ko">한식</option>
+								<option value="cn">중식</option>
+								<option value="us">양식</option>
+								<option value="jp" selected>일식</option>
+								<option value="no">분식</option>
+							</c:when>
+							<c:when test="${ nation eq 'no' }">
+								<option value="all">국가</option>
+								<option value="ko">한식</option>
+								<option value="cn">중식</option>
+								<option value="us">양식</option>
+								<option value="jp">일식</option>
+								<option value="no" selected>분식</option>
+							</c:when>
+						</c:choose>
 					</select>
 				</div>
 				
 				<div class="recipe-option">
 					<select id="sel-easy"class="form-select form-select-sm" name="difficulty" aria-label="Small select example">
-					  <option value="all"selected>난이도</option>
-					  <option value="easy">하</option>
-					  <option value="mid">중</option>
-					  <option value="hard">상</option>
+						<c:if test="${ difficulty eq 'all' or empty difficulty}">
+							<option value="all" selected>난이도</option>
+							<option value="easy">하</option>
+							<option value="mid">중</option>
+							<option value="hard">상</option>
+						</c:if>
+						<c:if test="${ difficulty eq 'easy' }">
+					  		<option value="all">난이도</option>
+							<option value="easy" selected>하</option>
+							<option value="mid">중</option>
+							<option value="hard">상</option>
+						</c:if>
+						<c:if test="${ difficulty eq 'mid' }">	
+							<option value="all">난이도</option>
+							<option value="easy">하</option>
+							<option value="mid" selected>중</option>
+							<option value="hard">상</option>
+						</c:if>
+						<c:if test="${ difficulty eq 'hard' }">
+							<option value="all">난이도</option>
+							<option value="easy">하</option>
+							<option value="mid">중</option>
+							<option value="hard" selected>상</option>
+						</c:if>
 					</select>
 				</div>
 				
@@ -94,7 +176,12 @@
 
 
 
-
+			
+			<c:if test="${ empty bList }">
+				<div class="div-flex" style="justify-content:center">
+					<p>해당하는 결과가 없습니다.</p>
+				</div>
+			</c:if>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 everybox">
 				<c:forEach items="${ bList }" var="b">
 					<div class="col pad20" style="padding-left:20px;padding-right:20px;">
@@ -104,11 +191,18 @@
 									<c:forEach items="${ iList }" var="i">
 										<c:if test="${ r.recipeNo == i.recipeNo }">
 											<img src="${contextPath }/resources/image/${ i.imageName }" width="100%" height="225px"/>     <!-- 이미지가 저장되는 경로 -->
-											<div class="card-body">
-											<input type="hidden" name="bNo" class="bNo" value="${ b.boardNo }">
-											<input type="hidden" name="rNo" class="rNo" value="${ r.recipeNo }">
-												<p class="card-text" style="text-align:center;height:15px;">${ b.title }</p><!-- b.title = 요리명 -->
-												<div class="d-flex justify-content-between align-items-center">
+											<div class="card-body row">
+												<input type="hidden" name="bNo" class="bNo" value="${ b.boardNo }">
+												<input type="hidden" name="rNo" class="rNo" value="${ r.recipeNo }">
+												<div class="d-flex col-8 align-items-center">
+													<p class="card-text" style="text-align:left; font-weight:500; font-size:20px;">${ b.title }</p>
+												</div>
+												<div class="col-4 d-flex align-items-center" style="flex-direction:row-reverse">
+													<small>${ b.boardCount }&nbsp;</small>
+													<svg style="" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+														<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+														<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+													</svg>
 												</div>
 											</div>
 										</c:if>
@@ -122,15 +216,47 @@
 			<br>
 			<br>
 	
-	
-	
-	
+			<div id="pagination">
+				<ul class="pagination">
+					<c:if test="${pi.currentPage > 1}">
+						<li class="pageItem">
+					 		<c:url value="${loc}" var="goBack">
+					 			<c:param name="page" value="${pi.currentPage-1 }"/>
+					 			<c:param name="searchWord" value="${find}"/>
+					 			<c:param name="nation" value="${nation}"/>
+					 			<c:param name="difficulty" value="${difficulty}"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goBack}">이전</a>
+					 	</li>
+				 	</c:if>
+				 	<c:forEach begin ="${pi.startPage }" end="${pi.endPage}" var="p" >
+				 		<c:url value="${loc}" var="goCurr">
+				 			<c:param name="page" value="${p}"/>
+				 			<c:param name="searchWord" value="${find}"/>
+				 			<c:param name="nation" value="${nation}"/>
+				 			<c:param name="difficulty" value="${difficulty}"/>
+				 		</c:url>
+				 	 	<li class="pageItem">
+				 			<a class="pageLink pNum" href="${goCurr}">${p}</a>
+				 	 	</li>				 	 
+				 	</c:forEach>
+				 	<c:if test="${pi.currentPage < pi.maxPage}">
+					  	<li class="pageItem">
+					 		<c:url value="${loc}" var="goNext">
+					 			<c:param name="page" value="${pi.currentPage+1 }"/>
+					 			<c:param name="searchWord" value="${find}"/>
+					 			<c:param name="nation" value="${nation}"/>
+					 			<c:param name="difficulty" value="${difficulty}"/>
+					 		</c:url>
+					 	 	<a class="pageLink" href="${goNext}">이후</a>
+					 	</li>
+				 	</c:if>
+				 	
+				</ul>
+			</div>	
 			
-<!-- 
-	수업시간에 한 pagination 써먹기
- -->
+	<%-- <jsp:include page="../common/pagination.jsp"/> --%>
 			
-			<jsp:include page="../common/pagination.jsp"/>
 		</div>
 	</div>
 
@@ -139,6 +265,30 @@
 	<script>
 		window.onload=()=>{
 			
+			const pageItems = document.getElementsByClassName("pageItem");
+			for(const pageItem of pageItems){
+				pageItem.addEventListener('focus', function(){
+					this.style.background='white';
+					this.style.color='black';
+					this.stylw.border='none';
+				});	
+				
+				pageItem.addEventListener("click", function(){
+					this.style.textDecoration = 'underline'; 
+					this.style.fontWeight= 'bold';
+					this.style.boxShadow = 'none';
+					this.style.color='black';
+				});				
+				
+			}
+			
+			const pNums = document.getElementsByClassName("pNum");
+			for(const pNum of pNums){
+				if(pNum.innerHTML == '${pi.currentPage}'){
+					pNum.style.textDecoration = 'underline';
+					pNum.style.fontWeight= 'bold';
+				}
+			}
 			
 			const divs = document.getElementsByClassName('card');
 			for(const div of divs){
@@ -157,7 +307,7 @@
 				const difficulty = document.getElementById('sel-easy').value;
 				console.log(nation);
 				location.href = '${contextPath}/searchRecipe.re?searchWord='+searchWord+'&nation='+nation+'&difficulty='+difficulty;
-					
+				
 			});
 		}
 		
