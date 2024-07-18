@@ -97,11 +97,7 @@ public class BoardController {
 								   @RequestParam(value="searchWord", defaultValue="") String find, 
 								   @RequestParam(value="page", defaultValue="1") int currentPage,
 								   Model model) {
-			System.out.println(nation);
-			System.out.println(diffi);
-			System.out.println(find+"파인드");
-			System.out.println(find.trim()+"트림");
-			System.out.println(find.trim().isEmpty()+"트림+엠티");
+
 			if(find.trim().isEmpty() && nation.equals("all") && diffi.equals("all")) {
 				return "redirect:recipe.re";
 			} else { // 무언가 검색어를 썼거나, 나라를 선택했거나, 난이도를 선택했음 
