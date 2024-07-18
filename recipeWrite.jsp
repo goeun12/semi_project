@@ -12,7 +12,7 @@
 
 <style>
 #write-div{font-family: 'MinSans-Regular';}
-.border-lr-radius{border-top-left-radius:10px; border-top-right-radius:10px;}
+
 </style>
 
 </head>
@@ -34,9 +34,7 @@
 						<img id="firImg">
 					</td>
 				<td class="td-bottomline" colspan='3' height="44px" width="50px">
-					
 					<input class="td-input" type="text" name="title" style="font-size:20px;width:100%;height:40px; border: 0; text-align:center;" placeholder="요리명"/>
-					
 				</td>
 				</tr>
 				<tr style="display:flex;justify-content:center;">
@@ -111,49 +109,6 @@
 				</tr>
 			</tbody>
 		</table>
-	<script>
-	window.onload=()=>{
-		const tbody = document.getElementById("table_body");
-		tbody.addEventListener('mouseout',e=>{
-			
-			const eventTarget = e.target;
-			
-			const targetTagName = eventTarget.tagName.toLowerCase();
-			let targetSVG = null;
-			switch(targetTagName){
-			case 'tr' : targetInput = eventTarget.children[1].children[0].children[0];break;
-			case 'td' : targetInput = eventTarget.parentElement.children[1].children[0].children[0];break;
-			case 'div' : targetInput = eventTarget.parentElement.parentElement.children[1].children[0].children[0];break;
-			case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[1].children[0].children[0];break;
-			}
-			const imgPre = targetInput.nextElementSibling;
-			var fReader = new FileReader();
-			fReader.onload = function(event){
-				imgPre.src = event.target.result;
-				imgPre.style.width = '250px';
-				impPre.style.height = '250px';
-			};
-			fReader.readAsDataURL(targetInput.files[0]);
-		});
-		
-		
-	}
-	
-		function previewIMG(This){
-			var firImg = document.getElementById("firImg");
-			if(This.files[0]){
-				var reader = new FileReader();
-				reader.onload = function(e){
-					firImg.src = e.target.result;
-					firImg.style.width = '350px';
-					firImg.style.height= '350px';
-				};
-				reader.readAsDataURL(This.files[0]);
-			}else{
-				firImg.src = "";
-			}
-		}
-	</script>
 	
 		
 		<div>&nbsp;</div>
@@ -169,6 +124,53 @@
 	<input type="hidden" name="content" id="inputContent"/>
 	
 	<script>
+		window.onload=()=>{
+			const tbody = document.getElementById("table_body");
+			tbody.addEventListener('mouseout',e=>{
+				
+				const eventTarget = e.target;
+				
+				const targetTagName = eventTarget.tagName.toLowerCase();
+				let targetSVG = null;
+				switch(targetTagName){
+				case 'tr' : targetInput = eventTarget.children[1].children[0].children[0];break;
+				case 'td' : targetInput = eventTarget.parentElement.children[1].children[0].children[0];break;
+				case 'div' : targetInput = eventTarget.parentElement.parentElement.children[1].children[0].children[0];break;
+				case 'textarea' : targetInput = eventTarget.parentElement.parentElement.parentElement.children[1].children[0].children[0];break;
+				}
+				const imgPre = targetInput.nextElementSibling;
+				var fReader = new FileReader();
+				fReader.onload = function(event){
+					imgPre.src = event.target.result;
+					imgPre.style.width = '250px';
+					impPre.style.height = '250px';
+				};
+				fReader.readAsDataURL(targetInput.files[0]);
+			});
+			
+			
+		}
+	
+		function previewIMG(This){
+			var firImg = document.getElementById("firImg");
+			if(This.files[0]){
+				var reader = new FileReader();
+				reader.onload = function(e){
+					firImg.src = e.target.result;
+					firImg.style.width = '350px';
+					firImg.style.height= '350px';
+				};
+				reader.readAsDataURL(This.files[0]);
+			}else{
+				firImg.src = "";
+			}
+		}
+	
+	
+	
+	
+	
+	
 		function getAllMaking(){
 			const textareas = document.getElementsByClassName("making-num");
 			let textvalue = "";
@@ -192,7 +194,14 @@
 				alert("이미지를 모두 넣어주세요");
 				return false;
 			} else{
-				return true;
+				const title = document.getElementsByName("title")[0].value;
+				const ingredients = document.getElementsByName("ingredients")[0].value;
+				if(title.trim() == '' || ingredients.trim() == ''){ // 제목이 없거나 내료가 없으면
+					alert("요리명 또는 재료를 입력해 주세요.")
+					return false;
+				}else{
+					return true;
+				}
 			}
 			
 		}
