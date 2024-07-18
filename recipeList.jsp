@@ -59,7 +59,7 @@
 		
 	<form id="searchForm" action="${contextPath }/searchRecipe.re">
 		<div class="div-center div-flex" style="padding-top:10px;padding-bottom:10px; ">
-			<div class="input-group mb-3" style="width:85%;">
+			<div class="input-group mb-3" style="width:65%;">
 				<c:if test="${ empty find }">
 					<input type="text" class="form-control searchbar" id="searchWord" name="searchWord" placeholder="카테고리 선택도 검색버튼을 눌러주세요">
 				</c:if>
