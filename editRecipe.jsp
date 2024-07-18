@@ -23,7 +23,7 @@
 	</div>
 	
 	<!-- 1번째 칸 -->
-<form action="${contextPath }/editRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data">	
+<form action="${contextPath }/editRecipe.re" method="POST" id="recipeForm" enctype="multipart/form-data" onsubmit="return doNot();">	
 	<div id="edit-div">
 		<div id="tbdiv3" class="row text-center div-flex col div-min-width">
 	
@@ -221,7 +221,31 @@
 					textvalue += i.value+'§§●';
 				}
 				document.getElementById("inputContent").value = textvalue;
-				console.log(document.getElementById("inputContent").value);
+				
+			}
+			
+			function doNot(){
+				const inputs = document.getElementsByName("file");
+				let count = 0;
+				for(const f of inputs){
+					console.log(f.value);
+					if(f.value == ""){
+						count = count + 1;
+					}
+				}
+				if(count>0){ // count>0 -> 이미지 빈칸이 있다
+					alert("이미지를 모두 넣어주세요");
+					return false;
+				} else{
+					const title = document.getElementsByName("title")[0].value;
+					const ingredients = document.getElementsByName("ingredients")[0].value;
+					if(title.trim() == '' || ingredients.trim() == ''){ // 제목이 없거나 내료가 없으면
+						alert("요리명 또는 재료를 입력해 주세요.")
+						return false;
+					}else{
+						return true;
+					}
+				}
 				
 			}
 			
