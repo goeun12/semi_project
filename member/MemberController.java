@@ -32,6 +32,8 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 
+	
+	// 관리자 페이지
 	@RequestMapping("admin.user")
 	public String adminView(@RequestParam(value="check", defaultValue="total") String check, Model model) {
 			
@@ -76,11 +78,16 @@ public class MemberController {
 		return result == 1 ? "success" : "fail";
 	}
 	
+	
+	///////////////////////////////////////////////
+	
 	// 로그인 화면으로 이동
 	@RequestMapping("loginView.user")
 	public String loginView(@RequestParam(value="fail", required=false) String fail, 
+							@RequestParam(value="change", required=false) String change,
 							Model model) {
 		
+		model.addAttribute("change", change);
 		model.addAttribute("fail", fail);
 		return "login_user";
 	}
@@ -127,6 +134,9 @@ public class MemberController {
 		
 		return "redirect:loginView.user";
 	}
+	
+	
+	////////////////////////////////////////////////////
 
 	// 회원가입 화면으로 이동
 	@RequestMapping("joinView.user")
@@ -217,6 +227,9 @@ public class MemberController {
 		
 	}
 	
+	
+	/////////////////////////////////////////////////////////////////////
+	
 	// 아이디/비밀번호 찾기 화면으로 이동
 	@RequestMapping("findInfo.user")
 	public String findInfoView() {
@@ -290,8 +303,8 @@ public class MemberController {
 	}
 
 	
-	@RequestMapping("privacy.com")
+	@RequestMapping("privacy.user")
 	public String privacy() {
-		return "privacy";
+		return "../common/privacy";
 	}
 }
