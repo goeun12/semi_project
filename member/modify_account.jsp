@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td colspan="2"><input type="text" id="modify_name" class="modifyInput" name="name" value="${ loginUser.name }" placeholder="필수 입력"/></td>
+						<td colspan="2"><input type="text" id="modify_name" class="modifyInput" name="name" value="${ loginUser.name }" placeholder="한글 2~6글자 / 영문 2~18글자"/></td>
 					</tr>
 					<tr>
 						<th>휴대폰번호</th>
