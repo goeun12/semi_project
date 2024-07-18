@@ -20,42 +20,42 @@
 	    font-weight: normal;
 	    font-style: normal;
 	}
-	.container-fluid{background:#fffbf2; padding-top:100px; min-width: 1250px; min-height:1000px; font-family: 'MinSans-Regular';}
-						
-	#title{
-		background:#f9ae98;
+.container-fluid{background:#fffbf2; padding-top:100px; min-width: 1250px; min-height:1000px;
+					font-family: 'MinSans-Regular'; font-size:20px}
+					
+#title{background:#f9ae98;
 		width: 50%; height:50px;
 		margin-left:25%;
 		margin-block-end:0;
 		text-align:center;
 		text-decoration:none;
-		font-size: 25px; font-family: 'MinSans-Bold';
-		line-height:50px; border-radius:5px;
-	}
-	
-	#word{background:white;
-		width:50%;
-		margin-top:80px;
-		margin-left:25%;
-		padding:5%;
-		border: 1px solid lightgray;
-		border-radius:10px;}
-	
-	
-	#msg_div{margin-top:50px;}
-	
-	#msg{color: red; font-family: 'MinSans-Bold';}
-	
-	#button_div{margin-top:50px; text-align: center;}
-	
-	.btn{
-		background: #b3b3b3; color:white; 
-		border: none; border-radius:10px;
-		width:140px; height:60px;
-		font-family: 'MinSans-Bold'; font-size: 30px;
-	}
-	
-	#back_button{margin-left:80px;}
+		font-size:25px; font-family: 'MinSans-Bold';
+		line-height:50px; border-radius:5px;}
+
+#word{background:white;
+	width:50%;
+	margin-top:80px;
+	margin-left:25%;
+	padding:5%;
+	border: 1px solid lightgray;
+	border-radius:10px;}
+
+
+#msg_div{margin-top:50px;}
+
+#msg{color: red; font-family: 'MinSans-Bold';}
+
+#button_div{margin-top:50px;
+			text-align: center;}
+
+.btn{background:#b3b3b3; color:white; 
+	border:none; border-radius:10px;
+	width:140px; height:60px;
+	font-size:30px; font-family: 'MinSans-Bold';}
+
+#back_button{margin-left:50px;}
+
+
 </style>
 </head>
 <body>
@@ -71,7 +71,7 @@
 			<h5>불편을 드려 죄송합니다. </h5>
 			<div id="msg_div">
 				<p id="msg"> 오류 원인 : </p>
-				<p>${requestScope['javax.servlet.error.message']}</p>
+				<p><%= exception.getMessage() %></p>
 			</div>
 		</div>
 		
