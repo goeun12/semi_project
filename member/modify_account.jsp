@@ -190,6 +190,7 @@
 				inforRePwd.style.color = 'red';
 				return false;
 			} else if(pwd.value.trim() == '' && rePwd.value.trim() == ''){
+				inforRePwd.innerText = '';
 				return true;
 			}
 		}
