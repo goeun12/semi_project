@@ -73,7 +73,20 @@
 				
 			}
 			
-			
+			submitButton.addEventListener('click', ()=>{
+				const title = document.getElementById("notic_write_title").value;
+				const text = document.getElementById("notic_write_text").value;
+				const form = document.getElementById("form");
+				
+				if(title.trim() === ''){
+					alert("게시글 제목을 입력해주세요")					
+				}else if(text.trim() === ''){
+					alert("게시글 내용을 입력해주세요")
+				}else{
+					form.submit();
+				}
+								
+			});
 			
 			
 			
